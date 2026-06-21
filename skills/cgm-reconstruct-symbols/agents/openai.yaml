@@ -1,0 +1,4 @@
+interface:
+  display_name: "玄学理论基础｜长庚明玄学符号重构法"
+  short_description: "重构玄学符号系统，并生成专业报告与短篇洞见教科书"
+  default_prompt: "请使用 $cgm-reconstruct-symbols 审计这份历史玄学文本，列出候选符号系统让我选择，再重构其核心洞见、现实映射与交互方式，并分别输出专业研究报告和面向零基础成人的短篇洞见型符号语言教科书。"
