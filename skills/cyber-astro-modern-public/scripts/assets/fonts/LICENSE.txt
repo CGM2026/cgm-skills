@@ -1,0 +1,5 @@
+本目录字体为 Noto Serif CJK SC（思源宋体简体）的子集化产物。
+原字体版权 © Google / Adobe，依 SIL Open Font License 1.1 (OFL-1.1) 授权，可自由使用与再分发。
+子集说明：从系统 NotoSerifCJK-{Regular,Bold}.ttc 的 SC face 抽取，保留拉丁、常用标点、箭头、★，
+以及 CJK 统一表意文字 U+4E00–U+9FFF 全量，足以覆盖任意现代简体中文正文。
+OFL 全文见：https://scripts.sil.org/OFL

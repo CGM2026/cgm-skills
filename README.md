@@ -1,12 +1,13 @@
 # 长庚明公开 Skills
 
-这里收录长庚明公开发布的 AI Skills，主要用于 AI、玄学文本研究与符号系统重构。
+这里收录长庚明公开发布的 AI Skills，主要用于 AI、玄学文本研究、符号系统重构，以及面向大众的占卜体验。
 
 当前发布：
 
 | Skill | 中文名 | 功能 |
-|---|---|---|
-| [`cgm-reconstruct-symbols`](skills/cgm-reconstruct-symbols/) | 玄学理论基础｜长庚明玄学符号重构法 | 从历史玄学文本中识别、审计并重构抽象符号系统，提炼核心洞见、现实映射与系统交互关系，输出专业研究报告和零基础短篇教科书。 |
+| --- | --- | --- |
+| [`cgm-reconstruct-symbols`](skills/cgm-reconstruct-symbols) | 玄学理论基础｜长庚明玄学符号重构法 | 从历史玄学文本中识别、审计并重构抽象符号系统，提炼核心洞见、现实映射与系统交互关系，输出专业研究报告和零基础短篇教科书。 |
+| [`cyber-astro-modern-public`](skills/cyber-astro-modern-public) | 赛博占卜｜现代占星·智能解读（公开版） | 即开即用的现代占星占卜工具：随机起卦或使用你已有的星象，围绕你关心的问题给出通俗易懂的解读，并自动生成可分享的精美卡片。 |
 
 ## cgm-reconstruct-symbols
 
@@ -21,29 +22,62 @@
 
 适用于占星、八字、紫微斗数、奇门遁甲、大六壬、塔罗、卢恩、炼金术等传统。它用于历史文本和抽象符号系统研究，不用于一般文学象征、普通符号学或纯图像分析。
 
+## cyber-astro-modern-public
+
+一个独立、即开即用的现代占星占卜工具。你可以让它随机起一卦，或直接给出你已有的「行星—星座—宫位」，再说出想问的问题——事业、感情、人际、自我成长都行。它会用通俗的语言给你一段贴近处境的解读，并自动生成一张可分享的精美卡片。
+
+特点：
+
+- **随机起卦或自带星象**，两种方式任选；
+- **围绕你的问题作答**，也可以不带问题，只看当下的星象写照；
+- **多角度参考**：同一组星象常常给出几种不同读法；
+- **精美可分享**：每次解读自动生成排版讲究的卡片，便于收藏与转发；
+- **自包含、开箱即用**：内置词典、脚本、二维码与中文字体，无需联网或额外配置。
+
+它以成熟的现代占星体系为依据，话说得有依据、留有余地，不夸大、不下死话。占卜结果为启发式的象征性解读，供参考与自我探索，并非事实预测或决策建议；涉及健康、财务、法律等仅作象征探讨，不替代专业意见。
+
 ## 安装
 
 克隆仓库：
 
-```bash
+```
 git clone https://github.com/Damocles1112/cgm-skills.git
 ```
 
 将需要的 Skill 文件夹复制到你的 Agent Skills 目录。例如 Codex：
 
-```text
+```
 ~/.codex/skills/cgm-reconstruct-symbols/
+~/.codex/skills/cyber-astro-modern-public/
 ```
 
-也可以直接把 [`SKILL.md`](skills/cgm-reconstruct-symbols/SKILL.md) 及同目录下的 `agents/`、`references/` 一并提供给支持 Skills 的 Agent。
+也可以直接把对应目录下的 `SKILL.md` 及同目录的资源文件一并提供给支持 Skills 的 Agent。
+
+> `cyber-astro-modern-public` 出图依赖 `pillow`、`numpy`。首次使用前，在该 Skill 目录运行一次自检即可自动完成准备并确认就绪：
+>
+> ```
+> python3 scripts/selfcheck.py --fix
+> ```
+>
+> 看到「全部通过」即代表开箱可用。
 
 ## 使用示例
 
-```text
+符号系统研究（`cgm-reconstruct-symbols`）：
+
+```
 请使用 cgm-reconstruct-symbols 审计这份历史玄学文本，先扫描其中的候选符号系统并让我选择，再重构其核心洞见、现实映射与交互方式，分别输出专业研究报告和短篇洞见型符号语言教科书。
 ```
 
 Skill 会先审计文本、识别符号系统并判断材料是否足够，不会在存在多套候选系统时替用户擅自选择，也不会用模型记忆补造原典缺失内容。
+
+占卜体验（`cyber-astro-modern-public`）：
+
+```
+用现代占星帮我算一下：我最近的事业方向怎么样？
+```
+
+它只会问你两件事——随机起卦还是已有星象、想问什么——随后直接给出解读，并自动生成一张可分享的卡片。
 
 ## 关于作者
 
@@ -55,3 +89,4 @@ Skill 会先审计文本、识别符号系统并判断材料是否足够，不�
 
 本仓库采用 [MIT License](LICENSE)。
 
+`cyber-astro-modern-public` 内置的中文字体为 Noto Serif CJK SC 子集，依 SIL Open Font License 1.1 授权（见该 Skill 目录下 `scripts/assets/fonts/LICENSE.txt`）。

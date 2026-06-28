@@ -1,0 +1,262 @@
+{
+  "schema_version": "2.0-reviewed",
+  "scope": "planet-sign-house-only",
+  "note": "仅启用行星/星座/宫位三类符号的构式；相位关系词构式停用。打分制详见 scoring_policy。",
+  "scoring_policy": {
+    "purpose": "分数表示『离原书原文多远』，不是『正确概率』。高分=贴着原书，低分=受控延伸。",
+    "level_scores": {
+      "L1": 100,
+      "L2": 70,
+      "L3": 40,
+      "L4": 88
+    },
+    "sentence_score_formula": "base = 0.6*最弱槽位分 + 0.4*各槽位均分；novelty_penalty：二元(修饰-核心/落领域)=0(基础语法,低风险)，三元新组合(跨三系统且无CE实例)=15；final = clamp(base - penalty, 0, 100)。",
+    "interpretation_policy": {
+      "principle": "把一组『行星—星座—宫位』当作一支签文/一组比喻，结合用户的问题做启发式叙述解读。选相对通顺、贴近语境的读法即可，不必字面全合。",
+      "symbol_elasticity": "每个符号是弹性的隐喻簇，可按问题语境调用不同义项（火星=争斗/劳动/运动；第4宫=家，亦可隐喻『公司这个大家庭』）。先尝试隐喻映射，再谈是否相关。",
+      "committed_reading": "允许给有承诺的解读：是非（可以换/还活着）、在哪（家中显眼处）、是谁/何种方式。不再一律对冲成『不好说』。",
+      "context_fit_three_states": [
+        "直接回答",
+        "隐喻映射后回答",
+        "真缺背景→高模糊，给依背景的分支解读"
+      ],
+      "degree_handling": "程度映射到带该质地的符号，不拒绝。",
+      "evidence_vs_interpretation": "L1–L4 与打分只管『词义来源』；把词义组合成对问题的解读是联想行为，允许跨义项、隐喻映射、承诺式结论——不得用证据严格度掐死解读。"
+    },
+    "hard_gates": {
+      "G1_anchor": "每组至少有一个可绑定的核心义项作锚（行星名词/动词），避免凭空起意。",
+      "G3_binding": "解读须能追溯到所用符号的具体义项链。",
+      "G4_no_necessity": "可给明确倾向与承诺式判断，但不下『必然/一定/100%』的绝对论断；留有余地。",
+      "G5_ethics_sensitive": "回避伦理道德高度敏感的断定（如断人生死、重大疾病预后、教唆自伤伤人等）；此类只作温和、留余地的提示并建议寻求专业帮助。",
+      "G2_time_softened": "不编造具体日期/时点（符号未锚定时间），但不因此挡住问题的实质回答（如『能不能换城市』照常回答）。"
+    },
+    "intensity_presets": [
+      {
+        "id": "strict",
+        "name": "严格",
+        "allow_levels": [
+          "L1",
+          "L2",
+          "L4"
+        ],
+        "min_score": 80,
+        "interpretation": "贴原书的克制描述，少做延伸"
+      },
+      {
+        "id": "standard",
+        "name": "标准",
+        "allow_levels": [
+          "L1",
+          "L2",
+          "L4"
+        ],
+        "min_score": 60,
+        "interpretation": "签文式启发解读：弹性隐喻+承诺式结论，结合问题语境"
+      },
+      {
+        "id": "explore",
+        "name": "探索",
+        "allow_levels": [
+          "L1",
+          "L2",
+          "L3",
+          "L4"
+        ],
+        "min_score": 40,
+        "interpretation": "最放开的联想解读，多候选不暗选"
+      }
+    ],
+    "invariant": "解读层放开为签文/比喻式启发叙述；唯二底线：G4不下必然性绝对论断、G5回避伦理敏感断定。G1锚定/G3可追溯/G2不编时间在各档恒在。"
+  },
+  "binary_constructions": [
+    {
+      "id": "B1",
+      "name": "形容词修饰名词",
+      "slots": [
+        "星座形容词(modifier)",
+        "行星名词(head)"
+      ],
+      "review_level": "L1构式",
+      "examples": [
+        "CE-0001",
+        "CE-0004",
+        "CE-0007"
+      ]
+    },
+    {
+      "id": "B2",
+      "name": "副词修饰动词",
+      "slots": [
+        "星座副词(modifier)",
+        "行星动词(head)"
+      ],
+      "review_level": "L1构式",
+      "examples": [
+        "CE-0003",
+        "CE-0005",
+        "CE-0006"
+      ]
+    },
+    {
+      "id": "B3",
+      "name": "名词落入领域",
+      "slots": [
+        "行星名词(head)",
+        "宫位生命领域(location,名词面)"
+      ],
+      "review_level": "L1构式",
+      "examples": [
+        "CE-0008",
+        "CE-0013"
+      ]
+    },
+    {
+      "id": "B4",
+      "name": "动词支配对象",
+      "slots": [
+        "行星动词(head)",
+        "宫位名词(object)"
+      ],
+      "review_level": "L1构式",
+      "examples": [
+        "CE-0009"
+      ]
+    },
+    {
+      "id": "B5",
+      "name": "事件落入领域",
+      "slots": [
+        "行星名词(event)",
+        "宫位生命领域(location)"
+      ],
+      "review_level": "L1构式",
+      "examples": [
+        "CE-0014"
+      ]
+    }
+  ],
+  "triadic_constructions": [
+    {
+      "id": "TRI-1",
+      "name": "星座形容词+行星名词+宫位领域",
+      "compose": "B1∘B3",
+      "slots": [
+        {
+          "slot": "modifier",
+          "system": "SIGN",
+          "pos": "adjective",
+          "category": "人格、关系与状态",
+          "min_level": "L2(可推导,标注)"
+        },
+        {
+          "slot": "head",
+          "system": "PLANET",
+          "pos": "noun",
+          "min_level": "L1(核心硬闸G1)"
+        },
+        {
+          "slot": "location",
+          "system": "HOUSE",
+          "pos": "noun",
+          "category": "生命领域",
+          "min_level": "L2"
+        }
+      ],
+      "surface": "<星座形容词>的<行星名词>，落在<宫位场景/对象的自然说法>",
+      "connectives": [
+        "的"
+      ],
+      "connective_semantic": "无实义(TQ1)",
+      "review_level": "L2组合(基于CE-0004扩展)",
+      "reject_codes": [
+        "REJECT_CORE_NOT_L1",
+        "REJECT_SENSE_NOT_BOUND"
+      ],
+      "example": "事业领域中竞争的领袖"
+    },
+    {
+      "id": "TRI-2",
+      "name": "星座副词+行星动词+宫位场景",
+      "compose": "B2∘场景落位",
+      "is_benchmark": true,
+      "slots": [
+        {
+          "slot": "modifier",
+          "system": "SIGN",
+          "pos": "adverb",
+          "category": "行动与表现方式",
+          "min_level": "L2(副词整组推导,标注)"
+        },
+        {
+          "slot": "head",
+          "system": "PLANET",
+          "pos": "verb",
+          "min_level": "L1(核心硬闸G1)"
+        },
+        {
+          "slot": "location",
+          "system": "HOUSE",
+          "pos": "location",
+          "category": "生命场景",
+          "min_level": "L2"
+        }
+      ],
+      "surface": "在<宫位场景的自然说法>，<星座副词>地<行星动词>",
+      "connectives": [
+        "在",
+        "地"
+      ],
+      "connective_semantic": "无实义(TQ1)",
+      "review_level": "L1组合(有完整实例CE-0015)",
+      "reject_codes": [
+        "REJECT_CORE_NOT_L1",
+        "REJECT_SENSE_NOT_BOUND"
+      ],
+      "example": "在医院中保护性地照料",
+      "benchmark_note": "达标基准构式(TQ5)：三槽可绑定、核心L1、有CE-0015实例"
+    },
+    {
+      "id": "TRI-3",
+      "name": "行星动词+星座方式+宫位对象",
+      "compose": "B2∘B4",
+      "slots": [
+        {
+          "slot": "head",
+          "system": "PLANET",
+          "pos": "verb",
+          "min_level": "L1(核心硬闸G1)"
+        },
+        {
+          "slot": "modifier",
+          "system": "SIGN",
+          "pos": "adverb",
+          "category": "行动与表现方式",
+          "min_level": "L2"
+        },
+        {
+          "slot": "object",
+          "system": "HOUSE",
+          "pos": "noun",
+          "category": "场所与对象/人物角色",
+          "min_level": "L2"
+        }
+      ],
+      "surface": "<星座副词>地<行星动词><宫位对象的自然说法>",
+      "connectives": [
+        "地"
+      ],
+      "connective_semantic": "无实义(TQ1)",
+      "reversal_note": "宫位场景/对象歧义时返回TRI-2与TRI-3两候选(TQ2分开保留)",
+      "review_level": "L2组合",
+      "reject_codes": [
+        "REJECT_CORE_NOT_L1",
+        "REJECT_SENSE_NOT_BOUND"
+      ],
+      "example": "直接地攻击家宅"
+    }
+  ],
+  "sign_in_triad_rule": "星座在三元构式中只作修饰(形容词/副词)；星座名词(身体部位/色彩/角色)默认不进三元(TQ3/SQ3)。",
+  "phrasing_rules": {
+    "no_domain_scaffold": "禁用『……领域中』；宫位用场景/对象自然说法直接入句(在家里/工作上/跟同事之间/在和别人的钱财往来上)。抽象领域名无自然位置说法时化进句意，不加方位壳。"
+  }
+}

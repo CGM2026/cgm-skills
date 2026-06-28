@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "system_id": "SYS-CYBER-ASTRO-MODERN-PUBLIC",
+  "system_name": "现代占星公开版",
+  "member_skill": "cyber-astro-modern-public",
+  "standalone": true,
+  "router_managed": false,
+  "open_knowledge": true,
+  "title": "现代占星 · 智能解读（公开版）",
+  "intro": "一套即开即用的现代占星占卜工具：随机起卦或使用你已有的星象，带着你的问题，得到一段贴近处境、有温度也有分寸的解读，并自动生成可分享的精美卡片。以成熟的现代占星体系为依据，适合性格、感情、事业与自我成长等向内探索的问题。",
+  "suite": null,
+  "directions": { "forward": { "label": "符号 → 人话（解读/解码）", "skill": "cyber-astro-modern-public", "status": "available" } },
+  "symbol_scope": ["行星", "星座", "宫位"],
+  "out_of_scope": ["元素", "相位", "交点", "次要星体"],
+  "data_sources": { "lexicon": "data/lexicon-reviewed.jsonl", "grammar": "data/grammar-reviewed.json", "lookup": "scripts/lookup.py", "render": "scripts/render_card.py", "selfcheck": "scripts/selfcheck.py" },
+  "provenance": "整理自《当代占星研究》人工校正数据包（928 义项，L1-L4 来源分层）。本版（公开版）为独立、自包含 skill，自带 lookup/render/selfcheck、二维码与内置中文字体。",
+  "supersedes": "astro-reading-runtime"
+}
