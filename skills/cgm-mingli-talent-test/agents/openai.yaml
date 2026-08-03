@@ -1,0 +1,4 @@
+interface:
+  display_name: "命理天赋适配测试"
+  short_description: "七轮对话识别你与五门命理术的缘分，并生成完整双格式报告"
+  default_prompt: "Use $cgm-mingli-talent-test to 带我逐题完成命理天赋适配测试并生成解释性报告。"
