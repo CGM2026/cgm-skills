@@ -9,6 +9,7 @@
 | [`cgm-reconstruct-symbols`](skills/cgm-reconstruct-symbols) | 玄学理论基础｜长庚明玄学符号重构法 | 从历史玄学文本中识别、审计并重构抽象符号系统，提炼核心洞见、现实映射与系统交互关系，输出专业研究报告和零基础短篇教科书。 |
 | [`cyber-astro-modern-public`](skills/cyber-astro-modern-public) | 赛博占卜｜现代占星·智能解读（公开版） | 即开即用的现代占星占卜工具：随机起卦或使用你已有的星象，围绕你关心的问题给出通俗易懂的解读，并自动生成可分享的精美卡片。 |
 | [`cgm-mingli-talent-test`](skills/cgm-mingli-talent-test) | 命理测试｜五种命理术·天赋适配诊断 | 通过七轮渐进对话，识别你与希腊占星、古典占星、现代占星、八字和紫微斗数的适配关系，并生成可解释的 Markdown 与 PDF 学习报告。 |
+| [`cgm-diagnose-esoteric-practice`](skills/cgm-diagnose-esoteric-practice) | 玄学经营诊断｜Esoteric Practice Diagnosis | 围绕一项具体经营困境连续问诊，从人生目的、玄学承担的功能、客户关系、能力、交付与现实反馈中，找到最早发生错位的一环。 |
 
 ## cgm-reconstruct-symbols
 
@@ -51,6 +52,14 @@
 
 AI 生成的判断并不完全可靠。如果报告与你的真实经历、内在感受或长期认识强烈不符，应优先尊重你自己的判断；这份报告是一种可以讨论和修正的观察，不是由 AI 替你作出的裁决。
 
+## cgm-diagnose-esoteric-practice
+
+一个面向玄学从业者与准备从业者的经营问诊工具。它一次只处理一项具体困境，不做全面商业体检，也不进行命理预测。
+
+它不会直接罗列通用经营建议，而会通过连续追问，沿“人生所求 → 玄学承担的功能 → 客户与价值交换 → 经营动作 → 现实结果”向上追溯，找出最早断裂的一环。
+
+适合讨论是否从业、继续进修、客户定位、内容平台、课程与咨询、流派与证书，以及阶段性收入或经营瓶颈。最终输出一个有事实依据、能够被反证的核心裁决；证据不足时，则给出需要补充的信息或最小验证动作。
+
 ## 安装
 
 克隆仓库：
@@ -65,6 +74,7 @@ git clone https://github.com/Damocles1112/cgm-skills.git
 ~/.codex/skills/cgm-reconstruct-symbols/
 ~/.codex/skills/cyber-astro-modern-public/
 ~/.codex/skills/cgm-mingli-talent-test/
+~/.codex/skills/cgm-diagnose-esoteric-practice/
 ```
 
 也可以直接把对应目录下的 `SKILL.md` 及同目录的资源文件一并提供给支持 Skills 的 Agent。
@@ -104,6 +114,14 @@ Skill 会先审计文本、识别符号系统并判断材料是否足够，不�
 ```
 
 Skill 会逐题完成七轮对话，比较你与五门命理术的适配关系，随后生成 Markdown 与 PDF 报告。它不使用机械分数，也不把结论当作能力上限或终身判决。
+
+玄学经营诊断（`cgm-diagnose-esoteric-practice`）：
+
+```
+请使用 cgm-diagnose-esoteric-practice，诊断我当前最困扰的一项玄学经营问题。
+```
+
+Skill 每轮只问一个真正影响判断的问题，不预设“多赚钱”一定是最高目的，也不会因为表面相似就套用其他人的结论。它会在问题被消解、结构错位、条件性裁决、证据不足或专项事实缺口中给出明确终点。
 
 ## 关于作者
 

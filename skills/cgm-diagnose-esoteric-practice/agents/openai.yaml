@@ -1,0 +1,4 @@
+interface:
+  display_name: "玄学经营诊断"
+  short_description: "消解玄学经营伪问题，定位最早错位并给出可验证裁决"
+  default_prompt: "使用 $cgm-diagnose-esoteric-practice 诊断我当前最困扰的一项玄学经营问题。"
