@@ -10,7 +10,7 @@
   "LICENSES/huiwen-series-authorization.jpg": "215cd63cf4b33c0c7b391608cfb39ca1736b0ceb2d9c9dedc85612b20532525c",
   "LICENSES/Swiss-Ephemeris.txt": "b6345743292c516d07799dfad46f1a641e5270da2160cc4d6bd54594d6faa991",
   "NOTICE": "d1cd9c6f9dafeef743435cccdde9d0e73821eeb9dfd1a459dd21c548340940f2",
-  "README.md": "55c4546c26b179d97c298fd14e36e35185d7d28e6350df5bbf43e3cb32b511f9",
+  "README.md": "2a2b85d2aeb7e039ea70151760ea4116f0ed30fb0bb8f89280e2365bc4e60a82",
   "RELEASE.json": "738048888c8e355b8f2dbf7e14032c841e69fd81937860f3051ca5a702b0afe0",
   "RIGHTS_STATUS.json": "4fe73e5468a3f19df37961b19bb654a51a0de7ed190be2518a4c34edd5d296d7",
   "skills/cgm-astrology-workbench/agents/openai.yaml": "f6cf1f569668e38ed02ad7ecbb1918ecb33792de7ec3caf121439b57773702e7",
@@ -136,7 +136,7 @@
   "skills/cgm-hellenistic-chart-visualization/scripts/time_adjust_server.py": "98613bb382cf325abbd65bd7594b600ccac89c3208ba723acce1c605332f2a13",
   "skills/cgm-hellenistic-chart-visualization/scripts/transit_search.py": "d3453a1411daa46868fb6dcfdc01ad2ef39d42e299309c95fae71e838f0f40e9",
   "skills/cgm-hellenistic-chart-visualization/SKILL.md": "607cfb9c058e37089147e15e6493a045029faf3031b75b8ebd310e6963e98427",
-  "SOURCE_MANIFEST.json": "1cdbf63935ec7b4a23b574ccb7b5bab636aecd53271ddc19016d9b1f6e98e2be",
+  "SOURCE_MANIFEST.json": "6a3992b977c00f86af4986495efffdc7e460c977036e49b800862daa3d57d0cb",
   "TESTING.md": "9320ac701d0b9ff09dc60b6dfee0d07d56d6cbe738383e98aed37467727456b9",
   "THIRD_PARTY_NOTICES.md": "95e59672d6c89bcd4fa73c5511f57a85756fe8c2cc1f80e91d7694a88631aab5",
   "verify_files.py": "d800564bf0842b3b7106d26da8fd81152866b4206274f19b3f9d12aa67611972"
