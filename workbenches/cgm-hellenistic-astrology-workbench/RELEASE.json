@@ -1,0 +1,24 @@
+{
+  "name": "长庚明希腊占星工作台",
+  "version": "1.0.0",
+  "build_id": "20261003-073143-9b41b7a7",
+  "built_at": "2026-10-02T23:31:50.415191+00:00",
+  "status": "public-release",
+  "repository": "https://github.com/Damocles1112/cgm-skills",
+  "repository_path": "workbenches/cgm-hellenistic-astrology-workbench",
+  "default_branch": "main",
+  "members": [
+    "cgm-astrology-workbench",
+    "cgm-calculate-astrology-chart",
+    "cgm-hellenistic-chart-visualization"
+  ],
+  "rights_cleared": true,
+  "packaging_checks": [
+    "current-source-copied-without-transform",
+    "private-machine-path-scan",
+    "required-assets-present",
+    "removed-paper-texture-absent",
+    "individual-files-below-github-limit"
+  ],
+  "validation_document": "TESTING.md"
+}

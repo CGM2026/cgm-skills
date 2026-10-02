@@ -1,0 +1,9 @@
+{
+  "chart_name": "虚构占星示例",
+  "local_datetime": "1990-06-15T12:00:00",
+  "time_basis": "iana",
+  "timezone": "Asia/Shanghai",
+  "location_name": "示例地点",
+  "latitude": 30,
+  "longitude": 120
+}

@@ -1,0 +1,17 @@
+.day-calendar{margin-top:26px;padding-bottom:0}
+.day-range{text-align:right;font:11px/1.5 var(--num);color:var(--muted);margin-bottom:12px}
+.day-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px 0}
+.weekday{text-align:center;font:11px/1.4 var(--sans);color:var(--muted);padding-bottom:4px}
+.day-cell{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;padding:8px 0;color:var(--muted)}
+.day-number{font:400 13px/1.3 var(--num)}
+.day-gz{font:400 11px/1.3 var(--serif);white-space:nowrap}
+.day-cell.selected{background:var(--selected-bg);color:var(--ink)}
+.day-cell.selected .day-number,.day-cell.selected .day-gz{font-weight:700}
+.year-rule strong.day-date-readout{font-size:clamp(13px,3vw,20px)}
+
+/* Visible controls own their spacing; hidden siblings do not affect it. */
+.controls-body:not([hidden]){display:flex;flex-direction:column;gap:26px;padding-top:26px}
+.controls-body>.section,.controls-body>.day-calendar{margin-top:0}
+.deck-links{column-gap:8px}
+.deck-links #mode,.deck-links #notation,.deck-links #expand{font:400 13px/1 var(--sans);align-self:baseline}
+.deck-links #notation{margin-right:auto}

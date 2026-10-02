@@ -1,0 +1,4 @@
+interface:
+  display_name: "长庚明排盘器"
+  short_description: "计算七星、四轴、宫位、界主、福点与精神点，并输出可复核盘面事实"
+  default_prompt: "使用 $cgm-calculate-astrology-chart 根据准确时间与地点生成包含福点和精神点的结构化盘面事实。"

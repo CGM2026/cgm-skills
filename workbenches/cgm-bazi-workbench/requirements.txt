@@ -1,0 +1,2 @@
+pyswisseph>=2.10.3.2
+tzdata>=2024.1

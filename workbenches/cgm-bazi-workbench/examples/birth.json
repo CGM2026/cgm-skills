@@ -1,0 +1,13 @@
+{
+  "schema": "cgm-bazi-birth/1",
+  "name": "虚构示例",
+  "birth": {
+    "calendar": "solar",
+    "date": "1990-06-15",
+    "time": "12:00",
+    "sex": "male",
+    "timezone": "Asia/Shanghai",
+    "location": {"name": "示例地点", "longitude": 120, "latitude": 30}
+  },
+  "initial": {"year": 2026, "month": 0}
+}

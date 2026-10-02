@@ -1,0 +1,46 @@
+---
+name: cgm-bazi-suite
+description: 八字套件统一入口，串联出生排盘、数据校验与本地案例工作页，也支持独立排盘、Agent日期查询、旧命盘升级及HTML导出。
+---
+
+# 长庚明八字工作台
+
+计算交给相邻 [排盘成员](../cgm-bazi-chart/SKILL.md)，展示、图层笔记和档案交给 [可视化成员](../cgm-bazi-visualization/SKILL.md)。传递完整结构化文件，不以自然语言摘要替代事实。
+
+从 `cgm-bazi-workbench` 仓库安装时，将 `skills/` 下三个成员一起安装到同一技能目录，保留各自目录名；成员之间使用相对路径，不依赖开发机器位置。运行时在用户工作目录保存设置、案例库与输出。下方命令以成员目录写相对脚本路径；安装后请换成脚本的实际绝对路径，在用户工作目录执行。
+
+首次启用读取并自然说明 [默认与可调选项](references/first-use.md)，运行scripts/check-environment.cjs检查已有环境。用户可一次接受推荐，也可修改后确认；将选择保存为个人默认后继续。自动请求与个人默认冲突时停止排盘并引导手动切换，不静默覆盖。缺依赖不自动安装。实际采用口径随命盘保存，之后改变默认不改旧盘。
+
+## 路由
+
+- 排盘并展示：workspace生成或校验命盘，导入本地案例库并取得HTTP URL，在Agent浏览器打开。默认工作区bazi-case-library，已有指定库则复用。
+- 查看或编辑已有案例：可视化成员list、open及research结构化接口，不重新排盘；新图层不要写入旧note-put/record-put。
+- 只要计算数据：排盘成员birth。
+- 按具体日期看推运：Agent调用排盘成员timeline.cjs date或案例库兼容日期接口；网页没有日期定位入口，不用年度格推断交运日。
+- 旧命盘升级：先校验，完整资料用timeline.cjs migrate另存新文件；缺真实历法或证据时从原出生输入重排，不覆盖原文件。
+- 明确需要独立HTML：birth/chart输出独立页及来源清单；其功能范围与案例库工作页分别说明。
+- 保存冲突或损坏：按可视化case-library.md使用基线三方合并、冲突核对或Agent定向诊断/历史恢复，保留双方原文。
+
+## 一键入口
+
+入口如下（脚本路径相对于本成员目录）：
+
+```text
+node scripts/run.cjs workspace INPUT.json NEW_OUTPUT_DIRECTORY [LIBRARY_DIRECTORY]
+node scripts/run.cjs birth BIRTH.json NEW_OUTPUT_DIRECTORY [TEMPLATE_MANIFEST]
+node scripts/run.cjs chart CHART.json NEW_OUTPUT_DIRECTORY [TEMPLATE_MANIFEST]
+```
+
+workspace接受出生输入或共享命盘，输出命盘JSON和工作页入口JSON，创建三个view并启动仅监听本机的服务。已有同名输出则停止，用新目录保留历史。默认4880；其他库占用时按可视化CLI选空闲端口，不终止现有服务。birth/chart生成独立HTML与provenance，historical-fixture仅用于开发联调。
+
+默认设置路径：workspace 为案例库父目录下 `.cgm-bazi/settings.json`；birth 为当前工作目录下 `.cgm-bazi/settings.json`。可显式传 `--settings FILE` 复用同一设置。输入新出生资料时，首次未确认返回 SETUP_REQUIRED，口径冲突返回 METHOD_CONFLICT。`--manual` 仅供用户已主动选择的比较试算；不因它跳过首次告知，不借此自动接受冲突，也不更新个人默认。chart 导入只核验文件已保存口径，不拿当前默认改写它。
+
+## 工作页与资料边界
+
+工作页保留既有书页风格。原始盘可浏览和查看关联笔记；创建/编辑只在笔记图层。图层菜单统一列出同案例各盘图层，数据仍按view存档。原局图层只能关联原局；当前运势图层固定现场、比较盘移到主盘位置，隐藏盘式切换和展开时间导航。详细工具、30条上限、三个FIFO选项卡及卡片规范交可视化成员维护。
+
+设置分为「四柱排法」「起运与小运」两页，只放时间口径、子时排法、年柱换年、起运算法、小运排法五组选项。沿用书页风格，固定规则不占用设置位置。原始盘修改后先试算、查看差异，再另存新案例；保存为以后新盘默认是单独选择。笔记图层只读。独立HTML不提供案例库的完整笔记、档案或口径试算工具。
+
+时辰不详使用明确的钟表日期参照，时柱〇，参考推运不称精确，不能采用时柱起小运。近似、校正或代表时辰保留timeEvidence和条件性结果。历史命例公元1–2099先辨明原始历法及时间依据，不把儒略历原日期直接当格里历。小运、换日、换月、换年及太阳时定义集中维护在排盘成员和首次使用说明，可视化不复制算法。
+
+现行外层协议cgm-bazi-chart/1、修订2，三个成员需相邻。安装/发布按当前授权执行，是否已安装及加载最新版本以文件和实测核对；不能仅凭项目源码或旧样稿宣布完成。

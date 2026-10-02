@@ -1,0 +1,94 @@
+{
+  "schema": "cgm-release-rights/1",
+  "checked_on": "2026-10-03",
+  "program": {
+    "author": "长庚明 (Damocles1112)",
+    "license": "AGPL-3.0-only",
+    "basis": "作者在发布范围中明确采用 AGPL-3.0-only，并于 2026-10-03 确认公开发布授权及所用第三方资源的适用权利",
+    "status": "confirmed"
+  },
+  "components": [
+    {
+      "id": "pyswisseph",
+      "bundles": [
+        "bazi",
+        "astrology"
+      ],
+      "license": "AGPL-3.0",
+      "source": "https://github.com/astrorigin/pyswisseph",
+      "license_source": "https://raw.githubusercontent.com/astrorigin/pyswisseph/master/LICENSE.txt",
+      "distribution": "external-dependency",
+      "status": "verified"
+    },
+    {
+      "id": "swisseph",
+      "bundles": [
+        "bazi",
+        "astrology"
+      ],
+      "license": "AGPL branch of dual license",
+      "source": "https://github.com/aloistr/swisseph",
+      "license_source": "https://raw.githubusercontent.com/aloistr/swisseph/master/LICENSE",
+      "status": "verified"
+    },
+    {
+      "id": "huiwen-mincho",
+      "bundles": [
+        "bazi",
+        "astrology"
+      ],
+      "license": "author-declaration",
+      "source": "https://huozi.cool/article/1780107161300.html",
+      "license_source": "https://picx.zhimg.com/80/v2-dbf5c05e85ea5bff9525f260aa1e27cc_720w.jpg?source=ccfced1a",
+      "font_sha256": "e0aecfc380b80842eb3498526fa5cb402caf376eece52567f750948e46a545d3",
+      "status": "verified-with-conditions",
+      "conditions": "随免费软件作嵌入显示资源，保留声明；不得将字体单售或打包作为字体资源售卖；第三方收费提供或分发须另核作者限制。"
+    },
+    {
+      "id": "chaohua-a",
+      "bundles": [
+        "bazi",
+        "astrology"
+      ],
+      "license": "author-declaration",
+      "source": "https://huozi.cool/article/1780107571976.html",
+      "font_sha256": "791b0aabcfca0517ffc0f9d39bfa0b7a7209b225b9d5061c668760a3a79e7c24",
+      "status": "verified-with-conditions",
+      "conditions": "免费商用、可嵌入软件、复制、修改；不得作为素材字体出售盈利；保留原文中的用途与规范字形提示。"
+    },
+    {
+      "id": "html2canvas",
+      "bundles": [
+        "astrology"
+      ],
+      "version": "1.4.1",
+      "license": "MIT",
+      "source": "https://github.com/niklasvh/html2canvas/tree/v1.4.1",
+      "license_source": "https://raw.githubusercontent.com/niklasvh/html2canvas/v1.4.1/LICENSE",
+      "distribution": "vendored-minified-js",
+      "status": "verified"
+    },
+    {
+      "id": "asteroid-ephemeris",
+      "bundles": [
+        "astrology"
+      ],
+      "license": "Swiss Ephemeris AGPL branch",
+      "source": "https://raw.githubusercontent.com/aloistr/swisseph/master/ephe/seas_18.se1",
+      "sha256": "a2cd8fc33807c78ca9a700c91c2e042258b12fc4796519e00781440b5ad8b2e2",
+      "status": "verified"
+    },
+    {
+      "id": "astrologer-geometry",
+      "bundles": [
+        "astrology"
+      ],
+      "license": "AGPL-3.0-only for code distributed in this workbench",
+      "source": "https://github.com/Damocles1112/Astrologer",
+      "status": "user-confirmed",
+      "basis": "2026-10-03 作者确认所提取与适配代码可由本人授权，并批准纳入本工作台的 AGPL-3.0-only 公开版本。此确认适用于本工作台所分发代码，不声明原 Astrologer 仓库整体许可证已改变。"
+    }
+  ],
+  "ready_for_public_distribution": true,
+  "unresolved": []
+}

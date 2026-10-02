@@ -1,0 +1,955 @@
+:root{--text-main:#655644;--text-secondary:#80796f;--text-active:#a64625;--text-highlight:#397c85;--ink:var(--text-main);--muted:var(--text-secondary);--muted-soft:var(--text-secondary)}
+body,.folio .name,.folio .birth,.folio .settings,.folio .side h2,.folio .side .position,.folio .side dd,.folio .tools,.folio .wheel-note,.folio .switch-settings form,.folio .switch-settings select,.folio .save-cycle,.folio .export-menu button{color:var(--text-main)}
+.folio .side dt,.folio .dignity-table th,.folio .config-help,.folio .chart-actions .icon-control{color:var(--text-secondary)}
+.folio .dignity-glyph{color:var(--text-main)}
+.folio .dignity-glyph.is-self{color:var(--text-active)}
+.folio .dignity-table button.dignity-glyph:hover,.folio .dignity-table button.dignity-glyph[aria-pressed=true]{color:var(--text-highlight)}
+.m08-wheel text,.m08-wheel .planet-mark,.m08-wheel .planet-degree-radial,.m08-wheel .planet-minute-radial,.m08-wheel .angle-label,.m08-wheel .angle-name,.m08-wheel .angle-degree-value,.m08-wheel .angle-minute-value,.m08-wheel .retrograde,.m08-wheel .lot-number{fill:var(--text-main)}
+.m08-wheel .house-mark,.m08-wheel .bound-mark{fill:var(--text-secondary)}
+.m08-wheel [data-point].selected text,.m08-wheel text.angle-label.selected{fill:var(--text-active)}
+.folio .dignity-table th,.folio .dignity-table td{padding-left:10px;padding-right:10px}
+.folio .dignity-table th:first-child,.folio .dignity-table td:first-child{padding-left:0}
+.folio .dignity-empty{display:inline-block;width:6px;height:1px;background:var(--text-secondary);font-size:0;vertical-align:middle}
+@media(max-width:650px){.folio .dignity-table th,.folio .dignity-table td{padding-left:6px;padding-right:6px}}
+@media(max-width:450px){.folio .dignity-table th,.folio .dignity-table td{padding-left:3px;padding-right:3px}}
+/* Black for chart readings and detail values; preserve selection colors. */
+.m08-wheel .planet-mark,.m08-wheel .planet-degree-radial,.m08-wheel .planet-minute-radial,.m08-wheel .retrograde,.m08-wheel .bound-mark,.m08-wheel .angle-degree-value,.m08-wheel .angle-minute-value{fill:#000000}
+.m08-wheel [data-point].selected .planet-mark,.m08-wheel [data-point].selected .planet-degree-radial,.m08-wheel [data-point].selected .planet-minute-radial,.m08-wheel [data-point].selected .retrograde,.m08-wheel [data-point].selected .angle-degree-value,.m08-wheel [data-point].selected .angle-minute-value{fill:var(--text-active)}
+.folio .side dd{color:#000000}
+.folio .side .position-sign{font-family:'Huiwen','SimSun',serif}
+/* Semantic colors remain stable during both selection and ruler highlighting. */
+.m08-wheel .retrograde,.m08-wheel .planet-glyph-group.dignity-highlight .retrograde{fill:#a64625!important}
+.m08-wheel .angle-name{fill:#000000!important}
+.folio .dignity-table button.dignity-glyph,.folio .dignity-table button.dignity-glyph:hover,.folio .dignity-table button.dignity-glyph[aria-pressed=true]{color:#aaa397}
+.folio .dignity-table button.dignity-glyph.is-self,.folio .dignity-table button.dignity-glyph.is-self:hover,.folio .dignity-table button.dignity-glyph.is-self[aria-pressed=true]{color:var(--text-active)}
+.folio .side[hidden]{display:none}
+.folio .detail-heading .position,.folio .dignity-table th{font-size:11px}
+.folio .detail-heading h2{font-size:52px}
+@media(max-width:650px){.folio .detail-heading .position,.folio .dignity-table th{font-size:10px}.folio .detail-heading h2{font-size:44px}}
+@media(max-width:450px){.folio .detail-heading .position,.folio .dignity-table th{font-size:9px}.folio .detail-heading h2{font-size:36px}}
+/* Keep axis weight stable; focus dims other point labels, not the wheel rings. */
+.m08-wheel .angle-label,.m08-wheel .angle-label text,.m08-wheel .angle-label tspan{font-weight:600!important}
+.m08-wheel:has([data-point].selected) .planet-glyph-group:not(.selected) text,
+.m08-wheel:has([data-point].selected) .angle-label:not(.selected),
+.m08-wheel:has([data-point].selected) .angle-label:not(.selected) text,
+.m08-wheel:has([data-point].selected) .angle-label:not(.selected) tspan{fill:#99938a!important}
+.m08-wheel .planet-glyph-group.selected text,
+.m08-wheel .angle-label.selected,
+.m08-wheel .angle-label.selected text,
+.m08-wheel .angle-label.selected tspan{fill:var(--text-active)!important}
+/* Ruler lookup remains a separate, temporary highlight. Retrograde stays red. */
+.m08-wheel:has([data-point].selected) .planet-glyph-group.dignity-highlight:not(.selected) text{fill:var(--text-highlight)!important}
+.m08-wheel .planet-glyph-group .retrograde{fill:#a64625!important}
+
+
+/* Complete rings remain visible; only direct manual lookup adds a blue point. */
+.m08-wheel:has([data-point].selected) .sign-segment,.m08-wheel:has([data-point].selected) .bound-segment{opacity:.3}
+.m08-wheel:has([data-point].selected) .sign-marks text,.m08-wheel:has([data-point].selected) .bound-mark,.m08-wheel:has([data-point].selected) .lot-mark:not(.selected) text,.m08-wheel:has([data-point].selected) .planet-glyph-group:not(.selected) tspan{fill:#99938a!important}
+.m08-wheel:has([data-point].selected) .planet-glyph-group.dignity-highlight:not(.selected) text,.m08-wheel:has([data-point].selected) .planet-glyph-group.dignity-highlight:not(.selected) tspan{fill:#526f8b!important}
+.m08-wheel .planet-glyph-group.dignity-highlight .planet-tick{stroke:#526f8b}
+.m08-wheel:has([data-point].selected) .planet-glyph-group.dignity-highlight:not(.selected) text,.m08-wheel:has([data-point].selected) .planet-glyph-group.dignity-highlight:not(.selected) tspan{fill:#000!important}.m08-wheel .planet-glyph-group.dignity-highlight .planet-tick{stroke:#000}
+.folio .point-dialog{position:fixed;inset:auto 24px 24px auto;margin:0;width:660px;max-width:calc(100vw - 32px);max-height:calc(100vh - 48px);overflow:auto;padding:20px 24px 24px;border:1px solid var(--rule);background-color:var(--surface);box-shadow:0 12px 42px #29282024;color:var(--ink);z-index:20}.folio .point-dialog .side{border:0;padding:0}.detail-toolbar{display:flex;justify-content:flex-end;gap:10px;margin-bottom:12px}.detail-toolbar button{display:flex;align-items:center;justify-content:center;width:30px;height:30px;padding:4px;background:none;border:0;color:#80796f;cursor:pointer}.detail-toolbar button[hidden]{display:none}.detail-toolbar svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}.detail-toolbar button:hover{color:#000}.point-dialog .point-summary dl{grid-template-columns:max-content minmax(0,1fr)!important}.point-dialog .detail-heading h2{font-size:42px!important}.point-dialog .dignity-table th,.point-dialog .dignity-table td{padding-left:4px;padding-right:4px}
+@media(max-width:450px){.folio .point-dialog{right:16px;bottom:16px;padding:14px}.folio .point-dialog :is(#detail,.detail-content){grid-template-columns:1fr}.point-dialog .detail-heading h2{grid-column:1;grid-row:1;max-width:none}.point-dialog .detail-heading .position{grid-column:1;grid-row:2}.point-dialog .dignity-scroll{grid-column:1;grid-row:3}.point-dialog .point-summary{grid-row:4}}
+/* Centered compact detail card, with controls alongside the heading. */
+.folio .point-dialog{inset:50% auto auto 50%;transform:translate(-50%,-50%);width:520px;max-width:calc(100vw - 32px);max-height:calc(100dvh - 40px);padding:24px}.folio .point-dialog .side{position:relative}.point-dialog .detail-toolbar{position:absolute;right:0;top:0;margin:0;gap:5px;z-index:1}.detail-toolbar button{width:23px;height:23px;padding:3px}.detail-toolbar svg{width:16px;height:16px}.folio .point-dialog :is(#detail,.detail-content){grid-template-columns:1fr;row-gap:10px}.point-dialog .detail-heading h2{grid-column:1;grid-row:1;max-width:none;padding-right:64px;line-height:1;margin:0}.point-dialog .detail-heading .position{grid-column:1;grid-row:2}.point-dialog .dignity-scroll{grid-column:1;grid-row:3}.point-dialog .point-summary{grid-column:1;grid-row:4;margin-top:12px}
+@media(max-width:450px){.folio .point-dialog{inset:50% auto auto 50%;padding:18px;max-width:calc(100vw - 24px)}.point-dialog .detail-heading h2{font-size:36px!important}}
+
+.folio .dignity-table span.dignity-glyph{color:#aaa397;cursor:default}
+.folio .dignity-table span.dignity-glyph.is-self{color:var(--text-active)}
+
+/* Point notes share the summary label size and the name's bottom edge. */
+.folio .detail-heading h2{display:flex;align-items:baseline;gap:16px;white-space:normal}
+.folio .point-name{white-space:nowrap}
+.folio .point-note{display:inline-flex;align-items:center;gap:5px;font:12px/1.2 'Huiwen','SimSun',serif;color:var(--text-secondary);letter-spacing:0;white-space:nowrap}
+.point-note .edit-note{border:0;background:none;color:inherit;padding:2px;width:18px;height:18px;display:inline-flex;align-items:center}
+.point-note .edit-note[hidden],.point-note .note-text[hidden]{display:none}
+.point-note svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.point-note .note-input{width:12.5em;max-width:100%;font:inherit;color:inherit;border:0;border-bottom:1px solid #c9c2b6;background:transparent;padding:0;outline-offset:3px}
+@media(max-width:450px){.folio .detail-heading h2{gap:9px;flex-wrap:wrap}.folio .point-note{max-width:100%}}
+
+/* Settings and nested lot editor share the paper-card treatment. */
+.folio .settings-dialog,.folio .lot-editor{position:fixed;inset:0;margin:auto;width:550px;max-width:calc(100vw - 32px);max-height:calc(100dvh - 40px);overflow:auto;box-sizing:border-box;padding:26px;border:1px solid var(--rule);background:var(--surface);color:var(--text-main);box-shadow:0 12px 48px #34291b24;font:13px/1.6 'Huiwen','SimSun',serif}
+.folio .lot-editor{width:430px;max-height:calc(100dvh - 64px)}
+.settings-dialog::backdrop,.lot-editor::backdrop{background:#302c2528}
+.settings-title,.lots-settings>header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:0 0 16px}
+.folio .settings-title h2{font:28px/1.1 'Chaohua',serif;margin:0}.settings-title>button{border:0;background:none;padding:2px;width:23px;height:23px;color:var(--text-secondary)}
+.settings-title svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5}
+.settings-dialog form{margin:0}.settings-dialog select,.lot-editor select,.lot-editor input{font:inherit;color:inherit;background:transparent;border:1px solid var(--rule);padding:5px 7px;border-radius:0;min-width:0;max-width:100%}
+.settings-dialog .lots-settings{border-top:1px solid var(--rule);margin-top:20px;padding-top:18px}.lots-settings h3{font-size:17px;font-weight:400;margin:0}
+.lots-settings button,.lot-done{font:inherit;color:inherit;border:1px solid var(--rule);background:transparent;padding:3px 9px}
+.lot-setting-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #ded8cd70}.lot-setting-row label{display:flex;align-items:center;gap:9px;min-width:0;overflow-wrap:anywhere}.lot-setting-note{color:var(--text-secondary);font-size:11px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}.lot-row-actions{display:flex;gap:3px;margin-left:auto;flex-shrink:0}.lot-row-actions button{border:0;padding:1px 4px}.lot-row-actions button:disabled{opacity:.25;cursor:default}
+.lots-help{font-size:11px;color:var(--text-secondary);margin:12px 0 0}.lots-error,.editor-error{color:#a64625;font-size:12px}.lots-error:empty,.editor-error:empty{display:none}
+.lot-field{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;margin:12px 0}.formula-operands fieldset{border:0;border-top:1px solid var(--rule);padding:10px 0;margin:14px 0}.formula-operands legend{padding-right:8px;color:var(--text-secondary)}.operand-type{width:100%;margin-bottom:8px}.operand-value{display:flex;align-items:center;gap:7px}.operand-choice{width:100%}.operand-degree{width:90px}.lot-reverse{display:flex;gap:8px;align-items:center}.lot-done{display:block;margin:18px 0 0 auto;padding:5px 20px}
+@media(max-width:450px){.folio .settings-dialog,.folio .lot-editor{padding:18px}.lot-setting-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:9px;row-gap:3px}.lot-setting-row .lot-visibility{grid-column:1;grid-row:1}.lot-setting-name{grid-column:2;grid-row:1}.lot-setting-note{grid-column:2 / 4;grid-row:2}.lot-row-actions{grid-column:3;grid-row:1}}
+
+/* Quiet paper controls across lot management and editing. */
+.settings-dialog .lots-settings{border-top:0;padding-top:0;margin-top:22px}
+.folio .lots-settings h3,.folio .lots-settings .add-lot{font:600 13px/1.6 'Huiwen','SimSun',serif}
+.folio .lots-settings .add-lot{border:0;padding:0;background:none}
+.folio .lot-visibility{border:0;background:none;display:inline-flex;padding:3px;color:var(--text-main)}
+.lot-visibility[aria-pressed=false]{opacity:.4}
+.lot-visibility svg,.lot-row-actions svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;display:block}
+.lot-setting-name{overflow-wrap:anywhere;min-width:0}.lot-row-actions button{display:inline-flex;align-items:center;justify-content:center;min-width:22px;min-height:22px}
+.folio .lot-editor .lot-field,.folio .lot-editor legend{font-size:13px;font-weight:600}
+.folio .lot-editor input,.folio .lot-editor select{font-weight:400;border:0;border-bottom:1px solid #d8d1c580;background:none}
+.folio .formula-operands fieldset{border:0}
+.folio .lot-editor .lot-done,.lot-reverse,.confirm-actions button{font:600 13px/1.6 'Huiwen','SimSun',serif;border:0;background:none;color:inherit}
+.lot-reverse{padding:0;display:flex;align-items:center;gap:8px;font-weight:400}
+.paper-switch{display:inline-block;width:22px;height:10px;border-bottom:1px solid #a59a88;position:relative;margin-right:3px}.paper-switch:after{content:'';position:absolute;width:5px;height:5px;left:1px;bottom:-3px;border-radius:50%;background:#aaa397}.lot-reverse[aria-checked=true] .paper-switch:after{left:16px;background:#655644}
+.folio .lot-delete-confirm{width:340px}.confirm-actions{display:flex;justify-content:flex-end;gap:22px;margin-top:24px}.confirm-actions button{padding:4px}.confirm-actions .confirm-delete{color:#a64625}
+
+/* Compact formula pairs and explicit day/night choice. */
+.folio .confirm-actions button{font-weight:700;text-shadow:0.2px 0 currentColor,-0.2px 0 currentColor}
+.operand-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:center}
+.operand-pair .operand-type{margin:0;width:100%}.operand-pair .operand-value{min-width:0}.operand-pair .operand-degree{width:64px;min-width:0}.operand-pair .operand-sign{min-width:0;flex:1}
+.folio .lot-editor .lot-done{display:block;width:max-content;margin:18px 0 0 auto;padding:5px 0 5px 20px;text-align:right;font-weight:700}
+.sect-options{display:flex;gap:22px;align-items:center;margin-top:8px}
+.sect-options button{border:0;background:none;color:#9b9489;font:13px/1.6 'Huiwen','SimSun',serif;padding:5px 0;display:inline-flex;align-items:center;gap:6px}
+.sect-options button:before{content:'○';font-family:Georgia,serif;font-size:12px}
+.sect-options button[aria-pressed=true]{color:#655644;font-weight:700}
+.sect-options button[aria-pressed=true]:before{content:'●';color:#a64625}
+.sect-explanation{margin:6px 0 0;font-size:11px;color:var(--text-secondary)}
+
+.settings-tabs{display:flex;gap:28px;margin:3px 0 24px}
+.settings-tabs button{font:600 13px/1.6 'Huiwen','SimSun',serif;border:0;background:none;padding:4px 0;color:#a39b8f}
+.settings-tabs button[aria-selected=true]{color:var(--text-main);text-shadow:.15px 0 currentColor}
+.folio .settings-dialog [role=tabpanel][hidden]{display:none}
+.folio .settings-dialog .lots-settings{margin-top:0}
+
+.settings-tabs button,.settings-tabs button[aria-selected=true]{font-weight:400;text-shadow:none}
+.folio .m08-wheel .lot-mark .lot-number{font-size:11.5px;font-weight:600;font-style:normal}
+
+.folio .m08-wheel .lot-mark .lot-number{font-size:14px}
+.folio .wheel-note{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:5px;margin:10px 0 0;line-height:1.6}
+.folio .wheel-note[hidden]{display:none}
+.lot-legend-row{display:flex;justify-content:flex-end;align-items:baseline;gap:9px}
+
+.chart-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-top:10px}
+.folio .chart-bottom .tools{border:0;margin:0;padding:0;font-size:11px;line-height:1.6;gap:18px}
+.folio .chart-bottom .wheel-note{margin:0 0 0 auto;font-size:11px;line-height:1.6}
+.folio .side .formula{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.formula-sect{font:12px/1.8 'Huiwen','SimSun',serif;color:var(--text-secondary);margin-left:auto;white-space:nowrap}
+
+/* Lift only the controls and lot legend; keep wheel geometry unchanged. */
+.folio .chart-bottom{margin-top:clamp(-68px,-6vw,-30px);position:relative}
+.folio .point-dialog .point-summary dl{grid-template-columns:max-content minmax(0,1fr) max-content minmax(0,1fr)!important;column-gap:12px;row-gap:12px}
+.folio .point-dialog .point-summary dd{min-width:0;overflow-wrap:anywhere}
+@media(max-width:450px){.folio .point-dialog .point-summary dl{column-gap:8px;font-size:11px}}
+
+.folio .lots-settings .add-lot{font-weight:400}
+.m08-wheel .sign-marks,.m08-wheel .bound-marks,.m08-wheel .segment-gaps{pointer-events:none}
+.folio .point-dialog .detail-heading .ring-title{font-size:28px!important;white-space:normal}
+
+/* Decorative SVG circles must not intercept segment clicks. */
+.m08-wheel circle{pointer-events:none}
+.m08-wheel .sign-segment,.m08-wheel .bound-segment{pointer-events:all;cursor:pointer}
+.folio .workspace>.side{position:relative}
+.folio .workspace>.side>.detail-toolbar{position:absolute;top:20px;right:0;margin:0;z-index:1}
+.folio .workspace>.side :is(#detail,.detail-content){padding-right:32px}
+.folio .workspace>.side .detail-heading h2{align-self:start;margin-top:0}
+
+/* Docked lot: wide heading and note, then left-aligned position and dignities. */
+.folio .workspace>.side :is(#detail,.detail-content):has(.lot-heading){grid-template-columns:minmax(0,1fr);row-gap:10px}
+.folio .workspace>.side .lot-heading h2{grid-column:1;grid-row:1;justify-content:space-between;gap:24px;align-items:baseline}
+.folio .workspace>.side .lot-heading .point-note{margin-left:auto;flex-shrink:0}
+.folio .workspace>.side .lot-heading .position{grid-column:1;grid-row:2;justify-self:start;text-align:left}
+.folio .workspace>.side :is(#detail,.detail-content):has(.lot-heading) .dignity-scroll{grid-column:1;grid-row:3;justify-self:start}
+.folio .workspace>.side :is(#detail,.detail-content):has(.lot-heading) .point-summary{grid-column:1;grid-row:4;margin-top:12px}
+.folio .side :is(#detail,.detail-content):has(.ring-title) .ring-title{grid-column:1 / -1;grid-row:1}
+.folio .side :is(#detail,.detail-content):has(.ring-title) .point-summary{grid-column:1 / -1;grid-row:2;margin-top:10px}
+
+.folio .workspace>.side .lot-heading h2{justify-content:flex-start;gap:24px}
+.folio .workspace>.side .lot-heading .point-note{margin-left:0}
+.dock-status{font-size:12px;color:#a64625}.dock-status:empty{display:none}
+/* Stable baseline; additional legend rows grow upwards, never move the controls. */
+.folio .chart-bottom{height:20px;min-height:20px;display:block;position:relative}
+.folio .chart-bottom .tools{position:absolute;left:0;bottom:-36px}
+.folio .chart-bottom .wheel-note{position:absolute;right:0;bottom:-36px;max-width:100px;font-size:11px;gap:5px;line-height:1.6}
+.folio .chart-bottom .wheel-note[data-density=medium]{font-size:10px;gap:3px;line-height:1.4}
+.folio .chart-bottom .wheel-note[data-density=dense]{font-size:9px;gap:1px;line-height:1.3}
+
+
+
+/* Add a little breathing room beneath the wheel. */
+.folio .chart-bottom{margin-top:clamp(-44px,calc(-6vw + 24px),-6px)}
+
+
+.folio .side .point-aspects{grid-column:1 / -1;grid-row:5;min-width:0;margin-top:18px}
+.point-aspects table{width:100%;border-collapse:collapse;font:12px/1.6 'Huiwen',Georgia,serif;font-variant-numeric:tabular-nums}
+.point-aspects th{font-weight:400;color:var(--text-secondary);text-align:left}
+.point-aspects td{color:#000}
+.point-aspects th,.point-aspects td{padding:7px 8px;border-bottom:1px solid #d8d1c580;white-space:nowrap}
+.point-aspects th:first-child,.point-aspects td:first-child{padding-left:0}
+.point-aspects th:nth-last-child(-n+2),.point-aspects td:nth-last-child(-n+2){text-align:right}
+.point-aspects th:last-child,.point-aspects td:last-child{padding-right:0}
+@media(max-width:450px){.point-aspects table{font-size:10px}.point-aspects th,.point-aspects td{padding:6px 3px}}
+
+.point-aspects>summary{cursor:pointer;list-style:none;font:13px/1.6 'Huiwen','SimSun',serif;color:var(--text-main);width:max-content;padding:3px 0}
+.point-aspects>summary::-webkit-details-marker{display:none}.point-aspects>summary:after{content:'⌄';margin-left:8px}.point-aspects[open]>summary:after{content:'⌃'}.point-aspects table{margin-top:8px}
+
+.point-aspects .aspect-mode{font:12px/1.6 'Huiwen','SimSun',serif;color:var(--text-main);background:none;border:0;padding:4px 0;margin-top:7px;max-width:100%}
+
+.virtual-settings{margin-top:22px}.virtual-row{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:8px 0}.virtual-toggle{display:inline-flex;align-items:center;gap:9px;font:inherit;color:var(--text-secondary);border:0;background:none;padding:4px 0}.virtual-toggle span{width:5px;height:5px;border:1px solid #aaa397}.virtual-toggle[aria-pressed=true] span{background:#655644;border-color:#655644}.virtual-toggle[aria-pressed=true]{color:var(--text-main)}.virtual-row select{font-size:12px;border:0;background:none}
+
+.point-aspects>summary{display:flex;align-items:baseline;justify-content:space-between;width:100%;gap:18px}
+.point-aspects>summary:after{content:none}
+.point-aspects .aspect-disclosure:after{content:'⌄';margin-left:8px}.point-aspects[open] .aspect-disclosure:after{content:'⌃'}
+.point-aspects .aspect-mode{font:inherit;color:inherit;padding:0;margin:0 0 0 auto;text-align:right;border:0;background:none;cursor:pointer}
+
+#extra-settings-page .virtual-settings{margin-top:0}.asteroid-heading{margin-top:22px}.folio .chart-bottom .tools{gap:14px}.tools>button{font:inherit;color:inherit;border:0;background:none;padding:0;white-space:nowrap}.settings-tabs{gap:20px}.settings-tabs button{white-space:nowrap}.virtual-toggle span{border-radius:50%}@media(max-width:450px){.folio .chart-bottom .tools{gap:8px;font-size:10px}.settings-tabs{gap:15px}}
+
+#extra-settings-page .virtual-settings{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:start}
+#extra-settings-page .asteroid-heading{margin-top:0}
+#extra-settings-page .virtual-row{gap:8px;min-height:31px}
+#extra-settings-page .virtual-toggle{white-space:nowrap}
+@media(max-width:450px){#extra-settings-page .virtual-settings{gap:16px;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)}#extra-settings-page .virtual-row select{font-size:11px;padding:4px 0}#extra-settings-page .virtual-row{flex-wrap:wrap;gap:2px 6px}}
+
+#switch-status:empty{display:none}
+.folio .virtual-settings .virtual-toggle{cursor:pointer;color:var(--text-main)}
+.folio .virtual-settings input[type=checkbox]{appearance:none;box-sizing:border-box;flex:none;width:5px;height:5px;margin:0;padding:0;border:1px solid #a79d87;border-radius:0;background:transparent;cursor:pointer}
+.folio .virtual-settings input[type=checkbox]:checked{background:#7e8667;border-color:#7e8667}
+.folio .virtual-settings input[type=checkbox]:focus-visible{outline:1px solid #9d573c;outline-offset:4px}
+/* Retained detail cards share a compact tab strip. */
+.folio .point-aspects>summary:after,.folio .point-aspects[open]>summary:after{content:none}
+.folio .docked-tabs{display:flex;flex-wrap:wrap;gap:8px 24px;border-bottom:1px solid var(--rule);padding:0 0 9px}
+.folio .docked-tabs[hidden],.folio .docked-card[hidden]{display:none!important}
+.docked-tabs button{font:inherit;color:var(--text-secondary);border:0;background:none;padding:4px 0;cursor:pointer}
+.docked-tabs button[aria-selected=true]{color:#000}
+.folio .workspace>.docked-card{border-top:0;padding-top:0}
+.folio .workspace>.docked-card>.detail-toolbar{top:0}
+#extra-settings-page .virtual-settings{grid-template-columns:minmax(0,1fr);gap:22px}
+#extra-settings-page .virtual-column,#extra-settings-page .asteroid-column{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px;row-gap:6px}
+#extra-settings-page .virtual-settings .config-label{grid-column:1/-1;margin:0 0 4px}
+#extra-settings-page .virtual-row{margin:0;flex-wrap:wrap;justify-content:flex-start;gap:4px 10px}
+/* Compact split axis values free space for the wheel itself. */
+.folio .m08-wheel .split-axis text{font:600 11px Georgia,serif;fill:#000;dominant-baseline:middle}
+.folio .m08-wheel .outer-axis{stroke:#9b9283;stroke-width:.5;stroke-opacity:.62}
+
+.folio .m08-wheel .compact-axis text{font:600 9.5px Georgia,serif;fill:#000;dominant-baseline:middle}
+.folio .m08-wheel .sign-marks text{font-size:12px}
+
+
+
+.folio .chart-actions{position:relative}
+.folio .method-switches{flex:none;flex-wrap:nowrap;white-space:nowrap}
+.folio .chart-actions{flex:none}
+.folio .settings.actions-stacked .chart-actions{width:100%;margin-left:0;justify-content:flex-start}
+.folio .settings-dialog .dual-setting{margin:0 0 24px}
+.folio .settings-dialog .personal-tradition{border:0;border-bottom:1px solid var(--rule);margin:0 0 23px;padding:0 0 20px;min-width:0}
+.folio .settings-dialog .personal-tradition legend{font-weight:600;padding:0;margin:0 0 11px;color:var(--text-main)}
+.folio .settings-dialog .tradition-options{display:grid;gap:11px}
+.folio .settings-dialog .tradition-options label{display:flex;align-items:center;gap:9px;font:13px/1.5 'Huiwen','SimSun',serif;cursor:pointer}
+.folio .settings-dialog .tradition-options input{flex:none;width:12px;height:12px;margin:0;accent-color:#655644}
+.folio .settings-dialog .personal-tradition p{margin:13px 0 0;color:var(--text-secondary);font:11px/1.65 'Huiwen','SimSun',serif}
+.folio .settings-dialog .dual-setting .config-label{margin:0 0 9px;font-weight:600}
+.folio .settings-dialog .choice-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;row-gap:12px}
+.folio .settings-dialog .choice-pair label{display:flex;align-items:center;min-width:0;gap:9px;font:13px/1.5 'Huiwen','SimSun',serif;cursor:pointer}
+.folio .settings-dialog .choice-pair input[type=radio]{flex:none;width:12px;height:12px;margin:0;accent-color:#655644;cursor:pointer}
+.folio .settings-dialog .choice-pair label span{min-width:0}
+.folio .settings-dialog .dual-setting:has(#ayanamsa-choice) .choice-pair{grid-template-columns:1fr;row-gap:13px}
+.folio .settings-dialog .dual-setting:has(#ayanamsa-choice) .choice-pair label span{white-space:nowrap}
+.folio .settings-dialog #ayanamsa-choice[hidden],.folio .settings-dialog #bound-choice[hidden]{display:none!important}
+.folio .settings-dialog .house-cycle-settings{border-top:1px solid var(--rule);padding-top:21px}
+.folio .settings-dialog .house-cycle-settings>.config-label{margin:0 0 5px}
+.folio .settings-dialog .house-cycle-settings>.config-help{margin:0 0 16px}
+.folio .settings-dialog .house-cycle-settings .cycle-choice{margin:0 0 10px}
+.folio .layer-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:8}
+.layer-menu>summary{list-style:none}.layer-menu>summary::-webkit-details-marker{display:none}.layer-menu>summary:after{content:none!important}
+.layer-menu svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linejoin:round}
+.layer-panel{position:absolute;right:0;top:34px;width:280px;max-width:80vw;padding:18px;background:var(--surface);border:1px solid var(--rule);box-shadow:0 8px 24px #29282012;font:13px/1.6 Huiwen,SimSun,serif;color:var(--text-main)}
+.layer-panel button,.layer-notes button,.layer-editor button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:3px 0}
+.layer-panel-head,.layer-editor-head,.layer-note header{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.layer-list{margin-top:12px;max-height:45vh;overflow:auto}.layer-row{display:flex;align-items:center;gap:10px;padding:7px 0}.layer-row [data-select]{flex:1;text-align:left;overflow-wrap:anywhere}.layer-row [aria-pressed=true]{color:#000;text-decoration:underline;text-underline-offset:5px}.layer-lock{font-size:11px;color:var(--text-secondary)}
+.layer-visibility input{appearance:none;width:5px;height:5px;margin:0;border:1px solid #a79d87}.layer-visibility input:checked{background:#7e8667;border-color:#7e8667}.layer-status:empty,.editor-status:empty{display:none}
+.folio .layer-notes[hidden]{display:none}.layer-notes{margin-top:24px}.layer-note{border-top:1px solid var(--rule);padding-top:18px;margin-top:18px}.layer-note h3{font:20px/1.5 Huiwen,SimSun,serif;margin:0}.layer-note p{font:14px/1.9 Huiwen,SimSun,serif;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0}.layer-note.active h3{color:#000}
+.folio .layer-editor{width:440px;max-width:calc(100vw - 32px);max-height:85vh;overflow:auto;margin:auto;padding:24px;border:1px solid var(--rule);background:var(--surface);color:var(--text-main);font:14px/1.7 Huiwen,SimSun,serif}.layer-editor::backdrop{background:#29282026}.layer-editor label{display:block;margin-top:18px}.layer-editor input,.layer-editor textarea{display:block;box-sizing:border-box;width:100%;font:inherit;color:inherit;background:transparent;border:0;border-bottom:1px solid var(--rule);padding:8px 0;resize:vertical}.layer-editor-actions{display:flex;justify-content:flex-end;gap:24px;margin-top:18px}.delete-layer{margin-right:auto}.layer-confirm button{font-weight:bold}
+
+/* Compact layer management; content authoring is separate. */
+.layer-panel{width:220px;padding:12px 14px;font-size:12px}
+.layer-list{margin-top:6px}.layer-row{gap:8px;padding:4px 0}
+.folio .layer-editor{width:300px;padding:18px;font-size:12px}
+.layer-editor label{margin-top:12px}.layer-editor-actions{margin-top:12px}
+.folio .layer-editor input[name=name]{margin-top:7px;padding:10px 12px;line-height:1.8;border:1px solid var(--rule);border-radius:2px;min-width:0}
+.folio .layer-editor input[name=name]::placeholder{color:#aaa397;opacity:1}
+.folio .layer-editor input[name=name]:focus{outline:none;border-color:#a79d87;box-shadow:0 0 0 1px #a79d8726}
+/* Shared paper-style fields, including dynamically created editors. */
+.folio :is(input:not(.relation-title-input):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]):not([type=hidden]):not([type=range]),textarea,select){
+ box-sizing:border-box;min-width:0;max-width:100%;padding:8px 10px!important;line-height:1.7;
+ border:1px solid transparent!important;border-bottom-color:#d8d1c5!important;border-radius:2px;
+ background:transparent;outline:none!important;box-shadow:none!important;
+ transition:border-color .15s ease,box-shadow .15s ease;
+}
+.folio :is(input:not(.relation-title-input):not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]):not([type=hidden]):not([type=range]),textarea,select):focus{
+ border-color:#b5ac9b!important;box-shadow:0 0 0 1px #a79d871a!important;
+}
+.folio :is(input,textarea)::placeholder{color:#aaa397;opacity:1}
+.folio select{padding-right:26px!important}
+.folio .archive-launch{position:absolute;right:0;top:calc(100% + 44px);padding:0;background:none;border:0;cursor:pointer}.archive-launch svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linejoin:round}
+.folio .archive-dialog{position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);margin:0;width:540px;max-width:calc(100vw - 32px);max-height:80vh;overflow:auto;padding:24px;border:1px solid var(--rule);background:var(--surface);color:var(--text-main);z-index:20}
+.archive-card{font:13px/1.8 Huiwen,SimSun,serif;min-width:0}.archive-card[hidden]{display:none!important}.workspace>.archive-card{margin-top:28px;border-top:1px solid var(--rule);padding-top:20px}.archive-card button{font:inherit;color:inherit;background:none;border:0;padding:3px 5px;cursor:pointer}.archive-head,.archive-options,.archive-record-meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px}.archive-head h2{font:24px/1.4 Huiwen,SimSun,serif;margin:0}.archive-tabs{display:flex;flex-wrap:wrap;gap:8px 14px;margin:18px 0 10px;border-bottom:1px solid var(--rule);padding-bottom:8px}.archive-tabs [aria-pressed=true]{color:#000;text-decoration:underline;text-underline-offset:5px}.archive-options label{display:flex;align-items:center;gap:8px;white-space:nowrap}.archive-options input{appearance:none;width:5px;height:5px;border:1px solid #a79d87;margin:0}.archive-options input:checked{background:#7e8667;border-color:#7e8667}.archive-records article{margin-top:18px;padding-top:12px;border-top:1px solid #d8d1c570}.archive-records p{white-space:pre-wrap;overflow-wrap:anywhere;margin:8px 0}.archive-record-meta{color:var(--text-secondary);font-size:12px}.archive-status:empty{display:none}.folio .archive-editor{width:420px}.archive-editor textarea{width:100%;resize:vertical;font:inherit}
+.folio .chart-actions .archive-launch{position:static;inset:auto;flex:none}
+.object-note{grid-column:1/-1;display:block;margin-top:18px;font:12px/1.7 Huiwen,SimSun,serif}.object-note textarea{display:block;width:100%;margin-top:6px;font:inherit;color:inherit;resize:vertical}
+.archive-head .archive-time-switch{font:12px/1.7 Huiwen,SimSun,serif;display:flex;align-items:baseline;gap:6px;margin-left:auto;white-space:nowrap}.archive-time-switch input{appearance:none;width:5px;height:5px;border:1px solid #a79d87;margin:0}.archive-time-switch input:checked{background:#7e8667}.archive-head svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.folio .archive-dialog{padding:20px 24px}.archive-head h2{font-size:17px;line-height:1.7}.archive-head{align-items:baseline}.archive-tabs{margin:12px 0 14px;padding-bottom:8px;gap:6px 12px}.archive-tab-item{display:inline-flex;align-items:baseline;gap:2px;min-width:0}.archive-tab-menu{position:relative}.archive-tab-menu summary{list-style:none;cursor:pointer;color:var(--text-secondary);padding:0 4px}.archive-tab-menu summary::-webkit-details-marker{display:none}.archive-tab-menu>div{position:absolute;top:100%;left:0;z-index:2;min-width:72px;padding:7px 12px;background:var(--surface);border:1px solid var(--rule);box-shadow:0 4px 12px #29282010}.archive-tab-menu button{display:block;white-space:nowrap}.folio .archive-body-input{display:block;width:100%;min-height:180px;resize:vertical;font:14px/1.9 Huiwen,SimSun,serif;color:var(--text-main)}.archive-empty{margin:12px 0}.archive-records article:first-child{margin-top:0;border-top:0;padding-top:0}.folio .archive-editor{width:300px}.archive-head>div{display:flex;align-items:center;gap:5px}
+/* Consistent confirmation actions and archive header alignment. */
+.folio :is(.confirm-delete,.cancel-delete,button[data-yes],button[data-no]){font-weight:700}
+.folio :is(.confirm-delete,button[data-yes]){color:#a64625}
+.folio .archive-head{justify-content:flex-start;column-gap:14px}
+.folio .archive-head .archive-time-switch{margin-left:0}
+.folio .archive-head>div{margin-left:auto;align-self:center;align-items:center}
+.folio .archive-head>div>button{display:flex;align-items:center;justify-content:center;width:23px;height:23px;padding:3px;line-height:1}
+.folio .archive-head>div svg{display:block;width:16px;height:16px;flex:none}
+.folio .chart-actions .layer-menu{position:relative;inset:auto;order:4}
+.folio .chart-actions .base-zoom-tools{position:static;inset:auto;order:5;display:flex;flex-direction:row-reverse;gap:4px;flex:none}
+.folio .chart-actions .base-zoom-tools[hidden],.folio .chart-actions .base-zoom-tools [hidden]{display:none}
+.folio .chart-actions .base-zoom-tools .icon-control{width:25px;height:26px;padding:3px;background:none;border:0;border-bottom:1px solid transparent;color:#8e887d;cursor:pointer}
+.folio .chart-actions .base-zoom-tools .icon-control svg{width:17px;height:17px;stroke-width:1.3}
+.folio .chart-actions .base-zoom-tools [aria-pressed=true]{color:#292820;border-bottom-color:#655f56}
+.folio .chart-actions .icon-control{width:26px;height:26px}
+.folio .chart-actions .icon-control svg{width:17px;height:17px}
+.folio .chart-actions #export-open{appearance:none;background:transparent;box-shadow:none}
+.folio .archive-card.docked-card{margin-top:0;border-top:0;padding-top:0}
+.folio .archive-head button[hidden]{display:none}
+/* Reserve the full footer height so docked tabs cannot overlap its controls. */
+.folio .chart-bottom{height:56px;min-height:56px}
+.folio .chart-bottom .tools,.folio .chart-bottom .wheel-note{bottom:0}
+.method-switches button:disabled,.chart-bottom input:disabled{cursor:default}
+.relation-note-tools{display:flex;justify-content:flex-end;gap:16px;margin:8px 0;font:12px Huiwen,SimSun,serif}.relation-note-tools[hidden],.relation-note-list[hidden]{display:none}.relation-note-tools button,.relation-note-preview{font:inherit;color:var(--text-main);border:0;background:none;cursor:pointer}.relation-note-tools button:disabled{opacity:.4;cursor:default}.relation-note-list{display:grid;gap:14px;margin-top:20px}.relation-note-preview{text-align:left;border-top:1px solid var(--rule);padding:12px 0}.relation-note-preview p{white-space:pre-wrap;margin:8px 0}.relation-tags{display:flex;flex-wrap:wrap;gap:8px 14px;margin:18px 0}.relation-tag{display:inline-flex;align-items:center;gap:6px;border-bottom:1px solid var(--rule)}.relation-tag button{opacity:0}.relation-tag:hover button,.relation-tag:focus-within button{opacity:1}.relation-text{width:100%;font:inherit;resize:vertical}.folio .relation-note-dialog{width:440px}.note-picked{filter:drop-shadow(0 0 2px #9d573c)}.m08-wheel .note-picked text{fill:#9d573c!important}.relation-error:empty{display:none}@media(hover:none){.relation-tag button{opacity:1}}
+/* Flat selection, without glow or text halos. */
+.folio .m08-wheel .note-picked{filter:none}
+.folio .m08-wheel .note-picked text,.folio .m08-wheel .note-picked tspan{fill:#9d573c!important;stroke:none!important}
+.folio .m08-wheel path.note-picked{stroke:#9d573c;stroke-width:.65}
+.folio .side .position-bound{font-family:'Huiwen','SimSun',serif;white-space:nowrap}
+.folio .point-summary dl.bound-summary{grid-template-columns:max-content minmax(0,1fr)!important}
+.folio.note-layer-active .dock-detail,.folio.note-layer-active .archive-head [data-action=dock],.folio.note-layer-active .docked-tabs,.folio.note-layer-active .workspace>.docked-card{display:none!important}
+.related-notes{grid-column:1/-1;margin-top:14px;font:11px/1.7 Huiwen,SimSun,serif;color:var(--text-secondary)}
+.related-notes summary{cursor:pointer}.related-notes button{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:none;border:0;border-top:1px solid var(--rule);padding:9px 0;cursor:pointer}.related-notes button p{white-space:pre-wrap;margin:4px 0;color:var(--text-main)}
+.relation-note-title{display:block;font:18px/1.5 Huiwen,SimSun,serif;color:var(--text-main);margin-bottom:7px}
+.relation-note-objects{display:block;text-align:left;font:11px/1.7 Huiwen,SimSun,serif;color:var(--text-secondary)}
+.relation-note-dialog .relation-tags{font:11px/1.7 Huiwen,SimSun,serif;justify-content:flex-start;margin:10px 0 16px}
+.relation-note-dialog .relation-title-input{flex:1;width:100%;font:18px/1.5 Huiwen,SimSun,serif;color:var(--text-main)}
+.related-layer-name{display:block;font-size:10px;margin-top:3px}
+.relation-tabs{display:flex;flex-wrap:wrap;gap:8px 24px;border-bottom:1px solid var(--rule);padding-bottom:9px}.relation-tabs button,.relation-note-content header button{font:inherit;border:0;background:none;color:var(--text-secondary);padding:4px 0;cursor:pointer}.relation-tabs [aria-selected=true]{color:#000}.relation-note-content header{display:flex;align-items:baseline;justify-content:space-between;gap:16px}.relation-note-content p{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.9 Huiwen,SimSun,serif;margin:12px 0}
+.wheel-zoom-tools{display:flex;justify-content:flex-end;gap:16px;margin:4px 0 8px;font:12px Huiwen,SimSun,serif}.wheel-zoom-tools[hidden]{display:none}.wheel-zoom-tools button{font:inherit;color:var(--text-secondary);background:none;border:0;cursor:pointer}.wheel-zoom-tools [aria-pressed=true]{color:#000}.zoom-enabled{cursor:grab;touch-action:none}.zoom-enabled:active{cursor:grabbing}
+/* Compact annotation tools, sharing one row with temporary selection actions. */
+.chart-area{position:relative}.annotation-toolbar{display:flex;align-items:center;justify-content:flex-end;gap:9px;margin:8px 0 6px;min-height:26px}.annotation-toolbar[hidden]{display:none}.annotation-toolbar button{display:flex;align-items:center;justify-content:center;width:25px;height:26px;padding:3px;background:none;border:0;border-bottom:1px solid transparent;color:#8e887d;cursor:pointer}.annotation-toolbar button[aria-pressed=true]{color:#292820;border-bottom-color:#655f56}.annotation-toolbar button:disabled{opacity:.3;cursor:default}.annotation-toolbar svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}.annotation-toolbar .annotation-color{width:9px;height:9px;border-radius:50%;padding:0;background:#9d573c}.annotation-toolbar .gray{background:#655f56}.annotation-status{font:11px Huiwen,SimSun,serif}.wheel-zoom-tools{display:none!important}.relation-note-tools:has([data-note-action=start]){display:none}.relation-note-tools:has([data-note-action=done]){position:absolute;right:0;top:40px;z-index:2;margin:0;font-size:11px}.annotation-drawing{touch-action:none;cursor:crosshair}.annotation-overlay{pointer-events:none}.annotation-handle{pointer-events:all;cursor:move}
+.folio #wheel.zoom-framed{box-sizing:border-box;padding-inline:clamp(22px,5vw,64px);overflow:hidden}
+.folio.note-layer-active .chart-bottom .tools{display:none}
+.folio .chart-bottom .annotation-toolbar{position:absolute;left:0;bottom:0;justify-content:flex-start;margin:0;min-height:20px;gap:9px}
+.folio.note-layer-active .chart-bottom .annotation-toolbar{bottom:calc(100% + 6px)}
+.annotation-fade{position:absolute;left:0;top:calc(100% + 10px);display:flex;align-items:center;gap:10px;font:11px/1.5 Huiwen,SimSun,serif;color:var(--text-secondary)}
+.annotation-fade[hidden]{display:none}.folio .annotation-fade input[type=range]{appearance:auto;width:135px;height:14px;padding:0!important;border:0!important;box-shadow:none!important;accent-color:#8b8170}.annotation-fade output{min-width:32px}
+.folio.note-layer-active .chart-bottom{margin-bottom:38px}
+.folio.note-layer-active .relation-note-tools:has([data-note-action=done]){position:static;justify-content:flex-start;margin:4px 0;font-size:11px}
+.folio .annotation-toolbar button[data-tool]{border:0;border-radius:2px;width:27px;height:27px}
+.folio .annotation-toolbar button[data-tool][aria-pressed=true]{background:#8b7561;color:#fff;border:0}
+.folio .annotation-toolbar button[data-tool][aria-pressed=true] svg{stroke:#fff}
+
+.annotation-toolbar .annotation-color.red{background:#b33e3e}.annotation-toolbar .annotation-color.blue{background:#426e91}
+.folio .annotation-fade input[type=range]{box-sizing:border-box;margin:0;min-width:135px;max-width:135px;flex:none;direction:ltr;touch-action:pan-y}
+.folio.note-layer-active .relation-note-list{margin-top:4px}
+.folio.note-layer-active .chart-bottom{margin-bottom:28px}
+.relation-note-dialog .relation-title-input{flex:0 1 65%;width:65%;min-width:0}
+.relation-note-dialog .layer-editor-head{align-items:center}
+.relation-note-dialog .relation-tag{border-bottom:0}
+.relation-note-dialog [data-delete-note]{margin-right:auto;color:#a64625}
+/* Note editor: one text edge and a quiet title field. */
+.folio .relation-note-dialog input.relation-title-input:not(:focus){border-color:transparent!important;box-shadow:none!important}
+.folio .relation-note-dialog .relation-tags{box-sizing:border-box;padding-left:11px;margin:4px 0 5px;column-gap:14px;row-gap:5px}
+.folio .relation-note-dialog textarea.relation-text{margin-top:0;padding-top:5px!important}
+.folio .annotation-bottom-row{position:absolute;left:0;right:0;top:calc(100% + 10px);display:flex;align-items:center;gap:18px;white-space:nowrap}
+.folio .annotation-bottom-row[hidden]{display:none}
+.folio .annotation-bottom-row .annotation-fade{position:static;flex:none}
+.folio.note-layer-active .annotation-bottom-row .relation-note-tools:has([data-note-action=done]){position:static;align-items:center;margin:0;gap:16px;font:11px/1.5 Huiwen,SimSun,serif}
+.folio .annotation-bottom-row .relation-note-tools button{padding:0;line-height:1.5}
+@media(max-width:450px){.folio .annotation-bottom-row{gap:10px}.folio .annotation-bottom-row .annotation-fade{gap:6px}.folio .annotation-bottom-row .annotation-fade input[type=range]{width:85px;min-width:85px;max-width:85px}.folio.note-layer-active .annotation-bottom-row .relation-note-tools:has([data-note-action=done]){gap:8px}}
+.annotation-divider{height:13px;width:1px;background:#d8d1c5;margin:0 2px}
+.folio .annotation-toolbar .annotation-weight{width:18px;height:24px;border:0;background:none;padding:0;border-radius:2px}
+.annotation-weight i{display:block;background:#c7c3bb;border-radius:50%;width:4px;height:4px}
+.annotation-weight[data-weight="2"] i{width:7px;height:7px}.annotation-weight[data-weight="3"] i{width:10px;height:10px}
+.folio .annotation-toolbar .annotation-weight[aria-pressed=true]{background:#eeeae3}
+.annotation-toolbar .annotation-color[aria-pressed=true]{outline:1px solid #a79d87;outline-offset:3px}
+@media(max-width:500px){.folio .chart-bottom .annotation-toolbar{gap:5px}}
+.folio.note-layer-active .chart-bottom .wheel-note{display:none}
+.annotation-toolbar .annotation-color.warm[aria-pressed=true]{outline-color:#9d573c}
+.annotation-toolbar .annotation-color.red[aria-pressed=true]{outline-color:#b33e3e}
+.annotation-toolbar .annotation-color.blue[aria-pressed=true]{outline-color:#426e91}
+.folio .annotation-toolbar .annotation-weight[aria-pressed=true]{background:#9b958b}
+.folio .annotation-toolbar .annotation-weight[aria-pressed=true] i{background:var(--surface)}
+.folio .annotation-toolbar .annotation-weight+.annotation-weight{margin-left:-6px}
+.folio .layer-editor.layer-creating{width:420px}.layer-config-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.layer-config-grid select{display:block;width:100%;font:inherit}.layer-config-checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-top:16px}.layer-editor .layer-config-checks label{margin:0;display:flex;gap:8px;align-items:center}.layer-editor .layer-config-check input{appearance:none;display:inline-block;width:5px;height:5px;flex:none;margin:0;padding:0;border:1px solid #a79d87;resize:none}.layer-editor .layer-config-check input:checked{background:#7e8667;border-color:#7e8667}
+/* Note titles stay unruled, including while focused. */
+.folio .relation-note-dialog input.relation-title-input,
+.folio .relation-note-dialog input.relation-title-input:focus,
+.folio .relation-note-dialog input.relation-title-input:focus-visible{border:1px solid transparent!important;box-shadow:none!important;outline:none!important;text-decoration:none}
+
+.m08-wheel .annotation-overlay .annotation-handle{pointer-events:all;cursor:move}
+/* Color selection follows the weight buttons: square fill with a paper-colored dot. */
+.folio .annotation-toolbar .annotation-color{--swatch:#9d573c;width:18px;height:24px;border:0;border-radius:2px;background:transparent;padding:0;outline:none;box-shadow:none}
+.folio .annotation-toolbar .annotation-color.red{--swatch:#b33e3e}
+.folio .annotation-toolbar .annotation-color.blue{--swatch:#426e91}
+.folio .annotation-toolbar .annotation-color::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--swatch)}
+.folio .annotation-toolbar .annotation-color[aria-pressed=true]{background:var(--swatch);outline:none}
+.folio .annotation-toolbar .annotation-color[aria-pressed=true]::before{background:var(--surface)}
+
+.folio .annotation-fade input[type=range]{appearance:auto;height:12px;accent-color:#8b8170}
+
+.folio .relation-note-dialog input.relation-title-input{box-sizing:border-box;padding:8px 10px!important;background:transparent}
+.m08-wheel .annotation-overlay .annotation-handle{pointer-events:all;filter:drop-shadow(0 1px 2px #0005)}
+.m08-wheel .annotation-overlay line.annotation-handle{pointer-events:none;filter:none}
+.m08-wheel .annotation-overlay .annotation-rotate{cursor:grab}
+.m08-wheel .annotation-overlay .annotation-bend{cursor:crosshair}
+
+/* Annotation controls must not inherit the faint decorative-circle paint. */
+.folio .m08-wheel .annotation-overlay .annotation-handle{opacity:.7!important;stroke-opacity:1!important;fill-opacity:1!important;filter:none}
+.folio .m08-wheel .annotation-overlay circle.annotation-handle{fill:var(--surface)!important;stroke:#9d573c!important;stroke-width:2.5px!important}
+.folio .m08-wheel .annotation-overlay circle.annotation-rotate{fill:#9d573c!important;stroke:var(--surface)!important}
+.folio .m08-wheel .annotation-overlay path.annotation-bend{fill:var(--surface)!important;stroke:#9d573c!important;stroke-width:1.5px!important}
+
+.folio .m08-wheel .annotation-overlay line.annotation-handle{stroke:#9d573c!important}
+/* Shared disclosure marker and label typography. */
+.folio .related-notes>summary,.folio .point-aspects>summary{font:13px/1.6 'Huiwen','SimSun',serif;color:var(--text-main);padding:3px 0;list-style:none}
+.folio .related-notes>summary::-webkit-details-marker{display:none}
+.folio .point-aspects .aspect-disclosure{display:inline-flex;align-items:center;gap:10px}
+.folio .related-notes>summary{display:flex;align-items:center;gap:10px}
+.folio .point-aspects .aspect-disclosure:after{content:none}
+.folio .point-aspects .aspect-disclosure:before,.folio .related-notes>summary:before{content:"";display:inline-block;flex:none;width:0;height:0;border-top:4px solid transparent;border-bottom:4px solid transparent;border-left:6px solid var(--text-secondary);transform-origin:2px center}
+.folio .point-aspects[open] .aspect-disclosure:before,.folio .related-notes[open]>summary:before{transform:rotate(90deg)}
+
+.note-choice-close{position:absolute;right:12px;top:10px;border:0;background:none;color:var(--text-main);font:20px/1 serif;cursor:pointer}.note-choice-actions{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px}.note-choice-actions button{background:none;border:0;padding:0;color:var(--text-main);font:inherit;cursor:pointer}.note-choice-status:empty{display:none}.relation-reference-card{position:relative}.relation-reference-card .relation-note-content header{padding-right:32px}
+
+.annotation-preview-close{position:absolute;right:0;top:0;border:0;background:var(--surface);color:var(--text-secondary);font:12px Huiwen,serif;padding:4px 8px;cursor:pointer}.annotation-preview-close[hidden]{display:none}
+
+.layer-row .layer-eye{display:flex;align-items:center;padding:3px}.layer-eye svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.4}.layer-eye[aria-pressed=false]{opacity:.55}.projection-close circle{fill:var(--surface)!important;stroke:#9d573c!important;stroke-opacity:1!important;stroke-width:1px!important}
+.folio .m08-wheel .projection-close circle,.folio .m08-wheel .projection-close path{pointer-events:all}
+
+.layer-method-row{display:flex;align-items:baseline;flex-wrap:wrap;gap:9px;margin:16px 0 12px;font:13px/1.6 Huiwen,SimSun,serif}.layer-method-row button,.layer-ayanamsa button{border:0;background:none;padding:0;color:var(--text-main);font:inherit;cursor:pointer}.layer-ayanamsa{font:12px/1.6 Huiwen,SimSun,serif;color:var(--text-secondary);margin-bottom:12px}.layer-ayanamsa[hidden]{display:none}
+
+/* Keep the display title decorative; use the body face consistently elsewhere. */
+.folio .birth,.folio .birth .date,.folio .birth .place-label,.folio .birth .coordinates{font-family:'Huiwen','SimSun',serif}
+.folio .masthead{position:relative;padding-bottom:0;border-bottom:0}
+.folio .masthead::after{content:"";position:absolute;left:0;right:0;bottom:13px;border-bottom:1px solid var(--rule);pointer-events:none}
+.folio .identity{align-self:start;transform:none;overflow:visible}
+.folio .name{overflow:visible}
+.folio .birth{display:flex;flex-direction:column;align-items:flex-end;gap:0;flex-wrap:nowrap;padding-right:0;text-align:right}
+.folio .birth p{line-height:26px}
+.folio .birth .account-watermark{position:relative;z-index:1;right:auto;bottom:auto;transform:none;align-self:flex-end;width:max-content;margin:0 -12px;padding:0 12px;background:var(--surface);box-shadow:none;color:var(--text-main);font:14px/26px 'Huiwen','SimSun',serif;white-space:nowrap;text-align:right}
+@media(max-width:800px){.folio .masthead::after{bottom:11.5px}.folio .birth p{line-height:23px}.folio .birth .account-watermark{font-size:12px;line-height:23px}}
+@media(max-width:450px){.folio .birth .place-label{font-size:11px}.folio .birth .account-watermark{font-size:11px;margin-inline:-9px;padding-inline:9px}}
+@media(max-width:450px){.folio .identity{align-self:start}}
+.folio .detail-heading .position{font-size:13px}
+.folio .detail-heading .position .astro-glyph,.folio .point-summary .astro-glyph{font-family:'DejaVu Sans','Segoe UI Symbol','Noto Sans Symbols 2','Arial Unicode MS','Microsoft YaHei',sans-serif;font-weight:400}
+.folio .detail-heading .position .zodiac-glyph,.folio .point-summary .zodiac-glyph{display:inline-block;font-size:1.08em;line-height:1;vertical-align:-.04em}
+@media(max-width:450px){.folio .detail-heading .position{font-size:11px}}
+
+/* Docked cards use the full page width. Keep titles out of the narrow sidebar grid. */
+.folio .workspace>.docked-card :is(#detail,.detail-content){display:block!important;padding-right:0!important}
+.folio .workspace>.docked-card .detail-heading{display:block!important;margin:0 0 18px!important}
+.folio .workspace>.docked-card .detail-heading h2{display:block!important;grid-column:auto!important;grid-row:auto!important;max-width:none!important;width:auto!important;margin:0 0 8px!important;padding:0!important;white-space:normal!important;overflow-wrap:anywhere;font-size:52px!important;line-height:1.2!important}
+.folio .workspace>.docked-card .detail-heading .position{display:block!important;grid-column:auto!important;grid-row:auto!important;margin:0!important;text-align:left!important}
+.folio .workspace>.docked-card .dignity-scroll{display:block!important;max-width:100%!important;overflow-x:auto!important;margin:0 0 20px!important}
+.folio .workspace>.docked-card .point-summary{display:block!important;margin:18px 0 0!important}
+.folio .workspace>.docked-card .point-summary dl,.folio .workspace>.docked-card .point-summary dl.bound-summary{display:grid!important;grid-template-columns:80px minmax(0,1fr) 80px minmax(0,1fr)!important;column-gap:16px!important;row-gap:14px!important;align-items:baseline}
+.folio .workspace>.docked-card .point-summary dd{min-width:0;overflow-wrap:anywhere}
+@media(max-width:700px){.folio .workspace>.docked-card .point-summary dl,.folio .workspace>.docked-card .point-summary dl.bound-summary{grid-template-columns:64px minmax(0,1fr) 64px minmax(0,1fr)!important;column-gap:10px!important}.folio .workspace>.docked-card .detail-heading h2{font-size:42px!important}}
+@media(max-width:420px){.folio .workspace>.docked-card .detail-heading h2{font-size:34px!important}.folio .workspace>.docked-card .point-summary dl,.folio .workspace>.docked-card .point-summary dl.bound-summary{grid-template-columns:48px minmax(0,1fr) 48px minmax(0,1fr)!important;column-gap:6px!important;font-size:11px}}
+.folio .workspace>.docked-card .lot-heading h2{display:flex!important;align-items:baseline;flex-wrap:wrap;column-gap:42px!important;row-gap:9px}
+.folio .workspace>.docked-card .dignity-scroll,.folio .point-dialog .dignity-scroll{overflow:visible!important;max-width:none!important}
+.folio .workspace>.docked-card .dignity-table,.folio .point-dialog .dignity-table{width:auto;max-width:100%;min-width:0;table-layout:auto;margin-left:0}
+.folio .workspace>.docked-card .dignity-table th,.folio .workspace>.docked-card .dignity-table td,.folio .point-dialog .dignity-table th,.folio .point-dialog .dignity-table td{width:auto;box-sizing:border-box;padding-left:7px;padding-right:7px}
+.folio .dignity-table td .dignity-glyph+.dignity-glyph{margin-left:4px}
+@media(max-width:420px){.folio .workspace>.docked-card .dignity-table th,.folio .workspace>.docked-card .dignity-table td,.folio .point-dialog .dignity-table th,.folio .point-dialog .dignity-table td{padding-left:3px;padding-right:3px}.folio .workspace>.docked-card .dignity-glyph,.folio .point-dialog .dignity-glyph{min-width:16px;font-size:15px}}
+.export-dialog{width:min(510px,calc(100vw - 32px));max-height:calc(100dvh - 32px);padding:22px 24px;border:1px solid var(--rule);background-color:var(--surface);box-shadow:0 12px 42px #29282024;color:var(--text-main);font:13px/1.6 'Huiwen','SimSun',serif;overflow:auto}
+.export-dialog::backdrop{background:#29282055}
+.export-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:17px}
+.export-dialog-head h2{font:24px/1.3 'Chaohua',serif;margin:0}
+.export-dialog-head button{border:0;background:none;color:var(--text-secondary);font:24px/1;cursor:pointer}
+.export-dialog-body{display:grid;gap:16px}
+.export-dialog :is(.export-check,.export-footer-choice label,.export-anonymity-choice label,.export-field span){display:flex;align-items:center;gap:8px}
+.export-dialog input[type=checkbox],.export-dialog input[type=radio]{accent-color:#655644;margin:0}
+.export-footer-choice{display:flex;flex-wrap:wrap;gap:8px 18px;border:0;border-top:1px solid var(--rule);padding:12px 0 0;margin:0}
+.export-footer-choice legend{padding:0 8px 0 0;color:var(--text-secondary)}
+.export-anonymity-choice{display:grid;gap:8px;border:0;border-top:1px solid var(--rule);padding:12px 0 0;margin:0}
+.export-anonymity-choice legend{padding:0 8px 0 0;color:var(--text-secondary)}
+.export-anonymity-choice label:has(input:disabled){opacity:.5}
+.export-anonymity-choice label:has(#export-month-only){margin:1px 0 0 21px;padding:2px 0 2px 13px;border-left:1px solid var(--rule);font-size:.92em}
+.export-anonymity-choice label:has(#export-hide-identity){margin-top:8px}
+.export-personal-choice{display:grid;gap:13px;border:0;border-top:1px solid var(--rule);padding:12px 0 0;margin:0;min-width:0}
+.export-personal-choice legend{padding:0 8px 0 0;color:var(--text-secondary)}
+.export-personal-fields{display:grid;gap:13px}
+.export-personal-fields:has(input:disabled){opacity:.5}
+.export-field{display:grid;gap:5px}
+.export-field>input{width:100%;padding:7px 9px;border:1px solid var(--rule);background:transparent;color:var(--text-main);font:inherit}
+.export-field>input:focus{outline:1px solid #9d573c}
+#export-status{margin:0;min-height:1em;color:#a64625;font-size:11px}
+.export-dialog-actions{display:flex;justify-content:flex-end;gap:10px}
+.export-dialog-actions button{border:1px solid var(--rule);background:transparent;color:var(--text-main);padding:7px 14px;font:inherit;cursor:pointer}
+.export-dialog-actions button:hover{border-color:#9d573c;color:#9d573c}
+.export-dialog-actions button:disabled{opacity:.5;cursor:wait}
+.export-preview-wrap[hidden]{display:none}
+.export-preview-wrap{max-height:45vh;overflow:auto;border:1px solid var(--rule);background:var(--surface)}
+.export-preview-wrap img{display:block;width:100%;height:auto}
+.folio>.export-personal-mark{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;width:100%;border-top:1px solid var(--rule);margin-top:20px;padding-top:14px;color:#000;font:22px/1.5 'Huiwen','SimSun',serif;overflow-wrap:anywhere}
+.folio>.export-personal-mark :is(.signature,.contact){min-width:0;max-width:48%;font:inherit}
+.folio>.export-personal-mark .contact{margin-left:auto;text-align:right}
+@media(max-width:450px){.export-dialog{padding:18px}.export-footer-choice{gap:8px 12px}}
+.folio .chart-area.legend-below-tools .chart-bottom{height:auto;min-height:0;margin-top:12px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.folio .chart-area.legend-below-tools .chart-bottom .tools{position:static;display:flex;flex-wrap:wrap;align-self:flex-start}
+.folio .chart-area.legend-below-tools .chart-bottom .wheel-note{position:static;display:flex;flex-direction:row;flex-wrap:wrap;max-width:none;width:100%;margin:0;align-items:center;justify-content:flex-start;text-align:left;font-size:11px;line-height:1.6;gap:7px 18px}
+.folio .chart-area.legend-below-tools .chart-bottom .lot-legend-row{display:inline-flex;justify-content:flex-start;align-items:center;gap:7px;white-space:nowrap}
+.folio .chart-area.legend-below-tools .chart-bottom .lot-legend-row>span:first-child{display:inline;color:var(--lot-color,#a64625);background:none;font:600 14px/1 Georgia,serif}
+.folio.note-layer-active .chart-area.legend-below-tools .chart-bottom .tools{display:none}
+.folio .chart-area.legend-below-tools .chart-bottom .tools{width:100%;align-items:center}
+.folio .chart-bottom .aspect-diagram-toggle{margin-left:auto;color:var(--text-secondary);font:inherit;white-space:pre;text-align:right;flex:none}
+.folio .chart-bottom .aspect-diagram-name{color:#000}
+.folio .chart-area.legend-below-tools .chart-bottom .tools{flex-wrap:nowrap;gap:clamp(9px,1.5vw,20px);min-width:0}
+.folio .chart-area.legend-below-tools .chart-bottom .tools label{display:inline-flex;align-items:center;white-space:nowrap;flex:none}
+.folio .chart-area.legend-below-tools .chart-bottom .wheel-note[hidden],.folio.note-layer-active .chart-area.legend-below-tools .chart-bottom .wheel-note{display:none!important}
+.folio .chart-area.legend-below-tools .chart-bottom .chart-type-switch{display:flex;align-items:baseline;flex-wrap:wrap;gap:10px 26px;width:100%;margin:0;font:16px/1.5 'Huiwen','SimSun',serif}
+.folio .chart-type-switch span,.folio .chart-type-switch button{font:inherit;white-space:nowrap}
+.folio .chart-type-switch [aria-current="page"]{color:#171614}
+.folio .chart-navigation-status{margin:0;font:12px/1.6 'Huiwen','SimSun',serif;color:#9b654c}
+.folio .chart-navigation-status[hidden]{display:none}
+.folio .chart-type-switch button{border:0;background:none;padding:0;color:var(--text-secondary);opacity:.72;cursor:default}
+.folio.note-layer-active .chart-actions .switch-settings{display:none!important}
+.folio.note-layer-active .chart-area.legend-below-tools .chart-bottom{margin-top:36px}
+.folio .chart-area.legend-below-tools .chart-bottom .aspect-diagram-mode{align-self:flex-end;display:flex;align-items:center;justify-content:flex-end;gap:14px;margin:0;color:var(--text-main);font:12px/1.5 'Huiwen','SimSun',serif}
+.folio .chart-area.legend-below-tools .chart-bottom .aspect-diagram-mode[hidden]{display:none}
+.aspect-diagram-mode-switch{border:0;background:none;padding:0;color:var(--text-main);font:inherit;white-space:nowrap;cursor:pointer}
+.aspect-diagram-mode-switch:hover,.aspect-diagram-mode-switch:focus-visible{color:#000;text-decoration:underline;text-underline-offset:4px}
+.aspect-orb-section{border-top:1px solid var(--rule);padding:14px 0 5px;margin:4px 0 20px}
+.aspect-orb-section h3{margin:0;font:600 14px/1.5 'Huiwen','SimSun',serif}
+.aspect-orb-section p{margin:5px 0 13px;color:var(--text-secondary);font:11px/1.6 'Huiwen','SimSun',serif}
+.aspect-orb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 22px}
+.aspect-orb-row{display:grid;grid-template-columns:minmax(0,1fr) 52px 12px;gap:5px;align-items:center;font:12px/1.6 'Huiwen','SimSun',serif;white-space:nowrap}
+.aspect-orb-row input{box-sizing:border-box;width:52px;border:0;border-bottom:1px solid var(--rule);background:transparent;color:var(--text-main);font:inherit;text-align:right}
+.m08-wheel .house-pick{fill:transparent;stroke:none;pointer-events:fill;cursor:pointer}
+.m08-wheel .house-mark{cursor:pointer}
+.m08-wheel .house-mark,.m08-wheel .house-mark.house-focused{fill:var(--text-secondary)!important}
+.folio .m08-wheel .outer-axis{stroke:#000!important;stroke-opacity:1!important}
+.folio .chart-bottom .transit-search-trigger{margin-left:auto;color:#000;font:inherit;white-space:nowrap;text-align:right;cursor:pointer}
+.folio .transit-time-card{grid-column:1/-1;margin-top:0}.folio .transit-time-card h3{color:#292820}.folio .transit-result-card{width:100%;box-sizing:border-box}.folio .transit-result-card article{padding:0 4px 12px}.folio .transit-result-card h2{font:22px/1.5 Huiwen,SimSun,serif;margin:0 0 14px}.folio .transit-result-card ul{padding-left:22px;margin:0;font:14px/1.8 Huiwen,SimSun,serif}
+.folio .layer-time-choice[hidden]{display:none}.folio .layer-time-choice small{display:block;color:var(--text-secondary);margin-top:5px}
+.folio .transit-search-dialog{width:min(760px,calc(100vw - 32px));max-height:min(82vh,900px);overflow:auto;border:1px solid #d7cec1;background:#fffdf8;color:#292820;padding:25px 30px;box-shadow:0 20px 70px #31261955;font:14px/1.6 Huiwen,SimSun,serif}
+.folio .transit-search-dialog{width:min(780px,calc(100vw - 32px));padding:28px 34px}
+.transit-search-dialog .search-dates{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:24px 0 20px}.transit-search-dialog .search-dates label{display:flex;align-items:center;gap:12px;min-width:0}.transit-search-dialog .search-dates input{width:100%;min-width:0;box-sizing:border-box}
+.folio #transit-search-dialog :is(select,input){border:0!important;border-bottom:0!important;box-shadow:none!important;background:#f5f1e9!important;color:#292820;padding:8px 10px;min-height:38px;box-sizing:border-box}
+.folio .transit-search-dialog :is(select,input):focus-visible{outline:2px solid #9d573c;outline-offset:1px}
+.folio .transit-search-dialog .search-condition{border:0;background:#f8f5ef;padding:18px 20px;margin:14px 0}
+.transit-search-dialog .search-condition-head{display:flex;align-items:center;gap:16px;margin-bottom:16px}.transit-search-dialog .search-condition-number{font:600 34px/1 Georgia,serif;color:#655644;min-width:38px;text-align:left;align-self:flex-start;padding-top:5px}.transit-search-dialog .search-planet{min-width:150px}.transit-search-dialog .search-remove{margin-left:auto;align-self:flex-start;white-space:nowrap}
+.transit-search-dialog .search-condition-top-fields,.transit-search-dialog .search-condition-body{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-left:54px}.transit-search-dialog .search-condition-body{margin-top:14px}.transit-search-dialog .search-field-group{display:flex;flex-direction:column;align-items:stretch;gap:5px;min-width:0}.transit-search-dialog .search-field-group>span:first-child{font-size:11px;color:#756e63}.transit-search-dialog .search-field-group :is(select,input){width:100%;min-width:0}.transit-search-dialog .search-detail{grid-column:1/-1;display:flex;align-items:end;flex-wrap:wrap;gap:12px}.transit-search-dialog .search-detail label{display:flex;flex-direction:column;gap:5px}.transit-search-dialog .search-detail input{width:105px}
+.folio .transit-search-dialog :is([data-close],.search-remove){border:0!important;box-shadow:none!important;text-decoration:none;color:#655644}.folio .transit-search-dialog .search-remove{padding:6px 0}.folio .transit-search-dialog .search-remove:hover{text-decoration:underline}
+.folio .transit-search-dialog .search-actions{margin-top:22px}.folio .transit-search-dialog .search-actions button{border:0!important;padding:5px 0}.folio .transit-search-dialog .search-actions [data-search]{color:#292820;font-weight:600}
+.folio .transit-search-dialog .search-pages{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:24px 0 2px}.folio .transit-search-dialog .search-pages:empty{display:none}.folio .transit-search-dialog .search-pages button{min-width:36px;height:36px;border:1px solid #cfc6b8!important;background:#f8f5ef;color:#655644;text-align:center;padding:0}.folio .transit-search-dialog .search-pages button[aria-selected="true"]{background:#655644;color:#fff;border-color:#655644!important}
+.folio .transit-search-dialog .search-result{border:0;background:#f8f5ef;padding:20px 22px;margin:0 0 24px}.folio .transit-search-dialog .search-result:last-child{margin-bottom:0}.folio .transit-search-dialog .search-result-actions{display:flex;align-items:center;flex-wrap:wrap;gap:10px 22px;margin-top:16px}.folio .transit-search-dialog .search-result-actions label{display:inline-flex;align-items:center;gap:7px;cursor:pointer}.folio #transit-search-dialog .search-result-actions input[type=checkbox]{appearance:auto!important;width:16px;height:16px;min-height:0;padding:0;background:transparent!important;accent-color:#655644}.folio .transit-search-dialog .search-result-actions [data-apply]{margin-left:auto;color:#292820;font-weight:600}.folio .transit-search-dialog .legacy-search-cards{margin-top:20px}.folio .transit-search-dialog .legacy-search-cards[hidden]{display:none}.folio .transit-search-dialog .legacy-search-cards article{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0}.folio .transit-query-note ul{padding-left:20px;margin:8px 0}
+@media(max-width:640px){.transit-search-dialog .search-dates{grid-template-columns:1fr}.transit-search-dialog .search-condition-top-fields,.transit-search-dialog .search-condition-body{grid-template-columns:repeat(2,minmax(0,1fr));margin-left:0}.transit-search-dialog .search-condition-head{gap:10px}.transit-search-dialog .search-condition-number{min-width:30px;font-size:28px}}
+.transit-search-dialog::backdrop{background:#29282066}
+.transit-search-dialog>header,.search-condition-head,.search-condition-body,.search-dates,.search-actions,.search-result>div,.transit-search-card>div{display:flex;align-items:center;flex-wrap:wrap;gap:8px 14px}
+.transit-search-dialog>header{justify-content:space-between}.transit-search-dialog h2{font:25px Huiwen,SimSun,serif;margin:0}.transit-search-dialog h3,.transit-search-card h3{font:18px Huiwen,SimSun,serif;margin:0}
+.transit-search-dialog button,.transit-search-cards button{font:inherit;color:#655644;background:none;border:0;border-bottom:1px solid #c7b9a5;cursor:pointer;padding:2px 4px}.transit-search-dialog select,.transit-search-dialog input{font:inherit;color:inherit;background:#fffdf8;border:1px solid #cfc6b8;padding:4px 6px}.transit-search-dialog input[type=number]{width:65px}.search-help{color:#756e63}.search-condition,.search-result,.transit-search-card{border-top:1px solid #ded6ca;padding:12px 0}.search-condition-body{margin-top:8px}.search-actions{justify-content:space-between;margin-top:16px}.search-result ul,.transit-search-card ul{padding-left:20px}.transit-search-cards{grid-column:1/-1;width:100%;margin-top:16px}.transit-search-cards[hidden]{display:none}
+.m08-wheel .aspect-connection{cursor:pointer}
+.m08-wheel .aspect-hit{fill:none;stroke:transparent;stroke-width:10px;pointer-events:stroke}
+@media(max-width:450px){.aspect-orb-grid{grid-template-columns:1fr}.folio .chart-area.legend-below-tools .chart-bottom .aspect-diagram-mode{gap:8px;font-size:11px}}
+.folio .side :is(#detail,.detail-content):has(.aspect-detail){display:block!important}
+.folio .aspect-detail{display:block;width:100%;min-width:0}
+.folio .aspect-detail .detail-heading{display:block!important;margin:0!important}
+.folio .aspect-detail .detail-heading h2{display:block!important;grid-column:auto!important;grid-row:auto!important;margin:0!important;line-height:1.15!important;white-space:normal!important}
+.folio .aspect-detail .aspect-participants{display:block;margin:18px 0 0;color:var(--ink);font:17px/1.5 'Huiwen','SimSun',serif}
+.folio .aspect-detail .point-summary{display:block!important;margin:18px 0 0!important}
+.folio .aspect-detail .point-summary dl{display:grid;grid-template-columns:max-content minmax(0,1fr) max-content minmax(0,1fr);gap:10px 14px;align-items:baseline}
+@media(max-width:450px){.folio .aspect-detail .aspect-participants{font-size:14px}.folio .aspect-detail .point-summary dl{grid-template-columns:max-content minmax(0,1fr)}}
+.aspect-system-choice,.aspect-type-group{border:0;border-top:1px solid var(--rule);margin:0 0 20px;padding:13px 0 0;min-width:0}
+.aspect-system-choice legend,.aspect-type-group legend{padding:0 10px 0 0;color:var(--text-main);font:14px/1.5 'Huiwen','SimSun',serif}
+.aspect-system-choice{display:flex;flex-wrap:wrap;gap:12px 30px}
+.aspect-system-choice label,.aspect-type-options label{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font:13px/1.6 'Huiwen','SimSun',serif}
+.aspect-type-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px 18px}
+.aspect-system-choice input,.aspect-type-options input{accent-color:#655644;margin:0}
+.aspect-empty{margin:12px 0 0;color:var(--text-secondary);font:12px/1.6 'Huiwen','SimSun',serif}
+@media(max-width:650px){.aspect-type-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:450px){.folio .chart-area.legend-below-tools .chart-bottom .tools{gap:clamp(3px,1.2vw,7px);font-size:10px}.folio .chart-area.legend-below-tools .chart-bottom .tools input{margin-inline:0 2px}.settings-tabs{gap:10px}.settings-tabs button{font-size:11px}}
+.folio .m08-wheel .lot-mark .lot-number{fill:var(--lot-color,#a64625)!important;stroke:var(--surface);stroke-width:1px;paint-order:stroke fill;font:600 19px/1 Georgia,serif;font-style:normal}
+.folio .m08-wheel:has([data-point].selected) .lot-mark:not(.selected) .lot-number{fill:#99938a!important}
+.folio .archive-records .archive-record-meta{display:block;margin:0;color:#171614;font:700 17px/1.55 'Huiwen','SimSun',serif;letter-spacing:.02em}
+.folio .archive-records article p{margin:9px 0 0}
+/* The archive edits records; only a composed reading is docked beneath the wheel. */
+.folio .archive-dialog{width:min(660px,calc(100vw - 32px));box-sizing:border-box;max-height:calc(100dvh - 40px);padding:24px 28px}
+.folio .archive-dialog .archive-head,.folio .archive-compose .archive-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 20px}
+.folio .archive-dialog .archive-head h2,.folio .archive-compose .archive-head h2{font:30px/1.25 'Chaohua','Huiwen',serif;color:var(--text-main);margin:0}
+.folio .archive-dialog .archive-head button,.folio .archive-compose .archive-head button{border:0;background:none;padding:2px;color:var(--text-secondary);font:24px/1 'Huiwen',serif;cursor:pointer}
+.folio .archive-dialog .archive-tabs{display:flex;gap:28px;margin:0 0 17px;padding:0 0 9px;border-bottom:1px solid var(--rule)}
+.folio .archive-dialog .archive-tabs button{padding:2px 0;border:0;background:none;color:var(--text-secondary);font:14px/1.6 'Huiwen','SimSun',serif;cursor:pointer}
+.folio .archive-dialog .archive-tabs [aria-current=page]{color:#171614;border-bottom:1px solid #655644}
+.folio .archive-view{min-height:150px}
+.folio .archive-item{padding:14px 0 15px;border-bottom:1px solid #d8d1c580}
+.folio .archive-item:first-child{padding-top:3px}
+.folio .archive-item-head{display:flex;align-items:baseline;gap:15px;min-width:0}
+.folio .archive-item-head label{display:flex;align-items:baseline;gap:10px;min-width:0;cursor:pointer}
+.folio .archive-item-head input{width:12px;height:12px;flex:none;accent-color:#655644}
+.folio .archive-item-head strong{color:#171614;font:600 17px/1.55 'Huiwen','SimSun',serif;overflow-wrap:anywhere}
+.folio .archive-item-date{color:var(--text-secondary);font:11px/1.6 'Huiwen','SimSun',serif;white-space:nowrap;margin-left:auto}
+.folio .archive-item-head button{border:0;background:none;padding:0;color:var(--text-secondary);font:12px/1.6 'Huiwen','SimSun',serif;white-space:nowrap;cursor:pointer}
+.folio .archive-item-preview,.folio .archive-summary-list .archive-item p{margin:7px 0 0 22px;color:var(--text-main);font:13px/1.8 'Huiwen','SimSun',serif;white-space:pre-wrap;overflow-wrap:anywhere}
+.folio .archive-item-preview span{color:var(--text-secondary);font-size:11px}
+.folio .archive-summary-list .archive-item p{margin-left:0}
+.folio .archive-list-actions{display:flex;justify-content:space-between;gap:15px;margin:22px 0 0}
+.folio .archive-list-actions button,.folio .archive-editor-actions button{border:0;background:none;padding:3px 0;color:var(--text-main);font:13px/1.6 'Huiwen','SimSun',serif;cursor:pointer}
+.folio .archive-list-actions button:disabled{opacity:.38;cursor:default}
+.folio .archive-record-editor h3{font:20px/1.5 'Huiwen','SimSun',serif;margin:0 0 17px}
+.folio .archive-record-editor>label,.folio .archive-compose-title{display:block;margin:15px 0;color:var(--text-main);font:13px/1.6 'Huiwen','SimSun',serif}
+.folio .archive-record-editor :is(input,textarea),.folio .archive-compose-title input{display:block;box-sizing:border-box;width:100%;margin-top:5px;padding:8px 0;border:0;border-bottom:1px solid var(--rule);background:transparent;color:#171614;font:14px/1.7 'Huiwen','SimSun',serif}
+.folio .archive-record-editor textarea{min-height:100px;resize:vertical}
+.folio .archive-editor-hint{color:var(--text-secondary);font:11px/1.6 'Huiwen','SimSun',serif}
+.folio .archive-editor-actions{display:flex;justify-content:flex-end;align-items:center;gap:26px;margin-top:20px}
+.folio .archive-editor-actions .archive-delete{margin-right:auto;color:#a64625}
+.folio .archive-compose{position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:min(600px,calc(100vw - 32px));max-height:calc(100dvh - 40px);overflow:auto;box-sizing:border-box;margin:0;padding:24px 28px;border:1px solid var(--rule);background:var(--surface);color:var(--text-main);box-shadow:0 12px 42px #29282024}
+.folio .archive-compose::backdrop{background:#29282030}
+.folio .archive-compose-fields{display:flex;gap:24px;margin:16px 0;font:13px/1.6 'Huiwen','SimSun',serif}
+.folio .archive-compose-fields label{display:flex;align-items:center;gap:7px}
+.folio .archive-compose-fields input{accent-color:#655644}
+.folio .archive-compose-preview{max-height:280px;overflow:auto;padding:13px 16px;border:1px solid var(--rule)}
+.folio .archive-presentation-title{font:28px/1.35 'Huiwen','SimSun',serif;color:var(--text-main);margin:0 0 22px}
+.folio .archive-presentation-entry{padding:17px 0;border-top:1px solid var(--rule)}
+.folio .archive-presentation-entry:first-of-type{padding-top:0;border-top:0}
+.folio .archive-presentation-entry h3{font:600 17px/1.5 'Huiwen','SimSun',serif;color:#171614;margin:0}
+.folio .archive-presentation-date{font:11px/1.6 'Huiwen','SimSun',serif;color:var(--text-secondary);margin:4px 0 10px}
+.folio .archive-presentation-part{margin-top:11px}
+.folio .archive-presentation-part>span{color:var(--text-secondary);font:11px/1.6 'Huiwen','SimSun',serif}
+.folio .archive-presentation-part p{white-space:pre-wrap;overflow-wrap:anywhere;color:#171614;font:14px/1.8 'Huiwen','SimSun',serif;margin:3px 0 0}
+.folio .archive-presentation.docked-card{position:relative;padding-top:4px}
+.folio .archive-presentation.docked-card>.detail-toolbar{position:absolute;right:0;top:0}
+.folio .archive-presentation.docked-card .archive-presentation-content{padding-right:30px}
+.folio .time-adjust-trigger{border:0;background:none;padding:0;color:inherit;font:inherit;letter-spacing:inherit;cursor:pointer;text-align:right}
+.folio .time-adjust-trigger:hover,.folio .time-adjust-trigger:focus-visible{border-bottom:1px solid currentColor;outline:0}
+.folio .identity{align-items:flex-end}
+.folio .archive-save-status{flex:none;align-self:flex-end;margin-bottom:6px;font:11px/1 Huiwen,SimSun,serif;letter-spacing:0;color:#80796b;white-space:nowrap}
+.folio .archive-save-status[data-saved="false"]{color:#b12e2a}
+.folio .archive-save-controls{display:flex;align-items:center;align-self:flex-end;gap:9px;margin-bottom:6px}
+.folio .archive-save-controls .archive-save-status{display:inline-flex;align-items:center;height:16px;margin:0;align-self:auto;line-height:16px}
+.folio .archive-save-manual{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border:0;background:none;padding:1px;color:#80796b;cursor:pointer}
+.folio .archive-save-manual svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.folio .archive-save-manual:disabled{opacity:.55;cursor:default}
+.folio .chart-bottom .tools .decennials-start-trigger{margin-left:auto;border:0;border-bottom:1px solid #a78b71;background:none;padding:0 0 2px;color:#655644;font:13px/1.5 'Huiwen','SimSun',serif;white-space:nowrap;cursor:pointer}
+.folio.note-layer-active .decennials-card{display:none}
+.folio .decennials-card{box-sizing:border-box;width:100%;margin:18px 0 6px;padding:24px 28px;border:1px solid #d9d1c3;background:#fffbf5;color:var(--text-main)}
+.folio .decennials-card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.folio .decennials-card-head p{margin:0 0 4px;font:12px/1.5 'Huiwen','SimSun',serif;color:#987657}
+.folio .decennials-card-head h2{margin:0;font:24px/1.4 'Huiwen','SimSun',serif;color:#554739}
+.folio .decennials-card-head button,.folio .decennials-start-dialog header button{border:0;background:none;color:#817565;font:26px/1 'Huiwen','SimSun',serif;cursor:pointer}
+.folio .decennials-basis{margin:12px 0 18px;font:12px/1.7 'Huiwen','SimSun',serif;color:#817565}
+.folio .decennials-major{border-top:1px solid #d9d1c3}
+.folio .decennials-major>summary,.folio .decennials-sub>summary{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px 16px;cursor:pointer;list-style:none}
+.folio .decennials-major>summary::-webkit-details-marker,.folio .decennials-sub>summary::-webkit-details-marker{display:none}
+.folio .decennials-major>summary{padding:13px 2px;font:16px/1.6 'Huiwen','SimSun',serif}
+.folio .decennials-major>summary span:nth-child(2),.folio .decennials-sub>summary span:nth-child(2){font-size:12px;color:#817565}
+.folio .decennials-major strong,.folio .decennials-sub strong{margin-left:auto;color:#9b654c;font:12px/1.5 'Huiwen','SimSun',serif}
+.folio .decennials-subs{padding:0 0 12px 18px}
+.folio .decennials-sub{border-top:1px solid #e8e1d7}
+.folio .decennials-sub>summary{padding:10px 0;font:14px/1.6 'Huiwen','SimSun',serif}
+.folio .decennials-cycles{padding:0 0 8px 18px}
+.folio .decennials-cycle{border-top:1px solid #eee8de}
+.folio .decennials-cycle>summary{display:flex;align-items:baseline;flex-wrap:wrap;gap:7px 16px;padding:8px 0;cursor:pointer;list-style:none;font:13px/1.6 'Huiwen','SimSun',serif}
+.folio .decennials-cycle>summary::-webkit-details-marker{display:none}
+.folio .decennials-cycle>summary span:nth-child(2){font-size:12px;color:#817565}
+.folio .decennials-cycle strong{margin-left:auto;color:#9b654c;font:12px/1.5 'Huiwen','SimSun',serif}
+.folio .decennials-sub table{width:100%;border-collapse:collapse;margin:4px 0 16px;font:12px/1.6 'Huiwen','SimSun',serif}
+.folio .decennials-sub th,.folio .decennials-sub td{padding:5px 8px;border-bottom:1px solid #eee8de;text-align:left}
+.folio .decennials-sub th{color:#817565;font-weight:normal}
+.folio .decennials-sub tr.is-current{background:#ede4d4;color:#4d3f31}
+.folio .decennials-major>summary::before,.folio .decennials-sub>summary::before,.folio .decennials-cycle>summary::before{content:'';display:inline-block;flex:none;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s ease;color:#7c6a55}
+.folio .decennials-major[open]>summary::before,.folio .decennials-sub[open]>summary::before,.folio .decennials-cycle[open]>summary::before{transform:rotate(45deg)}
+.folio .decennials-start-dialog{width:380px;max-width:calc(100vw - 32px);padding:22px 25px;border:1px solid #d9d1c3;background:#fffbf5;color:var(--text-main)}
+.folio .decennials-start-dialog header{display:flex;justify-content:space-between;align-items:center}
+.folio .decennials-start-dialog h2{margin:0;font:21px/1.5 'Huiwen','SimSun',serif}
+.folio .decennials-start-dialog p{font:13px/1.7 'Huiwen','SimSun',serif}
+.folio .decennials-start-options{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font:13px/1.5 'Huiwen','SimSun',serif}
+.folio .decennials-start-options label{white-space:nowrap;cursor:pointer}
+@media(max-width:600px){.folio .decennials-card{padding:17px 15px}.folio .decennials-subs,.folio .decennials-cycles{padding-left:9px}.folio .decennials-major>summary span:nth-child(2),.folio .decennials-sub>summary span:nth-child(2),.folio .decennials-cycle>summary span:nth-child(2){width:100%}}
+/* decennials-major-pages */
+.folio .decennials-card{padding:0;border:0;background:transparent;margin:0 0 12px}
+.folio .decennials-page-tabs{display:flex;flex-wrap:nowrap;justify-content:space-between;gap:8px;border:0;padding:0;margin:0 0 18px;overflow-x:auto}
+.folio .decennials-page-tabs button{flex:none;border:0;background:none;padding:4px 0;color:#8b8175;font:12px/1.4 'Huiwen','SimSun',serif;cursor:pointer;white-space:nowrap}
+.folio .decennials-page-tabs button[aria-selected="true"]{color:#111}
+.folio .decennials-major-page{padding:0 0 18px}
+.folio .decennials-card-head{display:block;margin:0 0 4px}
+.folio .decennials-card-head h2{font-size:23px}
+.folio .decennials-card-head p{margin:4px 0 0;color:#817565;font:12px/1.5 'Huiwen','SimSun',serif}
+.folio .decennials-basis{margin:12px 0 18px}
+.folio .decennials-table-scroll{width:100%;overflow-x:auto}
+.folio .decennials-period-table{width:100%;border-collapse:collapse;table-layout:fixed;font:13px/1.5 'Huiwen','SimSun',serif}
+.folio .decennials-period-table>thead{background:transparent;color:#51463e}
+.folio .decennials-period-table>thead th{padding:12px 10px;text-align:left;font-weight:normal;border-bottom:1px solid #ded2ce}
+.folio .decennials-period-table>thead th:nth-child(1){width:23%}
+.folio .decennials-period-table>thead th:nth-child(2){width:31%}
+.folio .decennials-period-table>thead th:nth-child(3),.folio .decennials-period-table>thead th:nth-child(4){width:23%}
+.folio .decennials-cycle-row>th,.folio .decennials-cycle-row>td{padding:10px;border-bottom:1px solid #e8e1d7;text-align:left;font-weight:normal;vertical-align:middle}
+.folio .decennials-cycle-row[data-sub-start="true"]>th,.folio .decennials-cycle-row[data-sub-start="true"]>td{border-top:2px solid #c9b7a2}
+.folio .decennials-cycle-row>th,.folio .decennials-cycle-toggle>span:first-child,.folio .decennials-days-row tbody td:first-child{font-family:'Noto Sans Symbols 2','Segoe UI Symbol','Huiwen',serif;font-size:20px;line-height:1}
+.folio .decennials-cycle-row.is-current{background:#f1e8da}
+.folio .decennials-cycle-toggle{display:inline-flex;align-items:center;gap:9px;border:0;background:none;padding:0;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.folio .decennials-chevron{display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s ease}
+.folio .decennials-cycle-toggle[aria-expanded="true"] .decennials-chevron{transform:rotate(45deg)}
+.folio .decennials-days-row[hidden]{display:none!important}
+.folio .decennials-days-row>td{padding:0 10px 12px 8px;background:#fcfaf6}
+.folio .decennials-days-row table{width:100%;border-collapse:collapse;font:12px/1.5 'Huiwen','SimSun',serif}
+.folio .decennials-days-row table th:first-child{width:40%}
+.folio .decennials-days-row table th:nth-child(2),.folio .decennials-days-row table th:nth-child(3){width:30%}
+.folio .decennials-days-row th,.folio .decennials-days-row td{padding:7px 8px;border-bottom:1px solid #eee8de;text-align:left;font-weight:normal}
+.folio .decennials-days-row tr.is-current{background:#ede4d4}
+@media(max-width:700px){.folio .decennials-period-table{min-width:520px}.folio .decennials-page-tabs{gap:4px}.folio .decennials-page-tabs button{padding:4px 0;font-size:11px}}
+/* end-decennials-major-pages */
+/* decennials-two-modes */
+.folio .decennials-view-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 0 14px;font:13px/1.5 'Huiwen','SimSun',serif;color:#807466}
+.folio .decennials-mode-switch{display:inline-flex;gap:14px;flex:none}
+.folio .decennials-mode-switch button{border:0;background:none;padding:3px 0;color:#8b8175;font:inherit;cursor:pointer}
+.folio .decennials-mode-switch button[aria-pressed="true"]{color:#111}
+.folio .decennials-page-tabs{flex-wrap:wrap;overflow:visible;margin-bottom:12px}
+.folio .decennials-macro-major>summary{display:flex;align-items:center;gap:18px;list-style:none;cursor:pointer;padding:6px 0 14px;color:#554739;font:20px/1.4 'Huiwen','SimSun',serif}
+.folio .decennials-macro-major>summary::-webkit-details-marker{display:none}
+.folio .decennials-macro-major>summary::before{content:'';width:8px;height:8px;flex:none;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg)}
+.folio .decennials-macro-major[open]>summary::before{transform:rotate(45deg)}
+.folio .decennials-macro-major>summary time{margin-left:auto;color:#817565;font:13px/1.4 'Huiwen','SimSun',serif;white-space:nowrap}
+.folio .decennials-summary-table,.folio .decennials-detail-table{width:100%;border-collapse:collapse;table-layout:fixed;font:13px/1.5 'Huiwen','SimSun',serif}
+.folio .decennials-summary-table th,.folio .decennials-summary-table td,.folio .decennials-detail-table th,.folio .decennials-detail-table td{padding:9px 12px;border-bottom:1px solid #e8e1d7;text-align:left;font-weight:normal}
+.folio .decennials-summary-table thead,.folio .decennials-detail-table thead{color:#817565}
+.folio .decennials-summary-table th:first-child{width:42%}
+.folio .decennials-summary-table tr.is-current,.folio .decennials-detail-table tr.is-current,.folio .decennials-detail-table tr[data-current="true"]{background:#f1e8da}
+.folio .decennials-summary-table button{display:inline-flex;align-items:center;gap:12px;border:0;background:none;padding:0;color:#655b4e;font:23px/1 'Segoe UI Symbol','Huiwen',serif;cursor:pointer}
+.folio .decennials-micro-context{display:flex;flex-wrap:wrap;gap:12px 22px;margin:7px 0 17px;color:#817565;font:12px/1.5 'Huiwen','SimSun',serif}
+.folio .decennials-micro-context label{display:inline-flex;align-items:center;gap:8px}
+.folio .decennials-micro-context select{max-width:180px;border:0;border-bottom:1px solid #d9d1c3;background:transparent;padding:4px;color:#554739;font:13px/1.4 'Huiwen','SimSun',serif}
+.folio .decennials-micro-title{margin:0 0 11px;color:#554739;font:18px/1.4 'Huiwen','SimSun',serif}
+.folio .decennials-detail-table th:first-child{width:25%}
+.folio .decennials-detail-table th:nth-child(2){width:23%}
+.folio .decennials-detail-table td[aria-label],.folio .decennials-detail-table .decennials-cycle-lead td:nth-child(2){font:21px/1 'Segoe UI Symbol','Huiwen',serif}
+@media(max-width:520px){.folio .decennials-macro-major>summary{font-size:16px}.folio .decennials-macro-major>summary time{font-size:11px}.folio .decennials-summary-table th,.folio .decennials-summary-table td,.folio .decennials-detail-table th,.folio .decennials-detail-table td{padding:8px 6px}}
+/* end-decennials-two-modes */
+/* decennials-flat-tables */
+.folio .decennials-card{margin:0;padding:0;border:0;background:transparent}
+.folio .decennials-view-head{margin:0 0 9px}
+.folio .decennials-page-tabs{margin:0 0 8px;padding:0;border:0}
+.folio .decennials-major-page{padding:0}
+.folio .decennials-simple-table{width:100%;border-collapse:collapse;table-layout:fixed;color:#5d5245;font:13px/1.4 'Huiwen','SimSun',serif}
+.folio .decennials-simple-table th,.folio .decennials-simple-table td{border:0;background:transparent;padding:5px 8px;text-align:left;font-weight:normal;vertical-align:middle}
+.folio .decennials-simple-table thead th{padding-bottom:7px;color:#8c7e6d;font-size:12px}
+.folio .decennials-simple-table th:first-child{width:25%}
+.folio .decennials-simple-table th:nth-child(2){width:24%}
+.folio .decennials-simple-table td[aria-label],.folio .decennials-simple-table td>button{font:21px/1 'Segoe UI Symbol','Huiwen',serif}
+.folio .decennials-simple-table td>button{border:0;background:none;padding:1px 4px;color:#655b4e;cursor:pointer}
+.folio .decennials-simple-table .decennials-major-row{color:#493f33}
+.folio .decennials-simple-table .decennials-sub-row{cursor:pointer}
+.folio .decennials-simple-table .decennials-sub-row.is-selected{background:#f2eee7}
+.folio .decennials-simple-table .decennials-sub-row.is-selected button{color:#111}
+.folio .decennials-simple-table .decennials-cycle-lead[data-current="true"],.folio .decennials-simple-table tr.is-current{background:#f2eee7}
+.folio .decennials-micro-context{display:block;margin:1px 0 9px;color:#786c5d;font:13px/1.4 'Huiwen','SimSun',serif}
+@media(max-width:520px){.folio .decennials-simple-table th,.folio .decennials-simple-table td{padding:5px 4px}.folio .decennials-page-tabs{gap:5px}}
+/* end-decennials-flat-tables */
+/* decennials-age-layout */
+.folio .decennials-view-identity{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px;min-width:0}
+.folio .decennials-view-context{color:#65594b;font-size:12px}
+.folio .decennials-page-tabs{justify-content:flex-start;gap:18px}
+.folio .decennials-major-title{margin:10px 0 8px;color:#554739;font:20px/1.4 'Huiwen','SimSun',serif}
+.folio .decennials-simple-table thead th:first-child{width:30%}
+.folio .decennials-simple-table thead th:nth-child(2){width:45%}
+.folio .decennials-simple-table thead th:nth-child(3){width:25%}
+.folio .decennials-simple-table td:last-child{font-variant-numeric:tabular-nums}
+@media(max-width:600px){.folio .decennials-page-tabs{gap:8px 13px}.folio .decennials-major-title{font-size:17px}}
+/* end-decennials-age-layout */
+/* decennials-major-pager */
+.folio .decennials-merged-table thead th:first-child,.folio .decennials-merged-table thead th:nth-child(2){width:44px}
+.folio .decennials-merged-table thead th:nth-child(3){width:auto}
+.folio .decennials-merged-table thead th:nth-child(4){width:72px}
+.folio .decennials-simple-table tbody td{padding-top:8px;padding-bottom:8px}
+.folio .decennials-simple-table .decennials-merged-cell{vertical-align:middle;text-align:center;cursor:default;background:transparent;color:#655b4e}
+.folio .decennials-simple-table .decennials-merged-cell span{display:inline-block;font:21px/1 'Segoe UI Symbol','Huiwen',serif}
+.folio .decennials-simple-table .decennials-sub-row.is-selected,.folio .decennials-day-row.is-selected{background:transparent}
+.folio .decennials-simple-table .decennials-sub-row.is-selected td:not(.decennials-merged-cell),.folio .decennials-day-row.is-selected td:not(.decennials-merged-cell){background:#f2eee7}
+.folio .decennials-primary-head{--period-label-size:13px;display:flex;align-items:flex-end;justify-content:space-between;gap:6px 18px;margin:0 0 14px}
+.folio .decennials-primary-head h2{display:flex;justify-content:flex-start;align-items:flex-end;flex:1;min-width:0;margin:0;text-align:left;color:#514536;font:44px/1.2 'Segoe UI Symbol','Huiwen','SimSun',serif;white-space:nowrap;overflow-x:auto;scrollbar-width:none}
+.folio .decennials-primary-head h2::-webkit-scrollbar{display:none}
+.folio .decennials-heading-unit{display:inline-flex;align-items:flex-end;gap:5px;margin-right:17px;flex:none}
+.folio .decennials-heading-unit:last-child{margin-right:0}
+.folio .decennials-heading-name{padding-bottom:3px;font:24px/1.2 'Huiwen','SimSun',serif}
+.folio .decennials-heading-symbol{line-height:1}
+.folio .decennials-heading-unit small{padding-bottom:3px;color:#8d8171;font:13px/1.2 'Huiwen','SimSun',serif}
+.folio .decennials-primary-head button{flex:none;border:0;background:none;padding:2px 0;color:#786b5b;font:12px/1.4 'Huiwen','SimSun',serif;cursor:pointer;white-space:nowrap}
+.folio .decennials-primary-head button:hover{color:#171614}
+.folio .decennials-primary-head>.decennials-mode-toggle{margin-left:auto;align-self:flex-end;padding:0 0 3px;color:#786b5b;font:var(--period-label-size)/1.2 'Huiwen','SimSun',serif}
+.folio .decennials-period-pager{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;gap:18px;width:min(100%,460px);margin:22px auto 0;text-align:center;font:14px/1.4 'Huiwen','SimSun',serif}
+.folio .decennials-period-pager>*{min-width:0;white-space:normal}
+.folio .decennials-period-pager button{position:relative;border:0;background:none;padding:8px 2px;color:#938778;font:inherit;cursor:pointer;white-space:normal}
+.folio .decennials-period-pager button:hover{color:#514536}
+.folio .decennials-period-pager .decennials-neighbor:first-child button::before{content:'←';position:absolute;right:calc(100% + 10px);font-size:14px;visibility:hidden}
+.folio .decennials-period-pager .decennials-neighbor:last-child button::after{content:'→';position:absolute;left:calc(100% + 10px);font-size:14px;visibility:hidden}
+.folio .decennials-period-pager .decennials-neighbor button:hover::before,.folio .decennials-period-pager .decennials-neighbor button:hover::after,.folio .decennials-period-pager .decennials-neighbor button:focus-visible::before,.folio .decennials-period-pager .decennials-neighbor button:focus-visible::after{visibility:visible}
+.folio .decennials-period-pager strong{padding:8px 2px;color:#171614;font-weight:700;font-size:18px}
+.folio .decennials-day-row{cursor:pointer}
+.folio .decennials-day-row.is-selected{background:#f2eee7}
+@media(max-width:600px){.folio .decennials-primary-head{--period-label-size:11px;align-items:flex-end}.folio .decennials-primary-head h2{font-size:36px}.folio .decennials-heading-unit{gap:4px;margin-right:12px}.folio .decennials-heading-name{font-size:19px}.folio .decennials-heading-unit small{font-size:11px}.folio .decennials-primary-head>.decennials-mode-toggle{margin-left:auto}.folio .decennials-period-pager{gap:10px;font-size:13px}.folio .decennials-period-pager strong{font-size:16px}}
+@media(max-width:420px){.folio .decennials-primary-head{--period-label-size:10px}.folio .decennials-primary-head h2{font-size:29px}.folio .decennials-heading-unit{gap:3px;margin-right:8px}.folio .decennials-heading-name{font-size:16px}.folio .decennials-heading-unit small{font-size:10px}.folio .decennials-merged-table thead th:first-child,.folio .decennials-merged-table thead th:nth-child(2){width:38px}.folio .decennials-period-pager{gap:7px;font-size:12px}.folio .decennials-period-pager strong{font-size:15px}}
+.folio .decennials-primary-head h2 button.decennials-heading-unit{position:relative;border:0;background:none;padding:0;margin-left:0;color:inherit;cursor:pointer;font:inherit}
+.folio .decennials-primary-head h2 button.decennials-heading-unit:hover,.folio .decennials-primary-head h2 button.decennials-heading-unit[aria-expanded="true"]{color:inherit}
+.folio .decennials-intro-notes{margin:16px 0 0;color:#8c8173;font:12px/1.6 'Huiwen','SimSun',serif}
+.folio .decennials-intro-notes p{margin:3px 0}
+.folio .decennials-selection-table{width:100%;margin:18px 0 0;border:0;border-collapse:collapse;table-layout:fixed;color:#756959;font:14px/1.4 'Huiwen','SimSun',serif}
+.folio .decennials-selection-table th,.folio .decennials-selection-table td{width:50%;border:0;background:none;padding:4px 6px 4px 0;text-align:left;vertical-align:middle;font-weight:normal}
+.folio .decennials-selection-table th{color:#8c8173;font-size:12px}
+.folio .decennials-card{container-type:inline-size}
+.folio .decennials-column-head{display:grid;grid-template-columns:32px minmax(84px,1.7fr) minmax(40px,1fr);gap:6px;align-items:center}
+.folio .decennials-column-head>span:first-child{text-align:center}
+.folio .decennials-column-head>span:nth-child(2),.folio .decennials-column-head>span:nth-child(3){padding-left:4px}
+.folio .decennials-selection-table .decennials-period-choice{display:grid;grid-template-columns:32px minmax(84px,1.7fr) minmax(40px,1fr);align-items:center;gap:6px;width:100%;min-height:36px;border:0;background:none;padding:0;color:inherit;text-align:left;font:inherit;cursor:pointer}
+.folio .decennials-selection-table .decennials-period-choice>span:first-child{display:flex;align-items:center;justify-content:center;justify-self:center;width:32px;height:32px;text-align:center;font:24px/1 'Segoe UI Symbol','Huiwen',serif}
+.folio .decennials-period-age{display:flex;align-items:center;box-sizing:border-box;height:32px;padding:0 4px;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:normal}
+.folio .decennials-selection-table .decennials-period-choice:hover{color:#171614}
+.folio .decennials-selection-table .decennials-period-choice.is-selected{background:#eee8dd;color:#171614}
+.folio .decennials-selection-table td button:focus-visible{outline:1px solid currentColor;outline-offset:2px}
+.folio .decennials-selection-table time{display:flex;align-items:center;justify-self:stretch;box-sizing:border-box;height:32px;padding:0 4px;white-space:nowrap;font-weight:normal;font-variant-numeric:tabular-nums}
+@container(max-width:359px){.folio .decennials-selection-table,.folio .decennials-selection-table thead,.folio .decennials-selection-table tbody{display:block;width:100%}.folio .decennials-selection-table tr{display:contents}.folio .decennials-selection-table th,.folio .decennials-selection-table td{display:block;box-sizing:border-box;width:100%;padding-right:0}.folio .decennials-selection-table th:nth-child(2),.folio .decennials-selection-table td[aria-hidden="true"]{display:none}}
+@container(max-width:320px){.folio .decennials-selection-table{font-size:12px}.folio .decennials-column-head,.folio .decennials-selection-table .decennials-period-choice{grid-template-columns:32px minmax(78px,1.7fr) minmax(38px,1fr);gap:6px}}
+@container(min-width:360px){
+.folio .decennials-selection-table th:nth-child(2),.folio .decennials-selection-table td:nth-child(2){padding-right:0;padding-left:6px}
+.folio .decennials-selection-table th:nth-child(2) .decennials-column-head{grid-template-columns:minmax(32px,1fr) minmax(84px,1.7fr) 40px}
+.folio .decennials-selection-table td:nth-child(2) .decennials-period-choice{grid-template-columns:minmax(32px,1fr) minmax(84px,1.7fr) 40px}
+.folio .decennials-selection-table th:nth-child(2) .decennials-column-head>span{text-align:right;padding-left:0;padding-right:4px}
+.folio .decennials-selection-table td:nth-child(2) .decennials-period-choice>span:first-child{justify-self:end}
+.folio .decennials-selection-table th:nth-child(2) .decennials-column-head>span:last-child,.folio .decennials-selection-table td:nth-child(2) .decennials-period-age{padding-right:0}
+.folio .decennials-selection-table td:nth-child(2) .decennials-period-choice>time,.folio .decennials-selection-table td:nth-child(2) .decennials-period-age{justify-content:flex-end;text-align:right}
+}
+/* end-decennials-major-pager */
+.folio .chart-bottom .tools .return-query-action{margin-left:auto;border:0;border-bottom:1px solid #a78b71;background:none;padding:0 0 2px;color:#655644;font:13px/1.5 'Huiwen','SimSun',serif;cursor:pointer;white-space:nowrap}
+.folio.note-layer-active .return-query-action{display:none}
+.folio .return-query-guide{padding:18px 22px;margin:12px 0 24px;background:#f5f1e9}
+.folio .return-query-guide h3,.folio .return-query-found>h3{font:18px/1.4 'Huiwen','SimSun',serif;color:#554739;margin:0 0 9px}
+.folio .return-query-guide p{font:14px/1.7 'Huiwen','SimSun',serif;margin:0}
+.folio .transit-research-list{margin:34px 0 12px}
+.folio .transit-research{padding:26px 30px 28px;border:1px solid #d9d1c3;background:rgba(255,253,248,.72);color:var(--text-main)}
+.folio .research-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:27px}
+.folio .research-heading p{margin:0 0 7px;color:#987657;font:12px/1.4 Huiwen,SimSun,serif}
+.folio .research-heading h2{margin:0 0 8px;font:29px/1.25 Huiwen,SimSun,serif;color:#554739}
+.folio .research-heading span{font:13px/1.5 Huiwen,SimSun,serif;color:#817565}
+.folio .research-heading button{border:0;background:none;color:#8b8174;font:24px/1 Huiwen,SimSun,serif;cursor:pointer;padding:0 2px}
+.folio .research-period+.research-period{margin-top:30px;padding-top:27px;border-top:1px solid #ddd5c9}
+.folio .research-period-heading{display:flex;align-items:baseline;gap:18px;margin-bottom:17px}
+.folio .research-period-heading h3{margin:0;font:21px/1.3 Huiwen,SimSun,serif;color:#584b3d}
+.folio .research-period-heading span{font:12px/1.4 Huiwen,SimSun,serif;color:#8b8174}
+.folio .research-period-heading strong{margin-left:auto;font:15px/1.4 Huiwen,SimSun,serif;color:#a25d39;white-space:nowrap}
+.folio .research-year-scale{display:flex;justify-content:space-between;margin:0 65px 9px 104px;font:11px/1.3 Huiwen,SimSun,serif;color:#978c7f}
+.folio .research-lane{display:grid;grid-template-columns:94px minmax(0,1fr) 55px;align-items:center;gap:10px;margin:10px 0}
+.folio .research-lane-label,.folio .research-lane-count{font:12px/1.3 Huiwen,SimSun,serif;color:#766a5c;white-space:nowrap}
+.folio .research-lane-count{text-align:right}
+.folio .research-track{position:relative;height:18px;background:#eee9df;border-left:1px solid #c9bfb0;border-right:1px solid #c9bfb0}
+.folio .research-track::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,transparent calc(25% - .5px),#d7d0c5 25%,transparent calc(25% + .5px),transparent calc(50% - .5px),#d7d0c5 50%,transparent calc(50% + .5px),transparent calc(75% - .5px),#d7d0c5 75%,transparent calc(75% + .5px));pointer-events:none}
+.folio .research-segment{position:absolute;top:3px;height:12px;min-width:3px;background:#8c9c85;z-index:1}
+.folio .research-segment.conjunction{background:#b97550}
+.folio .research-segment.overlap{background:#bd8c39;box-shadow:0 0 0 2px #bd8c3933}
+.folio .research-empty{margin:15px 0 0 104px;font:13px/1.6 Huiwen,SimSun,serif;color:#817565}
+.folio .research-event{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:18px 0 0 104px;padding:17px 18px;background:#f4eee2;border-left:3px solid #bd8c39}
+.folio .research-event-kicker{font:12px/1.4 Huiwen,SimSun,serif;color:#9d6a3e}
+.folio .research-event h4{margin:4px 0 5px;font:18px/1.35 Huiwen,SimSun,serif;color:#514536}
+.folio .research-event p{margin:0;font:13px/1.4 Huiwen,SimSun,serif;color:#706353}
+.folio .research-event button{flex:none;border:0;border-bottom:1px solid #8b6d4a;background:none;color:#5d4b38;font:13px/1.5 Huiwen,SimSun,serif;cursor:pointer;padding:0 0 2px}
+.folio .research-footnote{margin:22px 0 0;font:11px/1.5 Huiwen,SimSun,serif;color:#93897d}
+@media(max-width:650px){.folio .transit-research{padding:20px 17px}.folio .research-heading h2{font-size:23px}.folio .research-period-heading{flex-wrap:wrap;gap:5px 12px}.folio .research-period-heading strong{margin-left:0;width:100%}.folio .research-lane{grid-template-columns:76px minmax(0,1fr) 36px;gap:6px}.folio .research-year-scale{margin-left:82px;margin-right:42px}.folio .research-lane-label,.folio .research-lane-count{font-size:10px}.folio .research-empty,.folio .research-event{margin-left:0}.folio .research-event{display:block}.folio .research-event button{margin-top:12px}}
+.folio .transit-agent-hint-dialog{width:min(520px,calc(100vw - 32px));box-sizing:border-box;border:1px solid #d7cec1;background:#fffdf8;color:#514536;padding:27px 31px;box-shadow:0 20px 70px #31261955;font:15px/1.8 Huiwen,SimSun,serif}
+.folio .transit-agent-hint-dialog::backdrop{background:#29282066}
+.folio .transit-agent-hint-dialog header{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:22px}
+.folio .transit-agent-hint-dialog h2{margin:0;font:25px/1.3 Huiwen,SimSun,serif;color:#514536}
+.folio .transit-agent-hint-dialog p{margin:0 0 16px}
+.folio .transit-agent-hint-dialog .agent-hint-example{background:#f4eee2;padding:13px 16px;color:#6d5944}
+.folio .transit-agent-hint-dialog footer{text-align:right;margin-top:22px}
+.folio .transit-agent-hint-dialog button{border:0;background:none;color:#655644;font:inherit;cursor:pointer}
+.folio .transit-agent-hint-dialog footer button{border-bottom:1px solid #aa9477;padding:1px 3px}
+.folio .transit-query-results-dialog{width:min(820px,calc(100vw - 32px));max-height:min(86vh,940px);box-sizing:border-box;overflow:auto;border:1px solid #d7cec1;background:#fffdf8;color:#514536;padding:28px 34px;box-shadow:0 20px 70px #31261955;font:14px/1.7 Huiwen,SimSun,serif}
+.folio .transit-query-results-dialog::backdrop{background:#29282066}
+.folio .transit-query-results-dialog>header{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.folio .agent-query-kicker{margin:0 0 5px;color:#9a7856;font:12px/1.4 Huiwen,SimSun,serif}
+.folio .transit-query-results-dialog h2{margin:0;font:29px/1.3 Huiwen,SimSun,serif;color:#514536}
+.folio .transit-query-results-dialog button{border:0;background:none;color:#655644;font:inherit;cursor:pointer}
+.folio .transit-query-results-dialog>header button{font-size:23px;line-height:1;padding:0}
+.folio .agent-query-history{display:flex;gap:8px;overflow-x:auto;margin:19px 0 0;padding-bottom:8px}
+.folio .agent-query-history button{flex:none;padding:5px 8px;color:#827260;border-bottom:1px solid transparent}
+.folio .agent-query-history button[aria-current="true"]{color:#514536;border-color:#9d7551}
+.folio .agent-query-request{margin:19px 0 8px;font:17px/1.6 Huiwen,SimSun,serif;color:#514536}
+.folio .agent-query-context{display:flex;flex-wrap:wrap;gap:4px 16px;color:#897b6b;font-size:12px}
+.folio .agent-query-conditions{margin:19px 0 22px;padding:15px 20px 15px 36px;background:#f7f3ec;color:#6d6050}
+.folio .agent-query-conditions li+li{margin-top:4px}
+.folio .agent-query-summary{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin:0 0 17px}
+.folio .agent-query-summary strong{font:18px/1.4 Huiwen,SimSun,serif;color:#715640}
+.folio .agent-query-summary button{border-bottom:1px solid #a9957b;padding:0 0 2px;white-space:nowrap}
+.folio .agent-query-results{display:grid;gap:26px}
+.folio .agent-query-result{background:#f8f5ef;padding:18px 21px}
+.folio .agent-query-result h3{margin:0 0 9px;font:20px/1.45 Huiwen,SimSun,serif;color:#514536}
+.folio .agent-query-result ul{margin:0;padding-left:20px;color:#706657}
+.folio .agent-query-actions{display:flex;align-items:center;flex-wrap:wrap;gap:9px 21px;margin-top:16px}
+.folio .agent-query-actions label{display:inline-flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap}
+.folio .agent-query-actions input{appearance:auto;accent-color:#655644;width:16px;height:16px;margin:0}
+.folio .agent-query-actions button{margin-left:auto;border-bottom:1px solid #a9957b;padding:0 0 2px}
+.folio .agent-query-empty{margin:4px 0 10px;color:#807463}
+.folio .agent-query-pages{display:flex;justify-content:center;gap:7px;margin:25px 0 0}
+.folio .agent-query-pages:empty{display:none}
+.folio .agent-query-pages button{min-width:34px;height:34px;border:1px solid #d5cabb;background:#fffdf8;text-align:center}
+.folio .agent-query-pages button[aria-current="page"]{background:#655644;color:#fff;border-color:#655644}
+.folio .agent-query-status{min-height:20px;margin:14px 0 0;color:#9a6043}
+@media(max-width:650px){.folio .transit-query-results-dialog{padding:22px 18px}.folio .transit-query-results-dialog h2{font-size:24px}.folio .agent-query-summary{display:block}.folio .agent-query-summary button{margin-top:8px}.folio .agent-query-result{padding:16px}.folio .agent-query-result h3{font-size:17px}}
+.folio .time-adjust-panel{position:relative;box-sizing:border-box;width:100%;max-width:none;margin:16px 0 8px;padding:2px 0 6px;border:0;background:transparent;box-shadow:none;color:var(--text-main);font:13px/1.6 'Huiwen','SimSun',serif;text-align:left}
+.folio .time-adjust-panel[hidden]{display:none!important}
+.folio .time-adjust-head{position:absolute;right:0;top:0;display:flex;align-items:center;justify-content:flex-end;gap:9px;margin:0}
+.folio .time-adjust-head button{display:flex;align-items:center;justify-content:center;width:24px;height:24px;padding:2px;border:0;background:none;color:var(--text-secondary);cursor:pointer}
+.folio .time-adjust-head button:hover{color:#000}
+.folio .time-adjust-head svg{display:block;width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+.folio .time-adjust-controls{display:grid;width:max-content;max-width:calc(100% - 72px);grid-template-columns:25px 66px 25px 188px;align-items:center;gap:8px;margin:0}
+.folio .time-adjust-controls button{border:0;background:none;color:#171614;font:21px/1 Georgia,serif;cursor:pointer}
+.folio .time-adjust-controls select,.folio .time-adjust-controls input{box-sizing:border-box;max-width:100%;width:100%;border:0;outline-offset:2px;padding:3px 0;background:transparent;color:#171614;font:12px/1.6 'Huiwen','SimSun',serif}
+.folio .time-adjust-controls input{width:calc(100% - 20px);margin-left:20px}
+.folio .time-adjust-controls input::-webkit-calendar-picker-indicator,.folio .time-adjust-controls input::-webkit-inner-spin-button{display:none}
+.folio .time-adjust-status{margin:6px 0 0;color:var(--text-secondary);font-size:11px}
+.folio .time-adjust-status a{color:var(--text-main);text-decoration:none;border-bottom:1px solid var(--rule)}
+.folio .time-adjust-status:empty{display:none}
+.folio .docked-tabs:has(#dock-tab-time-adjust[aria-selected=true]){padding-bottom:4px}
+.folio .time-adjust-panel.docked-card{grid-column:1/-1;justify-self:stretch;margin:1px 0 8px}
+@media(max-width:480px){.folio .time-adjust-controls{grid-template-columns:25px 66px 25px;gap:7px}.folio .time-adjust-controls input{grid-column:1/-1;width:100%;margin-left:0}.folio .time-adjust-head{top:0}}
+@media(max-width:480px){.folio .archive-dialog,.folio .archive-compose{padding:18px}.folio .archive-dialog .archive-tabs{gap:15px}.folio .archive-item-head{flex-wrap:wrap;gap:4px 12px}.folio .archive-item-date{margin-left:0}.folio .archive-item-head label{width:100%}}
+
+/* Lot categories stay on one quiet navigation row, while their entries scroll below. */
+.folio .lot-category-nav{display:flex;gap:20px;overflow-x:auto;scrollbar-width:thin;border-bottom:1px solid var(--rule);margin:0 0 8px;padding:0 0 1px}
+.folio .lot-category-nav button{flex:none;border:0;border-bottom:2px solid transparent;background:none;padding:7px 0 8px;color:var(--text-secondary);white-space:nowrap;font:13px/1.5 'Huiwen','SimSun',serif}
+.folio .lot-category-nav button[aria-selected=true]{border-bottom-color:#655644;color:#171614;font-weight:700}
+.folio .lot-category-tools{display:flex;align-items:center;justify-content:flex-end;gap:14px;min-height:25px;margin:3px 0 8px;color:var(--text-secondary)}
+.folio .lot-category-tools .lot-category-count{margin-right:auto;font:11px/1.5 Georgia,serif}
+.folio .lot-category-tools button{border:0;background:none;padding:2px 0;font:11px/1.5 'Huiwen','SimSun',serif;color:var(--text-secondary)}
+.folio .lot-category-tools button:hover{color:var(--text-main)}
+.folio .lot-category-tools button:disabled{opacity:.35;cursor:default}
+.folio .lot-category-tools button[hidden]{display:none}
+.folio .lot-category-dialog{width:470px}
+.folio .lot-category-dialog .lot-field{grid-template-columns:72px minmax(0,1fr)}
+.folio .lot-category-dialog .lot-field{white-space:nowrap}
+.folio .lot-category-dialog .lot-category-form p{overflow-wrap:anywhere}
+.folio .lot-category-dialog .lot-category-form p{margin:12px 0;color:var(--text-main)}
+@media(max-width:450px){.folio .lot-category-nav{gap:15px}.folio .lot-category-tools{gap:10px;flex-wrap:wrap}.folio .lot-category-tools .lot-category-count{width:100%}}
+
+/* note-layer-hide-chart-navigation */
+.folio.note-layer-active .chart-type-switch,.folio.note-layer-active .chart-navigation-status{display:none!important}
+
+/* period-note-workflow */
+.folio .archive-record-editor .archive-field-hint{display:block;margin-top:4px;color:var(--text-secondary);font:11px/1.5 'Huiwen','SimSun',serif}
+.folio.note-layer-active .workspace>.decennials-card{display:block!important}
+.folio.note-layer-active .decennials-selection-table .decennials-period-choice.is-selected{background:none;color:inherit}
+.folio.note-layer-active .decennials-selection-table .decennials-period-choice.note-period-selected{background:#eee8dd;color:#171614}
+/* end-period-note-workflow */
+
+/* time-lord-display */
+.folio .time-lord-glyph{font-family:'DejaVu Sans','Segoe UI Symbol','Noto Sans Symbols 2','Arial Unicode MS','Microsoft YaHei',sans-serif!important;font-variant-emoji:text;font-weight:400}.folio .time-lord-lb{font-size:10px;margin-left:4px;color:var(--text-secondary)}.folio .time-lord-source{font-size:13px;line-height:1.6;color:var(--text-secondary)}.folio .chart-type-switch a{font:inherit;color:var(--text-secondary);text-decoration:none}
+/* end-time-lord-display */
+
+/* start-picker-refinement */
+.folio .decennials-start-dialog{box-sizing:border-box;width:400px;max-width:calc(100vw - 32px)}
+.folio .decennials-start-options{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 10px}
+.folio .decennials-start-options label{display:flex;align-items:center;gap:5px;min-width:0}
+.folio .decennials-start-options input[type=radio]{appearance:auto;flex:none;width:12px;height:12px;margin:0;accent-color:#655644;cursor:pointer}
+.folio .time-lord-method{margin-top:18px;font:13px/1.7 'Huiwen','SimSun',serif;color:#817565}
+.folio .time-lord-method summary{cursor:pointer}
+.folio .chart-navigation-status button{font:inherit;color:#655644;background:none;border:0;border-bottom:1px solid #a78b71;padding:2px 0;margin:8px 16px 0 0;cursor:pointer}
+@media(max-width:420px){.folio .decennials-start-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* end-start-picker-refinement */
+
+.folio .fixed-transit-time .time-adjust-controls{max-width:100%}

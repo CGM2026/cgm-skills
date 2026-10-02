@@ -1,0 +1,8 @@
+{
+  "schema": "cgm-bazi-template/1",
+  "id": "kimi-book-v1-working-draft",
+  "adapter": "kimi-book-v1",
+  "source": "template/book.html",
+  "sourceSha256": "8e10bad4203f4135bd3ec894d005a5c46b84e0ae4a175e8dbbfab110c076ebed",
+  "status": "public release / synthetic placeholders / plain warm background"
+}

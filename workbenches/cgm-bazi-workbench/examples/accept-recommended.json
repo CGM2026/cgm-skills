@@ -1,0 +1,11 @@
+{
+  "confirmed": true,
+  "expectedRevision": 0,
+  "conventions": {
+    "solarTime": "apparent",
+    "dayBoundary": "zi-23",
+    "yearBoundary": "lunar-new-year",
+    "luckStart": "three-days-year-minute-day",
+    "smallLuck": "fixed-origin"
+  }
+}

@@ -1,0 +1,18 @@
+/* Continuous geometry; keep the existing wide-screen maxima. */
+/* Minor hidden-stem labels have an independent 11–12px readability floor.
+   Reserve both glyph widths before allocating separator margins. */
+.progression{--minor-size:clamp(11px,3cqw,12px);--minor-gap:clamp(0px,calc((100cqw - 220px)/50),3px);--minor-width:calc(2*var(--minor-size) + var(--minor-gap));--pf:min(38px,9.5cqw);--pr:min(54px,13.5cqw);--cw:max(var(--minor-width),min(46px,11.5cqw))}
+.progression .comparison{min-width:0}
+.progression .compare-group{gap:min(14px,3.5cqw)}
+.progression .divider{margin-left:min(20px,7cqw);margin-right:min(20px,7cqw)}
+.progression .compare-minor,.progression.month-focus .compare-minor{font-size:var(--minor-size);gap:var(--minor-gap);white-space:nowrap}
+.progression .compare-minor>*{flex-shrink:0}
+.progression.day-focus .divider{--day-divider:min(19px,4.5cqw,max(0px,calc((100cqw - 6*var(--cw) - 3*min(14px,3.5cqw) - 3px)/4)));margin-left:var(--day-divider);margin-right:var(--day-divider)}
+.progression.month-focus{--pf:min(27px,6.8cqw);--pr:min(40px,10cqw);--cw:max(var(--minor-width),min(34px,8.5cqw));--month-divider:min(20px,max(0px,calc((100cqw - 7*var(--cw) - 4*min(7px,1.8cqw) - 3px)/4)))}
+.progression.month-focus .compare-group{gap:min(7px,1.8cqw)}
+.progression.month-focus .divider{margin-left:var(--month-divider);margin-right:var(--month-divider)}
+.wheel-host{overflow:visible}
+.wheel-host .date,.wheel-host .age{white-space:nowrap}
+.wheel-host .timeline{grid-template-columns:repeat(var(--count),minmax(var(--option-min,34px),1fr))}
+.wheel-host .wheel-arrow.prev{left:calc(var(--wheel-inset,16px) - 16px)}
+.wheel-host .wheel-arrow.next{right:calc(var(--wheel-inset,16px) - 16px)}

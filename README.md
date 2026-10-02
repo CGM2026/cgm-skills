@@ -1,11 +1,13 @@
 # 长庚明公开 Skills
 
-这里收录长庚明公开发布的 AI Skills，主要用于 AI、玄学文本研究、符号系统重构，以及面向大众的占卜与命理适配体验。
+这里收录长庚明公开发布的 AI Skills，主要用于排盘与可视化工作台、玄学文本研究、符号系统重构，以及面向大众的占卜与命理适配体验。
 
 当前发布：
 
 | Skill | 中文名 | 功能 |
 | --- | --- | --- |
+| [八字工作台](workbenches/cgm-bazi-workbench) | 长庚明八字工作台 | 八字排盘、五组算法设置、HTML 工作页、案例管理、图层笔记与导出。包含统一入口、排盘、可视化三个成员。 |
+| [希腊占星工作台](workbenches/cgm-hellenistic-astrology-workbench) | 长庚明希腊占星工作台 | 占星排盘、本命与推运六盘工作页、案例管理、图层笔记与导出。包含统一入口、排盘、可视化三个成员。 |
 | [`cgm-reconstruct-symbols`](skills/cgm-reconstruct-symbols) | 玄学理论基础｜长庚明玄学符号重构法 | 从历史玄学文本中识别、审计并重构抽象符号系统，提炼核心洞见、现实映射与系统交互关系，输出专业研究报告和零基础短篇教科书。 |
 | [`cyber-astro-modern-public`](skills/cyber-astro-modern-public) | 赛博占卜｜现代占星·智能解读（公开版） | 即开即用的现代占星占卜工具：随机起卦或使用你已有的星象，围绕你关心的问题给出通俗易懂的解读，并自动生成可分享的精美卡片。 |
 | [`cgm-mingli-talent-test`](skills/cgm-mingli-talent-test) | 命理测试｜五种命理术·天赋适配诊断 | 通过七轮渐进对话，识别你与希腊占星、古典占星、现代占星、八字和紫微斗数的适配关系，并生成可解释的 Markdown 与 PDF 学习报告。 |
@@ -61,6 +63,19 @@ AI 生成的判断并不完全可靠。如果报告与你的真实经历、内�
 适合讨论是否从业、继续进修、客户定位、内容平台、课程与咨询、流派与证书，以及阶段性收入或经营瓶颈。最终输出一个有事实依据、能够被反证的核心裁决；证据不足时，则给出需要补充的信息或最小验证动作。
 
 ## 安装
+
+### 两个排盘与可视化工作台
+
+两个工作台各有独立目录，成员需要一起下载并保持相邻。安装地址固定，后续版本更新继续使用同一地址：
+
+- [长庚明八字工作台](https://github.com/Damocles1112/cgm-skills/tree/main/workbenches/cgm-bazi-workbench)：先读目录中的 [安装说明](workbenches/cgm-bazi-workbench/INSTALL.md)，入口为 `cgm-bazi-suite`。
+- [长庚明希腊占星工作台](https://github.com/Damocles1112/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench)：先读目录中的 [安装说明](workbenches/cgm-hellenistic-astrology-workbench/INSTALL.md)，入口为 `cgm-astrology-workbench`。
+
+可以让支持本地文件和命令执行的 Agent 根据安装说明下载、检查环境并安装三个成员。安装完成后，首次排盘会说明默认算法并询问是否调整。案例库、个人设置和笔记保存在用户工作目录，更新技能时保留这些资料。
+
+本次 Windows 环境已验证。WorkBuddy 全新安装以及 macOS/Linux 的完整流程尚待实测，后续攻略会以实测结果为准。
+
+### 其他单个 Skill
 
 克隆仓库：
 
@@ -131,6 +146,11 @@ Skill 每轮只问一个真正影响判断的问题，不预设“多赚钱”�
 
 ## 许可证
 
-本仓库采用 [MIT License](LICENSE)。
+本仓库既有的单个 Skill 内容采用 [MIT License](LICENSE)，但 `workbenches/` 下的两个工作台分别采用 **AGPL-3.0-only**；工作台及其成员以所在工作台的 LICENSE、NOTICE 和第三方声明为准，不适用仓库根目录的 MIT 许可。
+
+- [八字工作台许可](workbenches/cgm-bazi-workbench/LICENSE)及[第三方声明](workbenches/cgm-bazi-workbench/THIRD_PARTY_NOTICES.md)。
+- [希腊占星工作台许可](workbenches/cgm-hellenistic-astrology-workbench/LICENSE)及[第三方声明](workbenches/cgm-hellenistic-astrology-workbench/THIRD_PARTY_NOTICES.md)。
+
+两个工作台的程序允许使用、修改和继续开发；分发以及通过网络提供修改版时，按 AGPL 保留适用声明并提供对应源码。字体、星历等资源保留各自许可。
 
 `cyber-astro-modern-public` 内置的中文字体为 Noto Serif CJK SC 子集，依 SIL Open Font License 1.1 授权（见该 Skill 目录下 `scripts/assets/fonts/LICENSE.txt`）。

@@ -1,0 +1,13 @@
+'use strict';
+const assert=require('node:assert/strict');
+const {calculateBirth}=require('../../skills/cgm-bazi-chart/scripts/chart.cjs');
+const {recalculate}=require('../../skills/cgm-bazi-visualization/scripts/recalculate.cjs');
+const input={schema:'cgm-bazi-birth/1',name:'合成范围回归',birth:{calendar:'solar',date:'2023-01-25',time:'23:10',sex:'male',timezone:'Asia/Shanghai',location:{name:'合成地点',longitude:120}},conventions:{solarTime:'civil'}};
+const original=calculateBirth(input);original.initial={year:original.years.at(-1).year,month:11};const before=JSON.stringify(original);
+const options={solarTime:'civil',dayBoundary:'zi-23',yearBoundary:'lichun-instant',luckStart:'three-days-year-minute-day',smallLuck:'fixed-origin'};
+const result=recalculate(original,options);
+assert.ok(result.chart.years.at(-1).year<original.years.at(-1).year,'该样例须实际缩短日历结束年');
+assert.equal(result.chart.initial.year,result.chart.years.at(-1).year);
+assert.equal(result.chart.initial.month,11);
+assert.equal(JSON.stringify(original),before);
+console.log('试算结束年缩短时保留月份、夹限选中年份，原盘不改：通过。');

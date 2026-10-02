@@ -1,0 +1,4 @@
+interface:
+  display_name: "长庚明希腊占星工作台"
+  short_description: "计算并校验占星事实，打开六种盘式的本地工作页，保存笔记与档案"
+  default_prompt: "请使用 $cgm-astrology-workbench，根据我提供的时间和地点排盘并打开本地工作页。"

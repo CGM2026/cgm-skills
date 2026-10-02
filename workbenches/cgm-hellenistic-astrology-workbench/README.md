@@ -1,0 +1,41 @@
+# 长庚明希腊占星工作台
+
+本工作台根据时间与地点生成结构化星盘事实，并提供本地案例库、六种工作页、对象笔记和导出。
+
+当前版本：**1.0.0**。作者：**长庚明**。占星在这里用于研究、教学和记录，不作为人生的绝对裁决。
+
+[GitHub 源码](https://github.com/Damocles1112/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench) · [下载仓库 main 分支](https://github.com/Damocles1112/cgm-skills/archive/refs/heads/main.zip) · [安装说明](INSTALL.md)
+
+## 包含内容
+
+统一入口和两个功能成员放在同一 `skills/` 目录中，保持相邻：
+
+- `cgm-astrology-workbench`：首次使用、方法确认与统一入口。
+- `cgm-calculate-astrology-chart`：计算、事实校验、首次环境与方法配置。
+- `cgm-hellenistic-chart-visualization`：本命、行运、返照、十年九月运、法达星限、黄道释放工作页与案例库。
+
+排盘及展示可独立完成，不需要另装咨询、卜卦等分析成员。源码、模板、字体、小行星星历、许可及虚构示例随包提供。包内没有个人案例库、个人设置或 Python、Node.js 运行环境。
+
+## 开始使用
+
+阅读 [安装与首次使用](INSTALL.md)。也可以把下面这段话发给能读取文件并运行脚本的 Agent：
+
+> 请从 https://github.com/Damocles1112/cgm-skills 的 main 分支安装 workbenches/cgm-hellenistic-astrology-workbench 中的「长庚明希腊占星工作台」。先读该目录的 INSTALL.md，再读 skills/cgm-astrology-workbench/SKILL.md；检查运行环境，说明推荐方法并让我确认；使用虚构示例验证排盘与工作页。保留我已有的个人案例库和设置。
+
+首次使用会说明推荐方案：恒星黄道、Fagan–Bradley 岁差、埃及界、整宫制。可以接受或更换，确认后保存为个人默认。出生日期、时区和坐标属于资料，不会被方法偏好改写。输入方法与个人默认冲突时，按提示手动切换；已有命盘保留原口径。
+
+高纬度下部分宫制可能无法计算。界面会说明不可用的选择，并保留可用算法，不会暗中换成另一种宫制。
+
+## 文件与分享
+
+- 日常通过本机服务打开工作页，SQLite 案例库保存记录。使用包内备份入口保留整个库；单个导出文件不是完整案例库备份。
+- `library_cli.py export --format html` 可生成内嵌资料与资源的独立 HTML；文件可能超过 100 MB。双击可查看，完整编辑功能仍以本机案例库工作页为准。
+- 图片匿名选项不等于 HTML 或 JSON 已删除个人资料。分享完整文件前检查出生资料、笔记及其他嵌入数据。
+- PNG 可直接分享；工作页 SVG 是以 SVG 容器承载 PNG，不是可逐字编辑的纯矢量轮盘。
+- 字体采用旧字形。严格规范字形的汉字教学或排印请先阅读 [字体作者说明](LICENSES/Font-Chaohua.txt)。
+
+## 开源与验证
+
+作者：长庚明（Damocles1112）。本工作台程序采用 [AGPL-3.0-only](LICENSE)，不适用 cgm-skills 仓库根目录的 MIT 许可；第三方资源适用各自许可，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。署名建议见 [ATTRIBUTION.md](ATTRIBUTION.md)。
+
+文件摘要见 `SHA256SUMS.json`，来源见 `SOURCE_MANIFEST.json`。测试方法与已测范围见 [TESTING.md](TESTING.md)。Windows 上的排盘、六种工作页、笔记与导出流程已有验证；WorkBuddy、macOS、Linux、真实手机及所有历史年份尚未完成完整验证。

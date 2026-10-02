@@ -1,0 +1,215 @@
+.m08-wheel {
+  display: block;
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  color: rgba(37, 35, 31, 0.72);
+  overflow: visible;
+}
+
+.m08-wheel circle {
+  fill: transparent;
+  stroke: rgba(37, 35, 31, 0.18);
+  stroke-width: 0.7;
+}
+
+.m08-wheel line {
+  stroke: rgba(37, 35, 31, 0.16);
+  stroke-width: 0.5;
+}
+
+.m08-wheel .sign-segment,
+.m08-wheel .bound-segment {
+  stroke: none;
+}
+
+.m08-wheel .segment-gap {
+  stroke: var(--surface);
+  stroke-linecap: butt;
+}
+
+.m08-wheel .sign-gap {
+  stroke-width: 1.1;
+}
+
+.m08-wheel .bound-gap {
+  stroke-width: 0.75;
+}
+
+.m08-wheel .outer-ring {
+  stroke: rgba(255, 253, 248, 0.78);
+  stroke-width: 0.65;
+}
+
+.m08-wheel .sign-boundary-ring {
+  stroke: rgba(255, 253, 248, 0.72);
+  stroke-width: 0.6;
+}
+
+.m08-wheel .bound-inner-ring {
+  stroke: rgba(255, 253, 248, 0.68);
+  stroke-width: 0.55;
+}
+
+.m08-wheel .axis-line {
+  stroke: rgba(32, 31, 28, 0.62);
+  stroke-width: 1.2;
+}
+
+.m08-wheel .outer-axis {
+  stroke-width: 1.0;
+}
+
+.m08-wheel text {
+  dominant-baseline: middle;
+  fill: currentColor;
+  font-family: "DejaVu Sans", "Segoe UI Symbol", "Noto Sans Symbols 2", "Arial Unicode MS", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  stroke: none;
+  text-anchor: middle;
+}
+
+.m08-wheel .sign-marks text {
+  fill: rgba(38, 35, 29, 0.85);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.m08-wheel .bound-mark {
+  fill: rgba(38, 35, 29, 0.7);
+  font-size: 10px;
+}
+
+.m08-wheel .planet-mark {
+  fill: rgba(37, 35, 31, 0.88);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.m08-wheel .planet-tick {
+  stroke: rgba(37, 35, 31, 0.56);
+  stroke-width: 0.9;
+}
+
+.m08-wheel .planet-degree-radial {
+  fill: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.m08-wheel .planet-minute-radial {
+  fill: rgba(37, 35, 31, 0.75);
+  font-family: var(--font-serif);
+  font-size: 6.5px;
+  font-weight: 400;
+}
+
+.m08-wheel .angle-label {
+  fill: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 8.5px;
+  font-weight: 700;
+}
+
+.m08-wheel .angle-name,
+.m08-wheel .angle-degree-value {
+  fill: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 8.5px;
+  font-weight: 700;
+}
+
+.m08-wheel .angle-minute-value {
+  fill: var(--ink);
+  font-size: 6.5px;
+  font-weight: 400;
+}
+
+.m08-wheel .angle-label-horizontal text {
+  dominant-baseline: middle;
+}
+
+.m08-wheel .angle-label-horizontal .angle-name {
+  text-anchor: end;
+}
+
+.m08-wheel .angle-label-horizontal .angle-degree-value {
+  text-anchor: start;
+}
+
+.m08-wheel .house-divider {
+  stroke: rgba(37, 35, 31, 0.2);
+  stroke-width: 0.5;
+}
+
+.m08-wheel .house-mark {
+  fill: rgba(119, 112, 102, 0.58);
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.m08-wheel .wheel-center {
+  fill: rgba(37, 35, 31, 0.86);
+  font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.m08-wheel .wheel-center.small {
+  fill: rgba(119, 112, 102, 0.86);
+  font-size: 10px;
+  font-weight: 400;
+}
+
+.m08-wheel .lot-dot-ring {
+  fill: transparent;
+  stroke: rgba(37, 35, 31, 0.14);
+  stroke-width: 0.5;
+}
+
+.m08-wheel .lot-mark line {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.m08-wheel .lot-mark.lot-special line {
+  stroke: var(--accent-strong);
+  stroke-width: 0.95;
+}
+
+.m08-wheel .lot-mark.lot-other line {
+  stroke: var(--muted-soft);
+  stroke-width: 0.65;
+}
+
+.m08-wheel .lot-leader {
+  stroke-width: 0.55;
+}
+
+.m08-wheel .lot-number {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 10px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+  font-variant-numeric: tabular-nums;
+  paint-order: stroke fill;
+  stroke: var(--surface);
+  stroke-width: 3px;
+  stroke-linejoin: round;
+}
+
+.m08-wheel .lot-mark.lot-special .lot-number {
+  fill: var(--accent-strong);
+  stroke: var(--surface);
+}
+
+.m08-wheel .lot-mark.lot-other .lot-number {
+  fill: var(--muted-soft);
+  stroke: var(--surface);
+}
+.m08-wheel .retrograde{font:6px "Segoe UI Symbol";fill:#98553f}.m08-wheel [data-point]{cursor:pointer}.m08-wheel [data-point].selected text{fill:#a64625;font-weight:700}.m08-wheel [data-point]:focus{outline:none}.m08-wheel [data-point]:focus text{fill:#a64625}
+.m08-wheel .chart-caption{font:8px "Microsoft YaHei",sans-serif;fill:#8a7b68}.m08-wheel .chart-footer{font:6px "Microsoft YaHei",sans-serif;fill:#8b624b}.m08-wheel .planet-mark,.m08-wheel .planet-degree-radial,.m08-wheel .planet-minute-radial{paint-order:stroke fill;stroke:#fffdf8;stroke-width:1.5px;stroke-linejoin:round}

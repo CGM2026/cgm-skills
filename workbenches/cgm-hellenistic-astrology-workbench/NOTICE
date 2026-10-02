@@ -1,0 +1,21 @@
+Copyright (C) 2026 长庚明 (Damocles1112)
+
+本套件中作者有权授权的程序代码，依 GNU Affero General Public License
+version 3（SPDX: AGPL-3.0-only）提供。完整文本见 LICENSE。
+
+可以学习、使用、修改、继续开发及商业使用；分发或通过网络提供修改版时，
+须按协议保留适用声明并向接收者或服务使用者提供对应源码。修改版本应标明
+修改内容与日期。许可证不提供任何担保；详见 LICENSE 第 15、16 条。
+
+第三方字体、星历、库及其他素材保留各自版权与许可，见
+THIRD_PARTY_NOTICES.md 和 LICENSES/。上述程序许可不将这些素材重新授权，
+也不改变其原有条件。
+
+本包内 skills/ 包含本工作台对应的可修改源码。官方源码位于：
+https://github.com/Damocles1112/cgm-skills
+八字工作台：workbenches/cgm-bazi-workbench/
+希腊占星工作台：workbenches/cgm-hellenistic-astrology-workbench/
+
+两个工作台适用各自目录内的 AGPL-3.0-only 和第三方资源声明，
+不适用 cgm-skills 仓库根目录的 MIT 许可。基于本包提供网络服务的
+修改版，应向其用户提供该实际运行版本的对应源码。

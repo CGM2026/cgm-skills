@@ -1,0 +1,22 @@
+{
+  "source": "Astrologer/apps/desktop/src/renderer",
+  "extracted_at": "2026-09-05",
+  "files": [
+    {
+      "file": "chart-geometry.js",
+      "sha256": "03b88d01053b59853646d81aff05ef59cd5460dfd1624d17475d39bb8ea0b630"
+    },
+    {
+      "file": "renderer-chart.js",
+      "sha256": "b926dc8421bb2b17e612ca8924b0386b6dd6c61e62562f7cc18a96a57533c092"
+    },
+    {
+      "file": "renderer.js",
+      "sha256": "914f8bae960b8d34cec4b51f33614b3662978e0ac7751a22d6d39854687c12c4"
+    },
+    {
+      "file": "styles.css",
+      "sha256": "e28d84fef724cf7752ee85abeb9662acbe4e70b278bd40f479903616bc7c567d"
+    }
+  ]
+}

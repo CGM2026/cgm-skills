@@ -1,0 +1,152 @@
+.folio .chart-actions .workbench-layout-controls{position:absolute;right:0;top:calc(100% + 4px);margin:0;z-index:7;color:var(--text-secondary);font:12px/1.5 Huiwen,SimSun,serif}
+.workbench-layout-controls>button{cursor:pointer;padding:0;background:transparent}
+.workbench-layout-controls>button:focus-visible{outline:1px solid var(--text-secondary);outline-offset:2px}
+.folio .archive-save-controls[hidden]{display:none!important}
+.note-dock-status:empty{display:none}
+.relation-note-content header [data-dock-current-note]{white-space:nowrap;font-size:12px}
+.chart-screen,.chart-work-panel{min-width:0}
+.folio.workbench-enabled .chart-work-panel>.chart-type-switch{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:nowrap;gap:20px;margin:8px 0;padding:0;border:0;font:24px/1.5 Huiwen,SimSun,serif}
+.folio.workbench-enabled:not(.workbench-wide) .chart-work-panel:not(:has(>.docked-tabs:not([hidden])))>.chart-type-switch{border-top:1px solid var(--rule);padding-top:8px}
+.folio .chart-type-switch>.chart-type-current{font:inherit;color:var(--text-main);margin:0;min-width:0;text-align:left;white-space:normal}
+.folio .chart-type-switch>.chart-type-more{font:inherit;color:#a29b90;border:0;background:none;margin:0;padding:0;opacity:1;cursor:pointer;white-space:nowrap;flex:none;text-decoration:none}
+.folio .chart-type-switch>.chart-type-more:hover{color:var(--text-secondary)}
+.folio .chart-type-dialog{width:520px;max-width:calc(100vw - 48px);max-height:calc(100dvh - 48px);box-sizing:border-box;overflow:auto;padding:26px;border:1px solid var(--rule);background-color:var(--surface);color:var(--text-main);font:20px/1.5 Huiwen,SimSun,serif}
+.chart-type-dialog::backdrop{background:#29282035}
+.chart-type-dialog>header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px}
+.chart-type-dialog>header h2{margin:0;font:inherit}
+.chart-type-dialog>header button{display:flex;align-items:center;justify-content:center;width:24px;height:24px;border:0;background:none;padding:3px;color:var(--text-secondary);cursor:pointer}
+.chart-type-dialog>header svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round}
+.chart-type-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+.chart-type-options :is(a,button){display:block;min-width:0;font:inherit;text-align:left;text-decoration:none;color:inherit;border:0;background:none;padding:12px 10px;cursor:pointer;overflow-wrap:anywhere}
+.chart-type-options [aria-current=page]{background:#ece7de}
+.chart-type-options :is(a,button):hover{background:#ece7de}
+.chart-type-options button:disabled{opacity:.45;cursor:default}
+.chart-type-more:focus-visible,.chart-type-options :is(a,button):focus-visible{outline:1px solid var(--text-secondary);outline-offset:3px}
+@media(max-width:450px){.folio.workbench-enabled .chart-work-panel>.chart-type-switch{font-size:20px;gap:14px}.folio .chart-type-dialog{padding:20px;font-size:18px}.chart-type-options{gap:6px 10px}}
+.folio.workbench-enabled .chart-work-panel>.chart-type-switch a{color:var(--text-secondary);text-decoration:none}
+.folio.workbench-enabled .workspace{grid-template-columns:minmax(0,1fr);padding-bottom:0!important}
+.folio.workbench-enabled .chart-work-panel>.docked-card{margin-top:6px;border-top:0;width:100%;box-sizing:border-box}
+.folio.workbench-enabled .chart-work-panel>.docked-card[hidden]{display:none!important}
+.folio :is(.workspace,.chart-work-panel)>.docked-card{position:relative;padding-top:0}
+.folio .docked-card>.detail-toolbar{position:absolute;right:0;top:0;margin:0;z-index:1}
+.folio .docked-card .detail-heading{display:block!important;padding-right:32px;box-sizing:border-box;margin-top:0!important}
+.folio .docked-card .detail-heading h2{margin-top:0!important;width:auto!important;max-width:none!important;white-space:normal!important;overflow-wrap:anywhere}
+.folio.workbench-enabled .chart-work-panel>.docked-card :is(#detail,.detail-content){display:block!important;padding-right:0!important}
+.folio.workbench-wide{width:calc(100% - 48px)!important;max-width:1800px!important;padding:28px 32px!important}
+.folio.workbench-wide .chart-workbench{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(380px,1fr);gap:34px;align-items:start}
+.folio.workbench-wide .chart-work-panel{position:sticky;top:20px;border-left:1px solid var(--rule);padding-left:26px;max-height:calc(100vh - 55px);overflow:auto;overscroll-behavior:contain}
+.folio.workbench-wide .chart-work-panel>.chart-type-switch{margin:0 0 8px}
+.folio.workbench-wide .chart-work-panel>.chart-type-switch a{color:var(--text-secondary);text-decoration:none}
+.folio.workbench-enabled .chart-work-panel>.docked-tabs{margin-bottom:8px}
+.folio.workbench-wide .chart-work-panel>.docked-tabs{gap:8px 18px}
+.folio.workbench-wide .chart-screen .workspace{padding-top:0!important}
+.folio.workbench-wide .chart-screen #wheel{width:100%;max-width:100%;margin-inline:auto}
+.chart-top-controls[hidden]{display:none!important}
+.folio.workbench-wide .chart-top-controls{position:absolute;left:0;top:0;z-index:3;max-width:140px}
+.folio.workbench-wide .chart-top-controls .tools{position:static;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:8px;width:auto;margin:0;padding:0;border:0;font:12px/1.5 Huiwen,SimSun,serif}
+.folio.workbench-wide .chart-top-controls .tools>label{display:inline-flex;align-items:center;gap:3px;margin:0;white-space:nowrap}
+.folio.workbench-wide .chart-top-controls .tools>button{order:-1;border:0;background:none;padding:0;margin:0;font:inherit;text-align:left;color:var(--text-secondary);cursor:pointer;white-space:nowrap}
+.folio.workbench-wide .chart-top-controls .aspect-diagram-mode{order:-1;margin:0;font:inherit;text-align:left}
+.folio.workbench-wide .chart-top-controls .aspect-diagram-mode button{font:inherit;text-align:left}
+.folio.workbench-wide .chart-top-controls :is(.aspect-diagram-mode,button)[hidden]{display:none!important}
+.folio.note-layer-active .chart-top-controls{display:none!important}
+@media(max-width:1179px){.folio.workbench-wide .chart-top-controls{position:static;max-width:none;margin-bottom:12px}}
+.folio.workbench-wide .masthead{gap:16px}
+.folio.workbench-wide .name{font-size:clamp(32px,3.2vw,56px)!important}
+@media(max-width:1179px){.folio.workbench-wide{width:calc(100% - 24px)!important;padding:20px 16px!important}.folio.workbench-wide .chart-workbench{grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px}.folio.workbench-wide .chart-work-panel{padding-left:12px}.folio.workbench-wide .name{font-size:clamp(20px,3.2vw,36px)!important}}
+.folio.note-layer-active .chart-work-panel>.chart-type-switch,.folio.note-layer-active .chart-work-panel>.docked-card{display:none!important}
+.folio.note-layer-active .chart-work-panel>.decennials-card,.folio.note-layer-active .chart-work-panel>.time-lord-card{display:block!important}
+@media print{.workbench-layout-controls{display:none}.folio.workbench-wide .chart-workbench{display:block}.folio.workbench-wide .chart-work-panel{position:static;max-height:none;overflow:visible;border:0;padding:0}}
+.folio .chart-storage-notice{margin:8px 0;font:13px/1.7 Huiwen,SimSun,serif;color:#9b654c}
+.folio .chart-storage-notice button{font:inherit;color:#655644;background:none;border:0;border-bottom:1px solid #a78b71;padding:2px 0;margin:0 0 0 14px;cursor:pointer}
+.folio .layer-editor.archive-conflict-dialog{width:680px;max-width:calc(100vw - 40px);font-size:14px}
+.archive-conflict-item{margin:20px 0;padding-top:12px;border-top:1px solid var(--rule)}
+.archive-conflict-item h3{font:inherit;font-weight:bold;margin:0 0 8px}
+.archive-conflict-item pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:180px;overflow:auto;font:inherit;margin:5px 0 14px;padding:8px;background:#81756508}
+.folio .archive-conflict-item label{display:flex;align-items:center;gap:8px;margin-top:8px}
+.folio .archive-conflict-item input[type=radio]{display:inline-block;width:auto;padding:0;flex:none}
+.folio .archive-conflict-item textarea{min-height:80px}
+
+/* Reuse the chart tools and legend in both arrangements. */
+.folio{--chart-control-size:11px}
+.folio .m08-wheel .lot-mark .lot-number{fill:var(--lot-color,#a64625)!important;stroke:var(--surface);stroke-width:1px;paint-order:stroke fill;font:600 19px/1 Georgia,serif;font-style:normal}
+.folio .chart-area.legend-below-tools .chart-bottom .lot-legend-row>span:first-child{color:var(--lot-color,#a64625);font:600 14px/1 Georgia,serif}
+.folio .chart-area.legend-below-tools :is(.chart-bottom,.chart-top-controls) .tools{font-size:var(--chart-control-size);line-height:1.6}
+.folio .chart-area :is(.chart-bottom,.chart-top-controls) .tools>button{font:inherit;border:0;border-bottom:0;background:none;padding:0;text-decoration:none}
+.folio .chart-area :is(.chart-bottom,.chart-top-controls) .tools>button:is(:hover,:focus-visible){text-decoration:none}
+.folio .chart-area.legend-below-tools :is(.chart-bottom,.chart-top-controls) .aspect-diagram-mode{font:var(--chart-control-size)/1.6 Huiwen,SimSun,serif}
+.folio .chart-area :is(.chart-bottom,.chart-top-controls) .aspect-diagram-mode-switch,.folio .chart-area :is(.chart-bottom,.chart-top-controls) .aspect-diagram-mode-switch:is(:hover,:focus-visible){font:inherit;text-decoration:none}
+.folio .chart-area.legend-below-tools .chart-bottom .lot-legend-line{display:flex;align-items:flex-end;gap:16px;min-width:0;width:100%}
+.folio .chart-area.legend-below-tools .chart-bottom .lot-legend-line>.wheel-note{flex:1;min-width:0;width:auto}
+.folio :is(.lot-category-switch,.lot-category-caption){flex:none;margin:0 0 0 auto;padding:0;border:0;background:none;color:var(--lot-color,#a64625);font:var(--chart-control-size)/1.6 Huiwen,SimSun,serif;text-align:right;white-space:nowrap;text-decoration:none}
+.folio .lot-category-switch{cursor:pointer}
+.folio .lot-category-switch:is(:hover,:focus-visible){text-decoration:none}
+.folio .lot-category-switch:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.folio .lot-category-switch:disabled{cursor:default;opacity:.6}
+.folio :is(.lot-category-switch,.lot-category-caption,.lot-legend-line)[hidden]{display:none!important}
+.folio.workbench-wide{--chart-control-size:12px}
+.folio.workbench-wide .chart-top-controls{display:flex;flex-direction:column;align-items:flex-start;gap:8px;max-width:180px}
+.folio.workbench-wide .chart-top-controls :is(.lot-category-switch,.lot-category-caption){margin:0;text-align:left}
+.folio.note-layer-active :is(.lot-legend-line,.lot-category-switch,.lot-category-caption){display:none!important}
+.folio .lot-category-picker{width:470px}
+.folio .lot-category-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+.folio .lot-category-choice{display:flex;align-items:center;gap:9px;min-width:0;padding:10px 8px;border:1px solid transparent;background:none;color:var(--text-main);font:13px/1.6 Huiwen,SimSun,serif;text-align:left;cursor:pointer}
+.folio .lot-category-choice:is([aria-current=true],[aria-current=page],[aria-selected=true],[aria-pressed=true]){border-color:var(--rule);background:#81756508}
+.folio .lot-category-choice:hover{background:#81756508}
+.folio .lot-category-color{display:inline-block;width:10px;height:10px;border-radius:50%;flex:none}
+.folio .lot-color-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}
+.folio .lot-color-choice{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;padding:8px 3px;border:1px solid var(--rule);background:none;font:12px/1.5 Huiwen,SimSun,serif;cursor:pointer}
+.folio .lot-color-choice:is([aria-pressed=true],[aria-checked=true],[aria-selected=true]){outline:1px solid var(--text-secondary);outline-offset:1px;background:#81756508}
+.folio .lot-color-swatch{display:inline-block;width:24px;height:8px;border-radius:2px}
+.folio .lot-color-number{font:600 19px/1 Georgia,serif}
+.folio .lot-color-name{white-space:nowrap;color:var(--text-main)}
+@media(max-width:450px){.folio:not(.workbench-wide){--chart-control-size:10px}.folio .chart-area.legend-below-tools .chart-bottom .lot-legend-line{gap:10px}.folio .lot-category-options{gap:6px 10px}}
+
+/* Category captions stay neutral; only lot numbers carry the category color. */
+.folio :is(.lot-category-switch,.lot-category-caption){color:#000}
+.folio.workbench-wide .chart-top-controls{max-width:200px}
+.folio.workbench-wide .chart-top-controls .tools{display:grid;grid-template-columns:repeat(2,max-content);gap:8px 18px;align-items:start}
+.folio.workbench-wide .chart-top-controls .tools>label{margin:0}
+.folio.workbench-wide .chart-top-controls .tools>:is(button,.aspect-diagram-mode){grid-column:1/-1}
+.folio:not(.workbench-wide) .chart-area.legend-below-tools .chart-bottom .lot-legend-row{flex:0 0 calc((100% - 72px)/5);min-width:max-content}
+.folio.workbench-wide .chart-area.legend-below-tools .chart-bottom .lot-legend-row{flex:0 0 auto;min-width:max-content}
+.folio.workbench-enabled:not(.workbench-wide) .chart-work-panel{padding-top:24px}
+.folio.workbench-enabled:not(.workbench-wide) .chart-work-panel:not(:has(>.docked-tabs:not([hidden])))>.chart-type-switch{padding-top:14px}
+
+/* Shared detail spacing follows the card when it moves between layouts. */
+.folio.workbench-enabled .chart-work-panel>.docked-tabs{margin-bottom:24px}
+.folio .docked-card .detail-heading{margin-bottom:20px!important}
+.folio .docked-card .detail-heading h2{margin-bottom:14px!important;line-height:1.2!important}
+.folio .docked-card .detail-heading .position{margin:0!important;line-height:1.7}
+.folio .docked-card .dignity-scroll{margin-top:0!important;margin-bottom:20px!important}
+/* Shared note browser: three open tabs, separate full-layer collection. */
+.relation-note-navigation{display:flex;align-items:baseline;gap:18px;min-width:0}
+.relation-note-navigation .relation-tabs{flex:1;min-width:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;flex-wrap:nowrap}
+.relation-note-navigation .relation-tabs button{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+.all-relation-notes{flex:none;margin-left:auto;border:0;background:none;color:var(--text-secondary);font:inherit;cursor:pointer;white-space:nowrap}
+.relation-note-content header{flex-wrap:wrap}.relation-note-title{overflow-wrap:anywhere}
+.note-limit-status{font:inherit;color:var(--text-secondary)}
+.folio .relation-browser{width:min(680px,calc(100vw - 40px));max-height:85vh;padding:24px;box-sizing:border-box;background:var(--paper,#fffdf7);color:var(--text-main);border:1px solid var(--rule);font:14px/1.7 Huiwen,SimSun,serif}
+.relation-browser::backdrop{background:rgba(30,25,20,.25)}
+.relation-browser-head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:20px}.relation-browser-head div{display:flex;gap:18px}
+.relation-browser button{font:inherit;color:inherit;cursor:pointer}.relation-browser-head button{border:0;background:none;font-size:20px;padding:2px 6px}
+.relation-browser-items{display:grid;gap:12px;max-height:58vh;overflow:auto;min-width:0}.relation-browser-items.is-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.relation-browser-items>button{display:block;width:100%;min-width:0;text-align:left;border:1px solid var(--rule);padding:12px 16px;background:none;overflow-wrap:anywhere}
+.relation-browser-items>button[aria-pressed=true]{background:rgba(120,108,83,.12);border-color:var(--text-main)}
+.relation-browser-items strong{display:block;font-weight:normal}.relation-browser-items span{display:block;color:var(--text-secondary);font-size:12px}
+.relation-browser-items p{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;white-space:pre-wrap;margin:8px 0 0}
+.relation-browser footer{display:flex;justify-content:flex-end;margin-top:20px}.relation-browser footer button{padding:6px 12px;border:1px solid var(--rule);background:none}.relation-browser button:disabled{opacity:.4;cursor:default}
+@media(max-width:480px){.relation-note-navigation{gap:10px}.relation-note-navigation .relation-tabs{gap:8px}.folio .relation-browser{padding:16px}.relation-browser-items.is-grid{grid-template-columns:1fr}}
+@media print{.relation-note-navigation,.relation-browser,.note-limit-status{display:none!important}}
+/* Note navigation and card title share the paper-page hierarchy. */
+.relation-note-navigation{border-bottom:1px solid var(--rule);padding-bottom:9px}
+.relation-note-navigation .relation-tabs{border-bottom:0;padding-bottom:0}
+.folio .relation-browser footer [data-browser-show]{border:0;background:none;color:#a34532;padding:6px 0}
+.relation-browser-items.is-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.relation-browser-items.is-grid>button{padding:10px 12px}
+.folio .relation-note-content .relation-note-title{font:52px/1.2 'Chaohua',Huiwen,SimSun,serif;margin:0 0 14px;max-width:100%;overflow-wrap:anywhere;color:var(--text-main)}
+.folio .relation-note-content header{align-items:baseline;justify-content:flex-start;margin-bottom:14px}
+.folio .relation-note-content header .relation-note-title{flex:1 1 60%;min-width:0}
+.folio .relation-note-content header [data-dock-current-note]{margin-left:auto}
+@media(max-width:700px){.folio .relation-note-content .relation-note-title{font-size:42px}.relation-browser-items.is-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:420px){.folio .relation-note-content .relation-note-title{font-size:34px}.relation-browser-items.is-grid{grid-template-columns:1fr}}

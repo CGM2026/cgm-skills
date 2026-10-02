@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>示例 · 八字排盘</title>
+<style>
+/* 朝华标题 A：统一衬线（本地字体文件，随页面加载） */
+@font-face{
+  font-family:'ZhaohuaTitleA';
+  src:url('assets/fonts/朝华标题A-huozi.ttf') format('truetype');
+  font-display:swap;
+}
+/* 汇文明朝体：正文级衬线，用于辅助小字（原黑体辅注全部换为它） */
+@font-face{
+  font-family:'HuiwenMincho';
+  src:url('assets/fonts/汇文明朝体-huozi.ttf') format('truetype');
+  font-display:swap;
+}
+/* ============================================================
+   书页式八字排盘 —— 横带分层版 · 新中式配色候选
+   ※ 本文件与基线《八字排盘-书页重构版.html》排版完全一致，仅配色不同；
+     配色采用方案 A（灰调莫兰迪·深化，2026-09-09 用户选定方向），整页效果待确认。
+   结构：题头带（首字色块 + 虚字 + 资料）→ 原局带 → 骑缝年份线
+        → 推运带（左脊色块 ｜ 推运盘 + 链接行 + 折叠选择区）
+   网格：gutter 为页边；band-l 为左脊色块宽，同时是推运带的左线
+   ============================================================ */
+:root{
+  /* 配色：方案 A 灰调莫兰迪·深化（用户已选定方向，整页效果待看图确认） */
+  --paper:#FFF9EE;
+  --ink:#383129;
+  --muted:#9B9384;
+  --faint:#8F897E;
+  --line:#D2C8B6;
+  --selected-bg:#F3EDDE;
+  --wood:#6F7D5F;
+  --fire:#B27A68;
+  --earth:#8A6F5B;
+  --metal:#B09454;
+  --water:#6E8798;
+  --day-color:var(--wood); /* 由脚本按日干五行写入 */
+  --block:color-mix(in srgb,var(--day-color) 34%,var(--paper)); /* 结构色块：日干色混合暖白 */
+  --name-ghost:color-mix(in srgb,var(--ink) 30%,var(--paper));  /* 名字后字的虚色 */
+
+  /* 字体：衬线统一为朝华标题 A（本地 @font-face），回退宋体 */
+  --serif:'ZhaohuaTitleA',SimSun,'宋体',serif;
+  /* 辅助文字：正文级衬线汇文明朝体，回退雅黑 */
+  --sans:'HuiwenMincho','Microsoft YaHei','微软雅黑',sans-serif;
+  --num:'ZhaohuaTitleA',Georgia,'Times New Roman',serif;
+
+  /* 版面 */
+  --gutter:clamp(22px,8%,58px);
+  --tile:196px;   /* 首字色块边长 = 题头带高度（按用户样例约 27.7% 比例） */
+  --band-l:var(--tile); /* 左脊宽 = 首字色块宽：两者右缘共线（红线） */
+  --lower-pl:var(--gutter); /* 推运盘左内距 = 页边：推运盘字与米白背景左右间距相同（蓝线） */
+  --page:708px;
+  /* 题头共用基线：首字 / 虚字 / 资料第二行，三者基线到题头底线的距离相同（红线）；
+     取 .22×tile 使字顶留白与基线下方留白大致均衡（字高 .72em，下行 .113em），各断点自动缩放 */
+  --mast-base:calc(var(--tile)*.22);
+  --inactive:#C2BAAA; /* 推运盘未激活灰：比 muted 更淡，与五行色拉出层级 */
+
+  /* 原局尺度 */
+  --natal-char:88px;
+  --natal-side:28px;
+  --god-size:18px;
+  --hidden-size:12px;
+
+  /* 推运盘尺度：页面封顶 708px，内容盒最大约 399px——cqw 曲线以该盒宽为工作点，
+     盒宽缩小时平滑降档，下限与 550px 断点的固定值衔接，全程无断档 */
+  --pf:clamp(26px,9.5cqw,38px);
+  --pr:clamp(40px,13.5cqw,54px);
+  --cw:clamp(30px,11.5cqw,46px);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans)}
+main{max-width:var(--page);margin:0 auto;position:relative;min-height:100vh;display:flex;flex-direction:column}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,.column:focus-visible,summary:focus-visible{outline:1px solid var(--fire);outline-offset:2px}
+
+.wood{color:var(--wood)}.fire{color:var(--fire)}.earth{color:var(--earth)}.metal{color:var(--metal)}.water{color:var(--water)}
+.inactive{color:var(--inactive)}
+
+/* ---------- 题头带：首字色块 ｜ 虚字 + 资料 + 底线 ---------- */
+.masthead{display:flex;align-items:stretch;position:relative}
+.name-tile{
+  flex:0 0 var(--tile);height:var(--tile);
+  background:var(--block);color:#FFFDF7;
+  display:flex;align-items:flex-end;justify-content:center;
+  /* 与虚字、资料第二行共用基线：减去字体下行量（朝华标题 A 约 0.113em），使基线而非字框底对齐 */
+  padding-bottom:calc(var(--mast-base) - .113em);
+  font:700 calc(var(--tile)*.72)/1 var(--serif);
+}
+.name-tile.latin{font-family:var(--num);font-size:calc(var(--tile)*.82);
+  padding-bottom:calc(var(--mast-base) - .21em)} /* 拉丁回退字体（Georgia 系）下行量约 .21em，大于朝华标题 A 的 .113em，单独补偿使基线仍落在题头共用基线上 */
+.masthead-body{
+  flex:1;min-width:0;position:relative;
+  display:flex;flex-direction:column;
+  min-height:var(--tile); /* 题头带高度 = 色块边长：底线与色块底边相接 */
+}
+.name-rest{
+  flex:1;display:flex;align-items:flex-end;
+  padding-bottom:calc(var(--mast-base) - .113em); /* 虚字基线 = 题头共用基线 */
+  font:700 calc(var(--tile)*.72)/1 var(--serif);
+  color:var(--name-ghost);
+  padding-left:.2em;
+  overflow:hidden;white-space:nowrap;
+}
+.name-rest.latin{font-family:var(--num);font-size:calc(var(--tile)*.6);letter-spacing:.08em;
+  padding-bottom:calc(var(--mast-base) - .21em)} /* 与色块同一拉丁基线补偿；字距拉开，虚字更显从容 */
+.masthead-rule{position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line)} /* 横贯整页，与色块底边同高（绿线） */
+/* 生辰资料：题头带内偏左（右缘内收两档页边再左移 72px），两行浅灰衬线小字（地点 ／ 农历＋公历）；
+   第二行（农历＋公历）基线 = 题头共用基线（8px 为该行行盒内基线到盒底的距离） */
+.person-info{
+  position:absolute;right:calc(var(--gutter)*2 + 72px);bottom:calc(var(--mast-base) - 8px);
+  font:400 13px/1.9 var(--serif);color:var(--muted);
+  text-align:left;white-space:nowrap;
+}
+
+/* ---------- 原局带：横贯页边到页边，右缘与全局右线共线 ---------- */
+.natal{
+  display:flex;justify-content:space-between;
+  gap:12px;
+  padding:56px var(--gutter) 54px;
+  overflow-x:auto;scrollbar-width:thin;
+}
+.pillar{flex:0 0 auto;display:flex;flex-direction:column;gap:28px}
+.unit{display:flex;align-items:flex-start;gap:5px}
+.major{width:var(--natal-char);font:700 var(--natal-char)/1 var(--serif);text-align:center}
+.side{
+  flex:0 0 var(--natal-side);height:var(--natal-char);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:6px 0 4px; /* 对齐笔画边缘而非字框 */
+}
+.stem-god,.principal{font:400 var(--god-size)/1 var(--sans);color:var(--muted)}
+.stem-god.rooted{color:var(--ink)}
+.stem-god.day-master{color:var(--ink)}
+.principal.exposed{color:var(--ink);font-weight:700}
+.hidden-list{
+  margin-left:1px;padding-left:4px;border-left:1px solid var(--line);
+  display:flex;flex-direction:column;gap:1px;
+}
+.hidden-stem{font:400 var(--hidden-size)/1.2 var(--sans);color:var(--muted)}
+.hidden-stem.exposed{font-weight:700}
+
+/* ---------- 骑缝年份线：原局带与推运带的分界，读数骑线偏右 ---------- */
+.year-rule{position:relative;height:1px;background:var(--line)}
+.year-rule strong{
+  position:absolute;top:50%;
+  /* 推运盘内容盒（左脊右缘＋左内距 → 全局右线）的水平中心 */
+  left:calc(var(--band-l) + var(--lower-pl) + (100% - var(--band-l) - var(--lower-pl) - var(--gutter))/2);
+  transform:translate(-50%,-50%);
+  background:var(--paper);padding:0 16px;
+  font:400 24px/1.3 var(--serif);color:var(--muted);white-space:nowrap;
+}
+
+/* ---------- 推运带：左脊色块 ｜ 推运盘 + 链接行 + 选择区 ----------
+   左脊色块随推运带撑满页面剩余高度，不随内容多少截断 */
+.lower{display:flex;align-items:stretch;flex:1}
+.spine{flex:0 0 var(--band-l);background:var(--block)}
+.lower-main{
+  flex:1;min-width:0;
+  padding:36px var(--gutter) 0 var(--lower-pl);
+  container-type:inline-size; /* 推运盘尺度的参照容器：cqw 跟随此内容盒实际宽度 */
+}
+.progression .scroll{min-width:0;overflow-x:auto;scrollbar-width:thin}
+.comparison{
+  display:flex;width:100%;min-width:max-content;
+  justify-content:space-between;align-items:stretch; /* 横贯内容盒：左右缘锁定两条蓝线 */
+}
+.compare-group{display:flex;gap:clamp(4px,3.5cqw,14px);flex:0 0 auto}
+.divider{flex:0 0 1px;align-self:center;height:calc(var(--pr)*1.4); /* 短于两行主字，居中于两行主字之间 */
+  background:var(--line);margin:0 20px}
+.compare-col{flex:0 0 var(--cw);text-align:center}
+.compare-main{height:var(--pr);font:700 var(--pf)/var(--pr) var(--serif)}
+.compare-minor{
+  display:flex;justify-content:center;gap:5px;
+  margin-top:6px;min-height:15px;
+  font:400 clamp(9.5px,2.6cqw,11px)/1.3 var(--sans);
+}
+/* 流月模式：多一列，字号与列宽略收；同一 cqw 曲线原则，幅度小于岁运盘 */
+.progression.month-focus{--pf:clamp(21px,6.8cqw,27px);--pr:clamp(30px,10cqw,40px);--cw:clamp(23px,8.5cqw,34px)}
+.progression.month-focus .compare-group{gap:clamp(2px,1.8cqw,7px)}
+.progression.month-focus .compare-minor{font-size:clamp(8.5px,2.2cqw,9.5px);gap:3px}
+
+/* 链接行：左 模式切换，右 展开运势 */
+.deck-links{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-top:30px;
+}
+.deck-links button{font:13px/1 var(--sans);color:#55524A} /* 深灰，不用纯黑 */
+#mode::before{content:'▪';color:var(--wood);margin-right:6px}
+#expand::before{content:'▸';color:var(--wood);margin-right:6px}
+#expand[aria-expanded="true"]::before{content:'▾'}
+
+/* 选择区：不设分组标题（岁运=大运+流年，流月=流月+流年），用组间距代替 */
+.controls-body{padding-bottom:48px} /* 展开区底部留足空隙 */
+.section+.section{margin-top:26px}
+.wheel-host{position:relative;overflow:hidden;touch-action:pan-y;padding:0 16px}
+.timeline{display:grid;grid-template-columns:repeat(var(--count),minmax(0,1fr))}
+.column{
+  display:flex;flex-direction:column;align-items:center;gap:5px;
+  padding:7px 1px 10px;cursor:pointer;text-align:center;
+}
+.column.selected{background:var(--selected-bg)}
+.column .date,.column .age{font:10px/1.3 var(--num),var(--sans);color:var(--faint)}
+.column.selected .date{color:var(--ink);font-weight:700}
+.pair{display:flex;align-items:baseline;gap:3px;white-space:nowrap}
+.column .pair+.pair{margin-top:12px} /* 天干行与地支行之间留足间距 */
+.pair b{font:700 17px/1.2 var(--serif)}
+.pair small{font:11px/1 var(--sans);color:var(--faint)}
+.wheel-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:16px;font-size:20px;line-height:1;color:var(--faint);
+  opacity:0;transition:opacity .15s;
+}
+.wheel-arrow.prev{left:0}
+.wheel-arrow.next{right:0}
+.wheel-host:hover .wheel-arrow,.wheel-host:focus-within .wheel-arrow{opacity:1}
+.wheel-arrow:disabled{visibility:hidden}
+
+/* ---------- 窄屏 ---------- */
+@media(max-width:707px){
+  :root{--tile:140px;--natal-char:72px;--natal-side:24px}
+  .person-info{right:calc(var(--gutter)*2 + 16px)} /* 中窄屏收敛左移量：窗口收窄时页边缩而名字未缩，防止资料区挤进虚字 */
+}
+@media(max-width:550px){
+  :root{--natal-char:50px;--natal-side:20px;--god-size:14px;--hidden-size:10px;--tile:96px}
+  .person-info{font-size:11.5px;bottom:calc(var(--mast-base) - 7px);right:calc(var(--gutter)*2)} /* 恢复原先右缘位置 */
+  .year-rule strong{font-size:18px;padding:0 10px}
+  .natal{padding-top:40px;padding-bottom:38px}
+  .pillar{gap:22px}
+  .unit{gap:4px}
+  .lower-main{padding-top:28px}
+  .progression{--pf:29px;--pr:41px;--cw:30px}
+  .compare-group{gap:4px}
+  .divider{margin:0 10px}
+  .compare-minor{font-size:9px;gap:3px;margin-top:4px}
+  .progression.month-focus{--pf:25px;--pr:36px;--cw:23px}
+  .progression.month-focus .compare-group{gap:2px}
+  .progression.month-focus .compare-minor{font-size:8px;gap:2px}
+}
+@media(max-width:359px){
+  :root{--natal-char:42px;--natal-side:17px;--god-size:13px;--hidden-size:9px;--tile:80px}
+  .unit{gap:3px}
+  .divider{margin:0 8px}
+  .progression{--pf:24px;--pr:34px;--cw:24px}
+  .compare-group{gap:3px}
+  .progression.month-focus{--pf:21px;--pr:30px;--cw:20px}
+  .progression.month-focus .compare-group{gap:2px}
+}
+</style>
+</head>
+<body>
+<main>
+
+  <header class="masthead">
+    <div class="name-tile" id="name-tile"></div>
+    <div class="masthead-body">
+      <div class="name-rest" id="name-rest"></div>
+    </div>
+    <div class="masthead-rule" aria-hidden="true"></div>
+    <div class="person-info">
+      <div>出生地点</div>
+      <div>出生日期</div>
+    </div>
+  </header>
+
+  <section class="natal" id="natal" aria-label="原局"></section>
+
+  <div class="year-rule"><strong id="selected-year">2028 年 24 岁</strong></div>
+
+  <div class="lower">
+    <div class="spine" aria-hidden="true"></div>
+    <div class="lower-main">
+      <section class="progression" id="progression">
+        <div class="scroll"><div class="comparison" id="comparison"></div></div>
+      </section>
+      <div class="deck-links">
+        <button id="mode" type="button" aria-pressed="false">切换为流月盘</button>
+        <button id="expand" type="button" aria-expanded="false" aria-controls="controls-body">展开完整运势</button>
+      </div>
+      <div class="controls-body" id="controls-body" hidden>
+        <section class="section" id="sec-luck" aria-label="大运"><div class="scroll-x"><div class="timeline" id="luck"></div></div></section>
+        <section class="section" id="sec-years" aria-label="流年"><div class="scroll-x"><div class="timeline" id="years"></div></div></section>
+        <section class="section" id="sec-months" aria-label="流月"><div class="scroll-x"><div class="timeline" id="months"></div></div></section>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+'use strict';
+/* ================= 基础数据与工具 ================= */
+const elements={wood:'甲乙寅卯',fire:'丙丁巳午',earth:'戊己辰戌丑未',metal:'庚辛申酉',water:'壬癸亥子'};
+const color=c=>Object.keys(elements).find(k=>elements[k].includes(c))||'';
+const godMap={甲:'比',乙:'劫',丙:'食',丁:'伤',戊:'才',己:'财',庚:'杀',辛:'官',壬:'枭',癸:'印'};
+const branchHidden={申:['庚杀','壬枭','戊才'],戌:['戊才','辛官','丁伤'],丑:['己财','癸印','辛官'],午:['丁伤','己财'],酉:['辛官'],未:['己财','丁伤','乙劫'],巳:['丙食','戊才','庚杀'],辰:['戊才','乙劫','癸印'],卯:['乙劫'],寅:['甲比','丙食','戊才'],子:['癸印'],亥:['壬枭','甲比']};
+const stems='甲乙丙丁戊己庚辛壬癸',branches='子丑寅卯辰巳午未申酉戌亥';
+const mod=(n,d)=>(n%d+d)%d;
+const cycle=n=>stems[mod(n,10)]+branches[mod(n,12)];
+const yearGz=y=>cycle(y-1984);
+const monthGz=(y,m)=>stems[mod((mod(y-1984,10)%5)*2+2+m,10)]+branches[(2+m)%12];
+const terms=['立春','惊蛰','清明','立夏','芒种','小暑','立秋','白露','寒露','立冬','大雪','小寒'];
+const termDays=[4,6,5,6,6,7,8,8,8,7,7,6]; /* 各节气开端的新历日期（约值，年际 ±1 天） */
+/* 节气所在新历年月：立春=2月 …… 大雪=12月；小寒落在次年 1 月 */
+function termYm(y,m){return m===11?[y+1,1]:[y,m+2]}
+
+/* ================= 人名：首字色块 + 虚字（1–4 汉字；拉丁名取首字母） ================= */
+const personName='示例'; /* 约束：不超过 4 个汉字；拉丁名建议不超过 12 字母 */
+(function renderName(){
+  const chars=[...personName];
+  const first=chars[0]||'',rest=chars.slice(1).join('');
+  const latin=/[A-Za-z]/.test(first);
+  const tile=document.getElementById('name-tile');
+  tile.textContent=latin?first.toUpperCase():first;
+  tile.classList.toggle('latin',latin);
+  const restEl=document.getElementById('name-rest');
+  restEl.textContent=rest;
+  restEl.classList.toggle('latin',latin);
+  restEl.style.display=rest?'':'none';
+  /* 虚字自适应：仅三字及以上人名参与——收缩字号，避让右下资料区，防止切割 */
+  const fitRest=()=>{
+    if([...rest].length<2)return;
+    restEl.style.fontSize='';
+    const info=document.querySelector('.person-info');
+    const avail=info.offsetLeft-tile.offsetWidth-restEl.offsetLeft-28;
+    const need=restEl.scrollWidth;
+    if(avail>0&&need>avail){
+      const cur=parseFloat(getComputedStyle(restEl).fontSize);
+      restEl.style.fontSize=(cur*avail/need).toFixed(1)+'px';
+    }
+  };
+  requestAnimationFrame(fitRest);
+  window.addEventListener('resize',()=>requestAnimationFrame(fitRest));
+})();
+
+/* ================= 命例数据 ================= */
+/* 四柱：[天干十神, 天干, 地支]；藏干由 branchHidden 查得 */
+const natal=[['','〇','〇'],['','〇','〇'],['','〇','〇'],['','〇','〇']];
+const dayStem=natal[2][1];
+document.documentElement.style.setProperty('--day-color',
+  {wood:'#6F7D5F',fire:'#B27A68',earth:'#8A6F5B',metal:'#B09454',water:'#6E8798'}[color(dayStem)]);
+
+const visibleStems=new Set(natal.map(p=>p[1]));
+branchHidden['〇']=[];
+const natalHiddenStems=new Set(natal.flatMap(p=>branchHidden[p[2]].map(v=>v[0])));
+
+/* ================= 原局渲染 ================= */
+/* 天干旁注：该干见于原局任一藏干 → 黑色常规，否则灰 */
+/* 地支主气旁注：该藏干透出于原局天干 → 黑色加粗，否则灰 */
+/* 二三藏干：透干 → 五行色加粗，否则灰；单藏干不显示 */
+function branchUnit(branch){
+  const items=branchHidden[branch],first=items[0];
+  const minors=items.slice(1).map(v=>{
+    const exposed=visibleStems.has(v[0]);
+    return `<span class="hidden-stem ${exposed?color(v[0])+' exposed':''}">${v.slice(1)}</span>`;
+  }).join('');
+  return `<div class="unit branch-unit">
+    <span class="major ${color(branch)}">${branch}</span>
+    <div class="side">
+      <span class="principal ${visibleStems.has(first[0])?'exposed':''}">${first.slice(1)}</span>
+      ${items.length>1?`<div class="hidden-list">${minors}</div>`:''}
+    </div>
+  </div>`;
+}
+document.getElementById('natal').innerHTML=natal.map(p=>{
+  /* 十神旁注显色规范（含日干「女」）：该干在地支藏干中有根（藏干含相同天干）才置黑，否则灰 */
+  const godCls=natalHiddenStems.has(p[1])?(p[0]==='女'?'day-master':'rooted'):'';
+  return `<div class="pillar">
+    <div class="unit stem-unit">
+      <span class="major ${color(p[1])}">${p[1]}</span>
+      <div class="side"><span class="stem-god ${godCls}">${p[0]}</span></div>
+    </div>
+    ${branchUnit(p[2])}
+  </div>`;
+}).join('');
+
+/* ================= 推运显色（已确认规则） ================= */
+function makePillar(name,stem,branch){return {name,stem,branch,hidden:branchHidden[branch].map(v=>v[0])}}
+const baseNatal=natal.map((p,i)=>makePillar(['年','月','日','时'][i],p[1],p[2]));
+
+const luckChoices=[{start:1990,end:2008,gz:'甲戌',label:'小运',age:'0岁'},
+  ...Array.from({length:10},(_,i)=>({start:1995+10*i,end:2004+10*i,gz:cycle(9-i),label:String(1995+10*i),age:(5+10*i)+'岁'}))];
+const selection={luck:2,year:2028,month:0};
+let mode='year'; /* 'year' 岁运 | 'month' 流月 */
+
+function currentGanzhi(){return {luck:luckChoices[selection.luck].gz,year:yearGz(selection.year),month:monthGz(selection.year,selection.month)}}
+
+/* 岁运：大运流年为关注侧；流月：流月为关注侧。匹配依据是具体天干。 */
+function evaluateScene(){
+  const g=currentGanzhi();
+  const luck=makePillar('大运',g.luck[0],g.luck[1]);
+  const year=makePillar('流年',g.year[0],g.year[1]);
+  const month=makePillar('流月',g.month[0],g.month[1]);
+  const focus=mode==='month'?[month]:[luck,year];
+  const focusStems=new Set(focus.map(p=>p.stem));
+  const focusHidden=new Set(focus.flatMap(p=>p.hidden));
+  const list=[...baseNatal,luck,year,...(mode==='month'?[month]:[])];
+  return list.map((p,i)=>{
+    const active=focus.includes(p);
+    return {...p,index:i,active,
+      stemOn:active||focusStems.has(p.stem)||focusHidden.has(p.stem),
+      hiddenOn:p.hidden.map(h=>active||focusStems.has(h))};
+  });
+}
+
+function symbol(p,stem,on,minor){
+  /* 大运/流年/流月的辅助藏干小字：统一按藏干五行显色 */
+  const cls=minor&&p.index>=4?color(stem):on?color(stem):'inactive';
+  return `<span class="${cls}">${godMap[stem]}</span>`;
+}
+function column(p){
+  const top=p.index===2
+    ?`<span class="${p.stemOn?color(p.stem):'inactive'}">女</span>`
+    :symbol(p,p.stem,p.stemOn,false);
+  return `<div class="compare-col">
+    <div class="compare-main">${top}</div>
+    <div class="compare-main">${symbol(p,p.hidden[0],p.hiddenOn[0],false)}</div>
+    <div class="compare-minor">${p.hidden.slice(1).map((h,j)=>symbol(p,h,p.hiddenOn[j+1],true)).join('')}</div>
+  </div>`;
+}
+function renderComparison(){
+  const states=evaluateScene();
+  const btn=document.getElementById('mode');
+  btn.textContent=mode==='month'?'切换为岁运盘':'切换为流月盘';
+  btn.setAttribute('aria-pressed',String(mode==='month'));
+  btn.setAttribute('aria-label',mode==='month'?'当前流月模式，点击切换到岁运':'当前岁运模式，点击切换到流月');
+  document.getElementById('progression').classList.toggle('month-focus',mode==='month');
+  /* 展开区分工：岁运盘展示 大运+流年；流月盘展示 流月(上)+流年(下)，均不展示第三组 */
+  const secLuck=document.getElementById('sec-luck'),secYears=document.getElementById('sec-years'),
+        secMonths=document.getElementById('sec-months'),ctrlBody=document.getElementById('controls-body');
+  if(mode==='month'){
+    secLuck.hidden=true;secYears.hidden=false;secMonths.hidden=false;
+    ctrlBody.append(secMonths,secYears);
+  }else{
+    secLuck.hidden=false;secYears.hidden=false;secMonths.hidden=true;
+    ctrlBody.append(secLuck,secYears);
+  }
+  const groups=[states.slice(0,4),states.slice(4,6),states.slice(6)].filter(g=>g.length);
+  document.getElementById('comparison').innerHTML=
+    groups.map(g=>`<div class="compare-group">${g.map(column).join('')}</div>`)
+      .join('<div class="divider" aria-hidden="true"></div>');
+}
+document.getElementById('mode').addEventListener('click',()=>{
+  mode=mode==='year'?'month':'year';
+  renderAll(); /* 重渲染：滚轮半径随可见性/宽度重算，展开区分组同步切换 */
+});
+
+/* ================= 展开 / 收起选择区 ================= */
+document.getElementById('expand').addEventListener('click',()=>{
+  const body=document.getElementById('controls-body');
+  const open=body.hidden;
+  body.hidden=!open;
+  const btn=document.getElementById('expand');
+  btn.setAttribute('aria-expanded',String(open));
+  btn.textContent=open?'收起完整运势':'展开完整运势';
+  if(open)renderAll(); /* 展开后重渲染：隐藏的滚轮在隐藏时宽度为 0，需按实际宽度重算 */
+});
+
+/* ================= 时间选择 ================= */
+function pair(s){return `<span class="pair"><b class="${color(s[0])}">${s[0]}</b><small>${s.slice(1)}</small></span>`}
+function row(gz,label,age=''){return [label,age,gz[0]+godMap[gz[0]],gz[1]+godMap[branchHidden[gz[1]][0][0]]]}
+
+function syncLuck(){
+  while(selection.year>luckChoices[luckChoices.length-1].end){
+    const i=luckChoices.length-1;
+    luckChoices.push({start:1995+10*i,end:2004+10*i,gz:cycle(9-i),label:String(1995+10*i),age:(5+10*i)+'岁'});
+  }
+  selection.luck=Math.max(0,luckChoices.findIndex(l=>selection.year>=l.start&&selection.year<=l.end));
+}
+function choose(kind,index){
+  if(kind==='luck'){selection.luck=index;selection.year=luckChoices[index].start;selection.month=0}
+  else if(kind==='years'){const y=selection.year+index-3;if(y<1990)return;selection.year=y;selection.month=0;syncLuck()} /* 出生年前不可选 */
+  else{const total=selection.year*12+selection.month+index-3;if(total<1990*12)return;selection.year=Math.floor(total/12);selection.month=mod(total,12);syncLuck()}
+  renderAll();
+}
+function visibleWindow(length,selected,radius){
+  return Array.from({length:radius*2+1},(_,i)=>{const n=selected+i-radius;return n>=0&&n<length?n:null});
+}
+function renderSelectable(id,rows,selected){
+  const el=document.getElementById(id),host=el.parentElement;
+  host.classList.add('wheel-host');
+  const radius=host.clientWidth>=650?3:2;
+  const indexes=visibleWindow(rows.length,selected,radius);
+  el.style.setProperty('--count',indexes.length);
+  el.innerHTML=indexes.map(i=>i===null||rows[i]===null
+    ?'<div class="wheel-empty" aria-hidden="true"></div>'
+    :`<div class="column ${i===selected?'selected':''}" data-index="${i}">
+        <span class="date">${rows[i][0]}</span>${rows[i][1]?`<span class="age">${rows[i][1]}</span>`:''}
+        ${pair(rows[i][2])}${pair(rows[i][3])}
+      </div>`).join('');
+  const step=delta=>{const next=selected+delta;if(next>=0&&next<rows.length)choose(id,next)};
+  el.querySelectorAll('.column').forEach(col=>{
+    const i=Number(col.dataset.index);
+    col.tabIndex=i===selected?0:-1;
+    col.setAttribute('role','button');
+    col.setAttribute('aria-pressed',String(i===selected));
+    col.setAttribute('aria-label',rows[i].filter(Boolean).join(' '));
+    col.onclick=()=>choose(id,i);
+    col.onkeydown=e=>{
+      if(e.key==='ArrowLeft'||e.key==='ArrowRight'){
+        e.preventDefault();step(e.key==='ArrowLeft'?-1:1);
+        const sel=document.getElementById(id).querySelector('.selected');if(sel)sel.focus();
+      }else if(e.key==='Enter'||e.key===' '){e.preventDefault();choose(id,i)}
+    };
+  });
+  host.querySelectorAll('.wheel-arrow').forEach(b=>b.remove());
+  [-1,1].forEach(dir=>{
+    const btn=document.createElement('button');
+    btn.className='wheel-arrow '+(dir<0?'prev':'next');
+    btn.textContent=dir<0?'‹':'›';
+    btn.setAttribute('aria-label',dir<0?'上一项':'下一项');
+    btn.disabled=selected+dir<0||selected+dir>=rows.length||rows[selected+dir]===null;
+    btn.onclick=()=>{step(dir);const arrow=host.querySelector(dir<0?'.prev':'.next');if(arrow)arrow.focus()};
+    host.appendChild(btn);
+  });
+  let down=null;
+  host.onpointerdown=e=>{if(e.target.closest('button'))return;down={x:e.clientX,y:e.clientY}};
+  host.onpointerup=e=>{
+    if(!down)return;
+    const dx=e.clientX-down.x,dy=e.clientY-down.y;down=null;
+    if(Math.abs(dx)>30&&Math.abs(dx)>Math.abs(dy)){
+      host.addEventListener('click',ev=>{ev.preventDefault();ev.stopPropagation()},{capture:true,once:true});
+      step(dx<0?1:-1);
+    }
+  };
+  host.onpointercancel=()=>down=null;
+  host.onwheel=e=>{
+    if(Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey){
+      e.preventDefault();
+      const now=Date.now();
+      if(now-(host.lastWheel||0)>180){host.lastWheel=now;step((e.deltaX||e.deltaY)>0?1:-1)}
+    }
+  };
+}
+function renderAll(){
+  /* 骑缝读数：岁运盘显「年+岁」，流月盘显「年+节气」（小寒跨年到次年 1 月） */
+  document.getElementById('selected-year').textContent=mode==='month'
+    ?termYm(selection.year,selection.month)[0]+' 年 '+terms[selection.month]
+    :selection.year+' 年 '+(selection.year-1990)+' 岁';
+  renderSelectable('luck',luckChoices.map(l=>row(l.gz,l.label,l.age)),selection.luck);
+  renderSelectable('years',Array.from({length:7},(_,i)=>{const y=selection.year+i-3;return y<1990?null:row(yearGz(y),String(y))}),3); /* 出生年前的年份显示为空位 */
+  /* 流月滚轮：标签显该月节气开端的新历日期（如 2月4日）；出生年前的月份显示为空位 */
+  renderSelectable('months',Array.from({length:7},(_,i)=>{
+    const total=selection.year*12+selection.month+i-3;if(total<1990*12)return null;
+    const y=Math.floor(total/12),m=mod(total,12);
+    return row(monthGz(y,m),termYm(y,m)[1]+'月'+termDays[m]+'日');
+  }),3);
+  renderComparison();
+}
+renderAll();
+let resizeTimer;
+window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(renderAll,120)});
+</script>
+</body>
+</html>
