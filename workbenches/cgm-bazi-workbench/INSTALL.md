@@ -8,7 +8,7 @@
 - 使用 Git 的读者可运行 `git clone https://github.com/Damocles1112/cgm-skills.git`，然后进入 `cgm-skills/workbenches/cgm-bazi-workbench`。
 - 将工作台目录交给能读取文件、执行 Python/Node.js 并打开本机页面的 Agent，要求先读本文件与 `skills/cgm-bazi-suite/SKILL.md`。包内三个成员需要保持相邻。
 
-直接读取本目录即可使用。若要注册到某个 Agent 的技能系统，需要同时注册 `cgm-bazi-suite`、`cgm-bazi-chart`、`cgm-bazi-visualization` 三个成员；按该软件的目录规则安装，并保留本工作台根目录的许可与说明。WorkBuddy 的安装与自动发现流程尚未实测。本工作台采用本目录的 AGPL-3.0-only 与第三方声明，仓库根目录的 MIT 许可不覆盖本工作台。
+直接读取本目录即可使用。若要注册到某个 Agent 的技能系统，需要同时注册 `cgm-bazi-suite`、`cgm-bazi-chart`、`cgm-bazi-visualization` 三个成员；按该软件的目录规则安装，并保留本工作台根目录的许可与说明。WorkBuddy 的安装与自动发现流程尚未实测。本工作台与仓库统一采用 AGPL-3.0-only；第三方资源适用本目录的第三方声明。
 
 以下命令均在工作台根目录执行。示例为 Windows PowerShell；含空格的路径保留引号。macOS/Linux 将 Python 路径改为 `.venv/bin/python`，环境变量用相应 shell 的写法；这两个平台尚未完成本次整套实测。
 

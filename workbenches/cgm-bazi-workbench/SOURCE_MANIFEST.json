@@ -496,15 +496,15 @@
     {
       "file": "NOTICE",
       "source": "release-metadata/common/NOTICE",
-      "sha256": "aeeae3568a5346319643491c5639434acf1725b25ffceee6f07589dbf0c920d1",
-      "bytes": 1202,
+      "sha256": "d1cd9c6f9dafeef743435cccdde9d0e73821eeb9dfd1a459dd21c548340940f2",
+      "bytes": 1156,
       "transform": "none"
     },
     {
       "file": "THIRD_PARTY_NOTICES.md",
       "source": "release-metadata/common/THIRD_PARTY_NOTICES.md",
-      "sha256": "af1c76f7c0d38c5a78e98027208d7e2d0155592cc0c9d5aaf1c0b528c229af9e",
-      "bytes": 4132,
+      "sha256": "95e59672d6c89bcd4fa73c5511f57a85756fe8c2cc1f80e91d7694a88631aab5",
+      "bytes": 4089,
       "transform": "none"
     },
     {
@@ -531,8 +531,8 @@
     {
       "file": "INSTALL.md",
       "source": "release-metadata/bazi/INSTALL.md",
-      "sha256": "98b79c091f553b3f37d05f4cf2bfce18bd50e75ad8b16b1da4d6b635a33d59d8",
-      "bytes": 6791,
+      "sha256": "dc3b4cd9f4ab3435a4d3542c7e4894d38dc6343984543e95b9c1d779616c7e4f",
+      "bytes": 6773,
       "transform": "none"
     },
     {
@@ -545,8 +545,8 @@
     {
       "file": "README.md",
       "source": "release-metadata/bazi/README.md",
-      "sha256": "61f5790f8a7c399558b3367ea2b3cd6a854bf5b6da3c64a174035393a152a725",
-      "bytes": 3683,
+      "sha256": "dd242fe235f88cd4079c249eee1211c504631a2cc2654ac4871413422d575b78",
+      "bytes": 3630,
       "transform": "none"
     },
     {

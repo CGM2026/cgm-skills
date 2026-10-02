@@ -146,11 +146,11 @@ Skill 每轮只问一个真正影响判断的问题，不预设“多赚钱”�
 
 ## 许可证
 
-本仓库既有的单个 Skill 内容采用 [MIT License](LICENSE)，但 `workbenches/` 下的两个工作台分别采用 **AGPL-3.0-only**；工作台及其成员以所在工作台的 LICENSE、NOTICE 和第三方声明为准，不适用仓库根目录的 MIT 许可。
+本仓库中作者有权授权的原创程序代码与 Skill 内容统一采用 **[AGPL-3.0-only](LICENSE)**，作者署名为长庚明（Damocles1112）。第三方代码、字体、星历及其他资源保留各自版权与许可，见相应目录的声明。
 
 - [八字工作台许可](workbenches/cgm-bazi-workbench/LICENSE)及[第三方声明](workbenches/cgm-bazi-workbench/THIRD_PARTY_NOTICES.md)。
 - [希腊占星工作台许可](workbenches/cgm-hellenistic-astrology-workbench/LICENSE)及[第三方声明](workbenches/cgm-hellenistic-astrology-workbench/THIRD_PARTY_NOTICES.md)。
 
-两个工作台的程序允许使用、修改和继续开发；分发以及通过网络提供修改版时，按 AGPL 保留适用声明并提供对应源码。字体、星历等资源保留各自许可。
+本仓库的原创程序与 Skill 内容允许使用、修改和继续开发；分发以及通过网络提供修改版时，按 AGPL 保留适用声明并提供对应源码。字体、星历等资源保留各自许可。
 
 `cyber-astro-modern-public` 内置的中文字体为 Noto Serif CJK SC 子集，依 SIL Open Font License 1.1 授权（见该 Skill 目录下 `scripts/assets/fonts/LICENSE.txt`）。

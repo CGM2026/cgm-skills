@@ -8,7 +8,7 @@
 - 使用 Git 的读者可运行 `git clone https://github.com/Damocles1112/cgm-skills.git`，然后进入 `cgm-skills/workbenches/cgm-hellenistic-astrology-workbench`。
 - 将工作台目录交给能读取文件、执行 Python/Node.js 并打开本机页面的 Agent，要求先读本文件与 `skills/cgm-astrology-workbench/SKILL.md`。
 
-入口 `cgm-astrology-workbench` 和两个成员 `cgm-calculate-astrology-chart`、`cgm-hellenistic-chart-visualization` 必须保持相邻。直接读取本目录即可使用；若要注册到某个 Agent 的技能系统，按该软件的目录规则注册全部三个成员，并保留本工作台根目录的许可与说明。WorkBuddy 的安装与自动发现流程尚未实测。本工作台采用本目录的 AGPL-3.0-only 与第三方声明，仓库根目录的 MIT 许可不覆盖本工作台。
+入口 `cgm-astrology-workbench` 和两个成员 `cgm-calculate-astrology-chart`、`cgm-hellenistic-chart-visualization` 必须保持相邻。直接读取本目录即可使用；若要注册到某个 Agent 的技能系统，按该软件的目录规则注册全部三个成员，并保留本工作台根目录的许可与说明。WorkBuddy 的安装与自动发现流程尚未实测。本工作台与仓库统一采用 AGPL-3.0-only；第三方资源适用本目录的第三方声明。
 
 以下命令在工作台根目录执行，Windows 示例使用 PowerShell；含空格的路径需加引号。macOS/Linux 将隔离环境 Python 路径替换为 `bin/python`；本次尚未完成这些平台的整套实测。
 

@@ -16,6 +16,5 @@ https://github.com/Damocles1112/cgm-skills
 八字工作台：workbenches/cgm-bazi-workbench/
 希腊占星工作台：workbenches/cgm-hellenistic-astrology-workbench/
 
-两个工作台适用各自目录内的 AGPL-3.0-only 和第三方资源声明，
-不适用 cgm-skills 仓库根目录的 MIT 许可。基于本包提供网络服务的
+两个工作台与仓库统一采用 AGPL-3.0-only，第三方资源保留各自许可。基于本包提供网络服务的
 修改版，应向其用户提供该实际运行版本的对应源码。

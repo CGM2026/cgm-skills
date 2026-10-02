@@ -36,6 +36,6 @@
 
 ## 开源与验证
 
-作者：长庚明（Damocles1112）。本工作台程序采用 [AGPL-3.0-only](LICENSE)，不适用 cgm-skills 仓库根目录的 MIT 许可；第三方资源适用各自许可，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。署名建议见 [ATTRIBUTION.md](ATTRIBUTION.md)。
+作者：长庚明（Damocles1112）。本工作台程序采用 [AGPL-3.0-only](LICENSE)；第三方资源适用各自许可，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。署名建议见 [ATTRIBUTION.md](ATTRIBUTION.md)。
 
 文件摘要见 `SHA256SUMS.json`，来源见 `SOURCE_MANIFEST.json`。测试方法与已测范围见 [TESTING.md](TESTING.md)。Windows 上的排盘、六种工作页、笔记与导出流程已有验证；WorkBuddy、macOS、Linux、真实手机及所有历史年份尚未完成完整验证。

@@ -916,15 +916,15 @@
     {
       "file": "NOTICE",
       "source": "release-metadata/common/NOTICE",
-      "sha256": "aeeae3568a5346319643491c5639434acf1725b25ffceee6f07589dbf0c920d1",
-      "bytes": 1202,
+      "sha256": "d1cd9c6f9dafeef743435cccdde9d0e73821eeb9dfd1a459dd21c548340940f2",
+      "bytes": 1156,
       "transform": "none"
     },
     {
       "file": "THIRD_PARTY_NOTICES.md",
       "source": "release-metadata/common/THIRD_PARTY_NOTICES.md",
-      "sha256": "af1c76f7c0d38c5a78e98027208d7e2d0155592cc0c9d5aaf1c0b528c229af9e",
-      "bytes": 4132,
+      "sha256": "95e59672d6c89bcd4fa73c5511f57a85756fe8c2cc1f80e91d7694a88631aab5",
+      "bytes": 4089,
       "transform": "none"
     },
     {
@@ -944,8 +944,8 @@
     {
       "file": "INSTALL.md",
       "source": "release-metadata/astrology/INSTALL.md",
-      "sha256": "27df0388b9d5f844634ab8dcc6755cad195535adb81a688868255eca84c9944d",
-      "bytes": 6667,
+      "sha256": "e273c33a5824e16f777be2c7e45944417c761392d70c546313e111a03b8e042d",
+      "bytes": 6649,
       "transform": "none"
     },
     {
@@ -958,8 +958,8 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "c54834bb2bc9dc2e501f3c4c0ef5fb1b1065dcbf3c6f544b81dff9396da3f804",
-      "bytes": 3576,
+      "sha256": "55c4546c26b179d97c298fd14e36e35185d7d28e6350df5bbf43e3cb32b511f9",
+      "bytes": 3523,
       "transform": "none"
     },
     {
