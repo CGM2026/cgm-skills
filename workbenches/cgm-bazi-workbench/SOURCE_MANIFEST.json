@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261003-130108-309f9655",
+  "build_id": "20261003-165322-c289f6a8",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -153,8 +153,8 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/export-workbench.js",
       "source": "skills/cgm-bazi-visualization/assets/export-workbench.js",
-      "sha256": "fb39a6dd414cf9d45fc15ba4fb6c4f9fa143e900713126b1d7241d67022c966a",
-      "bytes": 20205,
+      "sha256": "05b3b44d3e2d8a23d56c0ca71db67b2449084e6e93adea651a31b51cd8abadf5",
+      "bytes": 19798,
       "transform": "none"
     },
     {
@@ -181,7 +181,7 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/legal-footer.html",
       "source": "skills/cgm-bazi-visualization/assets/legal-footer.html",
-      "sha256": "1afd6b48d6562309f538e28a85d3800acb33db622929b20bb20ae1d2aafe6925",
+      "sha256": "c8238e55eb8267a4ac649b91827e56447ae5da6daa1d24fe6afb3f30fa449de1",
       "bytes": 51155,
       "transform": "none"
     },
@@ -286,8 +286,8 @@
     {
       "file": "skills/cgm-bazi-visualization/references/export-settings.md",
       "source": "skills/cgm-bazi-visualization/references/export-settings.md",
-      "sha256": "c13e95511015655a7468f1c3f2bd2f804569a5e33fe7154a5aff1037c044d569",
-      "bytes": 6435,
+      "sha256": "06aeae633bb2109c80e4f9abc6ca53d4020c229947d2aec3ce6e9732f9ab1bd9",
+      "bytes": 6529,
       "transform": "none"
     },
     {
@@ -566,7 +566,7 @@
     {
       "file": "README.md",
       "source": "release-metadata/bazi/README.md",
-      "sha256": "bd9d2916b10052c267f3ae3183179e242a8622b5803ef3972c16d239a959ee29",
+      "sha256": "7deeb63f80dd1350147f1300e8ed274d8fef7aa392b0006b7b91e15143aea6ff",
       "bytes": 5613,
       "transform": "none"
     },

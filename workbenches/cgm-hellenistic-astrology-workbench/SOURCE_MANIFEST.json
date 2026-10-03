@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261003-130108-309f9655",
+  "build_id": "20261003-165322-c289f6a8",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -230,7 +230,7 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/outputs/排盘可视化示例/chart.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/outputs/排盘可视化示例/chart.html",
-      "sha256": "c2b828d7221d2c10cd620500b0c26556e15e5610d2bce0e5bfe104aa4b9815dd",
+      "sha256": "d88ec5793bc355170941f1f17e82d9f567fbd33a7491e21f699b87dafefce19d",
       "bytes": 55933,
       "transform": "none"
     },
@@ -300,8 +300,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/build_print_study.js",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/build_print_study.js",
-      "sha256": "683525bb87d8e86cb223cd996dd8575f134dcca00af17f0d2fec5615cbb66872",
-      "bytes": 20523,
+      "sha256": "681f5dcdce3508b6bc0bcd3f5f4b645a62508959e7d60948a2d3b1f485d3edb0",
+      "bytes": 20401,
       "transform": "none"
     },
     {
@@ -496,7 +496,7 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "08099741fe917ec89c48fd8c4990f79f6c80fd5aa8feed9ebcb6b98f7d47a90d",
+      "sha256": "26af1df9899d4fc84558ae603dca5a3522d14c2a65e54421ab27cde4cf95b6c7",
       "bytes": 51038,
       "transform": "none"
     },
@@ -524,8 +524,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/page-export.js",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/page-export.js",
-      "sha256": "717c5e2e948841f5bb0128f2d86c2ecf8430c6fe7b5f2e337d3219f778216f11",
-      "bytes": 30694,
+      "sha256": "f7dee49156a9d5766255db4542bcf736905f54a7186f72cd2cba1795bfef2d74",
+      "bytes": 30192,
       "transform": "none"
     },
     {
@@ -699,8 +699,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/references/working-page-details.md",
       "source": "skills/cgm-hellenistic-chart-visualization/references/working-page-details.md",
-      "sha256": "d9fa4229242301e1635af8489d688b4c1928d8d7f5fb03c753cf822605471908",
-      "bytes": 35848,
+      "sha256": "a92a6f6f80a61838a24582bb20184ebe139975233a11fe4fff46715651a483b6",
+      "bytes": 35813,
       "transform": "none"
     },
     {
@@ -986,7 +986,7 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "7337dce9e7e82d18d4dd7c6cb73d98073d73d5cf98342b478c707922c56788d4",
+      "sha256": "1fc9a306bc52c1286e9edebc30736036e205542ad77d1b1cc2493b8cbbad2202",
       "bytes": 5290,
       "transform": "none"
     },

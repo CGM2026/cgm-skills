@@ -18,25 +18,17 @@
  anonymousChoice.addEventListener('change',()=>{if(anonymousChoice.checked)hideIdentityChoice.checked=false;monthChoice.disabled=!anonymousChoice.checked;if(monthChoice.disabled)monthChoice.checked=false;});
  hideIdentityChoice.addEventListener('change',()=>{if(hideIdentityChoice.checked){anonymousChoice.checked=false;monthChoice.checked=false;monthChoice.disabled=true;}});
  const personalFields=['export-signature','export-contact'];
+ // Older saved dialog shells can still contain the former field toggles.
+ for(const id of personalFields)document.getElementById(id+'-enabled')?.remove();
  function syncPersonalFields(){
-  if(personalChoice.checked){
-   if(!personalFields.some(id=>document.getElementById(id+'-enabled').checked))
-    for(const id of personalFields)document.getElementById(id+'-enabled').checked=!!document.getElementById(id).value.trim();
-  }else for(const id of personalFields)document.getElementById(id+'-enabled').checked=false;
-  for(const id of personalFields){
-   document.getElementById(id+'-enabled').disabled=!personalChoice.checked;
-   document.getElementById(id).disabled=!personalChoice.checked;
-  }
+  for(const id of personalFields)document.getElementById(id).disabled=!personalChoice.checked;
  }
  personalChoice.addEventListener('change',syncPersonalFields);
- for(const id of personalFields){
-  document.getElementById(id).addEventListener('input',event=>{if(event.target.value.trim())document.getElementById(id+'-enabled').checked=true;});
- }
  syncPersonalFields();
  function choices(){
   const showPersonal=personalChoice.checked;
-  const signature=document.getElementById('export-signature-enabled').checked?document.getElementById('export-signature').value.trim():'';
-  const contact=document.getElementById('export-contact-enabled').checked?document.getElementById('export-contact').value.trim():'';
+  const signature=document.getElementById('export-signature').value.trim();
+  const contact=document.getElementById('export-contact').value.trim();
   if(showPersonal&&!signature&&!contact){status.textContent='请填写至少一项个人签名或联系方式。';return null;}
   status.textContent='';
   return {layout:dialog.querySelector('[name="export-layout"]:checked').value,showDesign:document.getElementById('export-design').checked,showPersonal,signature,contact,anonymous:anonymousChoice.checked&&!hideIdentityChoice.checked,monthOnly:anonymousChoice.checked&&monthChoice.checked&&!hideIdentityChoice.checked,hideIdentity:hideIdentityChoice.checked};
@@ -200,6 +192,7 @@
      const mark=doc.createElement('div');mark.className='export-personal-mark';
      for(const [kind,value] of [['signature',options.signature],['contact',options.contact]])if(value){const line=doc.createElement('div');line.className=kind;line.textContent=value;mark.append(line);}
      exportPage.append(mark);
+     exportPage.style.setProperty('padding-bottom','18px','important');
     }
     if(noteMode){const page=doc.querySelector('.folio');page.querySelectorAll('.annotation-toolbar,.annotation-bottom-row,.annotation-fade,.relation-note-tools,.wheel-zoom-tools,.relation-note-navigation,.relation-tabs,.chart-bottom .tools,.relation-note-content header button').forEach(e=>e.remove());page.querySelectorAll('.method-switches button').forEach(e=>{e.disabled=false;e.style.cursor='default';});}
     const target=doc.querySelector('#wheel'),img=doc.createElement('img');
