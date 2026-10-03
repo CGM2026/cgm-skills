@@ -1,59 +1,18 @@
-<!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><title>星盘渲染输入壳</title><style id="cgm-license-style">.cgm-legal-footer{box-sizing:border-box;max-width:708px;margin:18px auto 28px;padding:0 22px;color:#766f64;font:12px/1.8 system-ui,-apple-system,"Microsoft YaHei",sans-serif;text-align:center}
-.cgm-legal-footer.cgm-legal-astrology{max-width:1180px}
-.cgm-legal-footer *{box-sizing:border-box}
-.cgm-legal-footer>.cgm-legal-disclosure>summary{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:3px 8px;list-style:none;cursor:pointer;font:inherit;color:inherit;user-select:none}
-.cgm-legal-footer summary::-webkit-details-marker{display:none}
-.cgm-legal-footer>.cgm-legal-disclosure>summary:after{content:"";width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .15s}
-.cgm-legal-footer>.cgm-legal-disclosure[open]>summary:after{transform:rotate(225deg) translate(-1px,-1px)}
-.cgm-legal-footer summary:focus-visible,.cgm-legal-footer a:focus-visible{outline:1px solid #8a7864;outline-offset:3px;border-radius:2px}
-.cgm-legal-footer .cgm-legal-content{max-width:680px;margin:12px auto 0;padding:18px 0 4px;border-top:1px solid #d9d1c3;text-align:left;color:#625b50;font-size:13px;line-height:1.9}
-.cgm-legal-footer .cgm-legal-content p{margin:0 0 10px}
-.cgm-legal-footer .cgm-legal-heading{font-weight:500;color:#4f493f}
-.cgm-legal-footer .cgm-legal-content a{color:inherit;text-decoration:underline;text-decoration-color:#b6ac9c;text-underline-offset:3px;overflow-wrap:anywhere}
-.cgm-legal-footer .cgm-legal-links{display:flex;flex-wrap:wrap;gap:4px 18px;margin:0 0 16px}
-.cgm-legal-footer .cgm-legal-section{border-top:1px solid #e2dace;padding:9px 0}
-.cgm-legal-footer .cgm-legal-section>summary{cursor:pointer;list-style:none;font:inherit;color:inherit}
-.cgm-legal-footer .cgm-legal-section>summary:before{content:"＋";display:inline-block;margin-right:8px;color:#918575}
-.cgm-legal-footer .cgm-legal-section[open]>summary:before{content:"−"}
-.cgm-legal-footer .cgm-legal-section p{margin-top:10px}
-.cgm-legal-footer pre{margin:12px 0 4px;padding:14px 16px;background:#f5f0e6;border:1px solid #e6dfd3;border-radius:3px;max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.75 ui-monospace,Consolas,"Microsoft YaHei",monospace;color:#625b50;text-align:left}
-.cgm-legal-footer .cgm-legal-small{font-size:12px;color:#81796e}
-@media(max-width:420px){.cgm-legal-footer{padding:0 20px}.cgm-legal-footer .cgm-legal-content{padding-top:14px}.cgm-legal-footer pre{padding:12px}}
-@media print{.cgm-legal-footer{display:none!important}}
-
-/* 页尾沿用工作台正文纸色、汇文明朝与当前布局内距。 */
-#cgm-license-footer{display:block;box-sizing:border-box;width:100%;max-width:1180px;margin:0 auto;padding:14px 48px 24px;border:0;background:var(--surface,#fffdf8);text-align:left;color:var(--muted-soft,#827c72);font:11px/1.8 Huiwen,SimSun,serif}
-#cgm-license-footer>.cgm-legal-disclosure>summary{padding:0;min-height:28px;font:inherit;color:inherit}
-#cgm-license-footer .cgm-legal-content{max-width:none;font:13px/1.9 Huiwen,SimSun,serif;color:var(--ink,#292820);border-color:var(--rule,#d8d1c5)}
-#cgm-license-footer .cgm-legal-heading{font:18px/1.5 Huiwen,SimSun,serif;color:var(--ink,#292820)}
-#cgm-license-footer .cgm-legal-small{color:var(--muted-soft,#827c72)}
-#cgm-license-footer .cgm-legal-section{border-color:var(--rule,#d8d1c5)}
-#cgm-license-footer .cgm-legal-scenarios{margin:12px 0 18px;padding-left:1.3em}
-#cgm-license-footer .cgm-legal-scenarios li{margin:0 0 12px}
-#cgm-license-footer .cgm-legal-scenarios strong{font-weight:normal}
-#cgm-license-footer pre{font:12px/1.8 Huiwen,SimSun,serif;color:var(--ink,#292820);background:transparent;border-color:var(--rule,#d8d1c5)}
-@media(max-width:800px){#cgm-license-footer{padding-left:24px;padding-right:24px}}
-@media(max-width:450px){#cgm-license-footer{padding-left:16px;padding-right:16px}}
-@media print{#cgm-license-footer{display:none!important}}
-</style></head><body>
-<!-- render_working_chart.py injects validated facts before build_print_study.js reads this slot. -->
-<script id="chart-data" type="application/json">{}</script>
-<footer id="cgm-license-footer" class="cgm-legal-footer cgm-legal-astrology" aria-label="关于与许可" data-html2canvas-ignore="true">
+<footer id="cgm-license-footer" class="cgm-legal-footer" aria-label="关于与许可" data-html2canvas-ignore="true">
 <details class="cgm-legal-disclosure"><summary>关于与许可</summary><div class="cgm-legal-content">
-<p class="cgm-legal-heading">长庚明希腊占星工作台 · v1.0.2</p>
+<p class="cgm-legal-heading">长庚明八字工作台 · v1.0.2</p>
 <p>Copyright © 2026 长庚明（CGM2026）</p>
 <p>本程序采用 AGPL-3.0-only，允许使用、修改、再分发及商业使用。分发程序或提供符合协议条件的修改版网络服务时，须保留适用声明，并向相应使用者提供对应源码。</p>
 <p>不同使用场景下，主要要求如下：</p>
 <ul class="cgm-legal-scenarios">
 <li><strong>个人使用与本地修改：</strong>允许用于排盘、研究和笔记整理。仅在本地修改并自行使用，未分发程序或提供修改版网络服务时，不要求公开修改。出生资料和研究笔记也不因使用本程序而自动承担公开义务。</li>
 <li><strong>收费咨询与教学辅助：</strong>允许用于收费咨询、案例展示和收费课程。单纯使用工作台提供咨询或教学，不要求公开客户资料、咨询记录或课程内容；向客户或学员分发程序、提供修改版网络服务时，仍须履行相应的源码及许可义务。</li>
-<li><strong>图片、文章与课件分享：</strong>普通排盘图片和原创讲解内容，不因使用本程序而自动适用 AGPL。导出图片中的公众号标识可按需保留或关闭，无须另行补写工具来源。含有本程序代码的 HTML 文件，仍按程序分发要求处理。</li>
+<li><strong>图片、文章与课件分享：</strong>普通排盘图片和原创讲解内容，不因使用本程序而自动适用 AGPL。导出图片中的公众号标识可按需保留或关闭，无须另行补写工具来源。含有本程序代码的 HTML 文件，按程序分发要求处理。</li>
 <li><strong>程序分发与后续开发：</strong>分发原版或修改版程序，包括含程序代码的 HTML，须保留适用的作者、版权和许可声明，并按协议向接收者提供对应源码，即用于修改、构建和运行该版本的必要材料。分发修改版时，还须标明修改及日期，并按 AGPL 授权相应受覆盖作品。免费分享和收费分发均适用；协议不一概要求发布至公共网站，但接收者须获得协议规定的源码和权利。</li>
 <li><strong>修改版网络服务：</strong>修改后的程序支持用户通过网络交互时，须显著提供免费获取该修改版对应源码的机会。例如，将修改版做成在线排盘服务，应为远程使用者提供包含实际修改的源码入口，仅链接原版仓库不足以满足该要求；服务是否收费不改变此项义务。</li>
 </ul>
 <p class="cgm-legal-small">以上为常见应用场景的说明，具体权利与义务以许可全文为准。本程序按现状提供，不附任何担保；包括不保证完全无误或适用于特定用途，详见许可第 15、16 条。字体、星历等第三方资源保留各自的许可条件。</p>
-<nav class="cgm-legal-links" aria-label="源码与说明"><a href="https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench" target="_blank" rel="noopener noreferrer">程序源码</a><a href="https://github.com/CGM2026/cgm-skills/blob/main/workbenches/cgm-hellenistic-astrology-workbench/INSTALL.md" target="_blank" rel="noopener noreferrer">安装与使用说明</a></nav>
+<nav class="cgm-legal-links" aria-label="源码与说明"><a href="https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-bazi-workbench" target="_blank" rel="noopener noreferrer">原版程序源码</a><a href="https://github.com/CGM2026/cgm-skills/blob/main/workbenches/cgm-bazi-workbench/INSTALL.md" target="_blank" rel="noopener noreferrer">安装与使用说明</a></nav>
 <p class="cgm-legal-small">字体、星历及其他第三方资源保留各自许可。出生资料与笔记不会因为使用本程序就自动要求公开；分享此文件前，请检查其中的个案资料。</p>
 <details class="cgm-legal-section"><summary>AGPL 许可全文</summary><pre tabindex="0">                    GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
@@ -858,28 +817,27 @@ https://huozi.cool/api/license-config 将「朝华标题A」列为「免商可�
 
 
 </pre></details>
-<details class="cgm-legal-section"><summary>html2canvas · MIT 许可</summary><pre tabindex="0">Copyright (c) 2012 Niklas von Hertzen
+<details class="cgm-legal-section"><summary>lunar-python · 算法参考许可</summary><pre tabindex="0">MIT License
 
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the &quot;Software&quot;), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
+Copyright (c) 2020 6tail
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.</pre></details>
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</pre></details>
 </details>
-<details class="cgm-legal-section"><summary>版本与修改</summary><p>v1.0.2 · 2026-10-03：增加随行许可、第三方声明与使用场景说明，统一工作页和独立 HTML 的许可展示。源码入口提供维护中的原版；分享自行修改的程序时，还需提供该修改版的对应源码。</p></details>
-</div></details></footer><script id="cgm-license-layout">(() => {const footer=document.getElementById('cgm-license-footer'),page=document.querySelector('.folio')||document.querySelector('main');if(!footer||!page)return;function sync(){const style=getComputedStyle(page);footer.style.width=page.getBoundingClientRect().width+'px';footer.style.maxWidth='none';footer.style.paddingLeft=style.paddingLeft;footer.style.paddingRight=style.paddingRight;}sync();if(globalThis.ResizeObserver)new ResizeObserver(sync).observe(page);window.addEventListener('resize',sync);})();</script></body></html>
+<details class="cgm-legal-section"><summary>版本与修改</summary><p>v1.0.2 · 2026-10-03：保留现行图层、笔记及图片导出功能；增加“关于与许可”、完整许可和第三方声明。许可区不进入导出图片。</p><p>本页含有工作台程序代码，分享 HTML 时请保留本区声明，并向接收者提供所分发版本的对应源码。修改后的版本应更新修改记录及源码入口；上方原版源码链接仅对应原版程序。</p></details>
+</div></details></footer>

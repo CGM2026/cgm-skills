@@ -110,6 +110,6 @@ case-library.py --library LIBRARY backup --output NEW_DIRECTORY
 
 history/restore-entry针对旧entries历史，不能代替research-restore。两类覆盖前都保存旧原文，研究冲突另保存冻结提交与候选。当前历史不自动清理，不作永久审计承诺。backup用SQLite在线备份并复制assets到新目录，不覆盖已有备份；完整还原须数据库、assets和匹配Skill代码/模板，恢复后--library指向副本。
 
-出生事实在cases压缩保存一份，三个view引用；共用字体按内容哈希存assets，页面按模板生成，不以临时HTML为权威存档。明确需要独立页时调用render.cjs；独立页内嵌所需字体子集，可移动单个文件，PNG可直接分享。
+出生事实在cases压缩保存一份，三个view引用；共用字体按内容哈希存assets，页面按模板生成，不以临时HTML为权威存档。明确需要独立页时调用render.cjs；独立页仍需其资源位置，PNG可直接分享。
 
 服务仅监听127.0.0.1，核对Host，POST核对Origin、页面令牌和JSON类型。数据库与笔记不发送外部服务。测试、用户验收和已安装版本以对应报告与实际加载文件核对，不依据文件标题推定完成。

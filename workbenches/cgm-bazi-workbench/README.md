@@ -2,9 +2,11 @@
 
 把一个人的命盘、不同阶段的观察和后来得到的反馈放在一起，逐步积累成一份可以继续研究、复盘和分享的八字案例。你可以在书页式命盘上记录，也可以让 AI 帮你整理这些记录。
 
-当前版本：**1.0.0**。作者：**长庚明**。命理体系在这里用于研究、教学和记录，不作为人生的绝对裁决。
+当前版本：**1.0.2**。作者：**长庚明**。命理体系在这里用于研究、教学和记录，不作为人生的绝对裁决。
 
-[GitHub 源码](https://github.com/Damocles1112/cgm-skills/tree/main/workbenches/cgm-bazi-workbench) · [下载仓库 main 分支](https://github.com/Damocles1112/cgm-skills/archive/refs/heads/main.zip) · [安装说明](INSTALL.md)
+本次更新补齐工作页与独立 HTML 的“关于与许可”：默认收起，展开后可按使用场景查看说明、源码入口及完整许可。图片导出不包含许可区，公众号标识仍可自由开关。
+
+[GitHub 源码](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-bazi-workbench) · [下载仓库 main 分支](https://github.com/CGM2026/cgm-skills/archive/refs/heads/main.zip) · [安装说明](INSTALL.md)
 
 ## 可以怎样使用
 
@@ -44,7 +46,7 @@
 
 阅读 [安装与首次使用](INSTALL.md)，检查 Python、Node.js 和计算依赖。也可以把下面这段话发给能读取文件并运行脚本的 Agent：
 
-> 请从 https://github.com/Damocles1112/cgm-skills 的 main 分支安装 workbenches/cgm-bazi-workbench 中的「长庚明八字工作台」。先读该目录的 INSTALL.md，再读 skills/cgm-bazi-suite/SKILL.md；检查运行环境，说明推荐算法并让我确认；使用虚构示例验证排盘与工作页。保留我已有的个人案例库和设置。
+> 请从 https://github.com/CGM2026/cgm-skills 的 main 分支安装 workbenches/cgm-bazi-workbench 中的「长庚明八字工作台」。先读该目录的 INSTALL.md，再读 skills/cgm-bazi-suite/SKILL.md；检查运行环境，说明推荐算法并让我确认；使用虚构示例验证排盘与工作页。保留我已有的个人案例库和设置。
 
 首次使用会展示推荐口径，让你接受或修改；确认后的选择才作为个人默认。支持的算法设置分为两页：
 
@@ -71,6 +73,6 @@
 
 ## 开源与验证
 
-作者：长庚明（Damocles1112）。本工作台程序采用 [AGPL-3.0-only](LICENSE)；第三方资源适用各自许可，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。分享署名见 [ATTRIBUTION.md](ATTRIBUTION.md)。
+作者：长庚明（CGM2026）。本工作台程序采用 [AGPL-3.0-only](LICENSE)；第三方资源适用各自许可，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。分享署名见 [ATTRIBUTION.md](ATTRIBUTION.md)。
 
 文件摘要见 `SHA256SUMS.json`，发布来源见 `SOURCE_MANIFEST.json`。测试方法与已测范围见 [TESTING.md](TESTING.md)。Windows 上的排盘、工作页、笔记与导出流程已有验证；WorkBuddy、macOS 和 Linux 尚未完成整套实测。

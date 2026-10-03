@@ -1,10 +1,10 @@
 {
   "name": "长庚明希腊占星工作台",
-  "version": "1.0.0",
-  "build_id": "20261003-073143-9b41b7a7",
-  "built_at": "2026-10-02T23:31:50.415191+00:00",
+  "version": "1.0.2",
+  "build_id": "20261003-105128-01280b20",
+  "built_at": "2026-10-03T02:51:35.746710+00:00",
   "status": "public-release",
-  "repository": "https://github.com/Damocles1112/cgm-skills",
+  "repository": "https://github.com/CGM2026/cgm-skills",
   "repository_path": "workbenches/cgm-hellenistic-astrology-workbench",
   "default_branch": "main",
   "members": [

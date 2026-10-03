@@ -2,7 +2,9 @@
 
 这里收录长庚明公开发布的 AI Skills，主要用于排盘与可视化工作台、玄学文本研究、符号系统重构，以及面向大众的占卜与命理适配体验。
 
-## 最新更新｜2026-10-03 · 两个工作台 v1.0.0
+## 最新更新｜2026-10-03 · 两个工作台 v1.0.2
+
+本次更新完善图片导出与图层工具，补齐可折叠的「关于与许可」，并统一页面字体、配色与对齐。导出图片仍可自由开关公众号标识。GitHub 用户名已更新为 CGM2026，后续继续沿用本仓库 main 分支与原有工作台安装目录。
 
 ### 给命盘建立一份可以持续积累的研究记录
 
@@ -34,7 +36,7 @@
 
 ### 从哪里开始
 
-[下载两个完整工作台](https://github.com/Damocles1112/cgm-skills/releases/tag/workbenches-v1.0.0)，或让 AI 按上面的安装说明从本仓库安装。装好后，用随包示例建立第一个案例，尝试写一条笔记，再请 AI 读取并整理它，就能体验这套协作方式。
+[下载两个完整工作台](https://github.com/CGM2026/cgm-skills/releases/latest)，或让 AI 按上面的安装说明从本仓库安装。装好后，用随包示例建立第一个案例，尝试写一条笔记，再请 AI 读取并整理它，就能体验这套协作方式。
 
 后续修复沿用两个工作台的目录和安装入口。源码开放，欢迎基于现有排盘、页面和案例能力，继续开发自己的教学或研究流程。原创内容采用 **AGPL-3.0-only**，第三方资源保留各自许可。
 
@@ -104,8 +106,8 @@ AI 生成的判断并不完全可靠。如果报告与你的真实经历、内�
 
 两个工作台各有独立目录，成员需要一起下载并保持相邻。安装地址固定，后续版本更新继续使用同一地址：
 
-- [长庚明八字工作台](https://github.com/Damocles1112/cgm-skills/tree/main/workbenches/cgm-bazi-workbench)：先读目录中的 [安装说明](workbenches/cgm-bazi-workbench/INSTALL.md)，入口为 `cgm-bazi-suite`。
-- [长庚明希腊占星工作台](https://github.com/Damocles1112/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench)：先读目录中的 [安装说明](workbenches/cgm-hellenistic-astrology-workbench/INSTALL.md)，入口为 `cgm-astrology-workbench`。
+- [长庚明八字工作台](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-bazi-workbench)：先读目录中的 [安装说明](workbenches/cgm-bazi-workbench/INSTALL.md)，入口为 `cgm-bazi-suite`。
+- [长庚明希腊占星工作台](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench)：先读目录中的 [安装说明](workbenches/cgm-hellenistic-astrology-workbench/INSTALL.md)，入口为 `cgm-astrology-workbench`。
 
 可以让支持本地文件和命令执行的 Agent 根据安装说明下载、检查环境并安装三个成员。安装完成后，首次排盘会说明默认算法并询问是否调整。案例库、个人设置和笔记保存在用户工作目录，更新技能时保留这些资料。
 
@@ -116,7 +118,7 @@ AI 生成的判断并不完全可靠。如果报告与你的真实经历、内�
 克隆仓库：
 
 ```
-git clone https://github.com/Damocles1112/cgm-skills.git
+git clone https://github.com/CGM2026/cgm-skills.git
 ```
 
 将需要的 Skill 文件夹复制到你的 Agent Skills 目录。例如 Codex：
@@ -182,7 +184,7 @@ Skill 每轮只问一个真正影响判断的问题，不预设“多赚钱”�
 
 ## 许可证
 
-本仓库中作者有权授权的原创程序代码与 Skill 内容统一采用 **[AGPL-3.0-only](LICENSE)**，作者署名为长庚明（Damocles1112）。第三方代码、字体、星历及其他资源保留各自版权与许可，见相应目录的声明。
+本仓库中作者有权授权的原创程序代码与 Skill 内容统一采用 **[AGPL-3.0-only](LICENSE)**，作者署名为长庚明（CGM2026）。第三方代码、字体、星历及其他资源保留各自版权与许可，见相应目录的声明。
 
 - [八字工作台许可](workbenches/cgm-bazi-workbench/LICENSE)及[第三方声明](workbenches/cgm-bazi-workbench/THIRD_PARTY_NOTICES.md)。
 - [希腊占星工作台许可](workbenches/cgm-hellenistic-astrology-workbench/LICENSE)及[第三方声明](workbenches/cgm-hellenistic-astrology-workbench/THIRD_PARTY_NOTICES.md)。

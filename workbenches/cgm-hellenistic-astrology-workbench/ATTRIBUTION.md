@@ -1,6 +1,6 @@
 # 来源与分享
 
-作者：长庚明（Damocles1112）。程序许可：AGPL-3.0-only，全文见 [LICENSE](LICENSE)。
+作者：长庚明（CGM2026）。程序许可：AGPL-3.0-only，全文见 [LICENSE](LICENSE)。
 
 ## 代码与衍生软件
 
@@ -10,8 +10,4 @@
 
 包含本套件程序代码的完整 HTML 导出，应连同适用许可与对应源码一并分享。单张 PNG 或以 PNG 为内容的 SVG 不会只因由本工具生成就自动适用 AGPL；其中的个案资料与笔记仍需自行确认分享权限。
 
-文章、教学材料或图片分享推荐署名：
-
-> 排盘与可视化工具：长庚明（Damocles1112）制作的「长庚明八字工作台」或「长庚明希腊占星工作台」。
-
-这是一项署名建议，不是对图片或文章额外增加的 AGPL 义务。按实际使用的工具附上对应链接：[八字工作台](https://github.com/Damocles1112/cgm-skills/tree/main/workbenches/cgm-bazi-workbench) 或 [希腊占星工作台](https://github.com/Damocles1112/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench)。分享包含修改代码的 HTML 时，还应提供该实际修改版本的源码。
+导出图片中的公众号标识可按需保留或关闭，无须另行补写工具来源。普通排盘图片和原创讲解内容不因使用本程序而自动适用 AGPL。分享包含程序代码的 HTML 时，仍须保留适用声明，并按协议提供该实际版本的对应源码。

@@ -1,4 +1,4 @@
-/* Uses embedded local font outlines and the page background; works from file://. */
+/* Uses embedded, locally prepared font outlines; works from file://. */
 (()=>{
  const button=document.getElementById('export-image');
  const assets=JSON.parse(document.getElementById('export-assets').textContent);

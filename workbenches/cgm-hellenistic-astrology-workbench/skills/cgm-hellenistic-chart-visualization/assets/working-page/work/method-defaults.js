@@ -18,7 +18,7 @@
  });
  const about=document.createElement('details');about.className='release-about';
  const heading=document.createElement('summary');heading.textContent='关于与来源';about.append(heading);
- const body=document.createElement('div');body.innerHTML='<p>长庚明 · 占星排盘与可视化套件</p><p>计算：cgm-calculate-astrology-chart<br>可视化：cgm-hellenistic-chart-visualization</p><p>程序采用 <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">AGPL-3.0</a>。分发程序时请保留来源和许可声明，并按许可提供对应源码；修改后向网络用户提供服务时也须履行相应源码提供义务。第三方组件各自遵循原许可，详见发行包 LICENSE 与 THIRD_PARTY_NOTICES。</p><p>图片可按“使用长庚明占星排盘与可视化套件制作”署名。HTML 与 JSON 包含完整出生资料和笔记；图片匿名选项只影响图片。工作页 SVG 为封装 PNG 的 SVG 文件。</p>';
+ const body=document.createElement('div');body.innerHTML='<p>长庚明希腊占星工作台 · AGPL-3.0-only。完整许可、第三方声明、源码入口与使用场景说明见页尾“关于与许可”。</p><p>HTML 与 JSON 包含完整出生资料和笔记；图片匿名选项只影响图片。导出公众号标识可按需保留或关闭，无须另补工具来源。工作页 SVG 为封装 PNG 的 SVG 文件。</p>';
  about.append(body);form.append(about);
  const style=document.createElement('style');style.textContent='.method-defaults button{font:inherit;color:var(--accent-strong,#805e42);background:transparent;border:1px solid var(--rule,#d8d1c5);padding:7px 12px;border-radius:4px;cursor:pointer}.method-defaults button:disabled{opacity:.5;cursor:default}.release-about{margin-top:18px;padding-top:12px;border-top:1px solid var(--rule,#d8d1c5);font-size:14px;line-height:1.8;color:var(--muted-soft,#827c72)}.release-about summary{cursor:pointer}.release-about a{color:inherit}';document.head.append(style);
 })();

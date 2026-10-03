@@ -2,10 +2,10 @@
 
 ## 下载与交给 Agent 使用
 
-固定来源：[cgm-skills 仓库内的希腊占星工作台](https://github.com/Damocles1112/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench)，后续修复沿用 `main` 分支。
+固定来源：[cgm-skills 仓库内的希腊占星工作台](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench)，后续修复沿用 `main` 分支。
 
-- [下载仓库 main 的 ZIP](https://github.com/Damocles1112/cgm-skills/archive/refs/heads/main.zip)，解压后进入 `workbenches/cgm-hellenistic-astrology-workbench`。
-- 使用 Git 的读者可运行 `git clone https://github.com/Damocles1112/cgm-skills.git`，然后进入 `cgm-skills/workbenches/cgm-hellenistic-astrology-workbench`。
+- [下载仓库 main 的 ZIP](https://github.com/CGM2026/cgm-skills/archive/refs/heads/main.zip)，解压后进入 `workbenches/cgm-hellenistic-astrology-workbench`。
+- 使用 Git 的读者可运行 `git clone https://github.com/CGM2026/cgm-skills.git`，然后进入 `cgm-skills/workbenches/cgm-hellenistic-astrology-workbench`。
 - 将工作台目录交给能读取文件、执行 Python/Node.js 并打开本机页面的 Agent，要求先读本文件与 `skills/cgm-astrology-workbench/SKILL.md`。
 
 入口 `cgm-astrology-workbench` 和两个成员 `cgm-calculate-astrology-chart`、`cgm-hellenistic-chart-visualization` 必须保持相邻。直接读取本目录即可使用；若要注册到某个 Agent 的技能系统，按该软件的目录规则注册全部三个成员，并保留本工作台根目录的许可与说明。WorkBuddy 的安装与自动发现流程尚未实测。本工作台与仓库统一采用 AGPL-3.0-only；第三方资源适用本目录的第三方声明。

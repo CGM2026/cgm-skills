@@ -121,3 +121,5 @@ console.log(JSON.stringify({html:path.join(out,'chart.html'),bytes:Buffer.byteLe
 
 const readyPage=path.join(out,'chart.html');
 fs.writeFileSync(readyPage,fs.readFileSync(readyPage,'utf8').replace('</head>','<style>'+fs.readFileSync('work/workbench-layout.css','utf8')+'</style></head>').replace('</body>','<script>'+fs.readFileSync('work/workbench-layout.js','utf8')+'</script></body>'));
+
+const legalWork=path.resolve(__dirname);const legalPage=path.join(out,'chart.html');let legalHTML=fs.readFileSync(legalPage,'utf8');legalHTML=legalHTML.replace('</head>','<style id="cgm-license-style">'+fs.readFileSync(path.join(legalWork,'license-footer.css'),'utf8')+'</style></head>');const legalEnd=legalHTML.lastIndexOf('</body>');legalHTML=legalHTML.slice(0,legalEnd)+fs.readFileSync(path.join(legalWork,'license-footer.html'),'utf8')+'<script id="cgm-license-layout">'+fs.readFileSync(path.join(legalWork,'license-footer-layout.js'),'utf8')+'</script>'+legalHTML.slice(legalEnd);fs.writeFileSync(legalPage,legalHTML);

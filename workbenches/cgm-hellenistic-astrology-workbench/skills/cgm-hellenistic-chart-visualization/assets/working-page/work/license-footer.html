@@ -1,44 +1,3 @@
-<!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><title>星盘渲染输入壳</title><style id="cgm-license-style">.cgm-legal-footer{box-sizing:border-box;max-width:708px;margin:18px auto 28px;padding:0 22px;color:#766f64;font:12px/1.8 system-ui,-apple-system,"Microsoft YaHei",sans-serif;text-align:center}
-.cgm-legal-footer.cgm-legal-astrology{max-width:1180px}
-.cgm-legal-footer *{box-sizing:border-box}
-.cgm-legal-footer>.cgm-legal-disclosure>summary{display:inline-flex;align-items:center;gap:8px;min-height:32px;padding:3px 8px;list-style:none;cursor:pointer;font:inherit;color:inherit;user-select:none}
-.cgm-legal-footer summary::-webkit-details-marker{display:none}
-.cgm-legal-footer>.cgm-legal-disclosure>summary:after{content:"";width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .15s}
-.cgm-legal-footer>.cgm-legal-disclosure[open]>summary:after{transform:rotate(225deg) translate(-1px,-1px)}
-.cgm-legal-footer summary:focus-visible,.cgm-legal-footer a:focus-visible{outline:1px solid #8a7864;outline-offset:3px;border-radius:2px}
-.cgm-legal-footer .cgm-legal-content{max-width:680px;margin:12px auto 0;padding:18px 0 4px;border-top:1px solid #d9d1c3;text-align:left;color:#625b50;font-size:13px;line-height:1.9}
-.cgm-legal-footer .cgm-legal-content p{margin:0 0 10px}
-.cgm-legal-footer .cgm-legal-heading{font-weight:500;color:#4f493f}
-.cgm-legal-footer .cgm-legal-content a{color:inherit;text-decoration:underline;text-decoration-color:#b6ac9c;text-underline-offset:3px;overflow-wrap:anywhere}
-.cgm-legal-footer .cgm-legal-links{display:flex;flex-wrap:wrap;gap:4px 18px;margin:0 0 16px}
-.cgm-legal-footer .cgm-legal-section{border-top:1px solid #e2dace;padding:9px 0}
-.cgm-legal-footer .cgm-legal-section>summary{cursor:pointer;list-style:none;font:inherit;color:inherit}
-.cgm-legal-footer .cgm-legal-section>summary:before{content:"＋";display:inline-block;margin-right:8px;color:#918575}
-.cgm-legal-footer .cgm-legal-section[open]>summary:before{content:"−"}
-.cgm-legal-footer .cgm-legal-section p{margin-top:10px}
-.cgm-legal-footer pre{margin:12px 0 4px;padding:14px 16px;background:#f5f0e6;border:1px solid #e6dfd3;border-radius:3px;max-height:320px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.75 ui-monospace,Consolas,"Microsoft YaHei",monospace;color:#625b50;text-align:left}
-.cgm-legal-footer .cgm-legal-small{font-size:12px;color:#81796e}
-@media(max-width:420px){.cgm-legal-footer{padding:0 20px}.cgm-legal-footer .cgm-legal-content{padding-top:14px}.cgm-legal-footer pre{padding:12px}}
-@media print{.cgm-legal-footer{display:none!important}}
-
-/* 页尾沿用工作台正文纸色、汇文明朝与当前布局内距。 */
-#cgm-license-footer{display:block;box-sizing:border-box;width:100%;max-width:1180px;margin:0 auto;padding:14px 48px 24px;border:0;background:var(--surface,#fffdf8);text-align:left;color:var(--muted-soft,#827c72);font:11px/1.8 Huiwen,SimSun,serif}
-#cgm-license-footer>.cgm-legal-disclosure>summary{padding:0;min-height:28px;font:inherit;color:inherit}
-#cgm-license-footer .cgm-legal-content{max-width:none;font:13px/1.9 Huiwen,SimSun,serif;color:var(--ink,#292820);border-color:var(--rule,#d8d1c5)}
-#cgm-license-footer .cgm-legal-heading{font:18px/1.5 Huiwen,SimSun,serif;color:var(--ink,#292820)}
-#cgm-license-footer .cgm-legal-small{color:var(--muted-soft,#827c72)}
-#cgm-license-footer .cgm-legal-section{border-color:var(--rule,#d8d1c5)}
-#cgm-license-footer .cgm-legal-scenarios{margin:12px 0 18px;padding-left:1.3em}
-#cgm-license-footer .cgm-legal-scenarios li{margin:0 0 12px}
-#cgm-license-footer .cgm-legal-scenarios strong{font-weight:normal}
-#cgm-license-footer pre{font:12px/1.8 Huiwen,SimSun,serif;color:var(--ink,#292820);background:transparent;border-color:var(--rule,#d8d1c5)}
-@media(max-width:800px){#cgm-license-footer{padding-left:24px;padding-right:24px}}
-@media(max-width:450px){#cgm-license-footer{padding-left:16px;padding-right:16px}}
-@media print{#cgm-license-footer{display:none!important}}
-</style></head><body>
-<!-- render_working_chart.py injects validated facts before build_print_study.js reads this slot. -->
-<script id="chart-data" type="application/json">{}</script>
 <footer id="cgm-license-footer" class="cgm-legal-footer cgm-legal-astrology" aria-label="关于与许可" data-html2canvas-ignore="true">
 <details class="cgm-legal-disclosure"><summary>关于与许可</summary><div class="cgm-legal-content">
 <p class="cgm-legal-heading">长庚明希腊占星工作台 · v1.0.2</p>
@@ -882,4 +841,4 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.</pre></details>
 </details>
 <details class="cgm-legal-section"><summary>版本与修改</summary><p>v1.0.2 · 2026-10-03：增加随行许可、第三方声明与使用场景说明，统一工作页和独立 HTML 的许可展示。源码入口提供维护中的原版；分享自行修改的程序时，还需提供该修改版的对应源码。</p></details>
-</div></details></footer><script id="cgm-license-layout">(() => {const footer=document.getElementById('cgm-license-footer'),page=document.querySelector('.folio')||document.querySelector('main');if(!footer||!page)return;function sync(){const style=getComputedStyle(page);footer.style.width=page.getBoundingClientRect().width+'px';footer.style.maxWidth='none';footer.style.paddingLeft=style.paddingLeft;footer.style.paddingRight=style.paddingRight;}sync();if(globalThis.ResizeObserver)new ResizeObserver(sync).observe(page);window.addEventListener('resize',sync);})();</script></body></html>
+</div></details></footer>

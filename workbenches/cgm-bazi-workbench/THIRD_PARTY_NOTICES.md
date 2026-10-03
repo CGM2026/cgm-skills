@@ -29,6 +29,6 @@ Python、Node.js、SQLite、ICU 和 tzdata 由使用者的运行环境提供，�
 
 - **html2canvas 1.4.1**：MIT，Niklas von Hertzen。保留库头与完整许可 `LICENSES/html2canvas-MIT.txt`。[版本源码](https://github.com/niklasvh/html2canvas/tree/v1.4.1)。库头版权年份为 2022，上游该版本许可文件为 2012，两者均照原文保留。
 - **小行星星历 `seas_18.se1`**：来自 [Swiss Ephemeris 官方仓库](https://github.com/aloistr/swisseph/blob/master/ephe/seas_18.se1)，SHA-256 为 `a2cd8fc33807c78ca9a700c91c2e042258b12fc4796519e00781440b5ad8b2e2`。原始来源记录随资产保留，适用 Swiss Ephemeris 声明及所选 AGPL 分支。
-- **轮盘几何与绘制代码**：从长庚明的 [Astrologer 项目](https://github.com/Damocles1112/Astrologer) 提取、适配。路径与提取摘要见可视化成员 `references/source-snapshot.json`，适配说明见 `references/reuse-notes.md`。2026-10-03，作者确认拥有本工作台所分发代码的授权权利，并同意按 AGPL-3.0-only 发布；此项状态记为 `user-confirmed`。这项授权针对本工作台所含代码，不声明 Astrologer 原仓库整体许可证已改变。
+- **轮盘几何与绘制代码**：从长庚明的 [Astrologer 项目](https://github.com/CGM2026/Astrologer) 提取、适配。路径与提取摘要见可视化成员 `references/source-snapshot.json`，适配说明见 `references/reuse-notes.md`。2026-10-03，作者确认拥有本工作台所分发代码的授权权利，并同意按 AGPL-3.0-only 发布；此项状态记为 `user-confirmed`。这项授权针对本工作台所含代码，不声明 Astrologer 原仓库整体许可证已改变。
 
 本包未包含的专属组件，其许可文本只出现在对应的另一个工作台包中。再分发时保留本声明、所有适用原始许可及修改记录。

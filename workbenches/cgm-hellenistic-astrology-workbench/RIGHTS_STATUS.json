@@ -2,7 +2,7 @@
   "schema": "cgm-release-rights/1",
   "checked_on": "2026-10-03",
   "program": {
-    "author": "长庚明 (Damocles1112)",
+    "author": "长庚明 (CGM2026)",
     "license": "AGPL-3.0-only",
     "basis": "作者在发布范围中明确采用 AGPL-3.0-only，并于 2026-10-03 确认公开发布授权及所用第三方资源的适用权利",
     "status": "confirmed"
@@ -84,7 +84,7 @@
         "astrology"
       ],
       "license": "AGPL-3.0-only for code distributed in this workbench",
-      "source": "https://github.com/Damocles1112/Astrologer",
+      "source": "https://github.com/CGM2026/Astrologer",
       "status": "user-confirmed",
       "basis": "2026-10-03 作者确认所提取与适配代码可由本人授权，并批准纳入本工作台的 AGPL-3.0-only 公开版本。此确认适用于本工作台所分发代码，不声明原 Astrologer 仓库整体许可证已改变。"
     }

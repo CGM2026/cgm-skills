@@ -49,7 +49,7 @@ expected = normalize(source_visible(SOURCE.read_text(encoding="utf-8")))
 reader = PdfReader(str(PDF))
 page_texts = [page.extract_text() or "" for page in reader.pages]
 actual = normalize("".join(page_texts))
-promo_text = normalize("Skill 发布页面：https://github.com/Damocles1112/cgm-skills")
+promo_text = normalize("Skill 发布页面：https://github.com/CGM2026/cgm-skills")
 actual = actual.replace(promo_text, "")
 
 if expected == actual:
@@ -63,7 +63,7 @@ else:
     print(f"Expected length={len(expected)}, actual length={len(actual)}")
     raise SystemExit(1)
 
-expected_uri = "https://github.com/Damocles1112/cgm-skills"
+expected_uri = "https://github.com/CGM2026/cgm-skills"
 uri_pages = []
 for page_number, page in enumerate(reader.pages, 1):
     for annotation_ref in page.get("/Annots", []):

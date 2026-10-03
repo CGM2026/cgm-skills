@@ -11,7 +11,7 @@ description: 计算八字四柱、历法、节气和推运，保存原始出生�
 
 ## 排盘与校验
 
-以下示例以本成员目录写相对路径；安装后请使用脚本实际绝对路径，在用户工作目录执行，避免把个人设置和命盘写入技能安装目录：
+在本成员目录运行：
 
 ```text
 node scripts/preferences.cjs get --settings SETTINGS.json

@@ -5,7 +5,7 @@ description: 将已校验的八字命盘呈现为书页工作页，管理本地�
 
 # 八字可视化
 
-默认在本地案例库打开已认可的书页风格，共用模板和字体，页面采用暖白底色。计算成员提供出生事实，SQLite保存权威记录，普通编辑不生成或改写整页HTML。新增功能的实现、浏览器测试和用户验收分别记录。
+默认在本地案例库打开已认可的书页风格，共用模板、字体和暖色背景。计算成员提供出生事实，SQLite保存权威记录，普通编辑不生成或改写整页HTML。新增功能的实现、浏览器测试和用户验收分别记录。
 
 ## 案例与协作
 
@@ -29,12 +29,12 @@ description: 将已校验的八字命盘呈现为书页工作页，管理本地�
 
 ## 独立页与交付检查
 
-明确需要独立HTML时使用以下入口。示例路径相对于本成员目录；安装后使用脚本与模板的实际绝对路径，将输出保存到用户工作目录：
+明确需要独立HTML时在本成员目录执行：
 
 ```text
 node scripts/render.cjs CHART.json assets/kimi-book-v1.json OUTPUT.html
 ```
 
-输出内嵌同源JSON与字体子集，保留暖白底色，并附provenance；单文件可搬移。独立HTML不具有案例库图层、档案及口径试算的完整功能，且含完整出生资料；图片匿名选项不会改写HTML/JSON。模板位于assets/template/book.html，SHA-256冻结；更新模板先读 [模板交接](references/template-handoff.md)。历史design-proportion适配器已退出发布入口，原样稿另行保留。
+输出内嵌同源JSON、字体子集，并附provenance；单文件可搬移。独立HTML不具有案例库图层、档案及口径试算的完整功能，且含完整出生资料；图片匿名选项不会改写HTML/JSON。模板位于assets/template/book.html，SHA-256冻结；更新模板先读 [模板交接](references/template-handoff.md)。历史design-proportion适配器已退出发布入口，原样稿另行保留。
 
 缺完整calendarView或真实节气的数据交回计算成员升级/重排，不补近似日期迁就模板。核验实际加载的代码、元数据及资源；真实PNG/SVG/ZIP须下载解码、检查正文和接缝，静态或纯函数检查不替代实际图片。安装、发布与外部上传遵循本次明确授权，不能因源码已改推定安装完成。

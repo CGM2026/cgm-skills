@@ -29,7 +29,7 @@ from reportlab.platypus import (
 
 SKILL_DIR = Path(__file__).resolve().parent.parent
 QR_IMAGE = SKILL_DIR / "assets" / "mingyuxingchen-wechat-qr.png"
-SKILL_URL = "https://github.com/Damocles1112/cgm-skills"
+SKILL_URL = "https://github.com/CGM2026/cgm-skills"
 
 PAGE_W, PAGE_H = A4
 MARGIN_X = 24 * mm

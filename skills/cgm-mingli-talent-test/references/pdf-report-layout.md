@@ -52,7 +52,7 @@ python scripts/validate_pdf_report.py <完整报告.md> <完整报告.pdf>
 8. 第九部分“最后，我想重新解释‘天赋’”另起新页，并作为最后一段正式报告内容；其后不得追加课程广告、社群邀请、适配结论或新的行动建议。
 9. 最后一页正文结束后再次放置 GitHub 发布地址与公众号二维码。
 10. 首页和末页二维码使用 Skill 内置 `assets/mingyuxingchen-wechat-qr.png`，约 34 mm，居中，不加卡片或边框。
-11. GitHub 地址固定为 `https://github.com/Damocles1112/cgm-skills`，首页与末页都必须是可点击链接。
+11. GitHub 地址固定为 `https://github.com/CGM2026/cgm-skills`，首页与末页都必须是可点击链接。
 
 ## 表格
 

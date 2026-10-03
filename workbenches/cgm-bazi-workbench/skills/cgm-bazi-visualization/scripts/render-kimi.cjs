@@ -145,6 +145,9 @@ ${fs.readFileSync(path.join(__dirname,'../assets/responsive-deck.css'),'utf8')}
   resources.push({path:absolute,sha256:sha(fs.readFileSync(absolute))});
   return "url('"+path.relative(path.dirname(path.resolve(out)),absolute).split(path.sep).map(encodeURIComponent).join('/')+"')";
  });
+ // v1.0.2: carry complete notices in standalone pages, outside the image export area.
+ replace('</head>',`<style id="cgm-license-style">${fs.readFileSync(path.join(__dirname,'../assets/legal-footer.css'),'utf8')}</style></head>`);
+ replace('</body>',`${fs.readFileSync(path.join(__dirname,'../assets/legal-footer.html'),'utf8')}<script>${fs.readFileSync(path.join(__dirname,'../assets/legal-footer-layout.js'),'utf8')}</script></body>`);
  const {subsetTTF}=require('./export-font.cjs');
  const exportScript=fs.readFileSync(path.join(__dirname,'export-image.browser.js'),'utf8');
  const exportAssets={fonts:resources.filter(r=>r.path.endsWith('.ttf')).map((r,i)=>({family:i===0?'ZhaohuaTitleA':'HuiwenMincho',data:subsetTTF(fs.readFileSync(r.path),html+exportScript).toString('base64')}))};

@@ -15,6 +15,7 @@ import time
 import uuid
 import zlib
 from pathlib import Path
+from license_footer import attach as attach_license_footer
 from record_validation import validate_entry, unreadable_message, MAX_VALUE_BYTES
 
 VISUAL = Path(__file__).resolve().parents[1]
@@ -385,7 +386,7 @@ class Library:
         # Always append the current layout adapter, including older immutable shells.
         source=append_before_document_end(source,'</head>','<style>'+(WORK/'workbench-layout.css').read_text(encoding='utf-8')+'</style>')
         source=append_before_document_end(source,'</body>','<script>'+(WORK/'workbench-layout.js').read_text(encoding='utf-8')+'</script>')
-        return source
+        return attach_license_footer(source)
 
     def stats(self):
         with self.connect() as c:
