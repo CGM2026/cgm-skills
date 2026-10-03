@@ -427,6 +427,27 @@ class Library:
         markup = markup.replace('</body>', '<script id="bazi-library-config" type="application/json">'+safe_config+'</script><script src="/ui/export-workbench.js"></script><script src="/ui/note-policy.js"></script><script src="/ui/research-drafts.js"></script><script src="/ui/algorithm-settings.js"></script><script src="/ui/research-ui.js"></script></body>')
         return markup
 
+
+    def export_reading(self, view_id):
+        from portable_reading import document, assets_for
+        info=self.view(view_id)
+        with self.connect() as db:
+            views=[dict(r) for r in db.execute('SELECT id,mode FROM views WHERE case_id=?',(info['case_id'],))]
+        pages={}
+        for v in views:
+            markup=self.render(v['id'],'')
+            markup=markup.replace('"rootIdentity":','"portable":true,"rootIdentity":',1)
+            markup=re.sub(r'<link rel="stylesheet" href="/ui/([^"/]+)">',lambda m:'<style>'+ (HERE.parent/'assets'/m[1]).read_text(encoding='utf-8')+'</style>',markup)
+            markup=re.sub(r'<script src="/ui/([^"/]+)"></script>',lambda m:'<script>'+ (HERE.parent/'assets'/m[1]).read_text(encoding='utf-8')+'</script>',markup)
+            markup=re.sub(r'<script id="export-assets" type="application/json">.*?</script>','<script id="export-assets" type="application/json">{"fonts":[]}</script>',markup,flags=re.S)
+            pages[v['id']]=dict(kind='bazi',html=markup,research=self.research(v['id']),notes=self.notes(v['id']))
+        assets=assets_for(self.root,pages,self.node)
+        fonts=[]
+        for family,key in re.findall(r"font-family:\s*['\"]?([\w-]+)['\"]?;\s*src:\s*url\(['\"]?/asset/([a-f0-9]+\.ttf)",pages[view_id]['html']):
+            if not any(f['family']==family for f in fonts):fonts.append(dict(family=family,asset=key))
+        if not fonts:raise ValueError('阅读副本缺少导出字体')
+        return document(pages,assets,view_id,fonts)
+
 def serve(root, port):
     library = Library(root)
     token = secrets.token_urlsafe(32)
@@ -553,6 +574,7 @@ def main():
     for name in ('note-put','record-put'):
         p=sub.add_parser(name);p.add_argument('--view',required=True);p.add_argument('--object',default='case');p.add_argument('--text-file',required=True);p.add_argument('--version',type=int,required=True)
     p=sub.add_parser('restore-entry');p.add_argument('--view',required=True);p.add_argument('--history-id',type=int,required=True);p.add_argument('--version',type=int,required=True)
+    p=sub.add_parser('export');p.add_argument('--view',required=True);p.add_argument('--output',required=True)
     p=sub.add_parser('backup');p.add_argument('--output',required=True)
     p=sub.add_parser('serve');p.add_argument('--port',type=int,default=4880)
     args=parser.parse_args()
@@ -568,6 +590,10 @@ def main():
     elif args.command=='notes':result=library.notes(args.view)
     elif args.command=='history':result=library.history(args.view)
     elif args.command=='restore-entry':result=library.restore(args.view,args.history_id,args.version)
+    elif args.command=='export':
+        output=Path(args.output);output.parent.mkdir(parents=True,exist_ok=True)
+        output.write_text(library.export_reading(args.view),encoding='utf-8')
+        result=dict(output=str(output.resolve()),format='reading-html',readOnly=True)
     elif args.command=='backup':result=library.backup(args.output)
     elif args.command in ('note-put','record-put'):result=library.put(args.view,args.object,Path(args.text_file).read_text(encoding='utf-8-sig'),args.version,'record' if args.command=='record-put' else 'note')
     elif args.command in ('objects','date'):

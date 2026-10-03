@@ -191,11 +191,7 @@ def main():
         a.output.parent.mkdir(parents=True,exist_ok=True)
         if a.format=='json':text=encoded(library.export_json(a.view))
         else:
-            text=library.render(a.view,export=True)
-            import base64,re
-            for match in set(re.findall(r'/asset/([a-f0-9]+\.[a-z0-9]+)',text)):
-                data=(library.root/'assets'/match).read_bytes();mime='font/ttf' if match.endswith('.ttf') else 'application/octet-stream'
-                text=text.replace('/asset/'+match,'data:'+mime+';base64,'+base64.b64encode(data).decode())
+            text=library.export_reading(a.view)
         a.output.write_text(text,encoding='utf-8');out={'output':str(a.output.resolve()),'bytes':a.output.stat().st_size}
     elif a.command=='import-records':
         imported=json.loads(a.input.read_text(encoding='utf-8-sig'));out=library.import_records(a.view,imported,a.expected_revision)

@@ -13,7 +13,7 @@
  };
  const trigger=document.createElement('button');trigger.type='button';trigger.className='transit-search-trigger';trigger.textContent='行运查询';document.querySelector('.chart-bottom .tools').append(trigger);
  const dialog=document.createElement('dialog');dialog.className='transit-agent-hint-dialog';dialog.setAttribute('aria-label','在 Agent 中查询行运');
- dialog.innerHTML='<header><h2>在 Agent 中查询行运</h2><button type="button" data-close aria-label="关闭">×</button></header><p>请回到 Agent 对话，直接说出你想查询的行运条件。</p><p class="agent-hint-example">例如：“查询未来十年，行运火星在本命第九宫，并与行运木星合相的时间。”</p><p>Agent 会计算符合条件的时间，再把结果写入这份星盘。查询完成后刷新页面查看。</p><footer><button type="button" data-done>知道了</button></footer>';
+ dialog.innerHTML='<header><h2>在 Agent 中查询行运</h2><button type="button" data-close aria-label="关闭">×</button></header><p>请回到 Agent 对话，直接说出你想查询的行运条件。</p><p class="agent-hint-example">例如：“查询未来十年，行运火星在本命第九宫，并与行运木星合相的时间。”</p><p>'+(globalThis.CGMPortable?'Agent 会在电脑端查询，并返回更新后的阅读副本；收到新副本后打开查看。':'Agent 会计算符合条件的时间，再把结果写入这份星盘。查询完成后刷新页面查看。')+'</p><footer><button type="button" data-done>知道了</button></footer>';
  document.querySelector('.folio').append(dialog);
  trigger.onclick=()=>dialog.showModal();dialog.querySelector('[data-close]').onclick=()=>dialog.close();dialog.querySelector('[data-done]').onclick=()=>dialog.close();dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close();});
  // Existing result cards remain available after the manual query form is retired.

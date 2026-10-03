@@ -378,7 +378,7 @@ class Library:
         nav='<nav class="chart-type-switch" aria-label="盘式">'
         for v in views:
             label=LABELS[v['mode']]
-            if v['id']==vid or export:nav+='<span'+(' aria-current="page"' if v['id']==vid else '')+'>'+label+'</span>'
+            if v['id']==vid:nav+='<span'+(' aria-current="page"' if v['id']==vid else '')+'>'+label+'</span>'
             else:nav+='<a href="/view/'+v['id']+'">'+label+'</a>'
         source=source.replace('@@NAV@@',nav+'</nav>')
         if not export:
@@ -387,6 +387,40 @@ class Library:
         source=append_before_document_end(source,'</head>','<style>'+(WORK/'workbench-layout.css').read_text(encoding='utf-8')+'</style>')
         source=append_before_document_end(source,'</body>','<script>'+(WORK/'workbench-layout.js').read_text(encoding='utf-8')+'</script>')
         return attach_license_footer(source)
+
+    def reading_times(self,vid,text):
+        view=self.view(vid)
+        if view['mode'] not in ('transit','return'):return {}
+        entries=self.state(vid)['entries']
+        saved=json.loads(entries.get('chart-note-layers-v1:{PAGE}','{}'))
+        times={l['transitTime'] for l in saved.get('layers',[]) if l.get('transitTime')}
+        base=entries.get('chart-transit-base-time-v1:{PAGE}')
+        if base:times.add(base)
+        if not times:return {}
+        import tempfile
+        import time_adjust_server as legacy
+        from calculate_display_snapshots import input_from_facts
+        def materialize(v,path):
+            path.mkdir();manifest=json.loads(v['manifest']);markup=self.render(v['id'],export=True)
+            (path/'chart.html').write_text(markup,encoding='utf-8')
+            for name,key in manifest['extras'].items():(path/name).write_text(self.get_blob(key),encoding='utf-8')
+            if not (path/'input.json').exists():(path/'input.json').write_text(encoded(input_from_facts(json.loads(self.get_blob(v['facts'])))),encoding='utf-8')
+            for match in JSON_RE.finditer(markup):
+                if match[1]=='chart-variants':(path/'chart-variants.json').write_text(match[2],encoding='utf-8')
+        with tempfile.TemporaryDirectory(prefix='cgm-reading-times-') as temp:
+            dest=Path(temp);materialize(view,dest/'current')
+            natal=next(v for v in self.case_views(view['case_id']) if v['mode']=='natal')
+            materialize(self.view(natal['id']),dest/'natal')
+            (dest/'current/natal-page.txt').write_text(str(dest/'natal/chart.html'),encoding='utf-8')
+            return {value:legacy.build(dest/'current/chart.html',value,False) for value in sorted(times)}
+
+    def export_reading(self,vid):
+        from portable_reading import document,assets_for
+        pages={}
+        for v in self.case_views(self.view(vid)['case_id']):
+            text=self.render(v['id'],export=True)
+            pages[v['id']]=dict(kind='astrology',html=text,times=self.reading_times(v['id'],text))
+        return document(pages,assets_for(self.root,pages),vid)
 
     def stats(self):
         with self.connect() as c:

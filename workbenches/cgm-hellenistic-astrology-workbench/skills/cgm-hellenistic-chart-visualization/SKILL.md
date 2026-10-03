@@ -29,6 +29,16 @@ description: 将已校验的 chart-facts v4 通过共用模板呈现为星盘工
 
 以下涉及“写回 chart.html”“4852 桥接”“离线文件直接编辑”的说明仅适用于尚未迁入案例库的旧文件。案例库 URL 使用 4860 服务及上述保存规则。
 
+## 手机与便携阅读
+
+按 [手机交付规范](references/portable-reading.md) 区分远程桌面与手机聊天附件。手机附件使用案例库 export，不另造旧展示文件：
+
+```text
+python scripts/library_cli.py --library LIBRARY export --view VIEW_ID --format html --output 阅读副本.html
+```
+
+副本含当前案例全部已制作盘式、已有图层、笔记与档案，支持阅读及图片导出；写入、保存和重新计算需电脑工作台。不把电脑本机链接当作手机可访问入口，不承诺未实测的附件预览兼容性。
+
 ## 按需读取
 
 - 调整版式、导出规则、行运/返照查询或维护旧 HTML：读取 [working-page-details.md](references/working-page-details.md)。普通库中笔记编辑只需案例库协议，不加载全部模板规范。

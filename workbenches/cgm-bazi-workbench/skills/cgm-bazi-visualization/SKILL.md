@@ -27,14 +27,24 @@ description: 将已校验的八字命盘呈现为书页工作页，管理本地�
 
 修改设置/导出读 [导出与排盘口径](references/export-settings.md)：当前界面直接导出，两项互斥匿名和独立隐藏出生时柱；当前笔记关联时柱时禁用隐藏。个人标识仅在导出副本的色块右侧正文区显示且无分隔线，长图等宽分张。排盘设置为「四柱排法」「起运与小运」两页，五组算法选项；原始盘试算调用计算成员、另存案例；笔记图层只读。首次使用确认个人默认，后续冲突提示手动切换。保存个人默认和当前案例另存分别执行。
 
-## 独立页与交付检查
+## 便携阅读副本
 
-明确需要独立HTML时在本成员目录执行：
+手机附件与便携阅读按 [手机交付规范](references/portable-reading.md)。用案例库导出一个含当前案例各盘式、已有图层、笔记和档案的阅读副本：
+
+```text
+python scripts/case-library.py --library LIBRARY export --view VIEW_ID --output 阅读副本.html
+```
+
+阅读与图片导出可用；内容编辑、保存和算法试算需要电脑工作台。不要以旧静态展示页替代阅读副本。桌面及远程桌面默认打开完整 HTTP 工作页。
+
+## 旧静态页与交付检查
+
+明确只需要旧静态展示HTML时在本成员目录执行：
 
 ```text
 node scripts/render.cjs CHART.json assets/kimi-book-v1.json OUTPUT.html
 ```
 
-输出内嵌同源JSON、字体子集，并附provenance；单文件可搬移。独立HTML不具有案例库图层、档案及口径试算的完整功能，且含完整出生资料；图片匿名选项不会改写HTML/JSON。模板位于assets/template/book.html，SHA-256冻结；更新模板先读 [模板交接](references/template-handoff.md)。历史design-proportion适配器已退出发布入口，原样稿另行保留。
+输出内嵌同源JSON、字体子集，并附provenance；单文件可搬移。旧静态展示HTML不包含案例库图层和档案；需要便携阅读时使用上述 export，副本不支持写回与口径试算，且含完整出生资料；图片匿名选项不会改写HTML/JSON。模板位于assets/template/book.html，SHA-256冻结；更新模板先读 [模板交接](references/template-handoff.md)。历史design-proportion适配器已退出发布入口，原样稿另行保留。
 
 缺完整calendarView或真实节气的数据交回计算成员升级/重排，不补近似日期迁就模板。核验实际加载的代码、元数据及资源；真实PNG/SVG/ZIP须下载解码、检查正文和接缝，静态或纯函数检查不替代实际图片。安装、发布与外部上传遵循本次明确授权，不能因源码已改推定安装完成。

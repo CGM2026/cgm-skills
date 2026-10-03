@@ -60,7 +60,7 @@
    const config=JSON.parse($('bazi-library-config').textContent),characters=fontCharacters(clone.textContent),r=await fetch('/api/export-fonts',{method:'POST',headers:{'Content-Type':'application/json','X-Bazi-Token':config.token},body:JSON.stringify({view:config.viewId,text:characters})}),result=await r.json();if(!r.ok)throw Error(result.error);
    const familyId='BaziExport'+crypto.randomUUID().replaceAll('-',''),exportFonts=result.fonts.map((f,i)=>({...f,exportFamily:familyId+i}));
    for(const e of [clone,...clone.querySelectorAll('*')])for(const f of exportFonts)if(e.style.fontFamily.includes(f.family))e.style.fontFamily=e.style.fontFamily.replaceAll(f.family,f.exportFamily);
-   const fonts=document.createElement('style');fonts.textContent=exportFonts.map(f=>`@font-face{font-family:'${f.exportFamily}';src:url(data:font/ttf;base64,${f.data}) format('truetype');}`).join('');host.prepend(fonts);
+   const fonts=document.createElement('style');fonts.textContent=exportFonts.map(f=>`@font-face{font-family:'${f.exportFamily}';src:url(data:font/ttf;base64,${f.data}) format('truetype');${f.unicodeRange?'unicode-range:'+f.unicodeRange+';':''}}`).join('');host.prepend(fonts);
    await Promise.all(exportFonts.map(f=>document.fonts.load('14px "'+f.exportFamily+'"',characters||'〇')));await document.fonts.ready;
    let previous='',stable=0;for(let i=0;i<12&&stable<2;i++){await new Promise(resolve=>requestAnimationFrame(resolve));const geometry=[clone,...clone.querySelectorAll('p,h3')].map(e=>{const b=e.getBoundingClientRect();return [b.top,b.width,b.height].join(',');}).join(';');stable=geometry===previous?stable+1:0;previous=geometry;}
    // Export removes controls and changes page height. Rebuild the annotations

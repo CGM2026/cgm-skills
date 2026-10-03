@@ -1,10 +1,9 @@
 (() => {
- const config=globalThis.ChartLibrary,state=config.state.entries,prefix='cgm-export:'+config.id+':'+config.state.revision+':',store=localStorage,proto=Storage.prototype;
- const get=proto.getItem,set=proto.setItem,remove=proto.removeItem;
+ const config=globalThis.ChartLibrary,values=new Map(Object.entries(config.state.entries)),proto=Storage.prototype;
+ const native={get:proto.getItem,set:proto.setItem,remove:proto.removeItem};
  const portable=k=>String(k).replaceAll(location.pathname,'{PAGE}');
- for(const [key,value] of Object.entries(state))try{if(get.call(store,prefix+key)===null)set.call(store,prefix+key,value);}catch{}
- proto.getItem=function(k){return get.call(this,this===store&&String(k).startsWith('chart-')?prefix+portable(k):k);};
- proto.setItem=function(k,v){return set.call(this,this===store&&String(k).startsWith('chart-')?prefix+portable(k):k,v);};
- proto.removeItem=function(k){return remove.call(this,this===store&&String(k).startsWith('chart-')?prefix+portable(k):k);};
- const note=document.createElement('p');note.style.cssText='font-size:12px;color:#817565';note.textContent='导出副本 · 修改仅留在此浏览器，不自动回写案例库';document.querySelector('.identity').append(note);
+ const frozen=k=>/chart-note-layers|chart-case-archive|chart-editor-drafts|chart-point-notes/.test(k);
+ proto.getItem=function(k){return this===localStorage&&String(k).startsWith('chart-')?(values.get(portable(k))??null):native.get.call(this,k);};
+ proto.setItem=function(k,v){if(this===localStorage&&String(k).startsWith('chart-')){if(!frozen(k))values.set(portable(k),String(v));return;}native.set.call(this,k,v);};
+ proto.removeItem=function(k){if(this===localStorage&&String(k).startsWith('chart-')){if(!frozen(k))values.delete(portable(k));return;}native.remove.call(this,k);};
 })();
