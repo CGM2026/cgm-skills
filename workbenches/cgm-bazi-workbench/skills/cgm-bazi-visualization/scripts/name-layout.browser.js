@@ -29,7 +29,9 @@
   initial.style.cssText='position:absolute;left:0;top:0;white-space:nowrap;';
   rest.style.cssText='position:absolute;display:block;overflow:visible;padding:0;white-space:nowrap;line-height:1;top:0;';rest.style.left=gap+'px';
   info.style.width='max-content';info.style.right='auto';
-  const hr=head.getBoundingClientRect(),right=document.querySelector('.deck-links').getBoundingClientRect().right;
+  // Note layers hide .deck-links. Its zero rectangle must never constrain the title.
+  const hr=head.getBoundingClientRect(),body=document.querySelector('.lower-main');
+  const right=main.getBoundingClientRect().right-parseFloat(getComputedStyle(body).paddingRight);
   let widest=0;for(const row of info.children)widest=Math.max(widest,bounds(row.querySelector('span')||row).width);
   info.style.left=(right-hr.left-widest)+'px';
   const bottom=dm.getBoundingClientRect().top+ink(info.children[1]).actualBoundingBoxDescent;
