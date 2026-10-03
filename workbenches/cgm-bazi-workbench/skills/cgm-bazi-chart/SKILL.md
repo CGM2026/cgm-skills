@@ -19,7 +19,7 @@ node scripts/chart.cjs birth INPUT.json OUTPUT.json --settings SETTINGS.json
 node scripts/chart.cjs validate CHART.json
 ```
 
-使用已有Python + Swiss Ephemeris、Node完整ICU。CGM_BAZI_PYTHON可指向已有环境；缺依赖时报告，不自动安装。出生年份支持归一化格里历公元1–2099；统一农历模型不等于复原历代颁行历法。
+使用已有Python + Swiss Ephemeris、Node完整ICU。CGM_BAZI_PYTHON可指向已有环境；缺依赖时按本次安装授权补齐；未授权时询问一次。出生年份支持归一化格里历公元1–2099；统一农历模型不等于复原历代颁行历法。
 
 默认真太阳时、子初换日、春节子初换年、分钟起运折算至天、固定起点小运。可选钟表时／平太阳时、零点换日／早晚子时分排、立春换年、分钟折算至小时／时辰折算法、时柱起小运。月柱按十二节精确瞬间，月干独立依立春节月年；大运和时柱起小运顺逆以所选年柱年干与性别判断。详细定义见计算约定。
 

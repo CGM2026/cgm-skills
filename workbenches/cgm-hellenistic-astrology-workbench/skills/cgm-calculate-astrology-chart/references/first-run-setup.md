@@ -19,7 +19,7 @@
 
 `python scripts/bootstrap_runtime.py --state-dir <工作区/.cgm-hellenistic-astrology> --check`
 
-若返回 `ready`，记录并使用结果中的 `python_executable`。若返回 `missing_dependencies`，只问：
+若返回 `ready`，记录并使用结果中的 `python_executable`。若返回 `missing_dependencies`，已有安装必要依赖的授权则直接执行 `--install`；未授权时只问：
 
 > 排盘环境还缺少必要组件。我可以在这个工作区创建隔离环境并自动安装，不会改动全局 Python；现在继续吗？
 
@@ -27,13 +27,13 @@
 
 `python scripts/bootstrap_runtime.py --state-dir <状态目录> --install`
 
-安装属于外部环境变更，必须取得明确同意。用户拒绝时停止，不反复询问，也不声称已经可以排盘。不得自动升级已经可用的依赖。
+沿用本次已有授权，不重复确认。用户拒绝安装时说明缺项并停止该步骤。已有可用依赖直接复用。
 
 ## 首次方法配置
 
 `settings.json` 不存在时，在排盘前一次性询问：
 
-> 推荐设置是恒星黄道、Fagan–Bradley 岁差、埃及界、整宫制。你可以接受推荐，也可以更换黄道、岁差、界或宫位制。以后愿意保存的案例希望放在哪个文件夹？也可以暂不启用保存。
+> 推荐设置是恒星黄道、Fagan–Bradley 岁差、埃及界、整宫制。接受推荐，还是调整？案例使用你指定的位置；未指定时放在当前工作区的案例库。
 
 接受推荐即可完成方法选择，不逐项重复询问。用户要求修改时再展示具体选项：回归／恒星黄道，恒星岁差 Fagan–Bradley／Lahiri，埃及／Ptolemy–Lilly 界，整宫／等宫／普拉西德／科赫／雷吉奥蒙塔努斯／波菲利／阿尔卡比提乌斯宫制。记录的是用户确认的偏好，不能把未经确认的作者推荐直接标成完成。
 

@@ -45,7 +45,7 @@ description: 独立计算西方占星七星、四轴、福点与精神点的盘�
 
 ## 运行条件
 
-使用 Python 3.11 及以上。先运行 [bootstrap_runtime.py](scripts/bootstrap_runtime.py) 检测 `pyswisseph` 与 IANA 时区数据；缺少依赖时必须先征得用户同意，再创建工作区隔离环境并安装，不修改全局 Python。计算采用 Swiss Ephemeris 的 Moshier 模式，不依赖 Astrologer 项目的目录、代码、服务或运行状态。
+使用 Python 3.11 及以上。先运行 [bootstrap_runtime.py](scripts/bootstrap_runtime.py) 检测 `pyswisseph` 与 IANA 时区数据；缺少依赖时，已有安装授权就创建工作区隔离环境并安装；未授权才询问一次。使用隔离环境保存依赖。计算采用 Swiss Ephemeris 的 Moshier 模式，不依赖 Astrologer 项目的目录、代码、服务或运行状态。
 
 ## 输出边界
 

@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261003-120323-58875399",
+  "build_id": "20261003-130108-309f9655",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -13,8 +13,8 @@
     {
       "file": "skills/cgm-astrology-workbench/SKILL.md",
       "source": "skills/cgm-astrology-workbench/SKILL.md",
-      "sha256": "9a8408fc4735c6f5e5b5dd6699cbdd93f13f0d829c458555897e2a3f61b8cf60",
-      "bytes": 4177,
+      "sha256": "0e5cbbe7735d6cf16eda0ef579d747c4ecdad1365dc0aca588f213aeb81121d2",
+      "bytes": 5655,
       "transform": "none"
     },
     {
@@ -34,8 +34,8 @@
     {
       "file": "skills/cgm-calculate-astrology-chart/references/first-run-setup.md",
       "source": "skills/cgm-calculate-astrology-chart/references/first-run-setup.md",
-      "sha256": "a1608f2b0b9bc35745eaf3944d9d7b7d4a0cd7f34c43b25b28075cd77788add9",
-      "bytes": 4083,
+      "sha256": "f9338b0306e932ecdd5d254e9ea94029d61c0bf857c0a1151ada60c8824d4921",
+      "bytes": 4131,
       "transform": "none"
     },
     {
@@ -153,8 +153,8 @@
     {
       "file": "skills/cgm-calculate-astrology-chart/SKILL.md",
       "source": "skills/cgm-calculate-astrology-chart/SKILL.md",
-      "sha256": "1010148a029f7af00bb20238fa585336ad57758f2fdc1303ba2db5d9798011bf",
-      "bytes": 8575,
+      "sha256": "a28e8f756f93bd96d8400fc81eef9b53376635e5df7b68b24d073f639947a377",
+      "bytes": 8610,
       "transform": "none"
     },
     {
@@ -230,7 +230,7 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/outputs/排盘可视化示例/chart.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/outputs/排盘可视化示例/chart.html",
-      "sha256": "1dc672d9698397a0588a1da2c5d13d99f5488ed8f603b611903efbeaf6d065b3",
+      "sha256": "c2b828d7221d2c10cd620500b0c26556e15e5610d2bce0e5bfe104aa4b9815dd",
       "bytes": 55933,
       "transform": "none"
     },
@@ -496,7 +496,7 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "88ab251aa9479e3f4764562129909e8ad9944536aa28c8a39e252ae9c67ee90e",
+      "sha256": "08099741fe917ec89c48fd8c4990f79f6c80fd5aa8feed9ebcb6b98f7d47a90d",
       "bytes": 51038,
       "transform": "none"
     },
@@ -972,8 +972,8 @@
     {
       "file": "INSTALL.md",
       "source": "release-metadata/astrology/INSTALL.md",
-      "sha256": "496ed0b191eff8d0897580409ac0a8c2a15d902d817801b37004f5d666b8c7fd",
-      "bytes": 6721,
+      "sha256": "c6c155a1c28784c9d8488a46cb43ac7552cc4fbf514b91a7225b7fc897a057b9",
+      "bytes": 6599,
       "transform": "none"
     },
     {
@@ -986,15 +986,15 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "512fa4ef9d45d80170039ff453d1350f9898182559d59a7c4e63cec88505b5ac",
+      "sha256": "7337dce9e7e82d18d4dd7c6cb73d98073d73d5cf98342b478c707922c56788d4",
       "bytes": 5290,
       "transform": "none"
     },
     {
       "file": "TESTING.md",
       "source": "release-metadata/astrology/TESTING.md",
-      "sha256": "a2f55a2489067536c8b54873a88c13502dd16cf5ac5f18d4a9eb1fb9bea9eebb",
-      "bytes": 2208,
+      "sha256": "00decd31d7f38c6bc9289907f80f3b416518f864c2b0d04bbfbf4e26ef4f25ad",
+      "bytes": 2678,
       "transform": "none"
     }
   ],

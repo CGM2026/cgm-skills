@@ -1,16 +1,16 @@
 # 长庚明希腊占星工作台：安装与首次使用
 
-## 下载与交给 Agent 使用
+## 直接交给 Agent 安装
 
-固定来源：[cgm-skills 仓库内的希腊占星工作台](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench)，后续修复沿用 `main` 分支。
+下载并安装 → 补齐缺失依赖 → 确认默认口径 → 排一个示例并打开工作页。
 
-- [下载仓库 main 的 ZIP](https://github.com/CGM2026/cgm-skills/archive/refs/heads/main.zip)，解压后进入 `workbenches/cgm-hellenistic-astrology-workbench`。
-- 使用 Git 的读者可运行 `git clone https://github.com/CGM2026/cgm-skills.git`，然后进入 `cgm-skills/workbenches/cgm-hellenistic-astrology-workbench`。
-- 将工作台目录交给能读取文件、执行 Python/Node.js 并打开本机页面的 Agent，要求先读本文件与 `skills/cgm-astrology-workbench/SKILL.md`。
+将下面一句话发给 WorkBuddy 或其他能运行本机程序的 Agent：
 
-入口 `cgm-astrology-workbench` 和两个成员 `cgm-calculate-astrology-chart`、`cgm-hellenistic-chart-visualization` 必须保持相邻。直接读取本目录即可使用；若要注册到某个 Agent 的技能系统，按该软件的目录规则注册全部三个成员，并保留本工作台根目录的许可与说明。WorkBuddy 的安装与自动发现流程尚未实测。本工作台与仓库统一采用 AGPL-3.0-only；第三方资源适用本目录的第三方声明。
+> 请下载 https://github.com/CGM2026/cgm-skills/archive/refs/heads/main.zip 中的 workbenches/cgm-hellenistic-astrology-workbench，阅读 INSTALL.md 和 skills/cgm-astrology-workbench/SKILL.md，安装全部三个成员及必要依赖，向我一次确认推荐排盘口径，再用包内示例排盘并打开工作页；已有案例、笔记和个人设置沿用原位置。
 
-以下命令在工作台根目录执行，Windows 示例使用 PowerShell；含空格的路径需加引号。macOS/Linux 将隔离环境 Python 路径替换为 `bin/python`；本次尚未完成这些平台的整套实测。
+三个成员保持同级，配套资源和工作台根目录的许可文件一并保留。按目标 Agent 的实际技能目录安装，核对它能识别并调用入口。只检查安装目标和已知数据位置；按已有授权完成依赖安装，进度只报告结果、阻碍或待选事项。完整开发测试不是首次安装步骤。
+
+下面是手动安装命令；Agent 可按需读取当前步骤。命令在工作台根目录执行，Windows 用 PowerShell，macOS/Linux 按本机路径使用隔离环境中的 Python。首次安装以示例排盘、校验、工作页打开和一条笔记保存后刷新回读为完成标准。WorkBuddy 完整流程的实测状态见 TESTING.md。
 
 ## 1. 检查环境
 
@@ -25,7 +25,7 @@ python skills/cgm-calculate-astrology-chart/scripts/bootstrap_runtime.py --state
 
 Windows 若只识别 `py`，将上述 `python` 换成 `py -3`。检查只检测现有组件，不安装。返回 `ready` 时，使用返回的 `python_executable` 运行后面的命令；这里以 `<python>` 代表该可执行文件。
 
-若提示缺少依赖，在你同意联网安装后执行：
+若提示缺少依赖，沿用已有安装授权执行；未授权时询问一次：
 
 ```powershell
 python skills/cgm-calculate-astrology-chart/scripts/bootstrap_runtime.py --state-dir .cgm-hellenistic-astrology --install
@@ -70,7 +70,7 @@ PowerShell 执行带路径的解释器可写成：
 
 Agent 也可用 `library_cli.py --library demo-library open --view 工作页ID --port 4860` 启动并返回地址。若端口已属于另一库，换空闲端口，不接管原服务。
 
-## 5. 备份与完整导出
+## 按需：备份与完整导出
 
 ```text
 <python> skills/cgm-hellenistic-chart-visualization/scripts/library_cli.py --library demo-library backup --output backups/demo-backup-01

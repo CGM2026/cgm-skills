@@ -1,22 +1,22 @@
 # 长庚明八字工作台：安装与首次使用
 
-## 下载与交给 Agent 使用
+## 直接交给 Agent 安装
 
-固定来源：[cgm-skills 仓库内的八字工作台](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-bazi-workbench)，后续修复沿用 `main` 分支。
+下载并安装 → 补齐缺失依赖 → 确认默认口径 → 排一个示例并打开工作页。
 
-- [下载仓库 main 的 ZIP](https://github.com/CGM2026/cgm-skills/archive/refs/heads/main.zip)，解压后进入 `workbenches/cgm-bazi-workbench`。
-- 使用 Git 的读者可运行 `git clone https://github.com/CGM2026/cgm-skills.git`，然后进入 `cgm-skills/workbenches/cgm-bazi-workbench`。
-- 将工作台目录交给能读取文件、执行 Python/Node.js 并打开本机页面的 Agent，要求先读本文件与 `skills/cgm-bazi-suite/SKILL.md`。包内三个成员需要保持相邻。
+将下面一句话发给 WorkBuddy 或其他能运行本机程序的 Agent：
 
-直接读取本目录即可使用。若要注册到某个 Agent 的技能系统，需要同时注册 `cgm-bazi-suite`、`cgm-bazi-chart`、`cgm-bazi-visualization` 三个成员；按该软件的目录规则安装，并保留本工作台根目录的许可与说明。WorkBuddy 的安装与自动发现流程尚未实测。本工作台与仓库统一采用 AGPL-3.0-only；第三方资源适用本目录的第三方声明。
+> 请下载 https://github.com/CGM2026/cgm-skills/archive/refs/heads/main.zip 中的 workbenches/cgm-bazi-workbench，阅读 INSTALL.md 和 skills/cgm-bazi-suite/SKILL.md，安装全部三个成员及必要依赖，向我一次确认推荐排盘口径，再用包内示例排盘并打开工作页；已有案例、笔记和个人设置沿用原位置。
 
-以下命令均在工作台根目录执行。示例为 Windows PowerShell；含空格的路径保留引号。macOS/Linux 将 Python 路径改为 `.venv/bin/python`，环境变量用相应 shell 的写法；这两个平台尚未完成本次整套实测。
+三个成员保持同级，配套资源和工作台根目录的许可文件一并保留。按目标 Agent 的实际技能目录安装，核对它能识别并调用入口。只检查安装目标和已知数据位置；按已有授权完成依赖安装，进度只报告结果、阻碍或待选事项。完整开发测试不是首次安装步骤。
+
+下面是手动安装命令；Agent 可按需读取当前步骤。命令在工作台根目录执行，Windows 用 PowerShell，macOS/Linux 按本机路径使用隔离环境中的 Python。首次安装以示例排盘、校验、工作页打开和一条笔记保存后刷新回读为完成标准。WorkBuddy 完整流程的实测状态见 TESTING.md。
 
 ## 1. 准备运行环境
 
 需要带完整 ICU 的 Node.js 18 或以上、Python 3.9 或以上、pyswisseph 2.10.3.2 或以上以及 IANA 时区数据。新环境可用 Python 3.11 或以上；本次开发环境为 Python 3.12、Node.js 24。Python 自带的 SQLite 由案例库使用，无需另装数据库服务。
 
-如果机器尚未安装 Python 或 Node.js，从 [Python 官网](https://www.python.org/downloads/) 和 [Node.js 官网](https://nodejs.org/en/download)安装。下面依赖安装命令会联网下载软件；由你主动执行，或明确授权 Agent 执行。
+如果机器尚未安装 Python 或 Node.js，从 [Python 官网](https://www.python.org/downloads/) 和 [Node.js 官网](https://nodejs.org/en/download)安装。已有安装必要依赖的授权时，Agent 直接执行下面的步骤。
 
 ```powershell
 python -m venv .venv
@@ -76,7 +76,7 @@ node skills/cgm-bazi-suite/scripts/run.cjs birth examples/birth.json demo-output
 
 也可让 Agent 使用 `open --view ID --port 4880` 后返回浏览器地址。端口被另一案例库占用时，选择其他空闲端口，不能接管它。
 
-## 5. 备份与导出
+## 按需：备份与导出
 
 ```powershell
 .\.venv\Scripts\python.exe skills/cgm-bazi-visualization/scripts/case-library.py --library demo-library backup --output backups/demo-backup-01
