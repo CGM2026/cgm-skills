@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261003-113842-952bfee2",
+  "build_id": "20261003-115219-c5c3888c",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -181,7 +181,7 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/legal-footer.html",
       "source": "skills/cgm-bazi-visualization/assets/legal-footer.html",
-      "sha256": "51a01c31484891dc5cb1b4b8558b797243690597b734112f87ae58e9a9d9b5cc",
+      "sha256": "d84eef72e3f32774b26aeda586c13d89a1a4534cb18174725ee4a42e43acf6fd",
       "bytes": 51155,
       "transform": "none"
     },
@@ -223,8 +223,8 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/research-ui.js",
       "source": "skills/cgm-bazi-visualization/assets/research-ui.js",
-      "sha256": "16af0fc5a42c4eb29055a69f54db34c15d63a671fbf67c5ce8c81d7983e32a87",
-      "bytes": 69117,
+      "sha256": "a631e9c3cb6938d1121062c705797fc31f882eead0dd522f94d82a7e4117ab79",
+      "bytes": 69225,
       "transform": "none"
     },
     {
@@ -300,8 +300,8 @@
     {
       "file": "skills/cgm-bazi-visualization/references/research-layers.md",
       "source": "skills/cgm-bazi-visualization/references/research-layers.md",
-      "sha256": "bca8ef9d8941b0904f2c950b6d4d8b96e7831bfe1f13cd5340a9ae21b6e95fa6",
-      "bytes": 11710,
+      "sha256": "beb8a8f32721415cf9331fb26e27d3cb03dc7e1ecb42a680a9c6f7576c5e8714",
+      "bytes": 12107,
       "transform": "none"
     },
     {
@@ -377,8 +377,8 @@
     {
       "file": "skills/cgm-bazi-visualization/scripts/research.cjs",
       "source": "skills/cgm-bazi-visualization/scripts/research.cjs",
-      "sha256": "ef50b86ecc1387c1dfa6cd63b85552a55eaeefba93cd59feb0aac5f5b3b0bb12",
-      "bytes": 7314,
+      "sha256": "d74c884c6e63ad4fdac7fa79e1cfda7834e9a1fad6e6256841567223de124e1a",
+      "bytes": 7301,
       "transform": "none"
     },
     {
@@ -461,8 +461,8 @@
     {
       "file": "tests/bazi-suite/mark-geometry.cjs",
       "source": "tests/bazi-suite/mark-geometry.cjs",
-      "sha256": "8a493dc54af80691c10e2e7682fb3d0f8336b27e5fa7fec6bfef5c2f27f7c78c",
-      "bytes": 2485,
+      "sha256": "45200a463589bf891aa8e7cd7fc1c80f82e6bd9192398ec178872cc7d8111b93",
+      "bytes": 3091,
       "transform": "none"
     },
     {
@@ -566,7 +566,7 @@
     {
       "file": "README.md",
       "source": "release-metadata/bazi/README.md",
-      "sha256": "8870d1aa521ef9fcb6de40ed1199539525f22555bb0b325de3c00a56f4dfd955",
+      "sha256": "08c3b759d200946894f587016843442a11b46425b349fbc095a7e5231cae76a8",
       "bytes": 5613,
       "transform": "none"
     },
@@ -580,8 +580,8 @@
     {
       "file": "TESTING.md",
       "source": "release-metadata/bazi/TESTING.md",
-      "sha256": "783c2070121da3e0e0ac4894192cb9f17849487a1bf48062fdd2350fe984df47",
-      "bytes": 2766,
+      "sha256": "c6ce0955c1a7770f8264ae9b5016319ba9818eb26bcb969aaa5a9b8921217aab",
+      "bytes": 3215,
       "transform": "none"
     }
   ],

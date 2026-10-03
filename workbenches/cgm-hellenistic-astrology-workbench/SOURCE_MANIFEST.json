@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261003-113842-952bfee2",
+  "build_id": "20261003-115219-c5c3888c",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -230,7 +230,7 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/outputs/排盘可视化示例/chart.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/outputs/排盘可视化示例/chart.html",
-      "sha256": "2ab2fe7ba00e34697cf81673f7baff67ca2b268830aa3158d085d3ffea45b715",
+      "sha256": "7940f0188a7e432cc927c65bf2b5a3502808d39aa7b5e1abd0e39b7af0938723",
       "bytes": 55933,
       "transform": "none"
     },
@@ -496,7 +496,7 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "e4c49f5ea52e0da0dd0f82ebe7de0f18374cd59c1b10507afa73bbc7cf758891",
+      "sha256": "51f4ad96ac8b35837f575d5849dc97ed4214c80fe9b0c62a2c8c4b4d7b10d392",
       "bytes": 51038,
       "transform": "none"
     },
@@ -986,7 +986,7 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "c173e2728662a5b3ac00bfd1f405cd22347a48eeea020563034148d96a18961f",
+      "sha256": "affffda6784f6108506c9ae19759868f9cba7ed7d42d7a4c98e36318e21c11a5",
       "bytes": 5290,
       "transform": "none"
     },

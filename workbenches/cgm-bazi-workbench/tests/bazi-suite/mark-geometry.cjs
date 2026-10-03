@@ -28,3 +28,12 @@ assert.equal(exported.overlay.style.blockSize,'450px');
 assert.equal(main.overlay.children[0].attrs.cy,'230');
 assert.deepEqual(marks[0].a,{object:'natal:0:branch',x:0,y:0});
 console.log('保存提示高度变化不移动记号；导出按副本对象重新定位；原记号坐标保留。');
+
+// A small anchor must not clip large circles or translated endpoints.
+const far=ctx.point({clientX:650,clientY:-400},'natal:0:branch');
+assert.equal(far.x,15);assert.equal(far.y,-10);
+assert.deepEqual(JSON.parse(JSON.stringify(ctx.coord(far))),{x:650,y:-400});
+const shifted=ctx.markPoint({x:-450,y:1400},'natal:0:branch');
+assert.equal(shifted.x,-12.5);assert.equal(shifted.y,20);
+assert.deepEqual(JSON.parse(JSON.stringify(ctx.coord(shifted))),{x:-450,y:1400});
+console.log('大范围绘制、移动与缩放端点保持原位置，不按锚点大小截断。');

@@ -75,7 +75,7 @@ function validateResearch(chart,mode,state,previous){
     if(mark.bend!==undefined&&(!Number.isFinite(mark.bend)||Math.abs(mark.bend)>3))fail('箭头弧度无效');
     if(mark.rotation!==undefined&&(!Number.isFinite(mark.rotation)||mark.rotation<0||mark.rotation>=360))fail('标记旋转角度无效');
     const oldMark=oldNote?.marks?.find(p=>p.id===mark.id);
-    for(const end of ['a','b']){const p=mark[end];if(!p||!allowOld(p.object,oldMark?.[end]?.object===p.object)||![p.x,p.y].every(v=>Number.isFinite(v)&&v>=-3&&v<=4))fail('标记只能属于本研究现场');}
+    for(const end of ['a','b']){const p=mark[end];if(!p||!allowOld(p.object,oldMark?.[end]?.object===p.object)||![p.x,p.y].every(v=>Number.isFinite(v)))fail('标记只能属于本研究现场');}
    }
   }
  }
