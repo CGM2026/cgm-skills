@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261003-115219-c5c3888c",
+  "build_id": "20261003-120323-58875399",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -181,7 +181,7 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/legal-footer.html",
       "source": "skills/cgm-bazi-visualization/assets/legal-footer.html",
-      "sha256": "d84eef72e3f32774b26aeda586c13d89a1a4534cb18174725ee4a42e43acf6fd",
+      "sha256": "bbe484090e77eece7db5bdc039df8c82bb9ef09367afd9a20a09b193a42b889c",
       "bytes": 51155,
       "transform": "none"
     },
@@ -223,8 +223,8 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/research-ui.js",
       "source": "skills/cgm-bazi-visualization/assets/research-ui.js",
-      "sha256": "a631e9c3cb6938d1121062c705797fc31f882eead0dd522f94d82a7e4117ab79",
-      "bytes": 69225,
+      "sha256": "49915e06c70a8e248a52295f1a5c8e45798a19d8ad454dc0bcb86029ce2a2f22",
+      "bytes": 69131,
       "transform": "none"
     },
     {
@@ -566,7 +566,7 @@
     {
       "file": "README.md",
       "source": "release-metadata/bazi/README.md",
-      "sha256": "08c3b759d200946894f587016843442a11b46425b349fbc095a7e5231cae76a8",
+      "sha256": "607590f8bd9030cca7509a0ff9591ee819a2979836f653730c6051aa6594a45f",
       "bytes": 5613,
       "transform": "none"
     },
