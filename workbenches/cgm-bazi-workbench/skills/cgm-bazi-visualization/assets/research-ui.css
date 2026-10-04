@@ -197,6 +197,13 @@ main .hidden-list{border-left-color:var(--research-background-line)}
 .research-archive-head-actions{display:flex;align-items:center;gap:16px;flex-shrink:0}
 .research-archive-head-actions [data-action="back"]{font:13px/1.6 var(--sans);color:var(--muted);white-space:nowrap}
 .research-archive-head-actions [hidden]{display:none}
+.research-dialog.research-archive-browsing[open]{display:flex;flex-direction:column;overflow:hidden}
+.research-dialog.research-archive-browsing .research-archive-head{position:static;flex:none;margin-top:0;padding-top:0}
+.research-archive-browsing .research-archive{display:flex;flex-direction:column;flex:1 1 auto;min-height:0;overflow:hidden}
+.research-archive-browsing .research-archive-tabs{flex:none}
+.research-archive-browsing .research-archive-records{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+.research-archive-browsing .research-archive-list-actions{flex:none;justify-content:space-between;border-top:1px solid var(--line);margin-top:12px;padding-top:12px;font:13px/1.6 var(--sans)}
+.research-archive-browsing .research-status{flex:none;margin:8px 0 0}
 
 .research-archive form footer .research-archive-delete{margin-right:auto;color:#a64625}
 

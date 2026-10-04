@@ -1,8 +1,8 @@
 {
   "name": "长庚明八字工作台",
-  "version": "1.0.12",
-  "build_id": "20261004-192029-b87f8ac2",
-  "built_at": "2026-10-04T11:20:30.344903+00:00",
+  "version": "1.0.13",
+  "build_id": "20261004-193844-790c47f6",
+  "built_at": "2026-10-04T11:38:45.166957+00:00",
   "status": "public-release",
   "repository": "https://github.com/CGM2026/cgm-skills",
   "repository_path": "workbenches/cgm-bazi-workbench",

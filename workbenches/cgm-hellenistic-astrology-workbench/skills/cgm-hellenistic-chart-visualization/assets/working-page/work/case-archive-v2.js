@@ -35,8 +35,8 @@
  }
  function draw(){
   const tabs=[['records','按记录'],['analysis','汇总分析'],['feedback','汇总反馈']];
-  dialog.innerHTML='<div class="archive-head"><h2>案例档案</h2><div class="archive-head-actions">'+(editing?'<button type="button" class="archive-back" data-action="cancel-edit">返回列表</button>':'')+'<button type="button" data-action="close" aria-label="关闭档案">×</button></div></div>'+(editing?editor():'<nav class="archive-tabs" aria-label="档案查看方式">'+tabs.map(([key,label])=>'<button type="button" data-view="'+key+'" aria-current="'+(view===key?'page':'false')+'">'+label+'</button>').join('')+'</nav><div class="archive-view">'+(view==='records'?list():summaryList(view))+'</div><div class="archive-list-actions"><button type="button" data-action="new">＋ 新增记录</button><button type="button" data-action="compose" '+(view==='records'&&!selected.size?'disabled':'')+'>放到下方</button></div>')+'<p class="archive-status" role="status"></p>';
-  dialog.scrollTop=editing?0:listScroll;if(editing)prepareArchiveFields();else requestAnimationFrame(()=>{if(!editing)dialog.scrollTop=listScroll;});
+  dialog.classList.toggle('archive-browsing',!editing);dialog.innerHTML='<div class="archive-head"><h2>案例档案</h2><div class="archive-head-actions">'+(editing?'<button type="button" class="archive-back" data-action="cancel-edit">返回列表</button>':'')+'<button type="button" data-action="close" aria-label="关闭档案">×</button></div></div>'+(editing?editor():'<nav class="archive-tabs" aria-label="档案查看方式">'+tabs.map(([key,label])=>'<button type="button" data-view="'+key+'" aria-current="'+(view===key?'page':'false')+'">'+label+'</button>').join('')+'</nav><div class="archive-view">'+(view==='records'?list():summaryList(view))+'</div><div class="archive-list-actions"><button type="button" data-action="new">＋ 新增记录</button><button type="button" data-action="compose" '+(view==='records'&&!selected.size?'disabled':'')+'>放到下方</button></div>')+'<p class="archive-status" role="status"></p>';
+  if(editing){dialog.scrollTop=0;prepareArchiveFields();}else{dialog.querySelector('.archive-view').scrollTop=listScroll;requestAnimationFrame(()=>{if(!editing)dialog.querySelector('.archive-view').scrollTop=listScroll;});}
  }
  const part=(label,value,showLabel)=>'<div class="archive-presentation-part">'+(showLabel?'<span>'+label+'</span>':'')+'<p>'+esc(value)+'</p></div>';
  function recordContent(item,heading){const both=!!(item.analysis.trim()&&item.feedback.trim());return (heading?'<h3>'+esc(title(item))+'</h3>':'')+(item.date?'<p class="archive-presentation-date">'+esc(item.date)+'</p>':'')+(item.analysis.trim()?part('分析',item.analysis,both):'')+(item.feedback.trim()?part('反馈',item.feedback,both):'');}
@@ -50,11 +50,11 @@
  icon.addEventListener('click',()=>{if(!(globalThis.ChartLibrary&&editing&&dialog.querySelector('.archive-record-editor')))draw();if(!dialog.open)dialog.show();});
  dialog.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button)return;
-  if(button.dataset.view){view=button.dataset.view;draw();return;}
-  if(button.dataset.edit){listScroll=dialog.scrollTop;editing=button.dataset.edit;draw();return;}
+  if(button.dataset.view){view=button.dataset.view;listScroll=0;draw();return;}
+  if(button.dataset.edit){listScroll=dialog.querySelector('.archive-view').scrollTop;editing=button.dataset.edit;draw();return;}
   switch(button.dataset.action){
    case 'close':if(!leaveEditor())break;dialog.close();break;
-   case 'new':listScroll=dialog.scrollTop;editing='new';draw();break;
+   case 'new':listScroll=dialog.querySelector('.archive-view').scrollTop;editing='new';draw();break;
    case 'cancel-edit':if(leaveEditor())draw();break;
    case 'delete':{const item=record(editing);if(!item||!confirm('删除“'+title(item)+'”？此操作会同时从下方展示卡片移除该记录。'))return;state.records=state.records.filter(entry=>entry.id!==item.id);selected.delete(item.id);save();if(globalThis.ChartLibrary)globalThis.ChartEditorAutosave?.finish('caseRecord');editing=null;draw();refreshCards();break;}
    case 'compose':{const spec=view==='records'?{kind:'selection',ids:ordered().filter(item=>selected.has(item.id)).map(item=>item.id)}:{kind:view};if(cardBody(spec)&&addCard(spec)){if(view==='records')selected.clear();dialog.close();}else dialog.querySelector('.archive-status').textContent='下方最多保留5张卡片，或当前汇总没有内容。';break;}

@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261004-192029-b87f8ac2",
+  "build_id": "20261004-193844-790c47f6",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -181,8 +181,8 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/legal-footer.html",
       "source": "skills/cgm-bazi-visualization/assets/legal-footer.html",
-      "sha256": "895b60f5c11061c3451122b1de2ecc4714fc2ff2f8e13af3be8b8b88203c8e65",
-      "bytes": 51100,
+      "sha256": "5b13bb5755cdf00118b5af520ac7048f897fa07b490e819c781908f5723381f8",
+      "bytes": 51109,
       "transform": "none"
     },
     {
@@ -223,15 +223,15 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/research-ui.css",
       "source": "skills/cgm-bazi-visualization/assets/research-ui.css",
-      "sha256": "56730cd565889a47b96d56f9e977006747691ed94cb67b117994a71376902ddb",
-      "bytes": 20371,
+      "sha256": "029a45587bf6b269ee15aa97f0a0d83393936362d0e19f50420cf3873d638b12",
+      "bytes": 21192,
       "transform": "none"
     },
     {
       "file": "skills/cgm-bazi-visualization/assets/research-ui.js",
       "source": "skills/cgm-bazi-visualization/assets/research-ui.js",
-      "sha256": "744e6eb12770e17ab7ddef3f5a5c2a3a5c04971748144584655b51ae8f856d19",
-      "bytes": 71019,
+      "sha256": "8b08a104362094c44141dee9573b36da1397307eb2a8cdc6f47b915426ccdda4",
+      "bytes": 71275,
       "transform": "none"
     },
     {
@@ -314,8 +314,8 @@
     {
       "file": "skills/cgm-bazi-visualization/references/research-layers.md",
       "source": "skills/cgm-bazi-visualization/references/research-layers.md",
-      "sha256": "43582e4821e4b246d8499a89ebc42b6ce9f8a82068fc287f5ef085200777b0d7",
-      "bytes": 13016,
+      "sha256": "c9eb13e6a247640b2b586dd6cbd55889ef2476dcf8319ba15ab7893cbee5c1cd",
+      "bytes": 13445,
       "transform": "none"
     },
     {
@@ -629,8 +629,8 @@
     {
       "file": "README.md",
       "source": "release-metadata/bazi/README.md",
-      "sha256": "fe173c9d23e85b2b90991aca87edaa4f498e20024f98f7338438bb187d75ca5a",
-      "bytes": 6762,
+      "sha256": "ec4d65aedc7fa7888a239fe2cd406d8041c234ec021dee1d6a71b436a1d5375f",
+      "bytes": 7021,
       "transform": "none"
     },
     {
@@ -643,8 +643,8 @@
     {
       "file": "TESTING.md",
       "source": "release-metadata/bazi/TESTING.md",
-      "sha256": "725e082278a98ecb208a0ba7f15c4af43391342397d5437b64a821430fedfa01",
-      "bytes": 5264,
+      "sha256": "82d94e5feafee8899993e74fd5ebae3e5c6f02718fe845988070e31023f96aa1",
+      "bytes": 5685,
       "transform": "none"
     }
   ],
