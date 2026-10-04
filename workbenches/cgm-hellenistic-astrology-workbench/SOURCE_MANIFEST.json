@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261004-183751-77cd4829",
+  "build_id": "20261004-191023-7a09fc9a",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -503,8 +503,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "aa627a01a981546991e2c2b07a22c39c3c9eb344c5f7508f674b91c0bdaced95",
-      "bytes": 50944,
+      "sha256": "b6428c1c8f54b77f548eace55c7834b607c41a81ac73f0111c4fa4f2587f3a41",
+      "bytes": 50890,
       "transform": "none"
     },
     {
@@ -643,8 +643,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/visual-refinements.css",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/visual-refinements.css",
-      "sha256": "666fb75ad1b6a584f0d4c20df719b165adaa900d9d337471abcc7a4bf647b1e0",
-      "bytes": 120272,
+      "sha256": "c35875366f31a9517f13bdb9847ebc11b6fe875441bb8daac49622e1dc4513ba",
+      "bytes": 120305,
       "transform": "none"
     },
     {
@@ -678,8 +678,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/references/case-library-v1.md",
       "source": "skills/cgm-hellenistic-chart-visualization/references/case-library-v1.md",
-      "sha256": "af861137329b42b8891ff10779139fd1418c3c49293885d8a6cef9526c4e8535",
-      "bytes": 16067,
+      "sha256": "e4cfeb66587879d4c813fee687a93e0dfd36efe2d0df6d7945259b0b943c958d",
+      "bytes": 16224,
       "transform": "none"
     },
     {
@@ -1049,15 +1049,15 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "66ef9c43344853ec6808ad1058cdab4af832ce1f93256f4ad18c95eda4a406dd",
-      "bytes": 6122,
+      "sha256": "e5309fda2932677e9b592419ce09dee22d8aca05fb4046e0d93314db6ebfe792",
+      "bytes": 6279,
       "transform": "none"
     },
     {
       "file": "TESTING.md",
       "source": "release-metadata/astrology/TESTING.md",
-      "sha256": "fa243ceccc592279110b45e67868ea5598302bd8a52c37758df0eec2c035ab6e",
-      "bytes": 3821,
+      "sha256": "bb854434820d04ac19122e23b8b8832d1b3d58a30d2787408a52e536665c250b",
+      "bytes": 4054,
       "transform": "none"
     }
   ],
