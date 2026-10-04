@@ -196,7 +196,7 @@
   const excerpt=text=>{const s=text.replace(/\s+/g,' ').trim();return esc(s.length>95?s.slice(0,95)+'…':s);};
   const fieldNames=['title','date','analysis','feedback'],fields=r=>Object.fromEntries(fieldNames.map(k=>[k,r?.[k]??'']));let entered=null,changes={};
   function deletedEditor(){const id=editing;if(!id||id==='new'||record(id))return false;try{draftStore.backup({kind:'deleted-archive-draft',view:config.viewId,recordId:id,draft:{id,...entered,...changes}});}catch{}if(a.draft?.id===id){a.draft=null;touch();}editing=null;entered=null;changes={};return true;}
-  function archiveField(kind,label,value){return '<details class="research-archive-field" '+(value.trim()?'open':'')+'><summary>'+label+'</summary><textarea name="'+kind+'" aria-label="当时的'+label+'" rows="3" placeholder="可留空">'+esc(value)+'</textarea></details>';}
+  function archiveField(kind,label,value){return '<details class="research-archive-field" '+(value.trim()?'open':'')+'><summary>'+label+'<span class="research-archive-toggle" aria-hidden="true"></span></summary><textarea name="'+kind+'" aria-label="当时的'+label+'" rows="3" placeholder="可留空">'+esc(value)+'</textarea></details>';}
   function fitArchiveFields(){card.querySelectorAll('textarea').forEach(el=>{if(!el.getClientRects().length)return;el.style.height='auto';el.style.height=(el.scrollHeight+2)+'px';});}
   function prepareArchiveFields(){requestAnimationFrame(()=>{card.querySelectorAll('.research-archive-field').forEach(el=>{el.open=!!el.querySelector('textarea').value.trim();});fitArchiveFields();});}
   function draw(){

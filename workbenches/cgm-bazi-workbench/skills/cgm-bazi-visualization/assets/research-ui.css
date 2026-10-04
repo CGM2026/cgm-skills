@@ -204,8 +204,11 @@ main .hidden-list{border-left-color:var(--research-background-line)}
 .research-archive-field{margin:16px 0}
 .research-archive-field summary{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);cursor:pointer;list-style:none}
 .research-archive-field summary::-webkit-details-marker{display:none}
-.research-archive-field summary::after{content:'展开 +';font-size:12px;white-space:nowrap}
-.research-archive-field[open] summary::after{content:'折叠 −'}
+.research-archive-toggle{display:inline-flex;align-items:center;gap:8px;flex:none;font-size:12px;line-height:1.6;letter-spacing:0;white-space:nowrap}
+.research-archive-toggle::before{content:'展开';width:2em;flex:none;text-align:left}
+.research-archive-toggle::after{content:'+';width:16px;flex:none;text-align:center;font-size:16px;line-height:1}
+.research-archive-field[open] .research-archive-toggle::before{content:'折叠'}
+.research-archive-field[open] .research-archive-toggle::after{content:'−'}
 .research-archive form .research-archive-field textarea{min-height:96px;max-height:none;overflow:hidden;resize:none;margin-top:6px}
 :root,*{scrollbar-width:thin;scrollbar-color:#b9ab98 transparent}
 ::-webkit-scrollbar{width:8px;height:8px}

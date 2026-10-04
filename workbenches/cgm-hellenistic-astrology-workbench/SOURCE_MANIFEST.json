@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261004-191023-7a09fc9a",
+  "build_id": "20261004-192029-b87f8ac2",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -321,8 +321,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/case-archive-v2.js",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/case-archive-v2.js",
-      "sha256": "fe25da2e9128d1f791e74949547b7825e4213e80db07112b83b81e4281e6b5da",
-      "bytes": 14664,
+      "sha256": "43b06804d4c922a6538c7b194ef8819d9568379877198e3af5fd7d4a1d0fdfd1",
+      "bytes": 14726,
       "transform": "none"
     },
     {
@@ -503,8 +503,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "b6428c1c8f54b77f548eace55c7834b607c41a81ac73f0111c4fa4f2587f3a41",
-      "bytes": 50890,
+      "sha256": "00ecd400cd5670cafe9b41e0ef86ee7ce9712d37cc734088ffd0b2dc05da9114",
+      "bytes": 50908,
       "transform": "none"
     },
     {
@@ -643,8 +643,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/visual-refinements.css",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/visual-refinements.css",
-      "sha256": "c35875366f31a9517f13bdb9847ebc11b6fe875441bb8daac49622e1dc4513ba",
-      "bytes": 120305,
+      "sha256": "ecd1e5870092b6b6f277764688d1f1350c9e1e2a586bdcd16faa1df31261f12e",
+      "bytes": 120776,
       "transform": "none"
     },
     {
@@ -678,8 +678,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/references/case-library-v1.md",
       "source": "skills/cgm-hellenistic-chart-visualization/references/case-library-v1.md",
-      "sha256": "e4cfeb66587879d4c813fee687a93e0dfd36efe2d0df6d7945259b0b943c958d",
-      "bytes": 16224,
+      "sha256": "8c931aedd776650c15ba4e1a55f22e8eed418a0e22e70130afc30baca2c5f68e",
+      "bytes": 16384,
       "transform": "none"
     },
     {
@@ -1049,15 +1049,15 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "e5309fda2932677e9b592419ce09dee22d8aca05fb4046e0d93314db6ebfe792",
-      "bytes": 6279,
+      "sha256": "5f9c94ef2d36559767ba2cf7bd1be22fbe657c2fc23162b187f01423e0d5be4b",
+      "bytes": 6342,
       "transform": "none"
     },
     {
       "file": "TESTING.md",
       "source": "release-metadata/astrology/TESTING.md",
-      "sha256": "bb854434820d04ac19122e23b8b8832d1b3d58a30d2787408a52e536665c250b",
-      "bytes": 4054,
+      "sha256": "779de1ab13cead2ac379775ac528381ebea4daeba5e86d31948968d91f9edf62",
+      "bytes": 4289,
       "transform": "none"
     }
   ],

@@ -27,7 +27,7 @@
  }
  function summaryList(kind){const items=summary(kind),label=kind==='analysis'?'分析':'反馈';return '<div class="archive-summary-list">'+(items.length?items.map(item=>'<article class="archive-item"><div class="archive-item-head"><strong>'+esc(title(item))+'</strong><span class="archive-item-date">'+esc(dateText(item))+'</span><button type="button" data-edit="'+esc(item.id)+'">查看原记录</button></div><p class="archive-item-preview">'+excerpt(item[kind])+'</p></article>').join(''):'<p class="archive-empty">还没有'+label+'记录。</p>')+'</div>';
  }
- function archiveField(kind,label,value){return '<details class="archive-record-field" '+(value.trim()?'open':'')+'><summary>'+label+'</summary><textarea name="'+kind+'" aria-label="当时的'+label+'" rows="3" placeholder="可留空">'+esc(value)+'</textarea></details>';}
+ function archiveField(kind,label,value){return '<details class="archive-record-field" '+(value.trim()?'open':'')+'><summary>'+label+'<span class="archive-record-toggle" aria-hidden="true"></span></summary><textarea name="'+kind+'" aria-label="当时的'+label+'" rows="3" placeholder="可留空">'+esc(value)+'</textarea></details>';}
  function fitArchiveFields(){dialog.querySelectorAll('.archive-record-editor textarea').forEach(el=>{if(!el.getClientRects().length)return;el.style.height='auto';el.style.height=(el.scrollHeight+2)+'px';});}
  function prepareArchiveFields(){requestAnimationFrame(()=>{dialog.querySelectorAll('.archive-record-field').forEach(el=>{el.open=!!el.querySelector('textarea').value.trim();});fitArchiveFields();});}
  function editor(){const item=editing==='new'?{title:'',date:'',analysis:'',feedback:''}:record(editing);if(!item)return '';
