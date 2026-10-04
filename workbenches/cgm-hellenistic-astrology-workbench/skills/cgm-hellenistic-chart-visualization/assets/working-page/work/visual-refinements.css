@@ -953,3 +953,25 @@ body,.folio .name,.folio .birth,.folio .settings,.folio .side h2,.folio .side .p
 /* end-start-picker-refinement */
 
 .folio .fixed-transit-time .time-adjust-controls{max-width:100%}
+
+/* archive-record-navigation */
+.folio .archive-dialog{--archive-pad-block:24px}
+.folio .archive-dialog .archive-head{position:sticky;top:calc(-1 * var(--archive-pad-block));z-index:2;background:var(--surface);margin-top:calc(-1 * var(--archive-pad-block));padding-top:var(--archive-pad-block);padding-bottom:8px}
+.folio .archive-dialog .archive-head-actions{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.folio .archive-dialog .archive-head .archive-back{width:auto;height:auto;font:13px/1.6 Huiwen,SimSun,serif;white-space:nowrap}
+
+.folio .archive-item-preview{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.folio .archive-record-field{margin:16px 0}
+.folio .archive-record-field summary{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--text-secondary);font:14px/1.7 Huiwen,SimSun,serif;cursor:pointer;list-style:none}
+.folio .archive-record-field summary::-webkit-details-marker{display:none}
+.folio .archive-record-field summary::after{content:'+';font-size:16px}
+.folio .archive-record-field[open] summary::after{content:'−'}
+.folio .archive-record-editor .archive-record-field textarea{min-height:96px;max-height:none;overflow:hidden;resize:none;margin-top:6px}
+:root,.folio,.folio *{scrollbar-width:thin;scrollbar-color:#b9ab98 transparent}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#b9ab98;border:2px solid var(--surface,#fffdf8);border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:#948774}
+::-webkit-scrollbar-corner{background:transparent}
+@media(max-width:480px){.folio .archive-dialog{--archive-pad-block:18px}}
+/* end-archive-record-navigation */

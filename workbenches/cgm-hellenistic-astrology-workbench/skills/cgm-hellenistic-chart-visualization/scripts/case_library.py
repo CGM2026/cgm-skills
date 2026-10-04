@@ -394,6 +394,11 @@ class Library:
             source=append_before_document_end(source,'</body>','<script>'+(WORK/'editor-autosave.js').read_text(encoding='utf-8')+'</script>')
         # Always append the current layout adapter, including older immutable shells.
         source=append_before_document_end(source,'</head>','<style>'+(WORK/'workbench-layout.css').read_text(encoding='utf-8')+'</style>')
+        # Imported cases retain their shell; refresh the archive interface in place.
+        archive_css=re.search(r'/\* archive-record-navigation \*/.*?/\* end-archive-record-navigation \*/',(WORK/'visual-refinements.css').read_text(encoding='utf-8'),re.S)
+        source=re.sub(r'<style id="archive-interface-styles">.*?</style>','',source,flags=re.S)
+        if archive_css:
+            source=append_before_document_end(source,'</head>','<style id="archive-interface-styles">'+archive_css[0]+'</style>')
         source=append_before_document_end(source,'</body>','<script>'+(WORK/'workbench-layout.js').read_text(encoding='utf-8')+'</script>')
         return attach_license_footer(source)
 

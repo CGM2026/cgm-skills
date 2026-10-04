@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261004-114858-7a42c907",
+  "build_id": "20261004-183751-77cd4829",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -321,8 +321,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/case-archive-v2.js",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/case-archive-v2.js",
-      "sha256": "a62a2eb1ceb7d9b3570850f19cd4f897bbab43ddf5a28c21946da102b79fede7",
-      "bytes": 13751,
+      "sha256": "fe25da2e9128d1f791e74949547b7825e4213e80db07112b83b81e4281e6b5da",
+      "bytes": 14664,
       "transform": "none"
     },
     {
@@ -503,8 +503,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "8dfefb2b4422b65430983095c0a7c8b9f3b6c174ee09948afc7370a9330d6710",
-      "bytes": 51038,
+      "sha256": "aa627a01a981546991e2c2b07a22c39c3c9eb344c5f7508f674b91c0bdaced95",
+      "bytes": 50944,
       "transform": "none"
     },
     {
@@ -643,8 +643,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/visual-refinements.css",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/visual-refinements.css",
-      "sha256": "77e9158840294c257356b4ced660f6b31aae310fd8ae0a2ed724bdd76ac475de",
-      "bytes": 118506,
+      "sha256": "666fb75ad1b6a584f0d4c20df719b165adaa900d9d337471abcc7a4bf647b1e0",
+      "bytes": 120272,
       "transform": "none"
     },
     {
@@ -678,8 +678,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/references/case-library-v1.md",
       "source": "skills/cgm-hellenistic-chart-visualization/references/case-library-v1.md",
-      "sha256": "ff818123fa017ea0383654b6498da8a29de694b1f9c4940c490a770ff5c21af9",
-      "bytes": 15475,
+      "sha256": "af861137329b42b8891ff10779139fd1418c3c49293885d8a6cef9526c4e8535",
+      "bytes": 16067,
       "transform": "none"
     },
     {
@@ -762,8 +762,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/scripts/case_library.py",
       "source": "skills/cgm-hellenistic-chart-visualization/scripts/case_library.py",
-      "sha256": "6948d8562416e377ab819ae23e5f7ceb04bed50e23c2dc8d121219bad1062092",
-      "bytes": 29804,
+      "sha256": "a734a60ca9d79fa2dc8a2b9aaab4b3b39cf24f9196e6ae2e8af1929253a93a68",
+      "bytes": 30317,
       "transform": "none"
     },
     {
@@ -1049,15 +1049,15 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "8a2800e0514c2f7f51ca58f82d507b01310dffd59375de30d53e54a5f10a6ee0",
-      "bytes": 5817,
+      "sha256": "66ef9c43344853ec6808ad1058cdab4af832ce1f93256f4ad18c95eda4a406dd",
+      "bytes": 6122,
       "transform": "none"
     },
     {
       "file": "TESTING.md",
       "source": "release-metadata/astrology/TESTING.md",
-      "sha256": "b6982e0d4b1364d5d1efac9677d2b8ae77985ed4ff6a691e9c5ddf310c49abbd",
-      "bytes": 3287,
+      "sha256": "fa243ceccc592279110b45e67868ea5598302bd8a52c37758df0eec2c035ab6e",
+      "bytes": 3821,
       "transform": "none"
     }
   ],
@@ -1069,6 +1069,7 @@
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/calculate_time_lords.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/calculate_transit_search.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/civil_age.cpython-312.pyc",
+    "skills/cgm-calculate-astrology-chart/scripts/__pycache__/method_settings.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/validate_chart_output.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/tests/__pycache__/test_validate_chart_output.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/cgm-hellenistic-chart-visualization/agents/openai.yaml",
