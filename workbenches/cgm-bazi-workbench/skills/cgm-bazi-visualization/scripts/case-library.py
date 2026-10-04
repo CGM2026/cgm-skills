@@ -21,6 +21,7 @@ from pathlib import Path
 from urllib.parse import urlparse, parse_qs
 
 HERE = Path(__file__).resolve().parent
+if str(HERE) not in sys.path:sys.path.insert(0,str(HERE))
 LABELS = {'year': '岁运盘', 'month': '流月盘', 'day': '流日盘'}
 MAX_TEXT = 100000
 
@@ -119,10 +120,13 @@ class Library:
             ''')
             if db.execute("SELECT value FROM metadata WHERE key='schema'").fetchone()[0] != 'cgm-bazi-library/1':
                 raise ValueError('案例库版本不兼容，不能自动覆盖')
+            from history_store import prepare
+            prepare(db)
 
     def connect(self):
         db = sqlite3.connect(self.root / 'cases.sqlite3', timeout=10)
-        db.row_factory = sqlite3.Row
+        from history_store import row_factory
+        db.row_factory = row_factory
         db.execute('PRAGMA foreign_keys=ON')
         db.execute('PRAGMA journal_mode=WAL')
         return db
@@ -175,6 +179,10 @@ class Library:
             self.trials = {k:v for k,v in self.trials.items() if v['expires'] > time.time()}
             if len(self.trials) >= 50:
                 raise ValueError('试算过多，请稍后再试')
+            from cache_budget import retained_bytes
+            while self.trials and retained_bytes(self.trials)+retained_bytes(result['chart'])>64*1024*1024:
+                self.trials.pop(next(iter(self.trials)))
+            if retained_bytes(result['chart'])>64*1024*1024:raise ValueError('试算盘过大，请缩小范围后重试')
             self.trials[key] = dict(view=view_id, chart=result['chart'], expires=time.time()+600)
         return dict(trial=key, before=result['before'], after=result['after'])
 
@@ -221,6 +229,8 @@ class Library:
                 db.execute('INSERT INTO history(view_id,object_id,kind,text,version,updated) VALUES(?,?,?,?,?,?)', (view_id, object_id, kind, old['text'], old['version'], old['updated']))
             now = time.time()
             db.execute('INSERT INTO entries VALUES(?,?,?,?,?,?) ON CONFLICT(view_id,object_id,kind) DO UPDATE SET text=excluded.text,version=excluded.version,updated=excluded.updated', (view_id, object_id, kind, text, previous+1, now))
+            from history_store import archive_older
+            archive_older(db,view_id)
         return dict(view_id=view_id, object_id=object_id, kind=kind, text=text, version=previous+1, updated=now)
 
     def history(self, view_id):
@@ -278,6 +288,8 @@ class Library:
             # Preserve even malformed raw text before the explicit Agent repair.
             db.execute('INSERT INTO research_history(view_id,text,version,updated) VALUES(?,?,?,?)',(view_id,old['text'],old['version'],old['updated']))
             now=time.time();db.execute('UPDATE research SET text=?,version=?,updated=? WHERE view_id=?',(target['text'],version+1,now,view_id))
+            from history_store import archive_older
+            archive_older(db,view_id)
         return dict(view_id=view_id,text=target['text'],version=version+1,updated=now,restoredHistoryId=history_id,warnings=checked.get('warnings',[]))
 
     def import_research(self, view_id, incoming, version):
@@ -341,7 +353,7 @@ class Library:
             if effective_base==current['version']:baseline=latest
             elif effective_base==0:baseline=dict(schema='bazi-research/1',layers=[])
             else:
-                baseline_row=db.execute('SELECT text FROM research_history WHERE view_id=? AND version=? ORDER BY id DESC LIMIT 1',(view_id,effective_base)).fetchone()
+                baseline_row=db.execute('SELECT * FROM research_history WHERE view_id=? AND version=? ORDER BY id DESC LIMIT 1',(view_id,effective_base)).fetchone()
                 if not baseline_row:raise ValueError('找不到研究基线版本，请先重新读取当前记录再合并')
                 try:baseline=json.loads(baseline_row['text'])
                 except Exception:raise ValueError('研究基线原文损坏，请使用诊断信息核对历史')
@@ -363,6 +375,8 @@ class Library:
                 if previous_conflict:db.execute('UPDATE research_conflicts SET resolved=1 WHERE id=?',(conflict_id,))
                 if checked.get('warnings'):inspected=dict(warnings=checked['warnings'])
                 else:inspected={}
+                from history_store import archive_older
+                archive_older(db,view_id)
                 raw_sha=hashlib.sha256(value.encode('utf-8')).hexdigest()
                 if len(self.research_checks)>256:self.research_checks.clear()
                 self.research_checks[(view_id,info['chart_sha'],new_version,raw_sha)]=inspected
@@ -382,7 +396,8 @@ class Library:
         target.mkdir(parents=True, exist_ok=False)
         with self.connect() as source, sqlite3.connect(target / 'cases.sqlite3') as dest:
             source.backup(dest)
-        shutil.copytree(self.root / 'assets', target / 'assets')
+        from resource_store import share_resource
+        shutil.copytree(self.root / 'assets', target / 'assets',copy_function=lambda source,dest:share_resource(source,dest) if Path(source).suffix.lower()=='.ttf' else shutil.copy2(source,dest))
         return dict(directory=str(target), database='cases.sqlite3', assets='assets', sharedSkillRequired=True)
 
     def render(self, view_id, token):
@@ -390,19 +405,15 @@ class Library:
         # Materialize only for rendering; temporary HTMLs are not permanent case copies.
         with tempfile.TemporaryDirectory(prefix='bazi-render-') as temp:
             page = Path(temp) / 'chart.html'
-            report = self.bridge('render', info['chart'], output=str(page))
+            report = self.bridge('render', info['chart'], output=str(page), workbench=True)
             markup = page.read_text(encoding='utf-8')
             resources = {}
             for resource in report['resources']:
                 file = Path(resource['path'])
                 key = resource['sha256'] + file.suffix.lower()
                 target = self.root / 'assets' / key
-                if not target.exists():
-                    try:
-                        with open(target, 'xb') as out:
-                            out.write(file.read_bytes())
-                    except FileExistsError:
-                        pass
+                from resource_store import share_resource
+                share_resource(file,target)
                 resources[file.resolve()] = '/asset/' + key
             font_resources=iter(value for file,value in resources.items() if file.suffix.lower()=='.ttf')
             def asset(match):
@@ -460,7 +471,7 @@ def serve(root, port):
             self.send_response(status)
             self.send_header('Content-Type', kind)
             self.send_header('X-Content-Type-Options', 'nosniff')
-            self.send_header('Cache-Control', 'no-store')
+            self.send_header('Cache-Control', 'public, max-age=31536000, immutable' if self.path.startswith('/asset/') else 'no-store')
             if len(data) > 1024 and 'gzip' in self.headers.get('Accept-Encoding', ''):
                 data = gzip.compress(data, compresslevel=3)
                 self.send_header('Content-Encoding', 'gzip')

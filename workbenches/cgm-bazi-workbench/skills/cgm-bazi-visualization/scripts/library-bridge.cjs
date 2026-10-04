@@ -47,7 +47,7 @@ try{
   const {subsetTTF}=require('./export-font.cjs'),base=path.resolve(__dirname,'../assets/template/assets/fonts');
   result={fonts:[['ZhaohuaTitleA','朝华标题A-huozi.ttf'],['HuiwenMincho','汇文明朝体-huozi.ttf']].map(([family,file])=>({family,data:subsetTTF(fs.readFileSync(path.join(base,file)),input.text+'年月日时运').toString('base64')}))};
  }
- else if(input.action==='render')result=render(chart,input.manifest||path.resolve(__dirname,'../assets/kimi-book-v1.json'),input.output);
+ else if(input.action==='render')result=render(chart,input.manifest||path.resolve(__dirname,'../assets/kimi-book-v1.json'),input.output,{workbench:input.workbench===true});
  else throw Error('Unsupported library action');
  console.log(JSON.stringify(result));
 }catch(e){console.error(e.message);process.exitCode=1;}

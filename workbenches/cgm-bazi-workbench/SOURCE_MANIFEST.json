@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261003-174431-f24873e8",
+  "build_id": "20261004-114858-7a42c907",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -27,8 +27,8 @@
     {
       "file": "skills/cgm-bazi-suite/SKILL.md",
       "source": "skills/cgm-bazi-suite/SKILL.md",
-      "sha256": "27cca7e9b8e9406ed13003da55dd4793d1cd18c418b24f86789734f3920077ad",
-      "bytes": 6771,
+      "sha256": "0a94a8dad26f73f16e3c9f9ba01a8110ad2a1a0664e977370d87fc82281aaaaa",
+      "bytes": 7426,
       "transform": "none"
     },
     {
@@ -181,7 +181,7 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/legal-footer.html",
       "source": "skills/cgm-bazi-visualization/assets/legal-footer.html",
-      "sha256": "3fc279776b9bf832e483fc0858596f3af710f6ab6db0a00fee85e54c23d97773",
+      "sha256": "7c98439ce3d1fcce7e9c5cea2f5247b3d7c8157685a682648e9d7e5b880f876a",
       "bytes": 51155,
       "transform": "none"
     },
@@ -319,6 +319,13 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-visualization/references/storage-and-profile.md",
+      "source": "skills/cgm-bazi-visualization/references/storage-and-profile.md",
+      "sha256": "19acdef4303c7fb55732585b180daf784732d8d6420f8db2e964d8a2308d21ca",
+      "bytes": 4303,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-visualization/references/template-handoff.md",
       "source": "skills/cgm-bazi-visualization/references/template-handoff.md",
       "sha256": "affaacb883235a822f07e2a69e85324091fd66d972430b58e4609a5849ac8f05",
@@ -326,10 +333,24 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-visualization/scripts/cache_budget.py",
+      "source": "skills/cgm-bazi-visualization/scripts/cache_budget.py",
+      "sha256": "725937f04b152dd025355fb0621d052005d36b6c84a6d5fed01611695f2873a7",
+      "bytes": 441,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-visualization/scripts/case-library.py",
       "source": "skills/cgm-bazi-visualization/scripts/case-library.py",
-      "sha256": "d419292610371c9c3d962f7e50614f36562b1b7c42ee910000c11641158027b3",
-      "bytes": 48175,
+      "sha256": "bd9fcc9626efeea197c8f6f12f6554c0212f830f29d2afbcb83f4d6c09bb9c98",
+      "bytes": 49101,
+      "transform": "none"
+    },
+    {
+      "file": "skills/cgm-bazi-visualization/scripts/case-profile.py",
+      "source": "skills/cgm-bazi-visualization/scripts/case-profile.py",
+      "sha256": "7003c026cdde9ba03fe36d91fccbd54bec093226cd867378c3d1f2a4ac88239b",
+      "bytes": 11195,
       "transform": "none"
     },
     {
@@ -354,10 +375,17 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-visualization/scripts/history_store.py",
+      "source": "skills/cgm-bazi-visualization/scripts/history_store.py",
+      "sha256": "3a67956cd6c4c55b90d1046b8cc53f73ff49eefef129260ed8ca7f12961b683d",
+      "bytes": 1342,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-visualization/scripts/library-bridge.cjs",
       "source": "skills/cgm-bazi-visualization/scripts/library-bridge.cjs",
-      "sha256": "99318dea25ee602a2cbe813e69c677fb0c16246b69f9ec52f93098d73d095fd3",
-      "bytes": 4145,
+      "sha256": "125241af1a854b1fe12990d10182fbcac4c2d85b36ed83e384a46b250e07df5e",
+      "bytes": 4180,
       "transform": "none"
     },
     {
@@ -377,8 +405,8 @@
     {
       "file": "skills/cgm-bazi-visualization/scripts/portable_reading.py",
       "source": "skills/cgm-bazi-visualization/scripts/portable_reading.py",
-      "sha256": "4ae36acd98550114abfa3526d9dcdf999193e9a8ad14857649d33bde8b267949",
-      "bytes": 3547,
+      "sha256": "b4a9db24bf044bb424303b89403d0e51c171b373458644a68f3d85e1db598819",
+      "bytes": 4042,
       "transform": "none"
     },
     {
@@ -391,15 +419,15 @@
     {
       "file": "skills/cgm-bazi-visualization/scripts/render-kimi.cjs",
       "source": "skills/cgm-bazi-visualization/scripts/render-kimi.cjs",
-      "sha256": "9a31e294031afa684f6476f476e699586490d948493e07255a492e71319ed1f0",
-      "bytes": 14888,
+      "sha256": "56e9129c1a8224b3f7c2a12fd485f7d2ba7d88beb6f28a8b63c681d46c00f6f1",
+      "bytes": 15132,
       "transform": "none"
     },
     {
       "file": "skills/cgm-bazi-visualization/scripts/render.cjs",
       "source": "skills/cgm-bazi-visualization/scripts/render.cjs",
-      "sha256": "2e40fce9632ed173b4035037675946dbee0c68cae6a6b8b14c8a1f2167db6dd4",
-      "bytes": 791,
+      "sha256": "01d05e2fa7d0b92ad430b5bf331c1549d37d25ce78da5b06dcb9e0fe2e4f4280",
+      "bytes": 810,
       "transform": "none"
     },
     {
@@ -410,10 +438,17 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-visualization/scripts/resource_store.py",
+      "source": "skills/cgm-bazi-visualization/scripts/resource_store.py",
+      "sha256": "9a80be13bf316f652d1410941753999e308e013cc7b7635b43af6e84dea9b9f6",
+      "bytes": 1729,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-visualization/SKILL.md",
       "source": "skills/cgm-bazi-visualization/SKILL.md",
-      "sha256": "ca3c87df0830e73fb72a45cbadf9f2d9ae63c61cbe32131a081b1292fc02a687",
-      "bytes": 4910,
+      "sha256": "e00fd43b0ff5fb238436a198a1a08948f9b21294e22d028350e5355f6fb86c23",
+      "bytes": 5411,
       "transform": "none"
     },
     {
@@ -594,8 +629,8 @@
     {
       "file": "README.md",
       "source": "release-metadata/bazi/README.md",
-      "sha256": "f1c5503924bb1546298751f9b901d0a4d608f6dd86b752c1680059f4db2e3451",
-      "bytes": 5798,
+      "sha256": "42df892ba97b9d7442c9202aa1cb676f493b0f42a9fc277fdeb3cb86ec6ee2a2",
+      "bytes": 6237,
       "transform": "none"
     },
     {
@@ -608,15 +643,19 @@
     {
       "file": "TESTING.md",
       "source": "release-metadata/bazi/TESTING.md",
-      "sha256": "06f4ad0e988b82678a32d13e2087435d721e5d5cefa7433240298cf680d7e11b",
-      "bytes": 3653,
+      "sha256": "ceb592a0c74960df4e34112a00c9a6483e58337c4cb100d39e0ace4c4c3688ef",
+      "bytes": 4262,
       "transform": "none"
     }
   ],
   "excluded_skill_files": [
     "skills/cgm-bazi-chart/scripts/__pycache__/astronomy.cpython-312.pyc",
     "skills/cgm-bazi-visualization/assets/design-proportion-v1.json",
+    "skills/cgm-bazi-visualization/scripts/__pycache__/cache_budget.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/case-library.cpython-312.pyc",
-    "skills/cgm-bazi-visualization/scripts/__pycache__/portable_reading.cpython-312.pyc"
+    "skills/cgm-bazi-visualization/scripts/__pycache__/case-profile.cpython-312.pyc",
+    "skills/cgm-bazi-visualization/scripts/__pycache__/history_store.cpython-312.pyc",
+    "skills/cgm-bazi-visualization/scripts/__pycache__/portable_reading.cpython-312.pyc",
+    "skills/cgm-bazi-visualization/scripts/__pycache__/resource_store.cpython-312.pyc"
   ]
 }

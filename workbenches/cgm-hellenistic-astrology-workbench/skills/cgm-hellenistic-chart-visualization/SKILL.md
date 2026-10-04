@@ -50,3 +50,7 @@ python scripts/library_cli.py --library LIBRARY export --view VIEW_ID --format h
 - 通用界面组件在 assets/working-page/work/ 中共用。新盘沿用 render_working_chart.py 等既有模板渲染器；旧版独立 SVG 只在明确需要时调用 render_chart.py。
 
 签点类别切换、八色类别标记、横竖位置、笔记快照和导出静态文字必须遵循 `references/working-page-details.md` 的「签点类别与颜色」规范，Agent 添加标记也复用现有模块，不自行建立第二套显示逻辑。
+
+## 存储与选定资料同步
+
+使用 [存储与资料同步规范](references/storage-and-profile.md)。出生资料与用户选定的客观反馈通过 case-profile.py show/export/preview/apply 按需转交；明确来源/目标案例并展示差异，用户确认同一人及变更后执行。分析、讨论、研究、图层和排盘口径各自保留。单套独立可用，共享静态资源失败时使用完整本地资源。便携副本内部去重，既有离线查看范围保留。

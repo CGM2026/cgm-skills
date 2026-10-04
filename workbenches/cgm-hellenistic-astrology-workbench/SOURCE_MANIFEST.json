@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261003-174431-f24873e8",
+  "build_id": "20261004-114858-7a42c907",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -13,8 +13,8 @@
     {
       "file": "skills/cgm-astrology-workbench/SKILL.md",
       "source": "skills/cgm-astrology-workbench/SKILL.md",
-      "sha256": "1c73cbafb28d0c94ef6d825889c52f8a980d685967cc60a038857411d1be6a37",
-      "bytes": 6295,
+      "sha256": "0c663b2795c8d09d00118370e90de74b0455eed6d5ee47801a64d8278e0f3345",
+      "bytes": 6963,
       "transform": "none"
     },
     {
@@ -503,7 +503,7 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "801aaf06d16b768ce62a385ea6a6859efa1e16287ebd7a04909dc06e6a777329",
+      "sha256": "8dfefb2b4422b65430983095c0a7c8b9f3b6c174ee09948afc7370a9330d6710",
       "bytes": 51038,
       "transform": "none"
     },
@@ -704,6 +704,13 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-hellenistic-chart-visualization/references/storage-and-profile.md",
+      "source": "skills/cgm-hellenistic-chart-visualization/references/storage-and-profile.md",
+      "sha256": "19acdef4303c7fb55732585b180daf784732d8d6420f8db2e964d8a2308d21ca",
+      "bytes": 4303,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-hellenistic-chart-visualization/references/transit-agent-query-v1.md",
       "source": "skills/cgm-hellenistic-chart-visualization/references/transit-agent-query-v1.md",
       "sha256": "f4c639c2612536ac853139877d3c75fb5b7700f888bcd9c8938ba6349682e525",
@@ -732,6 +739,20 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-hellenistic-chart-visualization/scripts/cache_budget.py",
+      "source": "skills/cgm-hellenistic-chart-visualization/scripts/cache_budget.py",
+      "sha256": "725937f04b152dd025355fb0621d052005d36b6c84a6d5fed01611695f2873a7",
+      "bytes": 441,
+      "transform": "none"
+    },
+    {
+      "file": "skills/cgm-hellenistic-chart-visualization/scripts/case-profile.py",
+      "source": "skills/cgm-hellenistic-chart-visualization/scripts/case-profile.py",
+      "sha256": "de71c9d856b1a1524139ccffb0b6100faae71270b6031dd0e343fc518717836b",
+      "bytes": 11200,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-hellenistic-chart-visualization/scripts/case_creation.py",
       "source": "skills/cgm-hellenistic-chart-visualization/scripts/case_creation.py",
       "sha256": "ecb0ea089c3d147f5bfaa7321cab78546fd5982f42a2f10f6b1f6efcd55d6c2f",
@@ -741,8 +762,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/scripts/case_library.py",
       "source": "skills/cgm-hellenistic-chart-visualization/scripts/case_library.py",
-      "sha256": "ce17ae148e0c7dbd1e85c8e3ea40698c1243a3cc6f8cc44a1a88940f0228fd5c",
-      "bytes": 29244,
+      "sha256": "6948d8562416e377ab819ae23e5f7ceb04bed50e23c2dc8d121219bad1062092",
+      "bytes": 29804,
       "transform": "none"
     },
     {
@@ -811,8 +832,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/scripts/portable_reading.py",
       "source": "skills/cgm-hellenistic-chart-visualization/scripts/portable_reading.py",
-      "sha256": "4ae36acd98550114abfa3526d9dcdf999193e9a8ad14857649d33bde8b267949",
-      "bytes": 3547,
+      "sha256": "b4a9db24bf044bb424303b89403d0e51c171b373458644a68f3d85e1db598819",
+      "bytes": 4042,
       "transform": "none"
     },
     {
@@ -879,6 +900,13 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-hellenistic-chart-visualization/scripts/resource_store.py",
+      "source": "skills/cgm-hellenistic-chart-visualization/scripts/resource_store.py",
+      "sha256": "9a80be13bf316f652d1410941753999e308e013cc7b7635b43af6e84dea9b9f6",
+      "bytes": 1729,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-hellenistic-chart-visualization/scripts/run_transit_agent_query.py",
       "source": "skills/cgm-hellenistic-chart-visualization/scripts/run_transit_agent_query.py",
       "sha256": "82e2322afed388c96a5e7a5cd16345b4528b9f0112bfe87eafd303bb493d46b0",
@@ -923,8 +951,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/SKILL.md",
       "source": "skills/cgm-hellenistic-chart-visualization/SKILL.md",
-      "sha256": "4b7a255b148f4ec5956dc8dde96df34a3eca9f5aa32946aecadfabde20f45aec",
-      "bytes": 8975,
+      "sha256": "bae3b03ac0028b32df4286540790fccd4ed91a15eb9bfc16cfe22d3d30902332",
+      "bytes": 9476,
       "transform": "none"
     },
     {
@@ -1021,15 +1049,15 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "14e152d3748baf800421ce79e84d9db6596d54c3da74e5bd5f970ccdd2dcf05e",
-      "bytes": 5365,
+      "sha256": "8a2800e0514c2f7f51ca58f82d507b01310dffd59375de30d53e54a5f10a6ee0",
+      "bytes": 5817,
       "transform": "none"
     },
     {
       "file": "TESTING.md",
       "source": "release-metadata/astrology/TESTING.md",
-      "sha256": "00decd31d7f38c6bc9289907f80f3b416518f864c2b0d04bbfbf4e26ef4f25ad",
-      "bytes": 2678,
+      "sha256": "b6982e0d4b1364d5d1efac9677d2b8ae77985ed4ff6a691e9c5ddf310c49abbd",
+      "bytes": 3287,
       "transform": "none"
     }
   ],
@@ -1052,7 +1080,9 @@
     "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/print-study/narrow.html",
     "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/split-axis-labels.txt",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/archive_store.cpython-312.pyc",
+    "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/cache_budget.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/calculate_return_query.cpython-312.pyc",
+    "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/case-profile.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/case_creation.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/case_library.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/chart_navigation.cpython-312.pyc",

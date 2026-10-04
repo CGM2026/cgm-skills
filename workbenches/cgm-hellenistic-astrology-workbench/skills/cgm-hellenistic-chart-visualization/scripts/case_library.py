@@ -92,7 +92,7 @@ class Library:
     def __init__(self, root):
         self.root=Path(root).resolve();self.root.mkdir(parents=True,exist_ok=True)
         self.db=self.root/'cases.sqlite3';self.lock=threading.RLock()
-        self.cache={}
+        self.cache={};self.cache_sizes={};self.cache_lock=threading.RLock()
         with self.connect() as c:
             c.executescript('''
             CREATE TABLE IF NOT EXISTS blobs(id TEXT PRIMARY KEY,kind TEXT NOT NULL,data BLOB NOT NULL);
@@ -168,7 +168,8 @@ class Library:
                 if not f.is_file():continue
                 digest=hashlib.sha256(f.read_bytes()).hexdigest()+f.suffix
                 target=self.root/'assets'/digest;target.parent.mkdir(exist_ok=True)
-                if not target.exists():shutil.copy2(f,target)
+                from resource_store import share_resource
+                share_resource(f,target)
                 assets[f.name]=digest
                 source=source.replace('assets/'+f.name,'/asset/'+digest)
             state=data.get('chart-archive-state',{}).get('entries',{})
@@ -314,7 +315,10 @@ class Library:
         mode=view['mode'];basis=recipe.get('basis',{})
         start=str(start if start is not None else basis.get('default_start','default'))
         key=(vid,start)
-        if key in self.cache:return self.cache[key]
+        with self.cache_lock:
+            if key in self.cache:
+                value=self.cache.pop(key);self.cache[key]=value
+                return value
         if mode=='decennials':
             from calculate_decennials import nested_periods,PLANETS
             from civil_age import annotate_periods,local_zone
@@ -327,8 +331,12 @@ class Library:
         else:
             from calculate_time_lords import calculate
             result=calculate(facts,mode,start_sign=int(start) if mode=='zodiacal-releasing' else None)
-        if len(self.cache)>=8:self.cache.pop(next(iter(self.cache)))
-        self.cache[key]=result
+        from cache_budget import retained_bytes
+        size=retained_bytes(result)
+        with self.cache_lock:
+            while self.cache and (len(self.cache)>=8 or sum(self.cache_sizes.values())+size>32*1024*1024):
+                oldest=next(iter(self.cache));self.cache.pop(oldest);self.cache_sizes.pop(oldest,None)
+            if size<=32*1024*1024:self.cache[key]=result;self.cache_sizes[key]=size
         return result
 
     def render(self,vid,session_token='',export=False):
@@ -367,6 +375,7 @@ class Library:
             entry_key=('chart-decennials-start-v1:{PAGE}' if view['mode']=='decennials' else 'chart-time-lord-start-v1:{PAGE}')
             data=self.periods(vid,state['entries'].get(entry_key))
             if export:
+                data=json.loads(encoded(data))
                 # Export all requested starts to retain a usable independent snapshot.
                 if view['mode']=='decennials':
                     for start in data['basis']['natal_zodiacal_order']:data['schedules'].update(self.periods(vid,start)['schedules'])

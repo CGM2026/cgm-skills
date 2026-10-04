@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const {validate,sha}=require('../../cgm-bazi-chart/scripts/chart.cjs');
-function renderKimi(data,manifestFile,out){
+function renderKimi(data,manifestFile,out,options={}){
  validate(data);
  if(data.calendarView?.schema!=='cgm-bazi-calendar-view/1')throw Error('Calendar view missing: regenerate using calculation member; no approximate term dates allowed');
  if(data.calendarView.dailyConvention?.id!=='jie-local-date-inclusive-v1'||data.calendarView.years.some(y=>y.months.some(m=>!m.days?.length)))throw Error('Daily calendar missing: regenerate from birth input');
@@ -148,6 +148,7 @@ ${fs.readFileSync(path.join(__dirname,'../assets/responsive-deck.css'),'utf8')}
  // v1.0.2: carry complete notices in standalone pages, outside the image export area.
  replace('</head>',`<style id="cgm-license-style">${fs.readFileSync(path.join(__dirname,'../assets/legal-footer.css'),'utf8')}</style></head>`);
  replace('</body>',`${fs.readFileSync(path.join(__dirname,'../assets/legal-footer.html'),'utf8')}<script>${fs.readFileSync(path.join(__dirname,'../assets/legal-footer-layout.js'),'utf8')}</script></body>`);
+ if(!options.workbench){
  const {subsetTTF}=require('./export-font.cjs');
  const exportScript=fs.readFileSync(path.join(__dirname,'export-image.browser.js'),'utf8');
  const exportAssets={fonts:resources.filter(r=>r.path.endsWith('.ttf')).map((r,i)=>({family:i===0?'ZhaohuaTitleA':'HuiwenMincho',data:subsetTTF(fs.readFileSync(r.path),html+exportScript).toString('base64')}))};
@@ -162,6 +163,9 @@ ${fs.readFileSync(path.join(__dirname,'../assets/responsive-deck.css'),'utf8')}
   html=html.split("url('"+relative+"')").join("url('"+dataURL+"')");
  }
  replace('</body>',`<script id="export-assets" type="application/json">${JSON.stringify(exportAssets)}</script><script>${fs.readFileSync(path.join(__dirname,'export-image.browser.js'),'utf8')}</script></body>`);
+ }else{
+ replace('</body>',`<script id="export-assets" type="application/json">{"fonts":[]}</script><script>${fs.readFileSync(path.join(__dirname,'export-image.browser.js'),'utf8')}</script></body>`);
+ }
  fs.writeFileSync(out,html);
  const report={status:'static-check',template:manifest.id,templateSha256:manifest.sourceSha256,chartSha256:sha(JSON.stringify(data)),sourceCSSPreserved:true,approvedCSSPatch:'narrow-layout-v1',resources,calculationStatus:data.calculation.status,limitations:data.calculation.limitations,browserValidation:'pending',userValidation:'pending-user-validation'};
  fs.writeFileSync(out+'.provenance.json',JSON.stringify({...report,portableHTML:true,resources:resources.map(r=>({...r,path:path.basename(r.path)}))},null,2));return report;
