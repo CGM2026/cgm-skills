@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261004-193844-790c47f6",
+  "build_id": "20261004-194916-50d1f5d9",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -27,8 +27,8 @@
     {
       "file": "skills/cgm-bazi-suite/SKILL.md",
       "source": "skills/cgm-bazi-suite/SKILL.md",
-      "sha256": "0a94a8dad26f73f16e3c9f9ba01a8110ad2a1a0664e977370d87fc82281aaaaa",
-      "bytes": 7426,
+      "sha256": "56880b6f34ad06bf357424039adae4cfbec690d019ac857c84c5d7b3f7be1e61",
+      "bytes": 7929,
       "transform": "none"
     },
     {
@@ -181,8 +181,8 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/legal-footer.html",
       "source": "skills/cgm-bazi-visualization/assets/legal-footer.html",
-      "sha256": "5b13bb5755cdf00118b5af520ac7048f897fa07b490e819c781908f5723381f8",
-      "bytes": 51109,
+      "sha256": "42a507e8765d1d17526be354a89da04d2e1d6f970df9058f522a1e3c047777ec",
+      "bytes": 51116,
       "transform": "none"
     },
     {
@@ -307,8 +307,8 @@
     {
       "file": "skills/cgm-bazi-visualization/references/portable-reading.md",
       "source": "skills/cgm-bazi-visualization/references/portable-reading.md",
-      "sha256": "76f2a2c3985a7f027a1c0a480d5e6984512d7105c23138a3784b7002168fbf24",
-      "bytes": 1760,
+      "sha256": "83099d7098e45559987f5ed71ba3e086679d1d1cc3e398502d01a63b70f96177",
+      "bytes": 2213,
       "transform": "none"
     },
     {
@@ -447,8 +447,8 @@
     {
       "file": "skills/cgm-bazi-visualization/SKILL.md",
       "source": "skills/cgm-bazi-visualization/SKILL.md",
-      "sha256": "e00fd43b0ff5fb238436a198a1a08948f9b21294e22d028350e5355f6fb86c23",
-      "bytes": 5411,
+      "sha256": "b1d38e81d94d1f6a46d9079ab730dae8e286743631f8a6e9af8c4a4751f8969c",
+      "bytes": 5914,
       "transform": "none"
     },
     {
@@ -629,8 +629,8 @@
     {
       "file": "README.md",
       "source": "release-metadata/bazi/README.md",
-      "sha256": "ec4d65aedc7fa7888a239fe2cd406d8041c234ec021dee1d6a71b436a1d5375f",
-      "bytes": 7021,
+      "sha256": "df8e367819a3b742e78e0742f3d9656abfab5b39ac3232a46412d06d263ed504",
+      "bytes": 7220,
       "transform": "none"
     },
     {

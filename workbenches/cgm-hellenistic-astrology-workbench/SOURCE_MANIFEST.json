@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261004-193844-790c47f6",
+  "build_id": "20261004-194916-50d1f5d9",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -13,8 +13,8 @@
     {
       "file": "skills/cgm-astrology-workbench/SKILL.md",
       "source": "skills/cgm-astrology-workbench/SKILL.md",
-      "sha256": "0c663b2795c8d09d00118370e90de74b0455eed6d5ee47801a64d8278e0f3345",
-      "bytes": 6963,
+      "sha256": "43447e677f79d2d570e6f611ec2085978b2877be18f3b807556fe5ddb5ff9be6",
+      "bytes": 7466,
       "transform": "none"
     },
     {
@@ -503,8 +503,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "9da2543d315b9960ac4527757e8ba75afeb94de2899e162a2a7475aceb55abd4",
-      "bytes": 50917,
+      "sha256": "7c219eba6aebecae07ac5b8d9233dfd6bf760762da8ce11b08f6f00c6a972f7a",
+      "bytes": 50924,
       "transform": "none"
     },
     {
@@ -685,8 +685,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/references/portable-reading.md",
       "source": "skills/cgm-hellenistic-chart-visualization/references/portable-reading.md",
-      "sha256": "76f2a2c3985a7f027a1c0a480d5e6984512d7105c23138a3784b7002168fbf24",
-      "bytes": 1760,
+      "sha256": "83099d7098e45559987f5ed71ba3e086679d1d1cc3e398502d01a63b70f96177",
+      "bytes": 2213,
       "transform": "none"
     },
     {
@@ -951,8 +951,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/SKILL.md",
       "source": "skills/cgm-hellenistic-chart-visualization/SKILL.md",
-      "sha256": "bae3b03ac0028b32df4286540790fccd4ed91a15eb9bfc16cfe22d3d30902332",
-      "bytes": 9476,
+      "sha256": "7bf6214ff3cf92aa994b85b3417ea1fcff9cb62cd026cc98a074ed6e4b0caa54",
+      "bytes": 9979,
       "transform": "none"
     },
     {
@@ -1049,8 +1049,8 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "17d48ad90840b992a0489f2bd5ec93ba2fa234351f08e1e40cd3dcb48e65e5c2",
-      "bytes": 6601,
+      "sha256": "6a24e9396d2af6e07e81b6f7de1f41e394e6f2ab1dd742381b21ecd3899d3163",
+      "bytes": 6800,
       "transform": "none"
     },
     {
