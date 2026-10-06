@@ -14,6 +14,7 @@
   else if(['/api/adjust-time','/adjust-time'].includes(url.pathname)&&method==='POST'){const request=JSON.parse(options.body||'{}');data=!request.save&&page.times?.[request.local_datetime];if(!data){status=403;data={error:'此时刻未包含在副本中；请让 Agent 在电脑端计算后重新生成。'};}}
   else if(method!=='GET'){status=403;data={error:reason};}
   else if(url.pathname==='/api/research')data=bundle.pages[url.searchParams.get('view')||vid]?.research;
+  else if(url.pathname==='/api/case-remarks')data=page.remarks||{text:'',version:0};
   else if(url.pathname==='/api/preferences')data={setupComplete:true,revision:0};
   else if(url.pathname==='/api/notes')data=page.notes||[];
   else {status=404;data={error:'此内容未包含在阅读副本中；请让 Agent 在电脑端查询后重新生成。'};}
@@ -30,7 +31,7 @@
   });
   document.querySelectorAll('.research-archive form h3,.archive-record-editor h3').forEach(el=>{if(el.textContent==='修改记录')el.textContent='查看记录';});
   document.querySelectorAll('.archive-record-editor .archive-editor-hint,.research-archive form .research-meta').forEach(el=>{const text='阅读副本中仅可查看；修改请在电脑工作台完成或交给 Agent。';if(el.textContent!==text)el.textContent=text;});
-  document.querySelectorAll('.archive-body-input,.research-archive form input,.research-archive form textarea,.archive-record-editor input,.archive-record-editor textarea').forEach(el=>{if(!el.readOnly)el.readOnly=true;});
+  document.querySelectorAll('.case-remarks-editor textarea,.archive-body-input,.research-archive form input,.research-archive form textarea,.archive-record-editor input,.archive-record-editor textarea').forEach(el=>{if(!el.readOnly)el.readOnly=true;});
   document.querySelectorAll('.research-archive [data-edit],.archive-item [data-edit]').forEach(el=>{if(el.textContent==='编辑')el.textContent='查看';});
  }
  document.addEventListener('click',e=>{

@@ -49,6 +49,9 @@ def serve(root,port,settings_path=None):
                     if not re.fullmatch(r'[a-f0-9]{64}\.[a-z0-9]+',name):raise ValueError('资源路径无效')
                     f=library.root/'assets'/name
                     return self.output(f.read_bytes(),kind=mimetypes.guess_type(str(f))[0] or 'application/octet-stream')
+                if route.path=='/api/case-remarks':
+                    from case_remarks import read_remarks
+                    return self.output(read_remarks(library.db,args['view'][0]))
                 if route.path=='/api/state':
                     state=library.state(args['view'][0])
                     if str(state['revision'])==args.get('since',[''])[0]:return self.output(b'',204)
@@ -68,6 +71,10 @@ def serve(root,port,settings_path=None):
                 body=json.loads(self.rfile.read(length))
                 if not isinstance(body,dict):raise ValueError('请求必须是对象')
                 if self.headers.get('X-Case-Token',body.get('token',''))!=token:return self.output({'error':'请刷新案例页面后重试'},403)
+                if self.path=='/api/case-remarks':
+                    from case_remarks import put_remarks
+                    result=put_remarks(library.db,body['view'],body['text'],body['version'])
+                    return self.output(result,409 if result.get('conflict') else 200)
                 if self.path=='/api/save':return self.output(library.save(body['viewId'],body['changes'],body['previous']))
                 if self.path=='/api/method-defaults':
                     return self.output({'settings':save_settings(settings_path,body.get('methods'))})

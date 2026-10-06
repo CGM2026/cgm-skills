@@ -358,8 +358,10 @@ class Library:
         if '@@MODULE:method-defaults.js@@' not in source and 'class="save-method-defaults"' not in source:
             source=source.replace('</body>','@@MODULE:method-defaults.js@@</body>')
         state=self.state(vid)
-        config={'id':vid,'caseId':view['case_id'],'mode':view['mode'],'token':session_token,'state':state,'export':export}
-        bootstrap='<script>globalThis.ChartLibrary='+safe(config)+';</script>'
+        from case_remarks import read_remarks
+        remarks=read_remarks(self.db,vid)
+        config={'caseRemarks':remarks,'id':vid,'caseId':view['case_id'],'mode':view['mode'],'token':session_token,'state':state,'export':export}
+        bootstrap='<script>globalThis.ChartLibrary='+safe(config)+';</script><script>'+(WORK/'case-remarks.js').read_text(encoding='utf-8')+'</script>'
         source=source.replace('@@ARCHIVE@@','<script id="chart-archive-state" type="application/json">'+safe(state)+'</script>'+bootstrap)
         def module(m):
             name=m[1]
@@ -452,4 +454,4 @@ class Library:
 
     def export_json(self,vid):
         view=self.view(vid)
-        return {'schema':'cgm.case-records.v1','view_id':vid,'case_id':view['case_id'],'mode':view['mode'],'facts':json.loads(self.get_blob(view['facts'])),'archive':self.state(vid)}
+        return {'schema':'cgm.case-records.v1','view_id':vid,'case_id':view['case_id'],'mode':view['mode'],'facts':json.loads(self.get_blob(view['facts'])),'archive':self.state(vid),'case_remarks':__import__('case_remarks').read_remarks(self.db,vid)}

@@ -9,9 +9,10 @@
   state.records=saved.tabs.map(tab=>({tab,text:legacyText(tab)})).filter(({text})=>text.trim()).map(({tab,text})=>({id:uid(),title:String(tab.name||'旧档案记录'),date:'',analysis:tab.id==='overall'?text:'',feedback:tab.id==='overall'?'':text,createdAt:new Date().toISOString()}));
   try{if(!localStorage.getItem(storage+'-backup-v1'))localStorage.setItem(storage+'-backup-v1',raw);localStorage.setItem(storage,JSON.stringify(state));}catch{}
  }}catch{}
- let view='records',editing=null,listScroll=0;
+ const config=globalThis.ChartLibrary,caseRemarks=globalThis.CGMCaseRemarks?.create({view:config?.id,token:config?.token,header:'X-Case-Token',portable:!!globalThis.CGMPortable},config?.caseRemarks);
+ let view='remarks',editing=null,listScroll=0;
  const cards=new Map();
- const selections={records:new Set(),analysis:new Set(),feedback:new Set()},selected=()=>selections[view],folio=document.querySelector('.folio');
+ const selections={records:new Set(),analysis:new Set(),feedback:new Set()},selected=()=>selections[view]||new Set(),folio=document.querySelector('.folio');
  const icon=document.createElement('button');icon.type='button';icon.className='icon-control archive-launch';icon.title='案例档案';icon.setAttribute('aria-label','案例档案');icon.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6l2 3h8v12H4ZM8 12h8M8 16h6"/></svg>';document.querySelector('.chart-actions').prepend(icon);
  const dialog=document.createElement('dialog');dialog.className='archive-dialog';dialog.setAttribute('aria-label','案例档案');folio.append(dialog);
  const save=()=>{try{localStorage.setItem(storage,JSON.stringify(state));return true;}catch{return false;}};
@@ -34,8 +35,9 @@
   return '<form class="archive-record-editor"><h3>'+(editing==='new'?'新增记录':'修改记录')+'</h3><label>标题<input name="title" maxlength="80" value="'+esc(item.title)+'" required placeholder="例如：第一次咨询、事件后续"><small class="archive-field-hint">可让 Agent 根据这次记录拟一个简短标题。</small></label><label>记录日期（可不填）<input name="date" type="date" value="'+esc(item.date)+'"><small class="archive-field-hint">可告诉 Agent 事件发生的时间，请它协助填写；不确定可留空。</small></label>'+archiveField('analysis','分析',item.analysis)+archiveField('feedback','反馈',item.feedback)+'<p class="archive-editor-hint">分析与反馈至少填写一项；两者都可以继续修改。</p><div class="archive-editor-actions">'+(editing==='new'?'':'<button type="button" data-action="delete" class="archive-delete">删除记录</button>')+'<button type="submit">保存记录</button></div></form>';
  }
  function draw(){
-  for(const id of selected()){const item=record(id);if(!item||view!=='records'&&!item[view].trim())selected().delete(id);}const tabs=[['records','按记录'],['analysis','汇总分析'],['feedback','汇总反馈']];
-  dialog.classList.toggle('archive-browsing',!editing);dialog.innerHTML='<div class="archive-head"><h2>案例档案</h2><div class="archive-head-actions">'+(editing?'<button type="button" class="archive-back" data-action="cancel-edit">返回列表</button>':'')+'<button type="button" data-action="close" aria-label="关闭档案">×</button></div></div>'+(editing?editor():'<nav class="archive-tabs" aria-label="档案查看方式">'+tabs.map(([key,label])=>'<button type="button" data-view="'+key+'" aria-current="'+(view===key?'page':'false')+'">'+label+'</button>').join('')+'</nav><div class="archive-view">'+(view==='records'?list():summaryList(view))+'</div><div class="archive-list-actions"><button type="button" data-action="new">＋ 新增记录</button><button type="button" data-action="compose" '+(!selected().size?'disabled':'')+'>放到下方</button></div>')+'<p class="archive-status" role="status"></p>';
+  for(const id of selected()){const item=record(id);if(!item||view!=='records'&&!item[view].trim())selected().delete(id);}const tabs=[['remarks','案例备注'],['records','记录汇总'],['analysis','汇总分析'],['feedback','汇总反馈']];
+  dialog.classList.toggle('archive-browsing',!editing);dialog.innerHTML='<div class="archive-head"><h2>案例档案</h2><div class="archive-head-actions">'+(editing?'<button type="button" class="archive-back" data-action="cancel-edit">返回列表</button>':'')+'<button type="button" data-action="close" aria-label="关闭档案">×</button></div></div>'+(editing?editor():'<nav class="archive-tabs" aria-label="档案查看方式">'+tabs.map(([key,label])=>'<button type="button" data-view="'+key+'" aria-current="'+(view===key?'page':'false')+'">'+label+'</button>').join('')+'</nav><div class="archive-view">'+(view==='remarks'?'<section class="case-remarks-editor"></section>':view==='records'?list():summaryList(view))+'</div><div class="archive-list-actions" '+(view==='remarks'?'hidden':'')+'><button type="button" data-action="new">＋ 新增记录</button><button type="button" data-action="compose" '+(!selected().size?'disabled':'')+'>放到下方</button></div>')+'<p class="archive-status" role="status"></p>';
+  if(!editing&&view==='remarks')caseRemarks?.mount(dialog.querySelector('.case-remarks-editor'));
   if(editing){dialog.scrollTop=0;prepareArchiveFields();}else{dialog.querySelector('.archive-view').scrollTop=listScroll;requestAnimationFrame(()=>{if(!editing)dialog.querySelector('.archive-view').scrollTop=listScroll;});}
  }
  const part=(label,value,showLabel)=>'<div class="archive-presentation-part">'+(showLabel?'<span>'+label+'</span>':'')+'<p>'+esc(value)+'</p></div>';
@@ -47,10 +49,10 @@
  }
  function refreshCards(){for(const [key,{element,spec}] of cards){const body=cardBody(spec);if(!body){globalThis.ChartDock?.remove(key);continue;}element.innerHTML='<div class="detail-toolbar"><button type="button" class="archive-card-close" aria-label="关闭此卡片">×</button></div><div class="archive-presentation-content">'+body+'</div>';element.querySelector('.archive-card-close').onclick=()=>globalThis.ChartDock?.remove(key);document.getElementById('dock-tab-'+key)?.replaceChildren(document.createTextNode(cardLabel(spec)));}}
  function addCard(spec){const key=spec.ids?'case-selection-'+uid():'case-summary-'+spec.kind;if(cards.has(key)){globalThis.ChartDock?.activate(key);return true;}const element=document.createElement('section');element.className='archive-card archive-presentation';element.dataset.cardKey=key;cards.set(key,{element,spec});refreshCards();if(!globalThis.ChartDock?.add(key,cardLabel(spec),element,()=>cards.delete(key))){cards.delete(key);return false;}return true;}
- icon.addEventListener('click',()=>{if(!(globalThis.ChartLibrary&&editing&&dialog.querySelector('.archive-record-editor')))draw();if(!dialog.open)dialog.show();});
+ icon.addEventListener('click',()=>{if(!(globalThis.ChartLibrary&&editing&&dialog.querySelector('.archive-record-editor'))){view='remarks';draw();}if(!dialog.open)dialog.show();});
  dialog.addEventListener('click',event=>{
   const button=event.target.closest('button');if(!button)return;
-  if(button.dataset.view){view=button.dataset.view;listScroll=0;draw();return;}
+  if(button.dataset.view){caseRemarks?.flush();view=button.dataset.view;listScroll=0;draw();return;}
   if(button.dataset.edit){listScroll=dialog.querySelector('.archive-view').scrollTop;editing=button.dataset.edit;draw();return;}
   switch(button.dataset.action){
    case 'close':if(!leaveEditor())break;dialog.close();break;

@@ -223,3 +223,9 @@ main .hidden-list{border-left-color:var(--research-background-line)}
 ::-webkit-scrollbar-thumb{background:#b9ab98;border:2px solid var(--paper);border-radius:8px}
 ::-webkit-scrollbar-thumb:hover{background:#948774}
 ::-webkit-scrollbar-corner{background:transparent}
+
+.case-remarks-editor textarea{box-sizing:border-box;width:100%;min-height:220px;max-height:none;resize:none;overflow:hidden;border:0;border-bottom:1px solid var(--line,var(--rule));background:transparent;color:inherit;font:inherit;font-size:15px;line-height:1.9;padding:12px 0;outline:none}
+.case-remarks-editor .case-remarks-hint,.case-remarks-editor .case-remarks-status{font-size:12px;line-height:1.7;color:var(--muted,#968c7d)}
+.case-remarks-editor .case-remarks-conflict{border-top:1px solid var(--line,var(--rule));margin-top:12px;padding-top:12px}
+.case-remarks-editor .case-remarks-remote{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}
+.case-remarks-editor [hidden],.archive-list-actions[hidden]{display:none!important}

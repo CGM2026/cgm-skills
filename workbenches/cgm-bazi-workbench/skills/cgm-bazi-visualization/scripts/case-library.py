@@ -432,10 +432,12 @@ class Library:
             markup = re.sub(r"url\('([^']+)'\)", asset, markup)
         with self.connect() as db:
             views = [dict(r) for r in db.execute('SELECT id,mode FROM views WHERE case_id=?', (info['case_id'],))]
-        config = dict(viewId=view_id, caseId=info['case_id'], mode=info['mode'], token=token, views=views, rootIdentity=hashlib.sha256(str(self.root).encode()).hexdigest())
+        from case_remarks import read_remarks
+        remarks=read_remarks(self.root/'cases.sqlite3',view_id)
+        config = dict(caseRemarks=remarks,viewId=view_id, caseId=info['case_id'], mode=info['mode'], token=token, views=views, rootIdentity=hashlib.sha256(str(self.root).encode()).hexdigest())
         safe_config = encode(config).replace('<', '\\u003c')
         markup = markup.replace('</head>', '<link rel="stylesheet" href="/ui/research-ui.css"></head>')
-        markup = markup.replace('</body>', '<script id="bazi-library-config" type="application/json">'+safe_config+'</script><script src="/ui/export-workbench.js"></script><script src="/ui/note-policy.js"></script><script src="/ui/research-drafts.js"></script><script src="/ui/algorithm-settings.js"></script><script src="/ui/research-ui.js"></script></body>')
+        markup = markup.replace('</body>', '<script id="bazi-library-config" type="application/json">'+safe_config+'</script><script src="/ui/export-workbench.js"></script><script src="/ui/note-policy.js"></script><script src="/ui/research-drafts.js"></script><script src="/ui/algorithm-settings.js"></script><script src="/ui/case-remarks.js"></script><script src="/ui/research-ui.js"></script></body>')
         return markup
 
 
@@ -508,9 +510,12 @@ def serve(root, port):
                         raise ValueError('资源路径无效')
                     file=library.root/'assets'/key
                     return self.output(file.read_bytes(),kind=mimetypes.guess_type(str(file))[0] or 'application/octet-stream')
-                if route.path in ('/ui/library.js','/ui/library.css','/ui/research-ui.js','/ui/research-ui.css','/ui/export-workbench.js','/ui/note-policy.js','/ui/research-drafts.js','/ui/algorithm-settings.js'):
+                if route.path in ('/ui/case-remarks.js','/ui/library.js','/ui/library.css','/ui/research-ui.js','/ui/research-ui.css','/ui/export-workbench.js','/ui/note-policy.js','/ui/research-drafts.js','/ui/algorithm-settings.js'):
                     file=HERE.parent/'assets'/Path(route.path).name
                     return self.output(file.read_bytes(),kind='application/javascript; charset=utf-8' if file.suffix=='.js' else 'text/css; charset=utf-8')
+                if route.path=='/api/case-remarks':
+                    from case_remarks import read_remarks
+                    return self.output(read_remarks(library.root/'cases.sqlite3',args['view']))
                 if route.path=='/api/notes':
                     return self.output(library.notes(args['view']))
                 if route.path=='/api/preferences':
@@ -535,6 +540,10 @@ def serve(root, port):
                 if not 0<size<=maximum:
                     raise ValueError('请求过大或为空')
                 body=json.loads(self.rfile.read(size))
+                if self.path=='/api/case-remarks':
+                    from case_remarks import put_remarks
+                    result=put_remarks(library.root/'cases.sqlite3',body['view'],body['text'],body['version'])
+                    return self.output(result,409 if result.get('conflict') else 200)
                 if self.path=='/api/preferences':
                     return self.output(library.preferences(body))
                 if self.path=='/api/put':
