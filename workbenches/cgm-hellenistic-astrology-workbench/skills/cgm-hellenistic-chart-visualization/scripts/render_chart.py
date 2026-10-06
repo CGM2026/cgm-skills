@@ -60,7 +60,7 @@ def main() -> int:
     parser.add_argument('--input', required=True, type=Path)
     parser.add_argument('--output-dir', required=True, type=Path)
     parser.add_argument('--calculator-skill', type=Path, default=SKILL.parent / 'cgm-calculate-astrology-chart')
-    parser.add_argument('--node', default=shutil.which('node'))
+    parser.add_argument('--node', default=__import__('local_installation').node('astrology'))
     parser.add_argument('--title')
     parser.add_argument('--force', action='store_true', help='Replace existing visualization outputs')
     args = parser.parse_args()

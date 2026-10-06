@@ -5,6 +5,11 @@ description: 独立计算西方占星七星、四轴、福点与精神点的盘�
 
 # 独立七星排盘
 
+
+## 跨项目与已有案例
+
+首次在新对话调用时先读 [本机位置与跨项目使用](references/cross-project.md)。复用登记的运行环境、已确认设置和对应正式案例库；显式指定的位置优先。查询已有案例先 list 核对 ID，换项目不自动新建空库。
+
 ## 任务
 
 从时间、地点与方法设置生成可复现的盘面事实。计算层保持方法中立，计算七星、四轴以及带明确公式来源的福点与精神点，不生成任何具体解释技法的主链、代理星或判断。
@@ -21,7 +26,7 @@ description: 独立计算西方占星七星、四轴、福点与精神点的盘�
 
 ## 工作流
 
-1. 检查工作区根目录 `.cgm-hellenistic-astrology/settings.json` 与 `runtime.json`；缺失时由本成员依照 [first-run-setup.md](references/first-run-setup.md) 完成一次性配置。计算与可视化两个成员即可独立使用。
+1. 先读取本机登记的占星状态目录；未登记时使用工作区 `.cgm-hellenistic-astrology/`。检查 `settings.json` 与 `runtime.json`；缺失时由本成员依照 [first-run-setup.md](references/first-run-setup.md) 完成一次性配置。计算与可视化两个成员即可独立使用。
 2. 收集本地日期时间、经纬度与时区口径；读取已确认的个人默认。输入要求与默认不符时，说明具体差异并引导手动切换，不删去冲突字段或绕过检查生成另一种口径。
 3. 运行 `scripts/calculate_chart.py --input <input.json> --settings <settings.json> --output <chart-facts.json>`；依据太阳真实地平高度判定昼夜，并按昼夜反转公式计算福点与精神点。
 4. 运行 `scripts/validate_chart_output.py <chart-facts.json>`；通过后才交给下游 skill。

@@ -47,8 +47,7 @@ function prepareBirth(birth,conventions){
 }
 function runAstronomy(request,includeTermYears=true){
  const path=require('node:path'),cp=require('node:child_process');
- const projectRuntime=path.resolve(__dirname,'../../../.cgm-hellenistic-astrology/runtime/Scripts/python.exe');
- const runtime=process.env.CGM_BAZI_PYTHON||(fs.existsSync(projectRuntime)?projectRuntime:process.platform==='win32'?'python':'python3');
+ const runtime=require('./local-installation.cjs').python();
  const {b,c,yearEvidence}=request;
  const result=cp.spawnSync(runtime,['-X','utf8',path.join(__dirname,'astronomy.py')],{input:JSON.stringify({birth:b,conventions:c,yearEvidence,includeTermYears}),encoding:'utf8',env:{...process.env,PYTHONUTF8:'1',PYTHONIOENCODING:'utf-8'},maxBuffer:16*1024*1024,windowsHide:true});
  assert(!result.error&&result.status===0,result.error?.message||result.stderr||'Astronomy process failed');

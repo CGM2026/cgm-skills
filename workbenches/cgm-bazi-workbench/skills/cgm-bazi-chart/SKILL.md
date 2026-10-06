@@ -9,6 +9,11 @@ description: 计算八字四柱、历法、节气和推运，保存原始出生�
 
 首次使用说明相邻套件的 [默认与选项](../cgm-bazi-suite/references/first-use.md)，由用户接受推荐或修改后确认，保存个人默认。读取 [输入输出接口](references/contract.md)；组装资料、规则或排错时读取 [计算约定](references/calculation.md)；历史命例读取 [历法与时制范围](references/historical-range.md)。
 
+
+## 跨项目与已有案例
+
+首次在新对话调用时先读 [本机位置与跨项目使用](references/cross-project.md)。复用登记的运行环境、已确认设置和对应正式案例库；显式指定的位置优先。查询已有案例先 list 核对 ID，换项目不自动新建空库。
+
 ## 排盘与校验
 
 在本成员目录运行：

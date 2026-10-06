@@ -13,6 +13,7 @@ import venv
 from datetime import datetime, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+from local_installation import location
 
 
 def runtime_python(runtime_dir: Path) -> Path:
@@ -39,7 +40,14 @@ def probe(python_executable: Path) -> dict:
 
 def choose_existing(state_dir: Path) -> dict:
     isolated = runtime_python(state_dir / "runtime")
-    candidates = [isolated, Path(sys.executable)] if isolated.exists() else [Path(sys.executable)]
+    candidates = [isolated] if isolated.exists() else []
+    saved = state_dir / 'runtime.json'
+    if saved.is_file():
+        registered = json.loads(saved.read_text(encoding='utf-8-sig')).get('python_executable')
+        if registered and Path(registered).is_file():candidates.append(Path(registered))
+    shared = location('python')
+    if shared and shared.is_file():candidates.append(shared)
+    candidates.append(Path(sys.executable))
     for candidate in candidates:
         result = probe(candidate)
         version = result.get("python_version", [0, 0, 0])
@@ -96,12 +104,12 @@ def install(state_dir: Path) -> dict:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Bootstrap the chart skill runtime")
-    parser.add_argument("--state-dir", required=True)
+    parser.add_argument("--state-dir")
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--check", action="store_true")
     mode.add_argument("--install", action="store_true")
     args = parser.parse_args()
-    state_dir = Path(args.state_dir).expanduser().resolve()
+    state_dir = Path(args.state_dir or location('astrology_state') or Path.cwd() / '.cgm-hellenistic-astrology').expanduser().resolve()
     result = install(state_dir) if args.install else choose_existing(state_dir)
     if args.check and result.get("status") == "ready":
         result = persist_ready(state_dir, result)

@@ -12,7 +12,7 @@ try{
  if(!['birth','chart','historical-fixture','workspace'].includes(mode)||!input||!outDir)throw Error('Usage: run.cjs workspace|birth|chart|historical-fixture input output-directory [library-or-template]');
  const payload=mode==='historical-fixture'?null:JSON.parse(fs.readFileSync(input,'utf8'));
  const preferences=require('../../cgm-bazi-chart/scripts/preferences.cjs');
- const libraryRoot=mode==='workspace'?path.resolve(manifestArg||'bazi-case-library'):undefined;
+ const libraryRoot=mode==='workspace'?path.resolve(manifestArg||require('../../cgm-bazi-chart/scripts/local-installation.cjs').library()||'bazi-case-library'):undefined;
  const settingsPath=path.resolve(settingsOverride||preferences.defaultSettingsPath(libraryRoot));
  if(libraryRoot){const relative=path.relative(path.dirname(libraryRoot),settingsPath);if(relative==='..'||relative.startsWith('..'+path.sep)||path.isAbsolute(relative))throw Error('案例工作页的默认设置须位于案例库父目录内，请在该目录选择 --settings 文件');}
  const chart=mode==='birth'||(mode==='workspace'&&payload.schema==='cgm-bazi-birth/1')?calculateBirth(preferences.resolveInput(payload,{settingsPath,manual})):mode==='chart'||mode==='workspace'?validate(payload):historicalFixture(input);
@@ -23,8 +23,7 @@ try{
  if(fs.existsSync(json)||fs.existsSync(html)||fs.existsSync(entry))throw Error('Output exists; choose a new output directory to preserve previous draft');
  fs.writeFileSync(json,JSON.stringify(chart,null,2));
  if(mode==='workspace'){
-  const local=path.resolve(__dirname,'../../../.cgm-hellenistic-astrology/runtime/Scripts/python.exe');
-  const python=process.env.CGM_BAZI_PYTHON||(fs.existsSync(local)?local:process.platform==='win32'?'python':'python3');
+  const python=require('../../cgm-bazi-chart/scripts/local-installation.cjs').python();
   const script=path.resolve(__dirname,'../../cgm-bazi-visualization/scripts/case-library.py');
   const library=libraryRoot;
   const call=args=>{const r=cp.spawnSync(python,[script,'--library',library,...args],{encoding:'utf8',windowsHide:true,env:{...process.env,CGM_BAZI_NODE:process.execPath,CGM_BAZI_SETTINGS:settingsPath,PYTHONUTF8:'1'}});if(r.error||r.status!==0)throw Error(r.error?.message||r.stderr.trim());return JSON.parse(r.stdout);};

@@ -73,7 +73,7 @@ def put_note(library,vid,item,expected=None):
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--library',type=Path,default=Path('case-library'))
+    p.add_argument('--library',type=Path)
     p.add_argument('--settings',type=Path,help='Workspace defaults file used by the local settings dialog')
     sub=p.add_subparsers(dest='command',required=True)
     i=sub.add_parser('import');i.add_argument('pages',nargs='+',type=Path);i.add_argument('--case-id')
@@ -90,7 +90,7 @@ def main():
     h=sub.add_parser('history');h.add_argument('--view',required=True)
     h=sub.add_parser('restore-entry');h.add_argument('--view',required=True);h.add_argument('--history-id',type=int,required=True);h.add_argument('--expected-revision',type=int,required=True)
     sub.add_parser('stats')
-    a=p.parse_args();library=Library(a.library)
+    a=p.parse_args();library=Library(a.library or __import__('local_installation').library('astrology','case-library'))
     if a.command=='create' and a.mode=='complete':
         from case_creation import create_complete
         from datetime import datetime

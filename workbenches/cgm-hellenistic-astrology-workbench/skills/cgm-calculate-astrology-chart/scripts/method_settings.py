@@ -12,7 +12,8 @@ HOUSE_SYSTEMS = {'whole_sign', 'equal', 'placidus', 'koch', 'regiomontanus', 'po
 
 
 def default_path():
-    return Path.cwd() / '.cgm-hellenistic-astrology' / 'settings.json'
+    from local_installation import location
+    return location('astrology_settings') or Path.cwd() / '.cgm-hellenistic-astrology' / 'settings.json'
 
 
 def validate_methods(methods):

@@ -91,3 +91,7 @@ node skills/cgm-bazi-suite/scripts/run.cjs birth examples/birth.json demo-output
 更新继续使用同一仓库的 `main`：Git 用户在没有未提交源码修改时运行 `git pull --ff-only origin main`；ZIP 用户重新下载并解压到新目录，检查后切换工作台路径。
 
 更新前备份自己的案例库和 `.cgm-bazi/settings.json`。个人库、设置和运行环境应放在 `skills/` 之外；长期使用建议放在独立数据目录。不要用新 ZIP 覆盖这些数据。切换源码目录后，在 `--library` 中继续指定原库，并让计算与工作页服务使用同一设置文件；自定义设置路径通过计算命令的 `--settings` 与服务环境变量 `CGM_BAZI_SETTINGS` 指定。先读该版说明，再决定是否重算旧案例。
+
+## 换项目继续使用
+
+首次完成环境、默认确认和案例库初始化后，读取成员的 `references/cross-project.md`，把确认的运行环境、库与设置位置登记到 `~/.cgm-workbenches/locations.json`。更新或换项目先复用该登记，不重复安装依赖或新建空库。用户明确指定路径时优先使用指定值。只安装其中一套时不需要另一套。登记文件为本机配置，不放入公开包。

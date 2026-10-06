@@ -1,34 +1,41 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261006-101357-1531d71d",
+  "build_id": "20261006-103604-e6ceaeac",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
+      "file": "skills/cgm-bazi-suite/references/cross-project.md",
+      "source": "skills/cgm-bazi-suite/references/cross-project.md",
+      "sha256": "66d527811cd65c557c9419a5199249c4a2e393209ae010651050977eeb91a525",
+      "bytes": 2094,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-suite/references/first-use.md",
       "source": "skills/cgm-bazi-suite/references/first-use.md",
-      "sha256": "ce0d187dd8a3df681c54856f9aba024dce1a7cd6d30c06bcc0189d5fdaf29d4f",
-      "bytes": 5092,
+      "sha256": "ca8105e46837737759fe86890a76248d550cbba56cfa974afabca9b1b40b86c8",
+      "bytes": 5199,
       "transform": "none"
     },
     {
       "file": "skills/cgm-bazi-suite/scripts/check-environment.cjs",
       "source": "skills/cgm-bazi-suite/scripts/check-environment.cjs",
-      "sha256": "5e656ccdf056cf2b3b230d1215187b76fd7f8506bee3e373a024d064d5fd209b",
-      "bytes": 1263,
+      "sha256": "fc1adcad2d53a059459fa63c1abc25b492048e5fcb0d0c9f71b5fba67c7d8066",
+      "bytes": 1129,
       "transform": "none"
     },
     {
       "file": "skills/cgm-bazi-suite/scripts/run.cjs",
       "source": "skills/cgm-bazi-suite/scripts/run.cjs",
-      "sha256": "e34d121732c4517c5f18eb56c24919ac9c7bfd052eb4fff6f54cb78a1ad50485",
-      "bytes": 3607,
+      "sha256": "2582e3f17aee2dac90897d070c96606e2734702073a75b1f792b1b6d00cdb161",
+      "bytes": 3545,
       "transform": "none"
     },
     {
       "file": "skills/cgm-bazi-suite/SKILL.md",
       "source": "skills/cgm-bazi-suite/SKILL.md",
-      "sha256": "56880b6f34ad06bf357424039adae4cfbec690d019ac857c84c5d7b3f7be1e61",
-      "bytes": 7929,
+      "sha256": "080227d955e0c6faf1640a1f577c836a11dbba76aee3cf54b7bf2b2e5dceab8b",
+      "bytes": 8238,
       "transform": "none"
     },
     {
@@ -43,6 +50,13 @@
       "source": "skills/cgm-bazi-chart/references/contract.md",
       "sha256": "76d2ea4a7e4bebca51344e83b27baefee7848401fa32b17cf2ebd5507e45df36",
       "bytes": 11599,
+      "transform": "none"
+    },
+    {
+      "file": "skills/cgm-bazi-chart/references/cross-project.md",
+      "source": "skills/cgm-bazi-chart/references/cross-project.md",
+      "sha256": "66d527811cd65c557c9419a5199249c4a2e393209ae010651050977eeb91a525",
+      "bytes": 2094,
       "transform": "none"
     },
     {
@@ -83,8 +97,8 @@
     {
       "file": "skills/cgm-bazi-chart/scripts/chart.cjs",
       "source": "skills/cgm-bazi-chart/scripts/chart.cjs",
-      "sha256": "ff92cfb867431e19d23e9b3832b25678d09e0e46b12502698faa41bb0a5b416a",
-      "bytes": 21595,
+      "sha256": "0c61dec4946b69418f7f828f4e7fd9b29717e4bcf7f1db82e10a778714982b36",
+      "bytes": 21405,
       "transform": "none"
     },
     {
@@ -102,10 +116,17 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-chart/scripts/local-installation.cjs",
+      "source": "skills/cgm-bazi-chart/scripts/local-installation.cjs",
+      "sha256": "36a392f667a3b2c5b949bf0ab3c718d3482d7c32e99145599ffa779d2cfbe4a6",
+      "bytes": 1397,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-chart/scripts/preferences.cjs",
       "source": "skills/cgm-bazi-chart/scripts/preferences.cjs",
-      "sha256": "f9eeceab7248872a76c982f7d57b28b1b2698c28e8668565c865e6a6c5224078",
-      "bytes": 5081,
+      "sha256": "ec154179bc7cd53de32fbf0310999e2531305c01f4b844af8b3c916ba9cf2503",
+      "bytes": 5144,
       "transform": "none"
     },
     {
@@ -132,8 +153,8 @@
     {
       "file": "skills/cgm-bazi-chart/SKILL.md",
       "source": "skills/cgm-bazi-chart/SKILL.md",
-      "sha256": "d8889e6dcfb478d26e76f9b0d200dfffd67d911340cd8c0766a833fb7b329dea",
-      "bytes": 3996,
+      "sha256": "05dcf0bcd38a4d050c46e9f6d09c703e277750f21cb367d10c94cc0deb2da317",
+      "bytes": 4305,
       "transform": "none"
     },
     {
@@ -188,7 +209,7 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/legal-footer.html",
       "source": "skills/cgm-bazi-visualization/assets/legal-footer.html",
-      "sha256": "71766e6751e36add5f2107e22f891a822d3de1e82817bf0cf54b3415c3c2ad01",
+      "sha256": "4d36958d42fb3a2ad60172479a8032ef60fad65d652bba25258e3afb9dfdf717",
       "bytes": 51088,
       "transform": "none"
     },
@@ -305,6 +326,13 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-visualization/references/cross-project.md",
+      "source": "skills/cgm-bazi-visualization/references/cross-project.md",
+      "sha256": "66d527811cd65c557c9419a5199249c4a2e393209ae010651050977eeb91a525",
+      "bytes": 2094,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-visualization/references/export-settings.md",
       "source": "skills/cgm-bazi-visualization/references/export-settings.md",
       "sha256": "689999b6db7d770fc7223ffa6efc6248cd71015693e80c13ee88981f9104d6db",
@@ -356,8 +384,8 @@
     {
       "file": "skills/cgm-bazi-visualization/scripts/case-library.py",
       "source": "skills/cgm-bazi-visualization/scripts/case-library.py",
-      "sha256": "6b5652a6358c470a16e50f1f544f3ea0403464b0b9c04373a97836f9a11edff5",
-      "bytes": 49816,
+      "sha256": "ffe6d5af7b499305819fe74dcbc8994f05446d3850e4a31535da1ce3c10db4ea",
+      "bytes": 49886,
       "transform": "none"
     },
     {
@@ -410,6 +438,13 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-visualization/scripts/local_installation.py",
+      "source": "skills/cgm-bazi-visualization/scripts/local_installation.py",
+      "sha256": "d8dae2de602d169a9a612f888ed8a7f3f0361dba8716993ae101fd18704a7d15",
+      "bytes": 2627,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-visualization/scripts/name-layout.browser.js",
       "source": "skills/cgm-bazi-visualization/scripts/name-layout.browser.js",
       "sha256": "4d2b09147dfba13a2206c31bcac8810eb8f59e924bd6fced9e1ef99816385634",
@@ -426,8 +461,8 @@
     {
       "file": "skills/cgm-bazi-visualization/scripts/portable_reading.py",
       "source": "skills/cgm-bazi-visualization/scripts/portable_reading.py",
-      "sha256": "b4a9db24bf044bb424303b89403d0e51c171b373458644a68f3d85e1db598819",
-      "bytes": 4042,
+      "sha256": "47b582fc2d8ba5ee504b878271d4580a4384055dc336c59b7e870e7bcb5372af",
+      "bytes": 4072,
       "transform": "none"
     },
     {
@@ -468,8 +503,8 @@
     {
       "file": "skills/cgm-bazi-visualization/SKILL.md",
       "source": "skills/cgm-bazi-visualization/SKILL.md",
-      "sha256": "76b12b77ea8b8bffc4e8012988247d3aaabccd4923ec93e731185b37d6bbb9af",
-      "bytes": 6138,
+      "sha256": "25445adf2ef8ae4ad49903aab0a2c185f40e7fe01139e420cb666215ae280d36",
+      "bytes": 6447,
       "transform": "none"
     },
     {
@@ -554,6 +589,13 @@
       "source": "tests/case-remarks.py",
       "sha256": "eacd2e9bdf8a7652357bb36c6c2c4d5b3bf7d7ec8e23d606badb565aec7743e0",
       "bytes": 2100,
+      "transform": "none"
+    },
+    {
+      "file": "tests/local-installation.py",
+      "source": "tests/local-installation.py",
+      "sha256": "50b878d62b567021fa0be5b3e2b6ca78951d988fb0038623ade41790007a0a50",
+      "bytes": 2748,
       "transform": "none"
     },
     {
@@ -643,8 +685,8 @@
     {
       "file": "INSTALL.md",
       "source": "release-metadata/bazi/INSTALL.md",
-      "sha256": "18a3b21768c3535b5703d9adf053d236d6cd9d7f43ace02a0403b93d86c1fd97",
-      "bytes": 6713,
+      "sha256": "730d39274bbfd19499a6cab3ef99110c4d7e8e8f1b716cd0cb063242ff7dcb90",
+      "bytes": 7171,
       "transform": "none"
     },
     {
@@ -657,8 +699,8 @@
     {
       "file": "README.md",
       "source": "release-metadata/bazi/README.md",
-      "sha256": "d1a30b29d5c51eb243d0b62e30653b4c980ce2534b75b5422d6deb33f32f801b",
-      "bytes": 7774,
+      "sha256": "3418ceb8a61f6ca35b149c3c6c29ed06b641a7fbbe9bd948808f168ffad65ad0",
+      "bytes": 8018,
       "transform": "none"
     },
     {
@@ -671,8 +713,8 @@
     {
       "file": "TESTING.md",
       "source": "release-metadata/bazi/TESTING.md",
-      "sha256": "d4603a6442f8b335c9f951562831c54173a0e48c6a6949016cde9a83381fd646",
-      "bytes": 6850,
+      "sha256": "9fd23467814c9412f6a66af9c4daee83d599b59091e7ba3131aff67afce23166",
+      "bytes": 7314,
       "transform": "none"
     }
   ],
@@ -685,6 +727,7 @@
     "skills/cgm-bazi-visualization/scripts/__pycache__/case_remarks.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/case_remarks.cpython-313.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/history_store.cpython-312.pyc",
+    "skills/cgm-bazi-visualization/scripts/__pycache__/local_installation.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/portable_reading.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/resource_store.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/resource_store.cpython-313.pyc"

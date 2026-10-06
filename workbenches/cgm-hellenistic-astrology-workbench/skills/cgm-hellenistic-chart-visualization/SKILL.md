@@ -12,6 +12,11 @@ description: 将已校验的 chart-facts v4 通过共用模板呈现为星盘工
 
 案例来源、可靠性与背景放在独立的「案例备注」，默认第一项；同案例跨盘式共用。读写方法见 [案例备注](references/case-remarks.md)。分析、反馈仍按记录与盘式保存。
 
+
+## 跨项目与已有案例
+
+首次在新对话调用时先读 [本机位置与跨项目使用](references/cross-project.md)。复用登记的运行环境、已确认设置和对应正式案例库；显式指定的位置优先。查询已有案例先 list 核对 ID，换项目不自动新建空库。
+
 ## 本地案例库：默认协作入口
 
 - 首次使用案例库或维护保存功能，读取 [case-library-v1.md](references/case-library-v1.md)。已有案例先 `library_cli.py list`，用返回的 view ID 操作；不要以文件路径猜测 ID。

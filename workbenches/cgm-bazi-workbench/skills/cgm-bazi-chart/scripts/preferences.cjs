@@ -2,7 +2,7 @@
 const fs=require('node:fs'),path=require('node:path');
 const {RECOMMENDED,OPTIONS,normalizeConventions}=require('./conventions.cjs');
 class PreferenceError extends Error{constructor(code,message,details={}){super(message);this.code=code;this.details=details;}}
-const defaultSettingsPath=library=>process.env.CGM_BAZI_SETTINGS?path.resolve(process.env.CGM_BAZI_SETTINGS):library?path.resolve(library,'..','.cgm-bazi','settings.json'):path.resolve('.cgm-bazi','settings.json');
+const defaultSettingsPath=library=>process.env.CGM_BAZI_SETTINGS?path.resolve(process.env.CGM_BAZI_SETTINGS):library?path.resolve(library,'..','.cgm-bazi','settings.json'):require('./local-installation.cjs').location('bazi_settings')||path.resolve('.cgm-bazi','settings.json');
 function readPreferences(settingsPath=defaultSettingsPath()){
  let data={schema:'cgm-bazi-preferences/1',revision:0,setupComplete:false,conventions:{...RECOMMENDED}};
  if(fs.existsSync(settingsPath)){

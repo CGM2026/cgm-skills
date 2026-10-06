@@ -99,7 +99,7 @@ class Library:
         self.root = Path(root).resolve()
         self.root.mkdir(parents=True, exist_ok=True)
         (self.root / 'assets').mkdir(exist_ok=True)
-        self.node = os.environ.get('CGM_BAZI_NODE') or shutil.which('node')
+        self.node = __import__('local_installation').node('bazi')
         self.trials = {}
         self.trial_lock = threading.Lock()
         self.research_checks = {}
@@ -576,7 +576,7 @@ def serve(root, port):
 
 def main():
     parser=argparse.ArgumentParser(description='本地八字案例、记录与日期查询')
-    parser.add_argument('--library',default='bazi-case-library')
+    parser.add_argument('--library')
     sub=parser.add_subparsers(dest='command',required=True)
     create=sub.add_parser('create');create.add_argument('--chart',required=True)
     sub.add_parser('list')
@@ -598,6 +598,7 @@ def main():
     p=sub.add_parser('backup');p.add_argument('--output',required=True)
     p=sub.add_parser('serve');p.add_argument('--port',type=int,default=4880)
     args=parser.parse_args()
+    args.library=args.library or str(__import__('local_installation').library('bazi','bazi-case-library'))
     if args.command=='serve':return serve(args.library,args.port)
     library=Library(args.library)
     if args.command=='create':result=library.create(json.loads(Path(args.chart).read_text(encoding='utf-8-sig')))

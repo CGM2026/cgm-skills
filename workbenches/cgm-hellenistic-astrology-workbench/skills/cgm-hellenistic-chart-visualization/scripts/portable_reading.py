@@ -41,7 +41,7 @@ globalThis.CGMReadingOpen=id=>{
 def assets_for(root, pages, node=None):
     assets={}
     text=''.join(p['html'] for p in pages.values())+json.dumps(pages,ensure_ascii=False)
-    node=node or os.environ.get('CGM_ASTRO_NODE') or os.environ.get('CGM_BAZI_NODE') or shutil.which('node')
+    node=node or os.environ.get('CGM_ASTRO_NODE') or os.environ.get('CGM_BAZI_NODE') or __import__('local_installation').node('astrology')
     if not node:raise ValueError('生成阅读副本需要已安装的 Node；请指定 CGM_ASTRO_NODE 或 CGM_BAZI_NODE。')
     helper=Path(__file__).with_name('portable-fonts.cjs')
     for page in pages.values():

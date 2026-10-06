@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261006-101357-1531d71d",
+  "build_id": "20261006-103604-e6ceaeac",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -11,10 +11,17 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-astrology-workbench/references/cross-project.md",
+      "source": "skills/cgm-astrology-workbench/references/cross-project.md",
+      "sha256": "66d527811cd65c557c9419a5199249c4a2e393209ae010651050977eeb91a525",
+      "bytes": 2094,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-astrology-workbench/SKILL.md",
       "source": "skills/cgm-astrology-workbench/SKILL.md",
-      "sha256": "43447e677f79d2d570e6f611ec2085978b2877be18f3b807556fe5ddb5ff9be6",
-      "bytes": 7466,
+      "sha256": "62866725ac132c38ec82cb1ed59ec0c2fd1e52dce2ae21a324806fbcaa9f66c8",
+      "bytes": 7820,
       "transform": "none"
     },
     {
@@ -32,10 +39,17 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-calculate-astrology-chart/references/cross-project.md",
+      "source": "skills/cgm-calculate-astrology-chart/references/cross-project.md",
+      "sha256": "66d527811cd65c557c9419a5199249c4a2e393209ae010651050977eeb91a525",
+      "bytes": 2094,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-calculate-astrology-chart/references/first-run-setup.md",
       "source": "skills/cgm-calculate-astrology-chart/references/first-run-setup.md",
-      "sha256": "f9338b0306e932ecdd5d254e9ea94029d61c0bf857c0a1151ada60c8824d4921",
-      "bytes": 4131,
+      "sha256": "50d6a13d8a6ca57f005db0c22d7b949a1a0d06dbfd17298546ee74218469b070",
+      "bytes": 4434,
       "transform": "none"
     },
     {
@@ -62,8 +76,8 @@
     {
       "file": "skills/cgm-calculate-astrology-chart/scripts/bootstrap_runtime.py",
       "source": "skills/cgm-calculate-astrology-chart/scripts/bootstrap_runtime.py",
-      "sha256": "8406c609c64807ecd19100cb867dffb6085824e391bda05cbff70f8778c1330c",
-      "bytes": 4489,
+      "sha256": "87adec9d87cee30e3b3de1d426106b912dd48bba43c9a773bbcc3187b86ef592",
+      "bytes": 4933,
       "transform": "none"
     },
     {
@@ -123,10 +137,17 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-calculate-astrology-chart/scripts/local_installation.py",
+      "source": "skills/cgm-calculate-astrology-chart/scripts/local_installation.py",
+      "sha256": "d8dae2de602d169a9a612f888ed8a7f3f0361dba8716993ae101fd18704a7d15",
+      "bytes": 2627,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-calculate-astrology-chart/scripts/method_settings.py",
       "source": "skills/cgm-calculate-astrology-chart/scripts/method_settings.py",
-      "sha256": "b4f0111fb0a323c515f3f034eec49f21048b06ec88627ec7e5334c43c21591e4",
-      "bytes": 2881,
+      "sha256": "3180c6c827e4fed73897698c7b2da9c7ab8dc4761ffaca72e646e2007ab37fb7",
+      "bytes": 2959,
       "transform": "none"
     },
     {
@@ -153,8 +174,8 @@
     {
       "file": "skills/cgm-calculate-astrology-chart/SKILL.md",
       "source": "skills/cgm-calculate-astrology-chart/SKILL.md",
-      "sha256": "a28e8f756f93bd96d8400fc81eef9b53376635e5df7b68b24d073f639947a377",
-      "bytes": 8610,
+      "sha256": "e0fc4580965dfc604e969d34abf017156867fe7ffd9347a4b50e2558064e66b7",
+      "bytes": 8979,
       "transform": "none"
     },
     {
@@ -510,7 +531,7 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "fa5cb69a4516950094ae7f5a279ac5f6a165fc49a2a6aee575d7b20fe9843be1",
+      "sha256": "af943cd6bf6f70bb72272709d58617e4c209f178fec288e3a5cef849250a3c26",
       "bytes": 50896,
       "transform": "none"
     },
@@ -697,6 +718,13 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-hellenistic-chart-visualization/references/cross-project.md",
+      "source": "skills/cgm-hellenistic-chart-visualization/references/cross-project.md",
+      "sha256": "66d527811cd65c557c9419a5199249c4a2e393209ae010651050977eeb91a525",
+      "bytes": 2094,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-hellenistic-chart-visualization/references/portable-reading.md",
       "source": "skills/cgm-hellenistic-chart-visualization/references/portable-reading.md",
       "sha256": "83099d7098e45559987f5ed71ba3e086679d1d1cc3e398502d01a63b70f96177",
@@ -818,8 +846,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/scripts/library_cli.py",
       "source": "skills/cgm-hellenistic-chart-visualization/scripts/library_cli.py",
-      "sha256": "d1b622256d7ee86395370a867b5ccda872ba531bd07b9078a3a9a4e07b349849",
-      "bytes": 15340,
+      "sha256": "bcc28b0d85937a2ead5bfffa190309f8e092348013c9726bf5cd5b5f9669670c",
+      "bytes": 15383,
       "transform": "none"
     },
     {
@@ -834,6 +862,13 @@
       "source": "skills/cgm-hellenistic-chart-visualization/scripts/license_footer.py",
       "sha256": "c7cc0925775428a077d1d713e537124b37087f86b054094cc3d24556175b2cad",
       "bytes": 1202,
+      "transform": "none"
+    },
+    {
+      "file": "skills/cgm-hellenistic-chart-visualization/scripts/local_installation.py",
+      "source": "skills/cgm-hellenistic-chart-visualization/scripts/local_installation.py",
+      "sha256": "d8dae2de602d169a9a612f888ed8a7f3f0361dba8716993ae101fd18704a7d15",
+      "bytes": 2627,
       "transform": "none"
     },
     {
@@ -853,8 +888,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/scripts/portable_reading.py",
       "source": "skills/cgm-hellenistic-chart-visualization/scripts/portable_reading.py",
-      "sha256": "b4a9db24bf044bb424303b89403d0e51c171b373458644a68f3d85e1db598819",
-      "bytes": 4042,
+      "sha256": "47b582fc2d8ba5ee504b878271d4580a4384055dc336c59b7e870e7bcb5372af",
+      "bytes": 4072,
       "transform": "none"
     },
     {
@@ -881,8 +916,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/scripts/render_chart.py",
       "source": "skills/cgm-hellenistic-chart-visualization/scripts/render_chart.py",
-      "sha256": "74ac069d4c1d47822eb0c577d1feb67370dd23aa4699b4d50a749cdfde53a4a6",
-      "bytes": 4217,
+      "sha256": "b009f0b8ab13ea9c79c0ac0b89bd5e0397d5b76a75c3d87b72d1578cffe1529a",
+      "bytes": 4247,
       "transform": "none"
     },
     {
@@ -972,8 +1007,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/SKILL.md",
       "source": "skills/cgm-hellenistic-chart-visualization/SKILL.md",
-      "sha256": "ab491745834842e718b5aad870bb7ab3f1f61ad20da27f4c7ded22435323f866",
-      "bytes": 10203,
+      "sha256": "3bf282e037d0bf1c2a2e0a77ab45d2b1e953140cc81a09c8372a92d121a7cfc2",
+      "bytes": 10512,
       "transform": "none"
     },
     {
@@ -981,6 +1016,13 @@
       "source": "tests/case-remarks.py",
       "sha256": "eacd2e9bdf8a7652357bb36c6c2c4d5b3bf7d7ec8e23d606badb565aec7743e0",
       "bytes": 2100,
+      "transform": "none"
+    },
+    {
+      "file": "tests/local-installation.py",
+      "source": "tests/local-installation.py",
+      "sha256": "50b878d62b567021fa0be5b3e2b6ca78951d988fb0038623ade41790007a0a50",
+      "bytes": 2748,
       "transform": "none"
     },
     {
@@ -1063,8 +1105,8 @@
     {
       "file": "INSTALL.md",
       "source": "release-metadata/astrology/INSTALL.md",
-      "sha256": "c6c155a1c28784c9d8488a46cb43ac7552cc4fbf514b91a7225b7fc897a057b9",
-      "bytes": 6599,
+      "sha256": "5e2389339345e0de246c9d1eae8e014c42eb58e7b2f25342c04ef505b17f79df",
+      "bytes": 7057,
       "transform": "none"
     },
     {
@@ -1077,19 +1119,20 @@
     {
       "file": "README.md",
       "source": "release-metadata/astrology/README.md",
-      "sha256": "b666223acc11dc273dd46f020a5ac809c19598a68d19ab24185e896004eb9029",
-      "bytes": 7354,
+      "sha256": "2b535a1827358b9a4de344a77645d431aa94f7d34e28684845bdfc23da77c6db",
+      "bytes": 7598,
       "transform": "none"
     },
     {
       "file": "TESTING.md",
       "source": "release-metadata/astrology/TESTING.md",
-      "sha256": "9d3f7fd501593fa1b6258af058d799ff428b073f2508f31ebdfd3dee3bbab9bc",
-      "bytes": 5875,
+      "sha256": "e8a06ef428a6ab8124e3ba01af5a47a8968f16a332723c0c4ea03550ddf2e524",
+      "bytes": 6339,
       "transform": "none"
     }
   ],
   "excluded_skill_files": [
+    "skills/cgm-calculate-astrology-chart/scripts/__pycache__/bootstrap_runtime.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/calculate_chart.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/calculate_decennials.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/calculate_display_snapshots.cpython-312.pyc",
@@ -1097,6 +1140,7 @@
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/calculate_time_lords.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/calculate_transit_search.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/civil_age.cpython-312.pyc",
+    "skills/cgm-calculate-astrology-chart/scripts/__pycache__/local_installation.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/method_settings.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/scripts/__pycache__/validate_chart_output.cpython-312.pyc",
     "skills/cgm-calculate-astrology-chart/tests/__pycache__/test_validate_chart_output.cpython-312.pyc",
@@ -1121,6 +1165,7 @@
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/library_cli.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/library_server.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/license_footer.cpython-312.pyc",
+    "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/local_installation.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/object_refs.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/portable_reading.cpython-312.pyc",
     "skills/cgm-hellenistic-chart-visualization/scripts/__pycache__/record_validation.cpython-312.pyc",
