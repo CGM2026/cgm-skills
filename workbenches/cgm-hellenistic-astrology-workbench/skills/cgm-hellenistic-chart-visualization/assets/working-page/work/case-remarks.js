@@ -23,6 +23,7 @@
   }
   document.addEventListener('visibilitychange',()=>{if(document.hidden)save();});
   window.addEventListener('beforeunload',event=>{if(dirty&&!portable){backup();event.preventDefault();event.returnValue='';}});
-  return {mount,flush:save};
+  async function prepareBackup(){for(let i=0;i<25;i++){await save();if(!dirty&&!busy&&!conflict)return true;if(conflict||message.startsWith('未保存'))return false;await new Promise(resolve=>setTimeout(resolve,200));}return false;}
+  return {mount,flush:save,prepareBackup};
  }};
 })();

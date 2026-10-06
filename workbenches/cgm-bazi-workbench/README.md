@@ -2,7 +2,7 @@
 
 把一个人的命盘、不同阶段的观察和后来得到的反馈放在一起，逐步积累成一份可以继续研究、复盘和分享的八字案例。你可以在书页式命盘上记录，也可以让 AI 帮你整理这些记录。
 
-当前版本：**1.0.17**。作者：**长庚明**。命理体系在这里用于研究、教学和记录，不作为人生的绝对裁决。
+当前版本：**1.0.18**。作者：**长庚明**。命理体系在这里用于研究、教学和记录，不作为人生的绝对裁决。
 
 [GitHub 源码](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-bazi-workbench) · [下载仓库 main 分支](https://github.com/CGM2026/cgm-skills/archive/refs/heads/main.zip) · [安装说明](INSTALL.md) · [版本记录](https://github.com/CGM2026/cgm-skills/releases)
 
@@ -74,3 +74,10 @@
 作者：长庚明（CGM2026）。本工作台程序采用 [AGPL-3.0-only](LICENSE)；第三方资源适用各自许可，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。分享署名见 [ATTRIBUTION.md](ATTRIBUTION.md)。
 
 文件摘要见 `SHA256SUMS.json`，发布来源见 `SOURCE_MANIFEST.json`。测试方法与已测范围见 [TESTING.md](TESTING.md)。Windows 上的排盘、工作页、笔记与导出流程已有验证；WorkBuddy、macOS 和 Linux 尚未完成整套实测。
+
+
+## 给长期记录留一份自己的云端备份
+
+在「设置 → 云端备份」连接自己的GitHub私有仓库，选择每隔几天备份。案例备注、笔记、分析、反馈和默认设置先在电脑上加密，再保存到云端；八字与占星各自保留。没有变化就沿用上次副本，共用字体只存一份。
+
+换电脑或本地文件损坏时，选择一份备份，用密码或恢复密钥找回记录。恢复先生成独立副本，检查后再接入工作台。忘记密码但原电脑仍可解锁时，也能重新设置。详情见 [云端备份说明](skills/cgm-bazi-visualization/references/cloud-backup.md)。

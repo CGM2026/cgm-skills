@@ -402,6 +402,7 @@ class Library:
         if archive_css:
             source=append_before_document_end(source,'</head>','<style id="archive-interface-styles">'+archive_css[0]+'</style>')
         source=append_before_document_end(source,'</body>','<script>'+(WORK/'workbench-layout.js').read_text(encoding='utf-8')+'</script>')
+        source=append_before_document_end(source,'</body>','<script>'+(WORK/'cloud-backup.js').read_text(encoding='utf-8')+'</script>')
         return attach_license_footer(source)
 
     def reading_times(self,vid,text):

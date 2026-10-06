@@ -95,3 +95,10 @@ node skills/cgm-bazi-suite/scripts/run.cjs birth examples/birth.json demo-output
 ## 换项目继续使用
 
 首次完成环境、默认确认和案例库初始化后，读取成员的 `references/cross-project.md`，把确认的运行环境、库与设置位置登记到 `~/.cgm-workbenches/locations.json`。更新或换项目先复用该登记，不重复安装依赖或新建空库。用户明确指定路径时优先使用指定值。只安装其中一套时不需要另一套。登记文件为本机配置，不放入公开包。
+
+
+## 按需：云端备份
+
+在完整工作页打开「设置 → 云端备份」，连接自己的GitHub私有仓库，设置备份密码、间隔天数与保留数量，并单独保存恢复密钥。首次启用才安装可选加密组件；普通安装不增加这一步。
+
+自动备份由系统任务执行，电脑开机登录后检查；Agent或网页可以关闭。恢复先生成独立副本，通过校验后再选择接入。具体设置、忘记密码和换电脑恢复见 [云端备份说明](skills/cgm-bazi-visualization/references/cloud-backup.md)。

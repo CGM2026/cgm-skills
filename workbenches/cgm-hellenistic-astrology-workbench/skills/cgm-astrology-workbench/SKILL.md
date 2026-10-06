@@ -5,6 +5,8 @@ description: 长庚明希腊占星工作台的统一入口，串联时间地点�
 
 # 长庚明希腊占星工作台
 
+云端备份、定时存档或换电脑恢复，读取相邻可视化成员的 `references/cloud-backup.md`，复用当前占星库和运行环境；页面设置与 Agent 接口共用实现。
+
 通过相邻的 [排盘成员](../cgm-calculate-astrology-chart/SKILL.md) 计算事实，通过 [可视化成员](../cgm-hellenistic-chart-visualization/SKILL.md) 建立和打开工作页。三个成员同级安装。本入口只协调这两个成员已有的能力；传递完整的 `chart-facts` v4 文件。
 
 

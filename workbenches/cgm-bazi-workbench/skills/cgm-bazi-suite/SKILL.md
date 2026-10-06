@@ -33,6 +33,7 @@ description: 八字套件统一入口，串联出生排盘、数据校验与本�
 
 ## 路由
 
+- 云端备份、定时存档或换电脑恢复：读取可视化成员的 `references/cloud-backup.md`，复用当前八字库和运行环境；页面设置与 Agent 接口共用实现。
 - 排盘并展示：workspace生成或校验命盘，导入本地案例库并取得HTTP URL，在Agent浏览器打开。默认工作区bazi-case-library，已有指定库则复用。
 - 查看或编辑已有案例：可视化成员list、open及research结构化接口，不重新排盘；新图层不要写入旧note-put/record-put。
 - 只要计算数据：排盘成员birth。

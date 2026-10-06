@@ -437,7 +437,7 @@ class Library:
         config = dict(caseRemarks=remarks,viewId=view_id, caseId=info['case_id'], mode=info['mode'], token=token, views=views, rootIdentity=hashlib.sha256(str(self.root).encode()).hexdigest())
         safe_config = encode(config).replace('<', '\\u003c')
         markup = markup.replace('</head>', '<link rel="stylesheet" href="/ui/research-ui.css"></head>')
-        markup = markup.replace('</body>', '<script id="bazi-library-config" type="application/json">'+safe_config+'</script><script src="/ui/export-workbench.js"></script><script src="/ui/note-policy.js"></script><script src="/ui/research-drafts.js"></script><script src="/ui/algorithm-settings.js"></script><script src="/ui/case-remarks.js"></script><script src="/ui/research-ui.js"></script></body>')
+        markup = markup.replace('</body>', '<script id="bazi-library-config" type="application/json">'+safe_config+'</script><script src="/ui/export-workbench.js"></script><script src="/ui/note-policy.js"></script><script src="/ui/research-drafts.js"></script><script src="/ui/algorithm-settings.js"></script><script src="/ui/case-remarks.js"></script><script src="/ui/cloud-backup.js"></script><script src="/ui/research-ui.js"></script></body>')
         return markup
 
 
@@ -463,6 +463,8 @@ class Library:
 
 def serve(root, port):
     library = Library(root)
+    from cloud_backup import BackupManager
+    backup = BackupManager('bazi', library.root, os.environ.get('CGM_BAZI_SETTINGS') or library.root.parent / '.cgm-bazi' / 'settings.json')
     token = secrets.token_urlsafe(32)
     origin = f'http://127.0.0.1:{port}'
     class Handler(BaseHTTPRequestHandler):
@@ -489,6 +491,9 @@ def serve(root, port):
             route=urlparse(self.path)
             args={k:v[0] for k,v in parse_qs(route.query).items()}
             try:
+                if route.path=='/api/cloud-backup':
+                    if self.headers.get('X-Bazi-Token')!=token:return self.output({'error':'请刷新工作页后重试'},403)
+                    return self.output(backup.status())
                 if route.path=='/health':
                     return self.output(dict(ready=True,library=str(library.root),pid=os.getpid(),settings=str(Path(os.environ.get('CGM_BAZI_SETTINGS') or library.root.parent/'.cgm-bazi'/'settings.json').resolve())))
                 if route.path=='/':
@@ -510,7 +515,7 @@ def serve(root, port):
                         raise ValueError('资源路径无效')
                     file=library.root/'assets'/key
                     return self.output(file.read_bytes(),kind=mimetypes.guess_type(str(file))[0] or 'application/octet-stream')
-                if route.path in ('/ui/case-remarks.js','/ui/library.js','/ui/library.css','/ui/research-ui.js','/ui/research-ui.css','/ui/export-workbench.js','/ui/note-policy.js','/ui/research-drafts.js','/ui/algorithm-settings.js'):
+                if route.path in ('/ui/cloud-backup.js','/ui/case-remarks.js','/ui/library.js','/ui/library.css','/ui/research-ui.js','/ui/research-ui.css','/ui/export-workbench.js','/ui/note-policy.js','/ui/research-drafts.js','/ui/algorithm-settings.js'):
                     file=HERE.parent/'assets'/Path(route.path).name
                     return self.output(file.read_bytes(),kind='application/javascript; charset=utf-8' if file.suffix=='.js' else 'text/css; charset=utf-8')
                 if route.path=='/api/case-remarks':
@@ -540,6 +545,8 @@ def serve(root, port):
                 if not 0<size<=maximum:
                     raise ValueError('请求过大或为空')
                 body=json.loads(self.rfile.read(size))
+                if self.path=='/api/cloud-backup':
+                    return self.output(backup.action(body))
                 if self.path=='/api/case-remarks':
                     from case_remarks import put_remarks
                     result=put_remarks(library.root/'cases.sqlite3',body['view'],body['text'],body['version'])

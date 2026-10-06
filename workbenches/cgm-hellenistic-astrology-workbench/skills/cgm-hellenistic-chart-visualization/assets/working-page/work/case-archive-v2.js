@@ -10,6 +10,7 @@
   try{if(!localStorage.getItem(storage+'-backup-v1'))localStorage.setItem(storage+'-backup-v1',raw);localStorage.setItem(storage,JSON.stringify(state));}catch{}
  }}catch{}
  const config=globalThis.ChartLibrary,caseRemarks=globalThis.CGMCaseRemarks?.create({view:config?.id,token:config?.token,header:'X-Case-Token',portable:!!globalThis.CGMPortable},config?.caseRemarks);
+ globalThis.ChartCaseRemarks=caseRemarks;
  let view='remarks',editing=null,listScroll=0;
  const cards=new Map();
  const selections={records:new Set(),analysis:new Set(),feedback:new Set()},selected=()=>selections[view]||new Set(),folio=document.querySelector('.folio');

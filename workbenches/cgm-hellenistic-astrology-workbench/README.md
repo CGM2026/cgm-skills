@@ -2,7 +2,7 @@
 
 围绕同一个人的星盘，把不同技法的观察、看盘笔记和后续反馈保留下来。你可以一边切换盘式、一边记录，再让 AI 根据已有资料协助整理复盘、备课或咨询提纲。
 
-当前版本：**1.0.17**。作者：**长庚明**。占星在这里用于研究、教学和记录，不作为人生的绝对裁决。
+当前版本：**1.0.18**。作者：**长庚明**。占星在这里用于研究、教学和记录，不作为人生的绝对裁决。
 
 [GitHub 源码](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench) · [下载仓库 main 分支](https://github.com/CGM2026/cgm-skills/archive/refs/heads/main.zip) · [安装说明](INSTALL.md) · [版本记录](https://github.com/CGM2026/cgm-skills/releases)
 
@@ -63,3 +63,10 @@
 作者：长庚明（CGM2026）。本工作台程序采用 [AGPL-3.0-only](LICENSE)；第三方资源适用各自许可，见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。署名建议见 [ATTRIBUTION.md](ATTRIBUTION.md)。
 
 文件摘要见 `SHA256SUMS.json`，来源见 `SOURCE_MANIFEST.json`。测试方法与已测范围见 [TESTING.md](TESTING.md)。Windows 上的排盘、六种工作页、笔记与导出流程已有验证；WorkBuddy、macOS、Linux、真实手机及所有历史年份尚未完成完整验证。
+
+
+## 给长期记录留一份自己的云端备份
+
+在「设置 → 云端备份」连接自己的GitHub私有仓库，选择每隔几天备份。案例备注、笔记、分析、反馈和默认设置先在电脑上加密，再保存到云端；八字与占星各自保留。没有变化就沿用上次副本，共用字体只存一份。
+
+换电脑或本地文件损坏时，选择一份备份，用密码或恢复密钥找回记录。恢复先生成独立副本，检查后再接入工作台。忘记密码但原电脑仍可解锁时，也能重新设置。详情见 [云端备份说明](skills/cgm-hellenistic-chart-visualization/references/cloud-backup.md)。

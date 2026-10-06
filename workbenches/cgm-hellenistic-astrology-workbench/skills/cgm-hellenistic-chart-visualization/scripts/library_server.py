@@ -20,6 +20,8 @@ def serve(root,port,settings_path=None):
     library=Library(root);token=secrets.token_urlsafe(32)
     from method_settings import RECOMMENDED,default_path,read_settings,save_settings
     settings_path=Path(settings_path or default_path()).resolve()
+    from cloud_backup import BackupManager
+    backup=BackupManager('astrology',library.root,settings_path)
     origin=f'http://127.0.0.1:{port}'
     class Handler(BaseHTTPRequestHandler):
         def log_message(self,*args):pass
@@ -37,6 +39,9 @@ def serve(root,port,settings_path=None):
             if not self.allowed_host():return self.output({'error':'仅接受本机入口'},403)
             route=urlparse(self.path);args=parse_qs(route.query)
             try:
+                if route.path=='/api/cloud-backup':
+                    if self.headers.get('X-Case-Token')!=token:return self.output({'error':'请刷新工作页后重试'},403)
+                    return self.output(backup.status())
                 if route.path=='/health':return self.output({'ready':True,'library':hashlib.sha256(str(library.root).encode()).hexdigest(),'pid':os.getpid()})
                 if route.path=='/':
                     from html import escape
@@ -71,6 +76,7 @@ def serve(root,port,settings_path=None):
                 body=json.loads(self.rfile.read(length))
                 if not isinstance(body,dict):raise ValueError('请求必须是对象')
                 if self.headers.get('X-Case-Token',body.get('token',''))!=token:return self.output({'error':'请刷新案例页面后重试'},403)
+                if self.path=='/api/cloud-backup':return self.output(backup.action(body))
                 if self.path=='/api/case-remarks':
                     from case_remarks import put_remarks
                     result=put_remarks(library.db,body['view'],body['text'],body['version'])

@@ -1,6 +1,6 @@
 {
   "schema": "cgm-release-rights/1",
-  "checked_on": "2026-10-03",
+  "checked_on": "2026-10-06",
   "program": {
     "author": "长庚明 (CGM2026)",
     "license": "AGPL-3.0-only",
@@ -65,6 +65,30 @@
       "source": "https://github.com/6tail/lunar-python",
       "license_source": "https://raw.githubusercontent.com/6tail/lunar-python/master/LICENSE",
       "distribution": "algorithm-and-test-reference",
+      "status": "verified"
+    },
+    {
+      "id": "cryptography",
+      "bundles": [
+        "bazi",
+        "astrology"
+      ],
+      "version": "50.0.2",
+      "license": "Apache-2.0 OR BSD-3-Clause",
+      "source": "https://github.com/pyca/cryptography",
+      "distribution": "optional-external-dependency",
+      "status": "verified"
+    },
+    {
+      "id": "keyring",
+      "bundles": [
+        "bazi",
+        "astrology"
+      ],
+      "version": "25.7.0",
+      "license": "MIT",
+      "source": "https://github.com/jaraco/keyring",
+      "distribution": "optional-external-dependency",
       "status": "verified"
     }
   ],

@@ -1,6 +1,6 @@
 # 第三方组件、素材与来源
 
-核对日期：2026-10-03。本工作台程序采用 AGPL-3.0-only；下列组件与资源保留原作者许可。`RIGHTS_STATUS.json` 记录所分发组件的来源与授权依据。本工作台与 cgm-skills 仓库统一采用 AGPL-3.0-only，第三方资源按下列声明授权。
+核对日期：2026-10-06。本工作台程序采用 AGPL-3.0-only；下列组件与资源保留原作者许可。`RIGHTS_STATUS.json` 记录所分发组件的来源与授权依据。本工作台与 cgm-skills 仓库统一采用 AGPL-3.0-only，第三方资源按下列声明授权。
 
 ## 两套共同使用
 
@@ -32,3 +32,11 @@ Python、Node.js、SQLite、ICU 和 tzdata 由使用者的运行环境提供，�
 - **轮盘几何与绘制代码**：从长庚明的 [Astrologer 项目](https://github.com/CGM2026/Astrologer) 提取、适配。路径与提取摘要见可视化成员 `references/source-snapshot.json`，适配说明见 `references/reuse-notes.md`。2026-10-03，作者确认拥有本工作台所分发代码的授权权利，并同意按 AGPL-3.0-only 发布；此项状态记为 `user-confirmed`。这项授权针对本工作台所含代码，不声明 Astrologer 原仓库整体许可证已改变。
 
 本包未包含的专属组件，其许可文本只出现在对应的另一个工作台包中。再分发时保留本声明、所有适用原始许可及修改记录。
+
+
+## 可选云端备份依赖
+
+首次启用云端备份时才安装；普通排盘与档案记录不依赖它们。本包包含调用代码和原始许可，不包含其二进制或运行环境。
+
+- **cryptography**：加密实现，实测50.0.2，Apache-2.0或BSD-3-Clause双许可。[官方源码](https://github.com/pyca/cryptography)，随包声明见 `LICENSES/cryptography.txt`、`cryptography-Apache-2.0.txt` 和 `cryptography-BSD-3-Clause.txt`。
+- **keyring**：macOS/Linux系统钥匙串接口，实测25.7.0，MIT。[官方源码](https://github.com/jaraco/keyring)，全文见 `LICENSES/keyring-MIT.txt`。Windows直接调用系统DPAPI。

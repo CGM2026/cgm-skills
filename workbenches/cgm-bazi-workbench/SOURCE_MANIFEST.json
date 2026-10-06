@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261006-103604-e6ceaeac",
+  "build_id": "20261006-120622-edbc32d9",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -34,8 +34,8 @@
     {
       "file": "skills/cgm-bazi-suite/SKILL.md",
       "source": "skills/cgm-bazi-suite/SKILL.md",
-      "sha256": "080227d955e0c6faf1640a1f577c836a11dbba76aee3cf54b7bf2b2e5dceab8b",
-      "bytes": 8238,
+      "sha256": "736a72401e889c2de1bded177c9c9048e46e0f16f5f8395c380f6a203cf5c220",
+      "bytes": 8428,
       "transform": "none"
     },
     {
@@ -167,8 +167,15 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/case-remarks.js",
       "source": "skills/cgm-bazi-visualization/assets/case-remarks.js",
-      "sha256": "8cb4f04f038152ee0e8d9cd862416321eff5fa8127a3f8f496ccf670ac63255d",
-      "bytes": 5024,
+      "sha256": "2066b3a720e59a8df0e205f251f9c47710853fb907dbd6caaa204266e905b537",
+      "bytes": 5273,
+      "transform": "none"
+    },
+    {
+      "file": "skills/cgm-bazi-visualization/assets/cloud-backup.js",
+      "source": "skills/cgm-bazi-visualization/assets/cloud-backup.js",
+      "sha256": "ce6eb935ec1c1a7fa540f90970bb35cbdf8f3fb7789941ae7dda87c0166362eb",
+      "bytes": 19333,
       "transform": "none"
     },
     {
@@ -209,8 +216,8 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/legal-footer.html",
       "source": "skills/cgm-bazi-visualization/assets/legal-footer.html",
-      "sha256": "4d36958d42fb3a2ad60172479a8032ef60fad65d652bba25258e3afb9dfdf717",
-      "bytes": 51088,
+      "sha256": "b47e9fba1abd25dfa42098f49c2693740811fb0a4b7f7f8dca32b6b036cea4e2",
+      "bytes": 51082,
       "transform": "none"
     },
     {
@@ -258,8 +265,8 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/research-ui.js",
       "source": "skills/cgm-bazi-visualization/assets/research-ui.js",
-      "sha256": "5047902fe7749102b981c491c0d7affd658d825c29f6f29077d07a6bd7a614be",
-      "bytes": 72292,
+      "sha256": "597aaaead57127e62f5969b8f2fcb16788962d69e76ec2e1209bb413aead0c50",
+      "bytes": 72665,
       "transform": "none"
     },
     {
@@ -326,6 +333,13 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-visualization/references/cloud-backup.md",
+      "source": "skills/cgm-bazi-visualization/references/cloud-backup.md",
+      "sha256": "980d13bb99b2e21b69c67c6d547b8329862d1d97bf66d85174b0803e77cddf89",
+      "bytes": 6069,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-visualization/references/cross-project.md",
       "source": "skills/cgm-bazi-visualization/references/cross-project.md",
       "sha256": "66d527811cd65c557c9419a5199249c4a2e393209ae010651050977eeb91a525",
@@ -375,6 +389,27 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-visualization/scripts/backup_crypto.py",
+      "source": "skills/cgm-bazi-visualization/scripts/backup_crypto.py",
+      "sha256": "0efb9ba19bce74cec807bae8cdca0f35087caae070aa6ec38b4e7919b0e78e4d",
+      "bytes": 9400,
+      "transform": "none"
+    },
+    {
+      "file": "skills/cgm-bazi-visualization/scripts/backup_github.py",
+      "source": "skills/cgm-bazi-visualization/scripts/backup_github.py",
+      "sha256": "0a9cfe08d0b58e3a3637e889464884ed3d466a1cd00491d30375b270b97ddcfa",
+      "bytes": 10725,
+      "transform": "none"
+    },
+    {
+      "file": "skills/cgm-bazi-visualization/scripts/backup_schedule.py",
+      "source": "skills/cgm-bazi-visualization/scripts/backup_schedule.py",
+      "sha256": "d0b2b2a8baf97d1b39df8f680bce42c75e5c10d010823102854d0ff15cdc9827",
+      "bytes": 10449,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-visualization/scripts/cache_budget.py",
       "source": "skills/cgm-bazi-visualization/scripts/cache_budget.py",
       "sha256": "725937f04b152dd025355fb0621d052005d36b6c84a6d5fed01611695f2873a7",
@@ -384,8 +419,8 @@
     {
       "file": "skills/cgm-bazi-visualization/scripts/case-library.py",
       "source": "skills/cgm-bazi-visualization/scripts/case-library.py",
-      "sha256": "ffe6d5af7b499305819fe74dcbc8994f05446d3850e4a31535da1ce3c10db4ea",
-      "bytes": 49886,
+      "sha256": "ff4ef2d5c058b922cb6acfed0e01a3032ae85f2260a8147153d1afe17765301f",
+      "bytes": 50488,
       "transform": "none"
     },
     {
@@ -400,6 +435,13 @@
       "source": "skills/cgm-bazi-visualization/scripts/case_remarks.py",
       "sha256": "759e71bf2d2e5dae9d26a661673d31bbace8c023864767e48d1b3bac3df295c5",
       "bytes": 3439,
+      "transform": "none"
+    },
+    {
+      "file": "skills/cgm-bazi-visualization/scripts/cloud_backup.py",
+      "source": "skills/cgm-bazi-visualization/scripts/cloud_backup.py",
+      "sha256": "f675417578b8d845dedd077815da1e80f6ece89870e77651bb1a9e7c85e05600",
+      "bytes": 46557,
       "transform": "none"
     },
     {
@@ -487,6 +529,13 @@
       "transform": "none"
     },
     {
+      "file": "skills/cgm-bazi-visualization/scripts/requirements-backup.txt",
+      "source": "skills/cgm-bazi-visualization/scripts/requirements-backup.txt",
+      "sha256": "241368588dd69250a5bc5356825748f26f4d1fca93a0138745d503ed84e28904",
+      "bytes": 58,
+      "transform": "none"
+    },
+    {
       "file": "skills/cgm-bazi-visualization/scripts/research.cjs",
       "source": "skills/cgm-bazi-visualization/scripts/research.cjs",
       "sha256": "d74c884c6e63ad4fdac7fa79e1cfda7834e9a1fad6e6256841567223de124e1a",
@@ -503,8 +552,8 @@
     {
       "file": "skills/cgm-bazi-visualization/SKILL.md",
       "source": "skills/cgm-bazi-visualization/SKILL.md",
-      "sha256": "25445adf2ef8ae4ad49903aab0a2c185f40e7fe01139e420cb666215ae280d36",
-      "bytes": 6447,
+      "sha256": "7295191b797e314c56237c68d0462b4fd186c98a1a6704c72ff45834fd91a77a",
+      "bytes": 6727,
       "transform": "none"
     },
     {
@@ -599,6 +648,20 @@
       "transform": "none"
     },
     {
+      "file": "tests/cloud-backup.py",
+      "source": "tests/cloud-backup.py",
+      "sha256": "7d6293dc1ea9edf523fd2f07d7807da8855fd794f34e76b689429a55286443ea",
+      "bytes": 29407,
+      "transform": "none"
+    },
+    {
+      "file": "tests/cloud-backup-transport.py",
+      "source": "tests/cloud-backup-transport.py",
+      "sha256": "9971c622b28bd0e556e7b85739a7d1ba2f8ed1e91654b0a154f351d80338761d",
+      "bytes": 5848,
+      "transform": "none"
+    },
+    {
       "file": ".gitignore",
       "source": "release-metadata/common/.gitignore",
       "sha256": "5bece60e2c46d1354f4c51a44aec555f8db46981d29cc4064c94daacd21efd00",
@@ -617,6 +680,27 @@
       "source": "release-metadata/common/LICENSE",
       "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
       "bytes": 34523,
+      "transform": "none"
+    },
+    {
+      "file": "LICENSES/cryptography-Apache-2.0.txt",
+      "source": "release-metadata/common/LICENSES/cryptography-Apache-2.0.txt",
+      "sha256": "aac73b3148f6d1d7111dbca32099f68d26c644c6813ae1e4f05f6579aa2663fe",
+      "bytes": 11360,
+      "transform": "none"
+    },
+    {
+      "file": "LICENSES/cryptography-BSD-3-Clause.txt",
+      "source": "release-metadata/common/LICENSES/cryptography-BSD-3-Clause.txt",
+      "sha256": "602c4c7482de6479dd2e9793cda275e5e63d773dacd1eca689232ab7008fb4fb",
+      "bytes": 1532,
+      "transform": "none"
+    },
+    {
+      "file": "LICENSES/cryptography.txt",
+      "source": "release-metadata/common/LICENSES/cryptography.txt",
+      "sha256": "3e0c7c091a948b82533ba98fd7cbb40432d6f1a9acbf85f5922d2f99a93ae6bb",
+      "bytes": 197,
       "transform": "none"
     },
     {
@@ -641,6 +725,13 @@
       "transform": "none"
     },
     {
+      "file": "LICENSES/keyring-MIT.txt",
+      "source": "release-metadata/common/LICENSES/keyring-MIT.txt",
+      "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d",
+      "bytes": 1076,
+      "transform": "none"
+    },
+    {
       "file": "LICENSES/Swiss-Ephemeris.txt",
       "source": "release-metadata/common/LICENSES/Swiss-Ephemeris.txt",
       "sha256": "b6345743292c516d07799dfad46f1a641e5270da2160cc4d6bd54594d6faa991",
@@ -657,8 +748,8 @@
     {
       "file": "THIRD_PARTY_NOTICES.md",
       "source": "release-metadata/common/THIRD_PARTY_NOTICES.md",
-      "sha256": "0e4e0c81894a8ebbecef0ca94792478f8d5d4ee1ee8da2bb1202653ddc7ccebc",
-      "bytes": 4118,
+      "sha256": "4bc809d03f65c5796cad613de22487a2fdeaa3096e53474b180d023a458776f0",
+      "bytes": 4779,
       "transform": "none"
     },
     {
@@ -685,8 +776,8 @@
     {
       "file": "INSTALL.md",
       "source": "release-metadata/bazi/INSTALL.md",
-      "sha256": "730d39274bbfd19499a6cab3ef99110c4d7e8e8f1b716cd0cb063242ff7dcb90",
-      "bytes": 7171,
+      "sha256": "95c523769e2baf70188e468cff547e08c50842f7d6d0758091a7c09870d64286",
+      "bytes": 7745,
       "transform": "none"
     },
     {
@@ -699,8 +790,8 @@
     {
       "file": "README.md",
       "source": "release-metadata/bazi/README.md",
-      "sha256": "83282b52ca7cddf46036474936c9df183144641e7807a2c805930b72af26f7ec",
-      "bytes": 5422,
+      "sha256": "b396dfd63813e970856fa1ae74358de00ebd7be83646a440f44e1b11d4d67313",
+      "bytes": 6081,
       "transform": "none"
     },
     {
@@ -713,19 +804,23 @@
     {
       "file": "TESTING.md",
       "source": "release-metadata/bazi/TESTING.md",
-      "sha256": "9fd23467814c9412f6a66af9c4daee83d599b59091e7ba3131aff67afce23166",
-      "bytes": 7314,
+      "sha256": "e4d621772339168cc17e5d9a6fe8e486413bf523a33b7635814fe8b0ebbd0a71",
+      "bytes": 8878,
       "transform": "none"
     }
   ],
   "excluded_skill_files": [
     "skills/cgm-bazi-chart/scripts/__pycache__/astronomy.cpython-312.pyc",
     "skills/cgm-bazi-visualization/assets/design-proportion-v1.json",
+    "skills/cgm-bazi-visualization/scripts/__pycache__/backup_crypto.cpython-312.pyc",
+    "skills/cgm-bazi-visualization/scripts/__pycache__/backup_github.cpython-312.pyc",
+    "skills/cgm-bazi-visualization/scripts/__pycache__/backup_schedule.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/cache_budget.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/case-library.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/case-profile.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/case_remarks.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/case_remarks.cpython-313.pyc",
+    "skills/cgm-bazi-visualization/scripts/__pycache__/cloud_backup.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/history_store.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/local_installation.cpython-312.pyc",
     "skills/cgm-bazi-visualization/scripts/__pycache__/portable_reading.cpython-312.pyc",
