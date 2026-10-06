@@ -1,53 +1,11 @@
 # 长庚明公开 Skills
 
-这里收录长庚明公开发布的 AI Skills，主要用于排盘与可视化工作台、玄学文本研究、符号系统重构，以及面向大众的占卜与命理适配体验。
-
-## 排盘与案例工作台
-
-当前版本 **v1.0.20** · [下载完整工作台](https://github.com/CGM2026/cgm-skills/releases/latest) · [版本记录](https://github.com/CGM2026/cgm-skills/releases)
-
-### 给命盘建立一份可以持续积累的研究记录
-
-**长庚明八字工作台**与**长庚明希腊占星工作台**，让排盘与案例记录连在一起。你可以一边看盘，一边记录自己的观察，再让 AI 读取这些笔记，协助整理、补录和回顾。命盘、笔记与后来得到的反馈保存在同一案例中，下一次研究可以从这里继续。
-
-### 你可以怎样使用它们
-
-- **看盘时直接与 AI 协作**：你说「把刚才的观察记到这个图层」，AI 按你的要求整理并写入案例；你在页面上写下的笔记，也可以交给 AI 继续处理。
-- **为一个案例保留不同思路**：用不同图层记录不同问题或方法，把笔记关联到正在观察的盘面对象，之后能回到当时的研究现场。
-- **几个月后回来复盘**：保留最初的判断，再补充真实经历和反馈，让 AI 帮你对照前后记录，整理支持、分歧与尚待核实之处。
-- **把案例积累用于备课与咨询准备**：让 AI 根据已有笔记和档案整理课堂提纲、案例回顾或待询问的问题，再选择盘面与笔记导出分享。
-- **换一次对话，继续同一份研究**：案例资料保存在自己的电脑上。只要新的 AI 对话能访问这个案例库，就可以先读取已有记录，再接着工作。
-
-- **为长期记录保留云端副本**：连接自己的GitHub私有仓库，按你选择的间隔自动保存加密备份。换电脑时用密码或恢复密钥找回案例，再继续研究。
-
-### 长庚明八字工作台：沿着人生时间线积累观察
-
-从岁运到流月、流日，逐步查看你关心的阶段，并把观察留在相应位置。你还可以指定一个日期，让 AI 查询对应运势资料，再与自己收集到的经历对照。遇到排法分歧时，试算不同版本、保留各自记录，继续研究。
-
-适合自学笔记、长期命例跟踪、课程案例整理与复盘。
-
-[了解八字工作台](workbenches/cgm-bazi-workbench) · [安装与首次使用](workbenches/cgm-bazi-workbench/INSTALL.md)
-
-### 长庚明希腊占星工作台：让不同技法围绕同一个案例展开
-
-从本命盘出发，继续查看行运、返照及不同推运方法，各盘式保留自己的笔记。你可以让 AI 将这些已经记录的观察并列整理，带着后续反馈回来回顾，也可以据此准备一次课堂讲解或咨询提纲。
-
-适合占星学习、技法研究、咨询资料整理与案例教学。
-
-[了解希腊占星工作台](workbenches/cgm-hellenistic-astrology-workbench) · [安装与首次使用](workbenches/cgm-hellenistic-astrology-workbench/INSTALL.md)
-
-### 从哪里开始
-
-[下载两个完整工作台](https://github.com/CGM2026/cgm-skills/releases/latest)，或让 AI 按上面的安装说明从本仓库安装。装好后，用随包示例建立第一个案例，尝试写一条笔记，再请 AI 读取并整理它，就能体验这套协作方式。
-
-后续修复沿用两个工作台的目录和安装入口。源码开放，欢迎基于现有排盘、页面和案例能力，继续开发自己的教学或研究流程。原创内容采用 **AGPL-3.0-only**，第三方资源保留各自许可。
+这里收录长庚明公开发布的玄学文本研究、符号系统重构，以及占卜与命理适配 Skills。
 
 ## 全部公开内容
 
 | Skill | 中文名 | 功能 |
 | --- | --- | --- |
-| [八字工作台](workbenches/cgm-bazi-workbench) | 长庚明八字工作台 | 沿岁运、流月、流日积累案例观察；在盘面记笔记，让 AI 协助整理、复盘与分享。 |
-| [希腊占星工作台](workbenches/cgm-hellenistic-astrology-workbench) | 长庚明希腊占星工作台 | 围绕同一案例记录不同技法；让 AI 读取盘面与笔记，协助回顾、备课和咨询资料整理。 |
 | [`cgm-reconstruct-symbols`](skills/cgm-reconstruct-symbols) | 玄学理论基础｜长庚明玄学符号重构法 | 从历史玄学文本中识别、审计并重构抽象符号系统，提炼核心洞见、现实映射与系统交互关系，输出专业研究报告和零基础短篇教科书。 |
 | [`cyber-astro-modern-public`](skills/cyber-astro-modern-public) | 赛博占卜｜现代占星·智能解读（公开版） | 即开即用的现代占星占卜工具：随机起卦或使用你已有的星象，围绕你关心的问题给出通俗易懂的解读，并自动生成可分享的精美卡片。 |
 | [`cgm-mingli-talent-test`](skills/cgm-mingli-talent-test) | 命理测试｜五种命理术·天赋适配诊断 | 通过七轮渐进对话，识别你与希腊占星、古典占星、现代占星、八字和紫微斗数的适配关系，并生成可解释的 Markdown 与 PDF 学习报告。 |
@@ -103,17 +61,6 @@ AI 生成的判断并不完全可靠。如果报告与你的真实经历、内�
 适合讨论是否从业、继续进修、客户定位、内容平台、课程与咨询、流派与证书，以及阶段性收入或经营瓶颈。最终输出一个有事实依据、能够被反证的核心裁决；证据不足时，则给出需要补充的信息或最小验证动作。
 
 ## 安装
-
-### 两个排盘与可视化工作台
-
-两个工作台各有独立目录，成员需要一起下载并保持相邻。安装地址固定，后续版本更新继续使用同一地址：
-
-- [长庚明八字工作台](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-bazi-workbench)：先读目录中的 [安装说明](workbenches/cgm-bazi-workbench/INSTALL.md)，入口为 `cgm-bazi-suite`。
-- [长庚明希腊占星工作台](https://github.com/CGM2026/cgm-skills/tree/main/workbenches/cgm-hellenistic-astrology-workbench)：先读目录中的 [安装说明](workbenches/cgm-hellenistic-astrology-workbench/INSTALL.md)，入口为 `cgm-astrology-workbench`。
-
-可以让支持本地文件和命令执行的 Agent 根据安装说明下载、检查环境并安装三个成员。安装完成后，首次排盘会说明默认算法并询问是否调整。案例库、个人设置和笔记保存在用户工作目录，更新技能时保留这些资料。
-
-本次 Windows 环境已验证。WorkBuddy 全新安装以及 macOS/Linux 的完整流程尚待实测，后续攻略会以实测结果为准。
 
 ### 其他单个 Skill
 
@@ -188,8 +135,6 @@ Skill 每轮只问一个真正影响判断的问题，不预设“多赚钱”�
 
 本仓库中作者有权授权的原创程序代码与 Skill 内容统一采用 **[AGPL-3.0-only](LICENSE)**，作者署名为长庚明（CGM2026）。第三方代码、字体、星历及其他资源保留各自版权与许可，见相应目录的声明。
 
-- [八字工作台许可](workbenches/cgm-bazi-workbench/LICENSE)及[第三方声明](workbenches/cgm-bazi-workbench/THIRD_PARTY_NOTICES.md)。
-- [希腊占星工作台许可](workbenches/cgm-hellenistic-astrology-workbench/LICENSE)及[第三方声明](workbenches/cgm-hellenistic-astrology-workbench/THIRD_PARTY_NOTICES.md)。
 
 本仓库的原创程序与 Skill 内容允许使用、修改和继续开发；分发以及通过网络提供修改版时，按 AGPL 保留适用声明并提供对应源码。字体、星历等资源保留各自许可。
 
