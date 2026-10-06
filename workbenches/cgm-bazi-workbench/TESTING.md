@@ -107,3 +107,8 @@ Windows用户级定时任务实测能创建、调用Python并以0退出，测试
 <python> tests/cloud-backup.py skills/cgm-bazi-visualization/scripts
 <python> tests/cloud-backup-transport.py skills/cgm-bazi-visualization/scripts
 ```
+
+
+## v1.0.19 设置与导出调整
+
+八字设置保留「四柱排法」「起运与小运」，同排加入「云端备份」。备份设置默认分组折叠，增加可复制的 AI 逐步指导提示词；两套采用一致的界面措辞。六组隔离界面逻辑检查覆盖首次设置、已有连接、两种工作台、阅读副本、复制失败回退和必填分组展开。三选项卡切换、键盘导航与只读按钮显隐检查通过。八字导出个人标识按文字长度分配宽度，取消固定半宽；脚本语法检查通过，实际图片效果待用户查看。

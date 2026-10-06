@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261006-120622-edbc32d9",
+  "build_id": "20261006-164638-36456401",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -447,8 +447,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/cloud-backup.js",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/cloud-backup.js",
-      "sha256": "ce6eb935ec1c1a7fa540f90970bb35cbdf8f3fb7789941ae7dda87c0166362eb",
-      "bytes": 19333,
+      "sha256": "d14d1c5c30a58dd4c00f98e0be1198e4f422290593a075e6fd34b24ec571a9fa",
+      "bytes": 23494,
       "transform": "none"
     },
     {
@@ -538,7 +538,7 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
       "source": "skills/cgm-hellenistic-chart-visualization/assets/working-page/work/license-footer.html",
-      "sha256": "6936a827dbbc8ebefe13935904ce98d8d9f9ceeb3a84d13754804d7586c6cef1",
+      "sha256": "d87efbc9d64abdff946a6ac709e87c2e4b0fca56aa57a07e0ac27f04fffae2af",
       "bytes": 50890,
       "transform": "none"
     },
@@ -727,8 +727,8 @@
     {
       "file": "skills/cgm-hellenistic-chart-visualization/references/cloud-backup.md",
       "source": "skills/cgm-hellenistic-chart-visualization/references/cloud-backup.md",
-      "sha256": "980d13bb99b2e21b69c67c6d547b8329862d1d97bf66d85174b0803e77cddf89",
-      "bytes": 6069,
+      "sha256": "b9700ac21c4c48f152fe1906d2763132dd5441ed434aaf436424cf629e9639b4",
+      "bytes": 6576,
       "transform": "none"
     },
     {
@@ -1217,8 +1217,8 @@
     {
       "file": "TESTING.md",
       "source": "release-metadata/astrology/TESTING.md",
-      "sha256": "3f1ad68920dc93f706c394020a3dce93e999f263ceed8963a0ee5d3d0231dc8a",
-      "bytes": 7929,
+      "sha256": "5669bbb65e1137e2d1b1c191b3a84f3758c0ae889743ae67c90d0c71ceec198b",
+      "bytes": 8527,
       "transform": "none"
     }
   ],

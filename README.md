@@ -4,7 +4,7 @@
 
 ## 排盘与案例工作台
 
-当前版本 **v1.0.18** · [下载完整工作台](https://github.com/CGM2026/cgm-skills/releases/latest) · [版本记录](https://github.com/CGM2026/cgm-skills/releases)
+当前版本 **v1.0.19** · [下载完整工作台](https://github.com/CGM2026/cgm-skills/releases/latest) · [版本记录](https://github.com/CGM2026/cgm-skills/releases)
 
 ### 给命盘建立一份可以持续积累的研究记录
 
