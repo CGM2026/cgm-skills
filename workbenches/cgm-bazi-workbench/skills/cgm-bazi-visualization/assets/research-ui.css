@@ -39,7 +39,7 @@
 .research-meta{font:11px/1.6 var(--sans);color:var(--muted)}
 .research-note-head button{font-size:11px;color:var(--muted)}
 .research-dialog{position:fixed;inset:0;margin:auto;height:fit-content;border:1px solid var(--line);padding:24px;background:var(--paper);color:var(--ink);font:14px/1.8 var(--sans);width:min(440px,calc(100vw - 36px));max-height:calc(100dvh - 40px);overflow:auto;box-sizing:border-box;box-shadow:0 12px 42px rgb(56 49 41 / .12)}
-.research-dialog[aria-label="新建笔记图层"],.research-dialog[aria-label="图层名称"]{width:min(360px,calc(100vw - 36px))}
+.research-dialog[aria-label="新建笔记图层"],.research-dialog[aria-label="图层名称"],.research-dialog[aria-label="编辑图层"]{width:min(360px,calc(100vw - 36px))}
 .research-dialog[aria-label="案例档案"]{width:min(660px,calc(100vw - 36px))}
 .research-dialog[aria-label="图片导出"]{width:min(510px,calc(100vw - 36px))}
 .research-dialog[aria-label="核对两个版本"]{width:min(760px,calc(100vw - 36px))}
@@ -229,3 +229,5 @@ main .hidden-list{border-left-color:var(--research-background-line)}
 .case-remarks-editor .case-remarks-conflict{border-top:1px solid var(--line,var(--rule));margin-top:12px;padding-top:12px}
 .case-remarks-editor .case-remarks-remote{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}
 .case-remarks-editor [hidden],.archive-list-actions[hidden]{display:none!important}
+
+.research-dialog footer .research-delete-layer{margin-right:auto;color:#a65b50}.research-dialog footer .research-delete-confirm{color:#a65b50}

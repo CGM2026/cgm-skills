@@ -1,6 +1,6 @@
 {
   "schema": "cgm-source-manifest/1",
-  "build_id": "20261006-164638-36456401",
+  "build_id": "20261006-183335-1ce35ff7",
   "source_policy": "current project skills, selected standalone tests and release-metadata; no installed copies or old archives",
   "files": [
     {
@@ -216,7 +216,7 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/legal-footer.html",
       "source": "skills/cgm-bazi-visualization/assets/legal-footer.html",
-      "sha256": "e28e850115e869e65f9c92f39132fd141c86560293517f171c433af6872ea435",
+      "sha256": "5d790794b21876fbb898f8f1f31d444035d321428a20221bb8aabe4dea3deb39",
       "bytes": 51082,
       "transform": "none"
     },
@@ -258,15 +258,15 @@
     {
       "file": "skills/cgm-bazi-visualization/assets/research-ui.css",
       "source": "skills/cgm-bazi-visualization/assets/research-ui.css",
-      "sha256": "d9d350ce1aa4e49f76d550ccf4724307f8a5949fcbd1c08fc1b7ce88b2275610",
-      "bytes": 21938,
+      "sha256": "7ecf7a0af952814a85fdf08d24931efff9117c2ac92bbef84671f3c3a3e59a66",
+      "bytes": 22128,
       "transform": "none"
     },
     {
       "file": "skills/cgm-bazi-visualization/assets/research-ui.js",
       "source": "skills/cgm-bazi-visualization/assets/research-ui.js",
-      "sha256": "597aaaead57127e62f5969b8f2fcb16788962d69e76ec2e1209bb413aead0c50",
-      "bytes": 72665,
+      "sha256": "0287e1471bb86ce91b7d3ae4bbc2c541a6437df768c7f5cd1483583a246146b4",
+      "bytes": 74589,
       "transform": "none"
     },
     {
@@ -370,8 +370,8 @@
     {
       "file": "skills/cgm-bazi-visualization/references/research-layers.md",
       "source": "skills/cgm-bazi-visualization/references/research-layers.md",
-      "sha256": "7cf991f2b45d728eeda5a4b1b1fac52b2c9abdf464a1218143d0ef0adb84a39a",
-      "bytes": 14124,
+      "sha256": "ff960c2d7fe6684426ee5d8fe6007035519bf67753ea0ff1b17568f6a79c33a2",
+      "bytes": 14521,
       "transform": "none"
     },
     {
@@ -804,8 +804,8 @@
     {
       "file": "TESTING.md",
       "source": "release-metadata/bazi/TESTING.md",
-      "sha256": "b4bb1e5e3df0d66f9df1618f8f4f0294a36a1e041e56fa498afb3a825ee0e471",
-      "bytes": 9476,
+      "sha256": "d060b90b66f55f4a83ec9a94a71f9730b90fadd2bac94960586bbb889599118c",
+      "bytes": 9935,
       "transform": "none"
     }
   ],

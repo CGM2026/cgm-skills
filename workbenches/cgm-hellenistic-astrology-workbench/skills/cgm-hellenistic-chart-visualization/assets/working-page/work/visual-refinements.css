@@ -991,3 +991,5 @@ body,.folio .name,.folio .birth,.folio .settings,.folio .side h2,.folio .side .p
 .case-remarks-editor .case-remarks-remote{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit}
 .case-remarks-editor [hidden],.archive-list-actions[hidden]{display:none!important}
 /* end-archive-record-navigation */
+
+.layer-editor .delete-layer,.layer-confirm .confirm-delete{color:#a65b50}.layer-editor .delete-layer[hidden]{display:none}
